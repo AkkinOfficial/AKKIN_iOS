@@ -1,2 +1,2 @@
 # AKKIN_iOS
-AKKIN iOS 레포지토리
+스르륵 팀 "아낀거지" iOS
