@@ -11,10 +11,15 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
-        URL(string: "")!
+        URL(string: URLConst.base)!
     }
     
     var headers: [String : String]? {
-        nil
+        let header = [
+            "Content-Type": "application/json",
+            "accessToken": UserDefaultHandler.accessToken,
+            "refreshToken": UserDefaultHandler.refreshToken
+        ]
+        return header
     }
 }

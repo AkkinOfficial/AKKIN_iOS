@@ -28,5 +28,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = dependency.windowCreator(windowScene)
         window?.makeKeyAndVisible()
     }
-}
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        // kakao123456789://kakaolink
+        // kakao123456789://kakaolink?key1=value1&key2=value2
+        if let url = URLContexts.first?.url {
+            print("url : \(url)")
+        }
+    }
+
+    func changeRootViewController() {
+        guard let window = window else { return }
+        if Storage.isFirstTime() {
+            window.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+     }
+
+    func changeRootViewToMain() {
+         guard let window = window else { return }
+         window.rootViewController = UINavigationController(rootViewController: MainViewController())
+         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
+     }
+}
