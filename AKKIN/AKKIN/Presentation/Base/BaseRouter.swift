@@ -1,5 +1,5 @@
 //
-//  ExampleRouter.swift
+//  BaseRouter.swift
 //  AKKIN
 //
 //  Created by MK-Mac-413 on 2023/09/04.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ExampleRouter {
+final class BaseRouter {
     // MARK: Properties
     weak var viewController: UIViewController?
     

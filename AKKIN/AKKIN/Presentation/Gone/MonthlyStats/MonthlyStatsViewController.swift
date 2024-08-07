@@ -52,7 +52,7 @@ final class MonthlyStatsViewController: BaseViewController {
     let monthlyTopStatsView = MonthlyTopStatsView()
     
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
     private let provider = ExampleProvider(session: .default)
     
     // MARK: Life Cycle

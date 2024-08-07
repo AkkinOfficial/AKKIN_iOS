@@ -25,7 +25,7 @@ class CardDetailViewController: BaseViewController {
     private let cardDetailView = CardDetailView()
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {

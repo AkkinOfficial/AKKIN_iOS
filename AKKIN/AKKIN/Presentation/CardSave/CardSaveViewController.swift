@@ -27,7 +27,7 @@ class CardSaveViewController: BaseViewController {
     private let cardSavePageView = CardSavePageView()
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Life Cycle
     override func viewDidLoad() {

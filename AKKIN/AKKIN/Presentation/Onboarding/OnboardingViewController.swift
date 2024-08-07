@@ -26,7 +26,7 @@ final class OnboardingViewController: BaseViewController {
     }()
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Event
     @objc private func handleAddEvent() {
