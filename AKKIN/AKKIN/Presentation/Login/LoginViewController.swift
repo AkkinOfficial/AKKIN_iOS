@@ -24,13 +24,13 @@ final class LoginViewController: BaseViewController {
 
         router.viewController = self
 
-        if UserDefaultHandler.refreshToken != "" {
-            router.presentMainViewController()
-            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.changeRootViewToMain()
-        } else {
-            print("no refreshToken")
-        }
+//        if UserDefaultHandler.refreshToken != "" {
+//            router.presentMainViewController()
+//            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+//            sceneDelegate?.changeRootViewToMain()
+//        } else {
+//            print("no refreshToken")
+//        }
     }
 
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ final class LoginViewController: BaseViewController {
 
         loginView.tapLogin = { [weak self] in
             guard let self else { return }
-            setAppleLogin()
+            router.presentMainViewController()
         }
     }
 
