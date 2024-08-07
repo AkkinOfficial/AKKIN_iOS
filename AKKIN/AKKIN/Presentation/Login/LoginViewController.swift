@@ -15,7 +15,7 @@ final class LoginViewController: BaseViewController {
     private let loginView = LoginView()
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
     private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
     // MARK: Life Cycle

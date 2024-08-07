@@ -113,7 +113,7 @@ class CardPatchViewController: BaseViewController, UITextFieldDelegate {
     }
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Configuration
     override func configureSubviews() {

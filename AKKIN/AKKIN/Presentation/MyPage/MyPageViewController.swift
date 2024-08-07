@@ -37,7 +37,7 @@ final class MyPageViewController: BaseViewController {
     }
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Life Cycle
     override func viewDidLoad() {

@@ -92,7 +92,7 @@ final class WeeklyStatsViewController: BaseViewController {
     }
 
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
     private let weeklyStatsCollectionView = WeeklyStatsCollectionView()
 
     // MARK: ViewDidLoad

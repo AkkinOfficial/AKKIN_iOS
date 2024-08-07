@@ -33,7 +33,7 @@ final class ExampleViewController: BaseViewController {
     private let customView = ExampleCustomView()
     
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
     private let provider = ExampleProvider(session: .default)
     
     // MARK: Life Cycle

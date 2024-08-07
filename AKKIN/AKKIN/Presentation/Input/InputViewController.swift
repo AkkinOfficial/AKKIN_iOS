@@ -62,7 +62,7 @@ class InputViewController: BaseViewController, UITextFieldDelegate {
     }
   
     // MARK: Environment
-    private let router = ExampleRouter()
+    private let router = BaseRouter()
 
     // MARK: Properties
     private func setNavigationItem() {
