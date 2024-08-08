@@ -45,6 +45,11 @@ extension UIColor {
     static var akkinGray4: UIColor {
         return UIColor(hex: "#C5C5C5")
     }
+
+    /// akkin tabBar default color
+    static var akkinGray5: UIColor {
+        return UIColor(hex: "#B0B8C1")
+    }
 }
 
 extension UIColor {
