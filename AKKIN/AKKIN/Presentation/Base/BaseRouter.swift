@@ -23,62 +23,15 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
-    func presentMainViewController() {
-        let mainViewController = MainViewController()
-        viewController?.navigationController?.pushViewController(mainViewController, animated: true)
-    }
-
-    func presentMyPageViewController() {
-        let myPageViewController = MyPageViewController()
-        viewController?.navigationController?.pushViewController(myPageViewController, animated: true)
-    }
-
-    func presentInputViewController() {
-        let inputViewController = InputViewController()
-        viewController?.navigationController?.pushViewController(inputViewController, animated: true)
-    }
-
-    func presentCardDetailViewController(id: Int, selectedEntries: [MainEntries]) {
-        let cardDetailViewController = CardDetailViewController()
-        cardDetailViewController.id = id
-        cardDetailViewController.selectedEntries = selectedEntries
-
-        viewController?.navigationController?.pushViewController(cardDetailViewController, animated: true)
-    }
-
-    func presentCardPatchViewController(selectedEntries: [MainEntries]) {
-        let cardPatchViewController = CardPatchViewController()
-        cardPatchViewController.selectedEntries = selectedEntries
-
-        viewController?.navigationController?.pushViewController(cardPatchViewController, animated: true)
-    }
-
-    func presentWeeklyStatsViewController() {
-        let weeklyStatsViewController = WeeklyStatsViewController()
-        viewController?.navigationController?.pushViewController(weeklyStatsViewController, animated: true)
-    }
-
-    func presentMonthlyStatsViewController() {
-        let monthlyStatsViewController = MonthlyStatsViewController()
-        viewController?.navigationController?.pushViewController(monthlyStatsViewController, animated: true)
+    func presentHomeViewController() {
+        let homeViewController = HomeViewController()
+        viewController?.navigationController?.pushViewController(homeViewController, animated: true)
     }
 
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
         
-    func presentCardSaveViewController() {
-        let cardSaveViewController = CardSaveViewController()
-        cardSaveViewController.modalPresentationStyle = .fullScreen
-        viewController?.present(cardSaveViewController, animated: true)
-    }
-
-    func dismissCardSaveViewController() {
-        viewController?.dismiss(animated: true, completion: {
-            self.viewController?.navigationController?.popToRootViewController(animated: true)
-        })
-    }
-
     func popToRootViewController() {
         viewController?.dismiss(animated: true, completion: {
             if let rootViewController =
