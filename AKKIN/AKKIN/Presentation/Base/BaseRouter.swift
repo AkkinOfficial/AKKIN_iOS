@@ -23,6 +23,14 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
+    func presentTabBarViewController() {
+        let tabBarViewController = TabBarViewController()
+        viewController?.navigationController?.pushViewController(tabBarViewController, animated: true)
+
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.changeRootViewToTabBarViewController()
+    }
+
     func presentHomeViewController() {
         let homeViewController = HomeViewController()
         viewController?.navigationController?.pushViewController(homeViewController, animated: true)
