@@ -49,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func changeRootViewToMain() {
          guard let window = window else { return }
-         window.rootViewController = UINavigationController(rootViewController: MainViewController())
+         window.rootViewController = UINavigationController(rootViewController: HomeViewController())
          UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
      }
 }

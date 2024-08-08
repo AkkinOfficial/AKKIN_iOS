@@ -47,7 +47,7 @@ final class LoginViewController: BaseViewController {
 
         loginView.tapLogin = { [weak self] in
             guard let self else { return }
-            router.presentMainViewController()
+            router.presentHomeViewController()
         }
     }
 
@@ -120,7 +120,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
                 print("🎯 postAppleLogin success")
-                self.router.presentMainViewController()
+                self.router.presentHomeViewController()
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.changeRootViewToMain()
             case .requestErr(let errorResponse):
