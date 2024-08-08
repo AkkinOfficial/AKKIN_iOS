@@ -2,7 +2,7 @@
 //  MyPageView.swift
 //  AKKIN
 //
-//  Created by 박지윤 on 2023/09/15.
+//  Created by 박지윤 on 8/8/24.
 //
 
 import Foundation
