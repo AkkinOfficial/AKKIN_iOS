@@ -59,6 +59,7 @@
 		953650AB2C6462E400F58D13 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650AA2C6462E400F58D13 /* TabBarViewController.swift */; };
 		953650B52C6DC65200F58D13 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650B42C6DC65200F58D13 /* UIStackView+Extension.swift */; };
 		953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650BC2C6DFCFC00F58D13 /* UIButton+Extension.swift */; };
+		953650C52C6E067800F58D13 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C42C6E067800F58D13 /* DummyData.swift */; };
 		953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */; };
 		95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D004422B4D0160009D4DF3 /* String+Extension.swift */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
@@ -150,6 +151,7 @@
 		953650AA2C6462E400F58D13 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		953650B42C6DC65200F58D13 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		953650BC2C6DFCFC00F58D13 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		953650C42C6E067800F58D13 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		95D004422B4D0160009D4DF3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
+				953650C42C6E067800F58D13 /* DummyData.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,
 				951261BC2AC1A8BA0012B5F9 /* MonthlyAPI.swift in Sources */,
+				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
 				953650792C64567700F58D13 /* HomeViewController.swift in Sources */,
 				951261A02AC05B6F0012B5F9 /* AuthService.swift in Sources */,
 				951261872AC02D560012B5F9 /* URLConst.swift in Sources */,
