@@ -50,6 +50,31 @@ extension UIColor {
     static var akkinGray5: UIColor {
         return UIColor(hex: "#B0B8C1")
     }
+
+    /// akkin analysis color
+    static var akkinAnalysisDefault: UIColor {
+        return UIColor(hex: "#D4D7DA")
+    }
+
+    static var akkinAnalysisRed: UIColor {
+        return UIColor(hex: "#EF4352")
+    }
+
+    static var akkinAnalysisGray: UIColor {
+        return UIColor(hex: "#687680")
+    }
+
+    static var akkinAnalysisBlue: UIColor {
+        return UIColor(hex: "#3182F6")
+    }
+
+    static var akkinAnalysisPink: UIColor {
+        return UIColor(hex: "#DA9BEF")
+    }
+
+    static var akkinAnalysisGreen: UIColor {
+        return UIColor(hex: "#02AF6C")
+    }
 }
 
 extension UIColor {
