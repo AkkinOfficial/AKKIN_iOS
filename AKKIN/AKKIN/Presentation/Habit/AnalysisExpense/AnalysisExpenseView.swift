@@ -12,6 +12,10 @@ final class AnalysisExpenseView: BaseView {
     let monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
 
     // MARK: UI Components
+    private let scrollView = UIScrollView().then {
+        $0.showsVerticalScrollIndicator = false
+    }
+
     private let monthStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 8
@@ -49,23 +53,30 @@ final class AnalysisExpenseView: BaseView {
         super.configureSubviews()
         setData()
         monthAnalysisView.setData(monthAnaysisData: monthAnalysisList)
-        addSubview(monthStackView)
+
+        addSubview(scrollView)
+
+        scrollView.addSubview(monthStackView)
         monthStackView.addArrangedSubviews(previousMonthButton,
                                            monthButton,
                                            nextMonthButton,
                                            emtpyView)
 
-        addSubview(totalExpenseLabel)
-        addSubview(monthAnalysisView)
+        scrollView.addSubview(totalExpenseLabel)
+        scrollView.addSubview(monthAnalysisView)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
         monthStackView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(32)
-            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview().inset(32)
+            $0.width.equalToSuperview()
             $0.height.equalTo(23)
         }
 
@@ -76,7 +87,7 @@ final class AnalysisExpenseView: BaseView {
 
         monthAnalysisView.snp.makeConstraints {
             $0.top.equalTo(totalExpenseLabel.snp.bottom).offset(20)
-            $0.horizontalEdges.equalToSuperview()
+            $0.width.equalToSuperview()
         }
     }
 

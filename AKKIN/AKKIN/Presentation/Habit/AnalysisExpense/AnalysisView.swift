@@ -40,7 +40,6 @@ final class AnalysisView: BaseView {
         backgroundColor = color
         let screenWidth = UIScreen.main.bounds.size.width
         let width = screenWidth * percent / 100
-        print(width)
 
         snp.makeConstraints {
             $0.width.equalTo(width)
