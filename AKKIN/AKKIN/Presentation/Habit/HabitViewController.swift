@@ -12,16 +12,25 @@ final class HabitViewController: BaseViewController {
     // MARK: UI Components
     private let habitView = HabitView()
 
+    // MARK: Environment
+    private let router = BaseRouter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
+        router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(habitView)
         habitView.backgroundColor = .akkinBG
+
+        habitView.tapDetailButton = { [weak self] in
+            guard let self else { return }
+            router.presentAnalysisExpenseViewController()
+        }
     }
 
     // MARK: Layout
@@ -34,6 +43,7 @@ final class HabitViewController: BaseViewController {
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .never
 
         let defaultAppearance = UINavigationBarAppearance()
         defaultAppearance.backgroundColor = .akkinBG
