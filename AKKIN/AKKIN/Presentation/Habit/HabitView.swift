@@ -68,7 +68,7 @@ final class HabitView: BaseView {
 
     private let detailButton = BaseButton().then {
         $0.setImage(AkkinButton.detailButton, for: .normal)
-        $0.isHidden = true
+//        $0.isHidden = true
     }
 
     private let emtpyView = UIView().then {
@@ -97,6 +97,7 @@ final class HabitView: BaseView {
     }
 
     // MARK: Properties
+    var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -121,6 +122,8 @@ final class HabitView: BaseView {
 
         moneyBoxStackView.addArrangedSubviews(moneyBoxLabel, addButton)
         analysisExpenseStackView.addArrangedSubviews(analysisExpenseLabel, detailButton, emtpyView)
+
+        detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -210,4 +213,7 @@ final class HabitView: BaseView {
     }
 
     // MARK: Event
+    @objc private func handleDetailButtonEvent() {
+        tapDetailButton?()
+    }
 }

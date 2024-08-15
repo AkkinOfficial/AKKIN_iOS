@@ -36,6 +36,11 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(homeViewController, animated: true)
     }
 
+    func presentAnalysisExpenseViewController() {
+        let analysisExpenseViewController = AnalysisExpenseViewController()
+        viewController?.navigationController?.pushViewController(analysisExpenseViewController, animated: true)
+    }
+
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
