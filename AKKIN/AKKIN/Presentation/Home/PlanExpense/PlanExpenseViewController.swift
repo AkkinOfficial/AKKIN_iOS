@@ -10,6 +10,7 @@ import UIKit
 final class PlanExpenseViewController: BaseViewController {
 
     // MARK: UI Components
+    private let planExpenseView = PlanExpenseView()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -18,9 +19,13 @@ final class PlanExpenseViewController: BaseViewController {
 
     // MARK: Configuration
     override func configureSubviews() {
+        view.addSubview(planExpenseView)
     }
 
     // MARK: Layout
     override func makeConstraints() {
+        planExpenseView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

@@ -11,7 +11,7 @@ import SafariServices
 final class BaseRouter {
     // MARK: Properties
     weak var viewController: UIViewController?
-    
+
     // MARK: Routing
     func presentSomeViewController() {
         let someViewController = UIViewController()
@@ -83,5 +83,11 @@ final class BaseRouter {
                 }
             }
         })
+    }
+
+    func presentPlanExpenseViewController() {
+        let planExpenseViewController = PlanExpenseViewController()
+        planExpenseViewController.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(planExpenseViewController, animated: true)
     }
 }
