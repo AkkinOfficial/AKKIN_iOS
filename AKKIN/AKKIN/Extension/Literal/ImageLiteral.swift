@@ -16,8 +16,9 @@ public enum AkkinImage {
 }
 
 public enum AkkinButton {
-    public static var addButton: UIImage { .load(name: "addButton") }
+    public static var addButton: UIImage { .load(name: "add_button") }
     public static var backButton: UIImage { .load(name: "backButton") }
+    public static var detailButton: UIImage { .load(name: "detail_button") }
     public static var skipButton: UIImage { .load(name: "skipButton") }
 }
 
