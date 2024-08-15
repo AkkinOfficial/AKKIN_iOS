@@ -23,7 +23,7 @@ extension UIColor {
 
     /// akkin background color
     static var akkinBG: UIColor {
-        return UIColor(hex: "#FCFCFC")
+        return UIColor(hex: "#F2F4F5")
     }
 
     /// akkin background color
