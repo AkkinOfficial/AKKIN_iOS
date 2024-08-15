@@ -64,4 +64,8 @@ public enum AkkinString {
     // Card Patch
     public static let patchGulbisTitle = "카드 내용 수정"
     public static let confirm = "완료"
+
+    // Plan Expense
+    public static let expensePlanHeadLine = "지출 기간과 금액을 \n설정해주세요."
+
 }
