@@ -1,5 +1,5 @@
 //
-//  AnalysisExpenseViewController.swift
+//  AnalysisExpenseDetailViewController.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 8/8/24.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class AnalysisExpenseViewController: BaseViewController {
+final class AnalysisExpenseDetailViewController: BaseViewController {
 
     // MARK: UI Components
-    private let analysisExpenseView = AnalysisExpenseView()
+    private let analysisExpenseView = AnalysisExpenseDetailView()
 
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton, for: .normal)
@@ -24,7 +24,7 @@ final class AnalysisExpenseViewController: BaseViewController {
     private let router = BaseRouter()
 
     // MARK: Properties
-    let monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
+    let monthAnalysisList = MonthAnalysis.monthAnalysisList
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +57,6 @@ final class AnalysisExpenseViewController: BaseViewController {
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationItem.title = "월별 지출 분석"
-        let defaultAppearance = UINavigationBarAppearance()
         // TODO: navigationBar backgroundColor 수정
         navigationController?.navigationBar.backgroundColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)

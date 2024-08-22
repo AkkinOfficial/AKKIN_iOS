@@ -49,4 +49,6 @@ extension MonthAnalysis {
                       color: .akkinAnalysisGreen,
                       firstFlag: false)
     ]
+
+    static let monthAnalysisEmtpyList: [MonthAnalysis] = []
 }

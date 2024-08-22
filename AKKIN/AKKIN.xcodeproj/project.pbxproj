@@ -50,8 +50,8 @@
 		953650882C64580300F58D13 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650872C64580300F58D13 /* AddExpenseView.swift */; };
 		9536508B2C64585700F58D13 /* MakeMoneyBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536508A2C64585700F58D13 /* MakeMoneyBoxViewController.swift */; };
 		9536508D2C64585D00F58D13 /* MakeMoneyBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536508C2C64585D00F58D13 /* MakeMoneyBoxView.swift */; };
-		953650942C6458D700F58D13 /* AnalysisExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650932C6458D700F58D13 /* AnalysisExpenseView.swift */; };
-		953650962C6458DE00F58D13 /* AnalysisExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650952C6458DE00F58D13 /* AnalysisExpenseViewController.swift */; };
+		953650942C6458D700F58D13 /* AnalysisExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */; };
+		953650962C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650952C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift */; };
 		953650982C6458ED00F58D13 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650972C6458ED00F58D13 /* CalendarViewController.swift */; };
 		9536509A2C6458F200F58D13 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650992C6458F200F58D13 /* CalendarView.swift */; };
 		9536509C2C64590000F58D13 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536509B2C64590000F58D13 /* MyPageViewController.swift */; };
@@ -68,6 +68,8 @@
 		953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */; };
 		955100B12C76D85D00D80A9C /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B02C76D85D00D80A9C /* CategoryDetailView.swift */; };
 		955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */; };
+		955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */; };
+		955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */; };
 		95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D004422B4D0160009D4DF3 /* String+Extension.swift */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
@@ -149,8 +151,8 @@
 		953650872C64580300F58D13 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		9536508A2C64585700F58D13 /* MakeMoneyBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMoneyBoxViewController.swift; sourceTree = "<group>"; };
 		9536508C2C64585D00F58D13 /* MakeMoneyBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMoneyBoxView.swift; sourceTree = "<group>"; };
-		953650932C6458D700F58D13 /* AnalysisExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseView.swift; sourceTree = "<group>"; };
-		953650952C6458DE00F58D13 /* AnalysisExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseViewController.swift; sourceTree = "<group>"; };
+		953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseDetailView.swift; sourceTree = "<group>"; };
+		953650952C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseDetailViewController.swift; sourceTree = "<group>"; };
 		953650972C6458ED00F58D13 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		953650992C6458F200F58D13 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		9536509B2C64590000F58D13 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,8 @@
 		953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		955100B02C76D85D00D80A9C /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseEmptyView.swift; sourceTree = "<group>"; };
+		955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseView.swift; sourceTree = "<group>"; };
 		95D004422B4D0160009D4DF3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
@@ -321,8 +325,10 @@
 			children = (
 				9536507D2C6456CE00F58D13 /* HabitViewController.swift */,
 				9536507B2C6456C500F58D13 /* HabitView.swift */,
+				955100B42C76E1A700D80A9C /* Empty */,
+				955100B72C76E2FB00D80A9C /* NonEmpty */,
 				953650892C64584200F58D13 /* MakeMoneyBox */,
-				953650922C6458C700F58D13 /* AnalysisExpense */,
+				953650922C6458C700F58D13 /* AnalysisExpenseDetail */,
 			);
 			path = Habit;
 			sourceTree = "<group>";
@@ -372,17 +378,17 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		953650922C6458C700F58D13 /* AnalysisExpense */ = {
+		953650922C6458C700F58D13 /* AnalysisExpenseDetail */ = {
 			isa = PBXGroup;
 			children = (
-				953650952C6458DE00F58D13 /* AnalysisExpenseViewController.swift */,
-				953650932C6458D700F58D13 /* AnalysisExpenseView.swift */,
+				953650952C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift */,
+				953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */,
 				953650BE2C6DFF6200F58D13 /* MonthAnalysisView.swift */,
 				953650C02C6E03E700F58D13 /* AnalysisView.swift */,
 				953650C62C6E124D00F58D13 /* Cell */,
 				955100AF2C76D84A00D80A9C /* CategoryDetail */,
 			);
-			path = AnalysisExpense;
+			path = AnalysisExpenseDetail;
 			sourceTree = "<group>";
 		};
 		953650A82C6462CE00F58D13 /* TabBar */ = {
@@ -409,6 +415,22 @@
 				955100B02C76D85D00D80A9C /* CategoryDetailView.swift */,
 			);
 			path = CategoryDetail;
+			sourceTree = "<group>";
+		};
+		955100B42C76E1A700D80A9C /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
+		955100B72C76E2FB00D80A9C /* NonEmpty */ = {
+			isa = PBXGroup;
+			children = (
+				955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */,
+			);
+			path = NonEmpty;
 			sourceTree = "<group>";
 		};
 		95E535CE2AB492E500FA2492 /* Splash */ = {
@@ -661,7 +683,7 @@
 			files = (
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
 				6B555DA92ABF2A5900E065F2 /* (null) in Sources */,
-				953650962C6458DE00F58D13 /* AnalysisExpenseViewController.swift in Sources */,
+				953650962C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift in Sources */,
 				955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */,
 				951261B62AC1A89E0012B5F9 /* MonthlyService.swift in Sources */,
 				9536507C2C6456C500F58D13 /* HabitView.swift in Sources */,
@@ -670,6 +692,7 @@
 				9536508B2C64585700F58D13 /* MakeMoneyBoxViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* BaseRouter.swift in Sources */,
 				9536507E2C6456CE00F58D13 /* HabitViewController.swift in Sources */,
+				955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */,
 				9512618B2AC02E090012B5F9 /* MoyaLoggerPlugin.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
@@ -715,7 +738,7 @@
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,
 				953650862C6457FD00F58D13 /* AddExpenseViewController.swift in Sources */,
-				953650942C6458D700F58D13 /* AnalysisExpenseView.swift in Sources */,
+				953650942C6458D700F58D13 /* AnalysisExpenseDetailView.swift in Sources */,
 				953650C12C6E03E700F58D13 /* AnalysisView.swift in Sources */,
 				951261AB2AC19A370012B5F9 /* MainService.swift in Sources */,
 				95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */,
@@ -725,6 +748,7 @@
 				953650772C64566A00F58D13 /* HomeView.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
+				955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
 				951261902AC02EA70012B5F9 /* NetworkResult.swift in Sources */,

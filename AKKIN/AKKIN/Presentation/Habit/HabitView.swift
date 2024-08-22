@@ -53,7 +53,8 @@ final class HabitView: BaseView {
         $0.layer.cornerRadius = 12
     }
 
-    private let analysisExpenseView = UIView()
+    private let analysisExpenseEntireView = UIView()
+
     private let analysisExpenseStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
@@ -68,40 +69,25 @@ final class HabitView: BaseView {
 
     private let detailButton = BaseButton().then {
         $0.setImage(AkkinButton.detailButton, for: .normal)
-//        $0.isHidden = true
     }
 
     private let emtpyView = UIView().then {
         $0.backgroundColor = .clear
     }
 
-    private let analysisExpenseEmptyView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 16
-    }
-
-    private let analysisExpenseEmptyLabel = UILabel().then {
-        $0.text = "분석할 수 있는 지출 기록이 없어요.\n본인의 지출을 계획하고 절약을 시작해보세요!"
-        $0.textColor = .black
-        $0.numberOfLines = 2
-        $0.textAlignment = .center
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
-
-    private let analysisExpenseEmptyButton = BaseButton().then {
-        $0.setTitle("지출 계획하기", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .akkinGreen
-        $0.layer.cornerRadius = 12
-    }
+    private let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
+    let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
+    var monthAnalysisList = MonthAnalysis.monthAnalysisList
+    var monthAnalysisEmptyList = MonthAnalysis.monthAnalysisEmtpyList
+
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+
         backgroundColor = .akkinBG
 
         addSubview(scrollView)
@@ -113,12 +99,8 @@ final class HabitView: BaseView {
         moneyBoxEmptyView.addSubview(moneyBoxEmptyLabel)
         moneyBoxEmptyView.addSubview(moneyBoxEmptyButton)
 
-        scrollView.addSubview(analysisExpenseView)
-        analysisExpenseView.addSubview(analysisExpenseStackView)
-        analysisExpenseView.addSubview(analysisExpenseEmptyView)
-
-        analysisExpenseEmptyView.addSubview(analysisExpenseEmptyLabel)
-        analysisExpenseEmptyView.addSubview(analysisExpenseEmptyButton)
+        scrollView.addSubview(analysisExpenseEntireView)
+        analysisExpenseEntireView.addSubview(analysisExpenseStackView)
 
         moneyBoxStackView.addArrangedSubviews(moneyBoxLabel, addButton)
         analysisExpenseStackView.addArrangedSubviews(analysisExpenseLabel, detailButton, emtpyView)
@@ -172,15 +154,8 @@ final class HabitView: BaseView {
             $0.height.equalTo(48)
         }
 
-        analysisExpenseView.snp.makeConstraints {
-            $0.top.equalTo(moneyBoxView.snp.bottom).offset(40)
-            $0.width.equalToSuperview()
-            $0.height.equalTo(198)
-            $0.bottom.equalToSuperview().inset(20)
-        }
-
         analysisExpenseStackView.snp.makeConstraints {
-            $0.top.equalTo(moneyBoxView.snp.bottom).offset(47)
+            $0.top.equalTo(moneyBoxView.snp.bottom).offset(40)
             $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(48)
@@ -194,21 +169,48 @@ final class HabitView: BaseView {
             $0.centerY.equalTo(analysisExpenseStackView.snp.centerY)
         }
 
+        // TODO: EmptyList test 코드 수정
+        if monthAnalysisEmptyList.isEmpty {
+            setAnalysisExpenseEmtpyView()
+        } else {
+            setAnalysisExpenseNonEmtpyView()
+        }
+    }
+
+    func setAnalysisExpenseEmtpyView() {
+        analysisExpenseEntireView.addSubview(analysisExpenseEmptyView)
+
+        analysisExpenseEntireView.snp.makeConstraints {
+            $0.top.equalTo(moneyBoxView.snp.bottom).offset(40)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(208)
+            $0.bottom.equalToSuperview().inset(20)
+        }
+
         analysisExpenseEmptyView.snp.makeConstraints {
             $0.top.equalTo(analysisExpenseStackView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(142)
         }
+    }
 
-        analysisExpenseEmptyLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(24)
-            $0.centerX.equalToSuperview()
+    func setAnalysisExpenseNonEmtpyView() {
+        analysisExpenseEntireView.addSubview(analysisExpenseView)
+
+        let collectionViewHeight = 45 * monthAnalysisList.count + 16 * (monthAnalysisList.count + 1)
+        let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 20
+
+        analysisExpenseEntireView.snp.makeConstraints {
+            $0.top.equalTo(moneyBoxView.snp.bottom).offset(40)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(analysisExpenseEntireViewHeight)
+            $0.bottom.equalToSuperview()
         }
 
-        analysisExpenseEmptyButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(24)
+        analysisExpenseView.snp.makeConstraints {
+            $0.top.equalTo(analysisExpenseStackView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(48)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 

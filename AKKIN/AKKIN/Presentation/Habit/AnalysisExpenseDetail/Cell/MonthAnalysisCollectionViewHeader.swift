@@ -55,7 +55,7 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
     }
 
     // MARK: Properties
-    let monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
+    let monthAnalysisList = MonthAnalysis.monthAnalysisList
     var totalExpense = 0
     var month = 0
 
