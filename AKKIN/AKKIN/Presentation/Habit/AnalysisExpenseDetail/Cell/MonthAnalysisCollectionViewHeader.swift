@@ -68,6 +68,8 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
     // MARK: Configuration
     private func configureSubviews() {
+        backgroundColor = .white
+
         addSubview(monthStackView)
         addSubview(totalExpenseLabel)
         addSubview(monthAnalysisView)
