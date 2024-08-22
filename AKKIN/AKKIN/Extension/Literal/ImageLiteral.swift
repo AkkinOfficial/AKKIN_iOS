@@ -13,6 +13,7 @@ public enum AkkinImage {
     public static var akkinOnboarding2: UIImage { .load(name: "onboarding2")}
     public static var akkinOnboarding3: UIImage { .load(name: "onboarding3")}
     public static var akkinSplash: UIImage { .load(name: "splash")}
+    public static var emptyBill: UIImage { .load(name: "empty_bill")}
 }
 
 public enum AkkinButton {
