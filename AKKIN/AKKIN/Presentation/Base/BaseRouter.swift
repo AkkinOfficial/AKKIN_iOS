@@ -41,6 +41,11 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(analysisExpenseViewController, animated: true)
     }
 
+    func presentCategoryDetailViewController(navigationTitle: String) {
+        let categoryDetailViewController = CategoryDetailViewController(navigationTitle: navigationTitle)
+        viewController?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
+    }
+
     func dismissViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }

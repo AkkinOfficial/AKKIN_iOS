@@ -8,32 +8,44 @@
 import UIKit
 
 struct MonthAnalysis {
+    var month: Int
     let category: String
     let percent: Double
+    let expense: Int
     let color: UIColor
     let firstFlag: Bool
 }
 
 extension MonthAnalysis {
     static let monthAnalysisList = [
-        MonthAnalysis(category: "식사",
+        MonthAnalysis(month: 8,
+                      category: "식사",
                       percent: 30.4,
+                      expense: 315817,
                       color: .akkinAnalysisRed,
                       firstFlag: true),
-        MonthAnalysis(category: "교통",
+        MonthAnalysis(month: 8,
+                      category: "교통",
                       percent: 21.7,
+                      expense: 181680,
                       color: .akkinAnalysisGray,
                       firstFlag: false),
-        MonthAnalysis(category: "기타",
+        MonthAnalysis(month: 8,
+                      category: "기타",
                       percent: 15.1,
+                      expense: 99000,
                       color: .akkinAnalysisBlue,
                       firstFlag: false),
-        MonthAnalysis(category: "카페/간식",
+        MonthAnalysis(month: 8,
+                      category: "카페/간식",
                       percent: 5.6,
+                      expense: 20240,
                       color: .akkinAnalysisPink,
                       firstFlag: false),
-        MonthAnalysis(category: "문화/취미",
+        MonthAnalysis(month: 8,
+                      category: "문화/취미",
                       percent: 2.1,
+                      expense: 51330,
                       color: .akkinAnalysisGreen,
                       firstFlag: false)
     ]
