@@ -18,4 +18,12 @@ extension UIButton {
         )
         setAttributedTitle(attributedString, for: .normal)
     }
+
+    func setGuideButton(_ inputTitle: String) {
+        setTitle(inputTitle, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        setTitleColor(.white, for: .normal)
+        backgroundColor = .akkinGreen
+        layer.cornerRadius = 12
+    }
 }
