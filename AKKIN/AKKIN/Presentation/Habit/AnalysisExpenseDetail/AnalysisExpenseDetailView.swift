@@ -104,6 +104,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
+        headerSupplementaryItem.pinToVisibleBounds = true
 
         return headerSupplementaryItem
     }
