@@ -9,94 +9,141 @@ import UIKit
 
 final class AnalysisExpenseView: BaseView {
 
-    let monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
-
     // MARK: UI Components
-    private let scrollView = UIScrollView().then {
-        $0.showsVerticalScrollIndicator = false
-    }
+    public lazy var monthAnalysisCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createLayout()
+        )
+        collectionView.isScrollEnabled = false
+        collectionView.register(MonthAnalysisCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MonthAnalysisCollectionViewCell.identifier)
+        collectionView.register(MonthAnalysisCollectionViewHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: MonthAnalysisCollectionViewHeader.identifier)
 
-    private let monthStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 8
-    }
-
-    private let previousMonthButton = BaseButton().then {
-        $0.setImage(AkkinButton.previousButton, for: .normal)
-    }
-
-    private let monthButton = BaseButton().then {
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        $0.setTitleColor(.black, for: .normal)
-        $0.setUnderline()
-    }
-
-    private let nextMonthButton = BaseButton().then {
-        $0.setImage(AkkinButton.nextButton, for: .normal)
-    }
-
-    private let emtpyView = UIView().then {
-        $0.backgroundColor = .clear
-    }
-
-    private let totalExpenseLabel = UILabel().then {
-        $0.textColor = .black
-        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-    }
-
-    private let monthAnalysisView = MonthAnalysisView()
+        return collectionView
+    }()
 
     // MARK: Properties
+    var monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
+    var totalExpense = 0
+    var month = 0
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        setData()
-        monthAnalysisView.setData(monthAnaysisData: monthAnalysisList)
 
-        addSubview(scrollView)
-
-        scrollView.addSubview(monthStackView)
-        monthStackView.addArrangedSubviews(previousMonthButton,
-                                           monthButton,
-                                           nextMonthButton,
-                                           emtpyView)
-
-        scrollView.addSubview(totalExpenseLabel)
-        scrollView.addSubview(monthAnalysisView)
+        setCollectionView()
+        addSubview(monthAnalysisCollectionView)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-
-        monthStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(32)
-            $0.width.equalToSuperview()
-            $0.height.equalTo(23)
-        }
-
-        totalExpenseLabel.snp.makeConstraints {
-            $0.top.equalTo(monthStackView.snp.bottom).offset(20)
-            $0.horizontalEdges.equalToSuperview()
-        }
-
-        monthAnalysisView.snp.makeConstraints {
-            $0.top.equalTo(totalExpenseLabel.snp.bottom).offset(20)
-            $0.width.equalToSuperview()
+        monthAnalysisCollectionView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).inset(32)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(522)
         }
     }
 
-    // MARK: Event
-
     // MARK: Data
-    private func setData() {
-        monthButton.setTitle("8월", for: .normal)
-        let totalExpense = 688120
-        totalExpenseLabel.text = "\(totalExpense.toPriceFormat) 원"
+    func getTotalExpense(monthAnaysisData: [MonthAnalysis]) {
+        for monthAnaysis in monthAnaysisData {
+            totalExpense += monthAnaysis.expense
+        }
+    }
+}
+
+// MARK: CollectionView
+extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { [weak self] (_, _) -> NSCollectionLayoutSection? in
+            return self?.createAnotherAppSection()
+        }
+    }
+
+    private func createAnotherAppSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .absolute(77))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(77))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [createSectionHeaderSupplementaryItem()]
+        section.orthogonalScrollingBehavior = .none
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        return section
+    }
+
+    private func createSectionHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(137))
+
+        let headerSupplementaryItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: layoutSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+
+        return headerSupplementaryItem
+    }
+
+    private func setCollectionView() {
+        monthAnalysisCollectionView.dataSource = self
+        monthAnalysisCollectionView.delegate = self
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = monthAnalysisCollectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: MonthAnalysisCollectionViewHeader.identifier,
+                for: indexPath) as? MonthAnalysisCollectionViewHeader else { return UICollectionReusableView() }
+
+            header.setData(monthAnaysisData: monthAnalysisList, totalExpense: totalExpense)
+            header.tapPrevious = {
+                self.monthAnalysisList[0].month -= 1
+                collectionView.reloadData()
+            }
+            header.tapNext = {
+                self.monthAnalysisList[0].month += 1
+                collectionView.reloadData()
+            }
+
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return monthAnalysisList.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MonthAnalysisCollectionViewCell.identifier,
+            for: indexPath) as? MonthAnalysisCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        cell.setData(monthAnaysisData: monthAnalysisList[indexPath.row])
+        cell.tapDetail = {
+        }
+
+        return cell
     }
 }
