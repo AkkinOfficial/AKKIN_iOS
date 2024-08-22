@@ -19,11 +19,7 @@ final class AnalysisExpenseEmptyView: BaseView {
     }
 
     private let analysisExpenseEmptyButton = BaseButton().then {
-        $0.setTitle("지출 계획하기", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .akkinGreen
-        $0.layer.cornerRadius = 12
+        $0.setGuideButton("지출 계획하기")
     }
 
     // MARK: Properties

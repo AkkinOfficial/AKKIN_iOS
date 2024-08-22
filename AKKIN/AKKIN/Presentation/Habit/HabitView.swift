@@ -46,11 +46,7 @@ final class HabitView: BaseView {
     }
 
     private let moneyBoxEmptyButton = BaseButton().then {
-        $0.setTitle("저금통 만들기", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .akkinGreen
-        $0.layer.cornerRadius = 12
+        $0.setGuideButton("저금통 만들기")
     }
 
     private let analysisExpenseEntireView = UIView()
