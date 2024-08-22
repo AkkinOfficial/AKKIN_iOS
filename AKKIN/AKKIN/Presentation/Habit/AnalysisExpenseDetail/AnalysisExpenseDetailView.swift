@@ -15,7 +15,7 @@ final class AnalysisExpenseDetailView: BaseView {
             frame: .zero,
             collectionViewLayout: createLayout()
         )
-        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(MonthAnalysisCollectionViewCell.self,
                                 forCellWithReuseIdentifier: MonthAnalysisCollectionViewCell.identifier)
         collectionView.register(MonthAnalysisCollectionViewHeader.self,
@@ -30,6 +30,8 @@ final class AnalysisExpenseDetailView: BaseView {
     var totalExpense = 0
     var month = 0
 
+    var planisEmpty = true
+
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
@@ -42,10 +44,17 @@ final class AnalysisExpenseDetailView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
+        let collectionViewHeight1 = 113 + 24 + 77 * monthAnalysisList.count
+        let collectionViewHeight2 = 254 + 24 + 77 * monthAnalysisList.count
+
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(32)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(522)
+            if !planisEmpty {
+                $0.height.equalTo(collectionViewHeight1)
+            } else {
+                $0.height.equalTo(collectionViewHeight2)
+            }
         }
     }
 
@@ -83,8 +92,12 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
     }
 
     private func createSectionHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+        var layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                 heightDimension: .absolute(137))
+        if planisEmpty {
+            layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                    heightDimension: .absolute(278))
+        }
 
         let headerSupplementaryItem = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: layoutSize,
