@@ -25,12 +25,16 @@ final class AnalysisExpenseDetailView: BaseView {
         return collectionView
     }()
 
+    private let analysisExpenseDetailEmptyView = AnalysisExpenseDetailEmptyView()
+
     // MARK: Properties
     var monthAnalysisList = MonthAnalysis.monthAnalysisList
     var totalExpense = 0
     var month = 0
 
-    var planisEmpty = true
+    // TODO: Empty Case UI Test
+    var planIsEmpty = false
+    var analysisIsEmpty = false
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -50,11 +54,17 @@ final class AnalysisExpenseDetailView: BaseView {
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(32)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            if !planisEmpty {
+            if analysisIsEmpty {
+                $0.height.equalTo(23)
+            } else if !planIsEmpty {
                 $0.height.equalTo(collectionViewHeight1)
             } else {
                 $0.height.equalTo(collectionViewHeight2)
             }
+        }
+
+        if analysisIsEmpty {
+            setAnalysisEmptyView()
         }
     }
 
@@ -62,6 +72,16 @@ final class AnalysisExpenseDetailView: BaseView {
     func getTotalExpense(monthAnaysisData: [MonthAnalysis]) {
         for monthAnaysis in monthAnaysisData {
             totalExpense += monthAnaysis.expense
+        }
+    }
+
+    private func setAnalysisEmptyView() {
+        addSubview(analysisExpenseDetailEmptyView)
+
+        analysisExpenseDetailEmptyView.snp.makeConstraints {
+            $0.top.equalTo(monthAnalysisCollectionView.snp.bottom).offset(123)
+            $0.horizontalEdges.equalToSuperview().inset(63.5)
+            $0.height.equalTo(250)
         }
     }
 }
@@ -94,7 +114,11 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
     private func createSectionHeaderSupplementaryItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         var layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                 heightDimension: .absolute(137))
-        if planisEmpty {
+
+        if analysisIsEmpty {
+            layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                    heightDimension: .absolute(23))
+        } else if planIsEmpty {
             layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                     heightDimension: .absolute(278))
         }
@@ -133,6 +157,12 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
                 collectionView.reloadData()
             }
 
+            if analysisIsEmpty {
+                header.totalExpenseLabel.removeFromSuperview()
+                header.monthAnalysisView.removeFromSuperview()
+                header.planExpenseGuideView.removeFromSuperview()
+            }
+
             return header
         } else {
             return UICollectionReusableView()
@@ -144,7 +174,13 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return monthAnalysisList.count
+        if analysisIsEmpty {
+            monthAnalysisCollectionView.isScrollEnabled = false
+            return 0
+        } else {
+            monthAnalysisCollectionView.isScrollEnabled = true
+            return monthAnalysisList.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

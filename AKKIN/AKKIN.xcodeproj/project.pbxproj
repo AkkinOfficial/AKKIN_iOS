@@ -75,6 +75,7 @@
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
 		95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535CF2AB492F400FA2492 /* SplashViewController.swift */; };
 		95EF1C362C773BE400AD06A9 /* PlanExpenseGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C352C773BE400AD06A9 /* PlanExpenseGuideView.swift */; };
+		95EF1C392C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C382C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift */; };
 		BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */; };
 		BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */; };
 		BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD292AA5FE3B00A77052 /* Assets.xcassets */; };
@@ -177,6 +178,7 @@
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		95E535CF2AB492F400FA2492 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		95EF1C352C773BE400AD06A9 /* PlanExpenseGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanExpenseGuideView.swift; sourceTree = "<group>"; };
+		95EF1C382C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseDetailEmptyView.swift; sourceTree = "<group>"; };
 		BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKKIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */,
 				953650BE2C6DFF6200F58D13 /* MonthAnalysisView.swift */,
 				953650C02C6E03E700F58D13 /* AnalysisView.swift */,
+				95EF1C372C77470500AD06A9 /* Empty */,
 				953650C62C6E124D00F58D13 /* Cell */,
 				955100AF2C76D84A00D80A9C /* CategoryDetail */,
 			);
@@ -442,6 +445,14 @@
 				95E535CF2AB492F400FA2492 /* SplashViewController.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		95EF1C372C77470500AD06A9 /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				95EF1C382C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift */,
+			);
+			path = Empty;
 			sourceTree = "<group>";
 		};
 		BC94AD142AA5FE3A00A77052 = {
@@ -726,6 +737,7 @@
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AuthAPI.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
+				95EF1C392C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift in Sources */,
 				953650842C6457F400F58D13 /* PlanExpenseView.swift in Sources */,
 				9512615A2ABB1CA20012B5F9 /* OnboardingViewController.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
