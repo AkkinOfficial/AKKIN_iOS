@@ -1,5 +1,5 @@
 //
-//  AnalysisExpenseView.swift
+//  AnalysisExpenseDetailView.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 8/8/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AnalysisExpenseView: BaseView {
+final class AnalysisExpenseDetailView: BaseView {
 
     // MARK: UI Components
     public lazy var monthAnalysisCollectionView: UICollectionView = {
@@ -26,7 +26,7 @@ final class AnalysisExpenseView: BaseView {
     }()
 
     // MARK: Properties
-    var monthAnalysisList: [MonthAnalysis] = MonthAnalysis.monthAnalysisList
+    var monthAnalysisList = MonthAnalysis.monthAnalysisList
     var totalExpense = 0
     var month = 0
 
@@ -58,14 +58,14 @@ final class AnalysisExpenseView: BaseView {
 }
 
 // MARK: CollectionView
-extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (_, _) -> NSCollectionLayoutSection? in
-            return self?.createAnotherAppSection()
+            return self?.createSection()
         }
     }
 
-    private func createAnotherAppSection() -> NSCollectionLayoutSection {
+    private func createSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .absolute(77))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

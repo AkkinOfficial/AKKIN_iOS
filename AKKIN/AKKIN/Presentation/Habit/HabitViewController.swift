@@ -11,6 +11,7 @@ final class HabitViewController: BaseViewController {
 
     // MARK: UI Components
     private let habitView = HabitView()
+    private let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -22,6 +23,9 @@ final class HabitViewController: BaseViewController {
         router.viewController = self
     }
 
+    // MARK: Properties
+    var monthAnalysisList = MonthAnalysis.monthAnalysisList
+
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(habitView)
@@ -30,6 +34,11 @@ final class HabitViewController: BaseViewController {
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentAnalysisExpenseViewController()
+        }
+
+        habitView.analysisExpenseView.tapDetailButton  = { [weak self] in
+            guard let self else { return }
+            router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
         }
     }
 
