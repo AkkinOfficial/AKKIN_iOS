@@ -34,14 +34,14 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
         $0.backgroundColor = .clear
     }
 
-    private let totalExpenseLabel = UILabel().then {
+    let totalExpenseLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
-    private let monthAnalysisView = MonthAnalysisView()
+    let monthAnalysisView = MonthAnalysisView()
 
-    private let planExpenseGuideView = PlanExpenseGuideView()
+    let planExpenseGuideView = PlanExpenseGuideView()
 
     // MARK: init
     override init(frame: CGRect) {
@@ -60,7 +60,9 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
     let monthAnalysisList = MonthAnalysis.monthAnalysisList
     var totalExpense = 0
     var month = 0
-    var planisEmpty = true
+
+    // TODO: Empty Case UI Test
+    var planisEmpty = false
 
     var tapPrevious: (() -> Void)?
     var tapMonth: (() -> Void)?
