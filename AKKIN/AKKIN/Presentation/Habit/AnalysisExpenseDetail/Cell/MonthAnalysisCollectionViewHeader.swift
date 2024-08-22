@@ -41,6 +41,8 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
     private let monthAnalysisView = MonthAnalysisView()
 
+    private let planExpenseGuideView = PlanExpenseGuideView()
+
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,6 +60,7 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
     let monthAnalysisList = MonthAnalysis.monthAnalysisList
     var totalExpense = 0
     var month = 0
+    var planisEmpty = true
 
     var tapPrevious: (() -> Void)?
     var tapMonth: (() -> Void)?
@@ -95,6 +98,10 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
             $0.top.equalTo(totalExpenseLabel.snp.bottom).offset(20)
             $0.width.equalToSuperview()
         }
+
+        if planisEmpty {
+            addPlanExpenseGuideView()
+        }
     }
 }
 
@@ -122,6 +129,16 @@ extension MonthAnalysisCollectionViewHeader {
             for subview in monthAnalysisView.subviews {
                 subview.removeFromSuperview()
             }
+        }
+    }
+
+    private func addPlanExpenseGuideView() {
+        addSubview(planExpenseGuideView)
+
+        planExpenseGuideView.snp.makeConstraints {
+            $0.top.equalTo(monthAnalysisView.snp.bottom).offset(24)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(117)
         }
     }
 }
