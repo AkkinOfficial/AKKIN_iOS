@@ -55,6 +55,10 @@ extension UIColor {
         return UIColor(hex: "#929BA5")
     }
 
+    static var akkinGray7: UIColor {
+        return UIColor(hex: "#3C3C43")
+    }
+
     /// akkin analysis color
     static var akkinAnalysisDefault: UIColor {
         return UIColor(hex: "#D4D7DA")
