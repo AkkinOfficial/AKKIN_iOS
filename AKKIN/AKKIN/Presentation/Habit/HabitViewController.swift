@@ -36,7 +36,7 @@ final class HabitViewController: BaseViewController {
             router.presentAnalysisExpenseViewController()
         }
 
-        habitView.analysisExpenseView.tapDetailButton  = { [weak self] in
+        habitView.analysisExpenseView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
         }

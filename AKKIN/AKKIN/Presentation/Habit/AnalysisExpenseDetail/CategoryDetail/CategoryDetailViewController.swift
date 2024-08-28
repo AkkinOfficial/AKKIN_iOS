@@ -45,7 +45,7 @@ final class CategoryDetailViewController: BaseViewController {
         backButton.tap = { [weak self] in
             guard let self else {
                 return }
-            router.dismissViewController()
+            router.popViewController()
         }
     }
 

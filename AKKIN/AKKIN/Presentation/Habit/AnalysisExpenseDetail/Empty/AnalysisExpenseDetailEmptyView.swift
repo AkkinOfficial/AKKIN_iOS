@@ -30,7 +30,7 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
     }
 
     private let addExpenseButton = BaseButton().then {
-        $0.setGuideButton("지출 추가하기")
+        $0.setGuideButton("지출 계획하기")
     }
 
     // MARK: Properties

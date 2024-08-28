@@ -46,10 +46,19 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
     }
 
-    func dismissViewController() {
+    func presentModeSelectViewController() {
+        let selectMonthViewController = SelectMonthViewController()
+        viewController?.present(selectMonthViewController, animated: true)
+    }
+
+    func popViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
-        
+
+    func dismissViewController() {
+        viewController?.dismiss(animated: true)
+    }
+
     func popToRootViewController() {
         viewController?.dismiss(animated: true, completion: {
             if let rootViewController =
