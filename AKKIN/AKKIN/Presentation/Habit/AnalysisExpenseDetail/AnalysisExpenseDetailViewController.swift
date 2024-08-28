@@ -43,7 +43,11 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
         view.addSubview(analysisExpenseView)
 
         backButton.tap = { [self] in
-            router.dismissViewController()
+            router.popViewController()
+        }
+
+        analysisExpenseView.tapMonthButtonEvent = { [self] in
+            router.presentModeSelectViewController()
         }
     }
 

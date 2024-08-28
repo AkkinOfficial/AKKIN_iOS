@@ -32,6 +32,8 @@ final class AnalysisExpenseDetailView: BaseView {
     var totalExpense = 0
     var month = 0
 
+    var tapMonthButtonEvent: (() -> Void)?
+
     // TODO: Empty Case UI Test
     var planIsEmpty = false
     var analysisIsEmpty = false
@@ -152,6 +154,10 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
                 self.monthAnalysisList[0].month -= 1
                 collectionView.reloadData()
             }
+            header.tapMonth = {
+                
+            }
+            header.monthButton.addTarget(self, action: #selector(handleMonthButtonEvent), for: .touchUpInside)
             header.tapNext = {
                 self.monthAnalysisList[0].month += 1
                 collectionView.reloadData()
@@ -167,6 +173,10 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
         } else {
             return UICollectionReusableView()
         }
+    }
+
+    @objc func handleMonthButtonEvent() {
+        tapMonthButtonEvent?()
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -189,7 +199,6 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-
         cell.setData(monthAnaysisData: monthAnalysisList[indexPath.row])
         cell.tapDetail = {
         }
