@@ -47,6 +47,8 @@ final class SelectMonthViewController: BaseViewController {
 
         selectMonthNavigationBar.tapDismissButton = { [weak self] in
             guard let self else { return }
+            let analysisExpenseDetailView = AnalysisExpenseDetailView()
+            analysisExpenseDetailView.monthAnalysisCollectionView.reloadData()
             router.dismissViewController()
         }
     }

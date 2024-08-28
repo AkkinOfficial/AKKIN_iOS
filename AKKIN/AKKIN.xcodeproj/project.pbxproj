@@ -81,6 +81,7 @@
 		95EF1C582C7EDF2900AD06A9 /* SelectMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C572C7EDF2900AD06A9 /* SelectMonthViewController.swift */; };
 		95EF1C5A2C7EDF9800AD06A9 /* SelectMonthTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C592C7EDF9800AD06A9 /* SelectMonthTransitioningDelegate.swift */; };
 		95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C5B2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift */; };
+		95EF1C5E2C7EEE5B00AD06A9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF1C5D2C7EEE5B00AD06A9 /* DataManager.swift */; };
 		BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */; };
 		BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */; };
 		BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC94AD292AA5FE3B00A77052 /* Assets.xcassets */; };
@@ -189,6 +190,7 @@
 		95EF1C572C7EDF2900AD06A9 /* SelectMonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMonthViewController.swift; sourceTree = "<group>"; };
 		95EF1C592C7EDF9800AD06A9 /* SelectMonthTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMonthTransitioningDelegate.swift; sourceTree = "<group>"; };
 		95EF1C5B2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMonthPresentationController.swift; sourceTree = "<group>"; };
+		95EF1C5D2C7EEE5B00AD06A9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKKIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC94AD202AA5FE3A00A77052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC94AD222AA5FE3A00A77052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -501,6 +503,8 @@
 				BC94AD3A2AA618F000A77052 /* Resource */,
 				BC94AD392AA618DE00A77052 /* Support */,
 				BC94AD382AA618CC00A77052 /* Extension */,
+				953650C42C6E067800F58D13 /* DummyData.swift */,
+				95EF1C5D2C7EEE5B00AD06A9 /* DataManager.swift */,
 				BC94AD362AA618B100A77052 /* Networking */,
 				BC94AD352AA6189600A77052 /* Presentation */,
 				BC94AD342AA6188900A77052 /* App */,
@@ -555,7 +559,6 @@
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
-				953650C42C6E067800F58D13 /* DummyData.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				6B5B83952AC1EDB700CD0AFC /* GulbiResponse.swift in Sources */,
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
+				95EF1C5E2C7EEE5B00AD06A9 /* DataManager.swift in Sources */,
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AuthAPI.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,

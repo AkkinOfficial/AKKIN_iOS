@@ -151,15 +151,16 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
 
             header.setData(monthAnaysisData: monthAnalysisList, totalExpense: totalExpense)
             header.tapPrevious = {
-                self.monthAnalysisList[0].month -= 1
+                let currentMonth = DataManager.shared.currentMonth
+                let updateMonth = (currentMonth ?? 0) - 1
+                DataManager.shared.updateMonth(month: updateMonth)
                 collectionView.reloadData()
-            }
-            header.tapMonth = {
-                
             }
             header.monthButton.addTarget(self, action: #selector(handleMonthButtonEvent), for: .touchUpInside)
             header.tapNext = {
-                self.monthAnalysisList[0].month += 1
+                let currentMonth = DataManager.shared.currentMonth
+                let updateMonth = (currentMonth ?? 0) + 1
+                DataManager.shared.updateMonth(month: updateMonth)
                 collectionView.reloadData()
             }
 

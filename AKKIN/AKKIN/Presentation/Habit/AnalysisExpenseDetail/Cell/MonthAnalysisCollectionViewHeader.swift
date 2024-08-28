@@ -9,7 +9,9 @@ import UIKit
 
 final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
+    // MARK: Properties
     static let identifier = "MonthAnalysisCollectionViewHeader"
+    var currentMonth = DataManager.shared.currentMonth
 
     // MARK: UI Components
     private let monthStackView = UIStackView().then {
@@ -120,15 +122,15 @@ extension MonthAnalysisCollectionViewHeader {
 
     func setData(monthAnaysisData: [MonthAnalysis], totalExpense: Int) {
         let month = monthAnaysisData[0].month
-        monthButton.setTitle("\(month)월", for: .normal)
+        monthButton.setTitle("\(currentMonth ?? month)월", for: .normal)
         monthButton.setUnderline()
         totalExpenseLabel.text = "\(totalExpense.toPriceFormat) 원"
 
-        removemonthAnalysisSubViews()
+        removeMonthAnalysisSubViews()
         monthAnalysisView.setData(monthAnaysisData: monthAnaysisData)
     }
 
-    private func removemonthAnalysisSubViews() {
+    private func removeMonthAnalysisSubViews() {
         if !(monthAnalysisView.subviews.isEmpty) {
             for subview in monthAnalysisView.subviews {
                 subview.removeFromSuperview()
