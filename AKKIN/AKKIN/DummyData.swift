@@ -7,6 +7,15 @@
 
 import UIKit
 
+struct Current {
+    var year: Int
+    var month: Int
+}
+
+extension Current {
+    static let currentData = Current(year: 2024, month: 8)
+}
+
 struct MonthAnalysis {
     var month: Int
     let category: String

@@ -9,13 +9,17 @@ import UIKit
 
 class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    // MARK: UI Components
     var pickerView = UIPickerView()
-    var selectedYear = Calendar.current.component(.year, from: Date())
-    var selectedMonth = Calendar.current.component(.month, from: Date())
 
+    // MARK: Properties
     let years = Array(2021...2024)
     let months = Array(1...12)
 
+    var selectedYear = Calendar.current.component(.year, from: Date())
+    var selectedMonth = Calendar.current.component(.month, from: Date())
+
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupPickerView()
@@ -26,7 +30,14 @@ class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
         setupPickerView()
     }
 
+    // MARK: Setup
     private func setupPickerView() {
+        if let year = DataManager.shared.currentYear,
+           let month = DataManager.shared.currentMonth {
+            selectedYear = year
+            selectedMonth = month
+        }
+
         pickerView.delegate = self
         pickerView.dataSource = self
 
@@ -36,7 +47,6 @@ class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
             $0.edges.equalToSuperview()
         }
 
-        // 현재 년, 월 설정
         if let monthIndex = months.firstIndex(of: selectedMonth),
            let yearIndex = years.firstIndex(of: selectedYear) {
             pickerView.selectRow(monthIndex, inComponent: 0, animated: false)
@@ -44,7 +54,7 @@ class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 
-    // UIPickerViewDataSource
+    // MARK: UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -65,7 +75,7 @@ class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
         return 100
     }
 
-    // UIPickerViewDelegate
+    // MARK: UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             return "\(months[row])월"
@@ -81,6 +91,6 @@ class MonthPickerView: BaseView, UIPickerViewDelegate, UIPickerViewDataSource {
             selectedYear = years[row]
         }
 
-        print("Selected Month: \(selectedMonth), Year: \(selectedYear)")
+        DataManager.shared.updateDate(year: selectedYear, month: selectedMonth)
     }
 }
