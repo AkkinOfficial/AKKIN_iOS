@@ -11,7 +11,6 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
     // MARK: Properties
     static let identifier = "MonthAnalysisCollectionViewHeader"
-    var currentMonth = DataManager.shared.currentMonth
 
     // MARK: UI Components
     private let monthStackView = UIStackView().then {
@@ -121,7 +120,7 @@ extension MonthAnalysisCollectionViewHeader {
     }
 
     func setData(monthAnaysisData: [MonthAnalysis], totalExpense: Int) {
-        let month = monthAnaysisData[0].month
+        let currentMonth = DataManager.shared.currentMonth
         monthButton.setTitle("\(currentMonth ?? month)월", for: .normal)
         monthButton.setUnderline()
         totalExpenseLabel.text = "\(totalExpense.toPriceFormat) 원"

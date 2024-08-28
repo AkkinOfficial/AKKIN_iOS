@@ -148,22 +148,34 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
                 ofKind: kind,
                 withReuseIdentifier: MonthAnalysisCollectionViewHeader.identifier,
                 for: indexPath) as? MonthAnalysisCollectionViewHeader else { return UICollectionReusableView() }
-
             header.setData(monthAnaysisData: monthAnalysisList, totalExpense: totalExpense)
             header.tapPrevious = {
+                let currentYear = DataManager.shared.currentYear
                 let currentMonth = DataManager.shared.currentMonth
-                let updateMonth = (currentMonth ?? 0) - 1
-                DataManager.shared.updateMonth(month: updateMonth)
+                if currentMonth == 1 {
+                    let updateYear = (currentYear ?? 0) - 1
+                    let updateMonth = 12
+                    DataManager.shared.updateDate(year: updateYear, month: updateMonth)
+                } else {
+                    let updateMonth = (currentMonth ?? 0) - 1
+                    DataManager.shared.updateMonth(month: updateMonth)
+                }
                 collectionView.reloadData()
             }
             header.monthButton.addTarget(self, action: #selector(handleMonthButtonEvent), for: .touchUpInside)
             header.tapNext = {
+                let currentYear = DataManager.shared.currentYear
                 let currentMonth = DataManager.shared.currentMonth
-                let updateMonth = (currentMonth ?? 0) + 1
-                DataManager.shared.updateMonth(month: updateMonth)
+                if currentMonth == 12 {
+                    let updateYear = (currentYear ?? 0) + 1
+                    let updateMonth = 1
+                    DataManager.shared.updateDate(year: updateYear, month: updateMonth)
+                } else {
+                    let updateMonth = (currentMonth ?? 0) + 1
+                    DataManager.shared.updateMonth(month: updateMonth)
+                }
                 collectionView.reloadData()
             }
-
             if analysisIsEmpty {
                 header.totalExpenseLabel.removeFromSuperview()
                 header.monthAnalysisView.removeFromSuperview()
