@@ -67,3 +67,9 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
     }
 }
+
+extension AnalysisExpenseDetailViewController: SelectMonthViewControllerDelegate {
+    func dismissButtonTapped() {
+        analysisExpenseView.monthAnalysisCollectionView.reloadData()
+    }
+}

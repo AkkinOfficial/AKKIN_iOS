@@ -120,6 +120,7 @@ extension MonthAnalysisCollectionViewHeader {
     }
 
     func setData(monthAnaysisData: [MonthAnalysis], totalExpense: Int) {
+        print("reloadData()")
         let currentMonth = DataManager.shared.currentMonth
         monthButton.setTitle("\(currentMonth ?? month)월", for: .normal)
         monthButton.setUnderline()
