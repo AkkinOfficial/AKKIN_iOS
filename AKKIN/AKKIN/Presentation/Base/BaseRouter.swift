@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class BaseRouter {
     // MARK: Properties
@@ -49,6 +50,17 @@ final class BaseRouter {
     func presentModeSelectViewController() {
         let selectMonthViewController = SelectMonthViewController()
         viewController?.present(selectMonthViewController, animated: true)
+    }
+
+    func presentHomeWidgetSettingViewController() {
+        let homeWidgetSettingViewController = HomeWidgetSettingViewController()
+        viewController?.navigationController?.pushViewController(homeWidgetSettingViewController, animated: true)
+    }
+
+    func presentSafariViewController(url: String) {
+        guard let url = URL(string: url) else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        viewController?.present(safariViewController, animated: true, completion: nil)
     }
 
     func popViewController() {
