@@ -15,7 +15,7 @@ final class MyPageView: BaseView {
     private let userProfileBackgroundView = UIView().then {
         $0.backgroundColor = .akkinGray8
         $0.layer.cornerRadius = 16
-    } 
+    }
 
     private let userProfileImageView = UIImageView().then {
         $0.image = AkkinIcon.habitFilled
@@ -47,6 +47,14 @@ final class MyPageView: BaseView {
     private let setting = ["홈 위젯 설정"]
     private let appInfo = ["서비스 이용약관", "개인 정보 처리 방침", "오픈소스 사용정보"]
     private let account = ["로그아웃", "회원탈퇴"]
+    private let url = [URLConst.termsURL,
+                       URLConst.privacyPolicyURL,
+                       URLConst.openSourceURL]
+
+    var tapHomeWidgetSetting: (() -> Void)?
+    var tapAppInfo: ((String) -> Void)?
+    var tapLogout: (() -> Void)?
+    var tapWithdrawal: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -100,6 +108,21 @@ final class MyPageView: BaseView {
     }
 
     // MARK: Event
+    private func handleHomeWidgetSettingEvent() {
+        tapHomeWidgetSetting?()
+    }
+
+    private func handleAppInfoEvent(url: String) {
+        tapAppInfo?(url)
+    }
+
+    private func handleLogout() {
+        tapLogout?()
+    }
+
+    private func handleWithdrawal() {
+        tapWithdrawal?()
+    }
 }
 
 // MARK: TableView
@@ -180,36 +203,23 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MyPageView {
-    private func presentSafariView(url: String) {
-        guard let url = URL(string: url) else { return }
-//        let safariViewController = SFSafariViewController(url: url)
-//        present(safariViewController, animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            handleHomeWidgetSettingEvent()
+        case 1:
+            handleAppInfoEvent(url: url[indexPath.row])
+        case 2:
+            switch indexPath.row {
+            case 0:
+                handleLogout()
+            case 1:
+                handleWithdrawal()
+            default:
+                break
+            }
+        default:
+            break
+        }
     }
-
-//    private func presentAlert(
-//        title: String,
-//        message: String?,
-//        cancelButton: String,
-//        actionButton: String,
-//        style: UIAlertAction.Style,
-//        handler: ((UIAlertAction) -> Void)?
-//    ) {
-//        let alertController = UIAlertController(
-//            title: title,
-//            message: message,
-//            preferredStyle: .alert)
-//        
-//        let cancelButton = UIAlertAction(
-//            title: cancelButton,
-//            style: .default)
-//        let actionButton = UIAlertAction(
-//            title: actionButton,
-//            style: style,
-//            handler: handler)
-//
-//        alertController.addAction(cancelButton)
-//        alertController.addAction(actionButton)
-//
-//        present(alertController, animated: true)
-//    }
 }
