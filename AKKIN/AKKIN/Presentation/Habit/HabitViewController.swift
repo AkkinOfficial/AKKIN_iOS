@@ -11,7 +11,6 @@ final class HabitViewController: BaseViewController {
 
     // MARK: UI Components
     private let habitView = HabitView()
-    private let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Environment
     private let router = BaseRouter()

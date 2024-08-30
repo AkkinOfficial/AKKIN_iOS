@@ -10,6 +10,12 @@ import UIKit
 final class MyPageView: BaseView {
 
     // MARK: UI Components
+    private let navigationTitleLabel = UILabel().then {
+        $0.text = "마이페이지"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+    }
+
     private let profileView = UIView()
 
     private let userProfileBackgroundView = UIView().then {
@@ -35,6 +41,7 @@ final class MyPageView: BaseView {
         if #available(iOS 15, *) {
             $0.sectionHeaderTopPadding = 0
         }
+        $0.isScrollEnabled = false
         $0.backgroundColor = .white
         $0.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.identifier)
         $0.register(MyPageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyPageTableViewHeader.identifier)
@@ -43,7 +50,7 @@ final class MyPageView: BaseView {
     }
 
     // MARK: Properties
-    private let headerTitle = ["내 아낀거지", "앱 정보", "계정 관리"]
+    private let headerTitle = ["앱 정보", "계정 관리"]
     private let setting = ["홈 위젯 설정"]
     private let appInfo = ["서비스 이용약관", "개인 정보 처리 방침", "오픈소스 사용정보"]
     private let account = ["로그아웃", "회원탈퇴"]
@@ -51,7 +58,8 @@ final class MyPageView: BaseView {
                        URLConst.privacyPolicyURL,
                        URLConst.openSourceURL]
 
-    var tapHomeWidgetSetting: (() -> Void)?
+    var tapEditButton: (() -> Void)?
+//    var tapHomeWidgetSetting: (() -> Void)?
     var tapAppInfo: ((String) -> Void)?
     var tapLogout: (() -> Void)?
     var tapWithdrawal: (() -> Void)?
@@ -61,6 +69,7 @@ final class MyPageView: BaseView {
         super.configureSubviews()
         setTableView()
 
+        addSubview(navigationTitleLabel)
         addSubview(profileView)
         profileView.addSubview(userProfileBackgroundView)
         userProfileBackgroundView.addSubview(userProfileImageView)
@@ -74,8 +83,13 @@ final class MyPageView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
+        navigationTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).inset(8)
+            $0.leading.equalToSuperview().inset(20)
+        }
+
         profileView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(15)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(80)
         }
@@ -108,9 +122,9 @@ final class MyPageView: BaseView {
     }
 
     // MARK: Event
-    private func handleHomeWidgetSettingEvent() {
-        tapHomeWidgetSetting?()
-    }
+//    private func handleHomeWidgetSettingEvent() {
+//        tapHomeWidgetSetting?()
+//    }
 
     private func handleAppInfoEvent(url: String) {
         tapAppInfo?(url)
@@ -133,14 +147,12 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
-        case 1:
             return 3
         default:
             return 2
@@ -149,12 +161,12 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = myPageTableView.dequeueReusableCell(withIdentifier: MyPageTableViewCell.identifier, for: indexPath) as? MyPageTableViewCell else { return UITableViewCell() }
+        cell.settingSwitch.removeFromSuperview()
+
         switch indexPath.section {
         case 0:
-            cell.contentLabel.text = setting[indexPath.row]
-        case 1:
             cell.contentLabel.text = appInfo[indexPath.row]
-        case 2:
+        case 1:
             cell.contentLabel.text = account[indexPath.row]
             cell.detailButton.isHidden = true
             switch indexPath.row {
@@ -186,7 +198,7 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let header = myPageTableView.dequeueReusableHeaderFooterView(withIdentifier: MyPageTableViewFooter.identifier) as? MyPageTableViewFooter else { return UITableViewHeaderFooterView() }
-        if section == 2 {
+        if section == 1 {
             header.dividerView.isHidden = true
         }
 
@@ -194,7 +206,7 @@ extension MyPageView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == 1 {
             return 0
         } else {
             return 28
@@ -206,10 +218,8 @@ extension MyPageView {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            handleHomeWidgetSettingEvent()
-        case 1:
             handleAppInfoEvent(url: url[indexPath.row])
-        case 2:
+        case 1:
             switch indexPath.row {
             case 0:
                 handleLogout()
