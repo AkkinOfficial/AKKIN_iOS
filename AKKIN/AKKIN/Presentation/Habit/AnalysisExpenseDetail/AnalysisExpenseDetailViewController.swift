@@ -60,6 +60,7 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
 
     // MARK: Navigation Item
     private func setNavigationItem() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "월별 지출 분석"
         // TODO: navigationBar backgroundColor 수정
         navigationController?.navigationBar.backgroundColor = .white

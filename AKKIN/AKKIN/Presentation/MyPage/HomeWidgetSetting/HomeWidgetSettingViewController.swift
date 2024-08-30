@@ -10,6 +10,7 @@ import UIKit
 final class HomeWidgetSettingViewController: BaseViewController {
 
     // MARK: UI Components
+    private let homeWidgetSettingView = HomeWidgetSettingView()
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton, for: .normal)
     }
@@ -26,6 +27,8 @@ final class HomeWidgetSettingViewController: BaseViewController {
 
     // MARK: Configuration
     override func configureSubviews() {
+        view.addSubview(homeWidgetSettingView)
+
         backButton.tap = { [self] in
             router.popViewController()
         }
@@ -33,6 +36,9 @@ final class HomeWidgetSettingViewController: BaseViewController {
 
     // MARK: Layout
     override func makeConstraints() {
+        homeWidgetSettingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 
     // MARK: Navigation Item

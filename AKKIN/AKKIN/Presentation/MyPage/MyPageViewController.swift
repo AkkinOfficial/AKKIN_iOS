@@ -27,10 +27,10 @@ final class MyPageViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(myPageView)
 
-        myPageView.tapHomeWidgetSetting = { [weak self] in
-            guard let self else { return }
-            router.presentHomeWidgetSettingViewController()
-        }
+//        myPageView.tapHomeWidgetSetting = { [weak self] in
+//            guard let self else { return }
+//            router.presentHomeWidgetSettingViewController()
+//        }
 
         myPageView.tapAppInfo = { [weak self] url in
             guard let self else { return }
@@ -71,8 +71,7 @@ final class MyPageViewController: BaseViewController {
 
     // MARK: Navigation Item
     private func setNavigationItem() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "마이페이지"
+        navigationController?.navigationBar.isHidden = true
     }
 }
 

@@ -20,6 +20,8 @@ final class MyPageTableViewCell: UITableViewCell {
         $0.setImage(AkkinButton.detailButton.withTintColor(.akkinGray6), for: .normal)
     }
 
+    private(set) var settingSwitch = UISwitch()
+
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier
@@ -37,6 +39,7 @@ final class MyPageTableViewCell: UITableViewCell {
     private func configureSubviews() {
         addSubview(contentLabel)
         addSubview(detailButton)
+        addSubview(settingSwitch)
     }
 
     // MARK: Layout
@@ -50,6 +53,11 @@ final class MyPageTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(20)
+        }
+
+        settingSwitch.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(24)
+            $0.centerY.equalToSuperview()
         }
     }
 }
