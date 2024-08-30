@@ -70,6 +70,9 @@
 		955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */; };
 		955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */; };
 		955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */; };
+		95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */; };
+		95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */; };
+		95577D192C81D2BD008CFE0B /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D182C81D2BD008CFE0B /* MyPageTableViewCell.swift */; };
 		95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D004422B4D0160009D4DF3 /* String+Extension.swift */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
@@ -179,6 +182,9 @@
 		955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseEmptyView.swift; sourceTree = "<group>"; };
 		955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseView.swift; sourceTree = "<group>"; };
+		95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
+		95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewFooter.swift; sourceTree = "<group>"; };
+		95577D182C81D2BD008CFE0B /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		95D004422B4D0160009D4DF3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
@@ -381,6 +387,9 @@
 			children = (
 				9536509B2C64590000F58D13 /* MyPageViewController.swift */,
 				9536509D2C64590700F58D13 /* MyPageView.swift */,
+				95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */,
+				95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */,
+				95577D182C81D2BD008CFE0B /* MyPageTableViewCell.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -741,6 +750,8 @@
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
 				95EF1C582C7EDF2900AD06A9 /* SelectMonthViewController.swift in Sources */,
 				95EF1C362C773BE400AD06A9 /* PlanExpenseGuideView.swift in Sources */,
+				95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */,
+				95577D192C81D2BD008CFE0B /* MyPageTableViewCell.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				953650982C6458ED00F58D13 /* CalendarViewController.swift in Sources */,
 				6B5B83932AC1ED4300CD0AFC /* GulbiAPI.swift in Sources */,
@@ -807,6 +818,7 @@
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
 				9536509E2C64590700F58D13 /* MyPageView.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
+				95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
 				951261C72AC1DE280012B5F9 /* UserDefaultHandler.swift in Sources */,
 			);

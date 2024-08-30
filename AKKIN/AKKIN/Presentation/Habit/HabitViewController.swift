@@ -52,7 +52,6 @@ final class HabitViewController: BaseViewController {
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .never
 
         let defaultAppearance = UINavigationBarAppearance()
         defaultAppearance.backgroundColor = .akkinBG
