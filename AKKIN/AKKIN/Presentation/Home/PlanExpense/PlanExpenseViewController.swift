@@ -12,14 +12,24 @@ final class PlanExpenseViewController: BaseViewController {
     // MARK: UI Components
     private let planExpenseView = PlanExpenseView()
 
+    // MARK: Environment
+    private let router = BaseRouter()
+
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(planExpenseView)
+
+        planExpenseView.tapPeriodTextField = { [weak self] in
+            guard let self else { return }
+            router.presentSetPeriodViewController()
+        }
     }
 
     // MARK: Layout

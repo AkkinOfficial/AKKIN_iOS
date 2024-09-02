@@ -90,4 +90,17 @@ final class BaseRouter {
         planExpenseViewController.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(planExpenseViewController, animated: true)
     }
+
+    func presentSetPeriodViewController() {
+        let setPeriodViewController = SetPeriodViewController()
+        setPeriodViewController.modalPresentationStyle = .pageSheet
+        if #available(iOS 16.0, *) {
+            if let sheet = setPeriodViewController.sheetPresentationController {
+                sheet.detents = [.custom(resolver: { _ in 578 })]
+                sheet.preferredCornerRadius = 20
+            }
+        }
+        viewController?.present(setPeriodViewController, animated: true)
+    }
+
 }

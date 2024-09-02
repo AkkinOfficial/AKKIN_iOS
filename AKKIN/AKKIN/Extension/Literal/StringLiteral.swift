@@ -67,5 +67,6 @@ public enum AkkinString {
 
     // Plan Expense
     public static let expensePlanHeadLine = "지출 기간과 금액을 \n설정해주세요."
+    public static let confirmSelect = "선택 완료"
 
 }
