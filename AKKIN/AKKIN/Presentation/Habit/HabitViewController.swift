@@ -66,4 +66,19 @@ final class HabitViewController: BaseViewController {
         navigationController?.navigationBar.standardAppearance = defaultAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = scrollAppearance
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let defaultAppearance = UINavigationBarAppearance()
+        defaultAppearance.backgroundColor = .akkinBG
+
+        let scrollAppearance = UINavigationBarAppearance()
+        scrollAppearance.backgroundColor = .akkinBG
+        scrollAppearance.shadowColor = nil
+
+        navigationController?.navigationBar.standardAppearance = defaultAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = scrollAppearance
+    }
 }
+
