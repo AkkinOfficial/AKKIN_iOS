@@ -1,5 +1,5 @@
 //
-//  MakeMoneyBoxView.swift
+//  MakePiggyBankViewController.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 8/8/24.
@@ -7,21 +7,20 @@
 
 import UIKit
 
-final class MakeMoneyBoxView: BaseView {
+final class MakePiggyBankViewController: BaseViewController {
 
     // MARK: UI Components
 
-    // MARK: Properties
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
     // MARK: Configuration
     override func configureSubviews() {
-        super.configureSubviews()
     }
 
     // MARK: Layout
     override func makeConstraints() {
-        super.makeConstraints()
     }
-
-    // MARK: Event
 }
