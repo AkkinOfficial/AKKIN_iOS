@@ -87,6 +87,10 @@ extension UIColor {
     static var akkinAnalysisGreen: UIColor {
         return UIColor(hex: "#02AF6C")
     }
+
+    static var akkinTextFieldBackGround: UIColor {
+        return UIColor(hex: "#F4F6F7")
+    }
 }
 
 extension UIColor {
