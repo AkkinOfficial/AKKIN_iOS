@@ -39,6 +39,7 @@ final class PlanExpenseView: BaseView {
 
 
     // MARK: Properties
+    var tapPeriodTextField: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -48,6 +49,8 @@ final class PlanExpenseView: BaseView {
         addSubview(periodTextField)
         addSubview(budgetTextField)
         addSubview(confirmButton)
+
+        periodTextField.addTarget(self, action: #selector(didTapPeriodTextField), for: .touchDown)
     }
 
     // MARK: Layout
@@ -74,9 +77,12 @@ final class PlanExpenseView: BaseView {
         confirmButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(20)
-            $0.height.equalTo(56)
+            $0.height.equalTo(60)
         }
     }
 
     // MARK: Event
+    @objc private func didTapPeriodTextField() {
+        tapPeriodTextField?()
+    }
 }
