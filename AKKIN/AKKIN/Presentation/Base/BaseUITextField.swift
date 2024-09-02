@@ -20,7 +20,6 @@ final class BaseUITextField: UITextField {
 
     func setupUI() {
         self.backgroundColor = .akkinTextFieldBackGround
-        self.addLeftPadding(width: 16)
         self.setRoundBorder()
         self.autocapitalizationType = .none
         self.clearButtonMode = .always

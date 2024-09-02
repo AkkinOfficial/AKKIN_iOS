@@ -27,8 +27,8 @@ extension UITextField {
         leftImageView.image = image
 
         // 패딩 값 추가
-        let padding: CGFloat = 10.0
-        let paddingLeftView = UIView(frame: CGRect(x: 0, y: 0, width: leftImageView.frame.width + padding*2 , height: leftImageView.frame.height ))
+        let padding: CGFloat = 16.0
+        let paddingLeftView = UIView(frame: CGRect(x: 0, y: 0, width: leftImageView.frame.width + padding + 8.0 , height: leftImageView.frame.height ))
         leftImageView.frame.origin = CGPoint(x: padding, y: 0)
         leftImageView.contentMode = .scaleAspectFit
 
