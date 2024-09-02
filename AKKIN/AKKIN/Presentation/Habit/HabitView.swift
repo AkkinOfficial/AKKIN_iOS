@@ -79,6 +79,7 @@ final class HabitView: BaseView {
     var monthAnalysisEmptyList = MonthAnalysis.monthAnalysisEmtpyList
 
     var tapDetailButton: (() -> Void)?
+    var tapPiggyBankButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -101,6 +102,7 @@ final class HabitView: BaseView {
         piggyBankStackView.addArrangedSubviews(piggyBankLabel, addButton)
         analysisExpenseStackView.addArrangedSubviews(analysisExpenseLabel, detailButton, emtpyView)
 
+        piggyBankEmptyButton.addTarget(self, action: #selector(handleMakePiggyBankButtonEvent), for: .touchUpInside)
         detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
     }
 
@@ -211,6 +213,9 @@ final class HabitView: BaseView {
     }
 
     // MARK: Event
+    @objc private func handleMakePiggyBankButtonEvent() {
+        tapPiggyBankButton?()
+    }
     @objc private func handleDetailButtonEvent() {
         tapDetailButton?()
     }

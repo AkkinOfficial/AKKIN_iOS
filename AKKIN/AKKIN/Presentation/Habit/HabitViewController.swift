@@ -30,6 +30,10 @@ final class HabitViewController: BaseViewController {
         view.addSubview(habitView)
         habitView.backgroundColor = .akkinBG
 
+        habitView.tapPiggyBankButton = { [weak self] in
+            guard let self else { return }
+            router.presentMakePiggyBankViewController()
+        }
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentAnalysisExpenseViewController()
