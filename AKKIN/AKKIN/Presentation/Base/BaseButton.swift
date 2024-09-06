@@ -35,7 +35,6 @@ class BaseButton: UIButton {
     }
 
     func setBaseButton() {
-        self.setTitle("", for: .normal)
         self.backgroundColor = .akkinGreen
         self.layer.cornerRadius = 16
         self.isEnabled = false
