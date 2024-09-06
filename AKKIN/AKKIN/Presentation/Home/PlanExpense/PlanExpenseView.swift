@@ -17,15 +17,15 @@ final class PlanExpenseView: BaseView {
         return label
     }()
 
-    lazy var periodTextField: BaseUITextField = {
-        let textField = BaseUITextField()
+    lazy var periodTextField: BaseTextField = {
+        let textField = BaseTextField()
         textField.placeholder = "기간"
         textField.addLeftImage(image: AkkinIcon.calendarFilled)
         return textField
     }()
 
-    lazy var budgetTextField: BaseUITextField = {
-        let textField = BaseUITextField()
+    lazy var budgetTextField: BaseTextField = {
+        let textField = BaseTextField()
         textField.placeholder = "에산"
         textField.addLeftImage(image: AkkinIcon.calendarFilled)
         return textField
