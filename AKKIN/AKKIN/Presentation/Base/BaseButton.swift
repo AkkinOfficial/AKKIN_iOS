@@ -15,6 +15,13 @@ class BaseButton: UIButton {
         }
     }
 
+    override func setImage(_ image: UIImage?, for state: UIControl.State) {
+        super.setImage(image, for: state)
+        if image != nil {
+            self.backgroundColor = .clear
+        }
+    }
+
     // MARK: Properties
     var tap: (() -> Void)?
 
