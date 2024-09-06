@@ -17,13 +17,6 @@ final class SetPeriodView: BaseView {
     }()
 
     // TODO: 캘린더 컴포넌트로 변경
-    lazy var dateView: UICalendarView = {
-        let view = UICalendarView()
-        view.wantsDateDecorations = true
-        view.availableDateRange = DateInterval(start: .now, end: .distantFuture)
-        view.traitCollection.verticalSizeClass
-        return view
-    }()
 
     // MARK: Properties
 
@@ -32,7 +25,6 @@ final class SetPeriodView: BaseView {
         super.configureSubviews()
 
         addSubview(confirmButton)
-        addSubview(dateView)
     }
 
     // MARK: Layout
@@ -44,10 +36,6 @@ final class SetPeriodView: BaseView {
             $0.height.equalTo(52)
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(16)
-        }
-
-        dateView.snp.makeConstraints {
-            $0.center.equalToSuperview()
         }
     }
 
