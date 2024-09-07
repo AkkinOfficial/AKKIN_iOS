@@ -16,7 +16,12 @@ final class SetPeriodView: BaseView {
         return button
     }()
 
-    // TODO: 캘린더 컴포넌트로 변경
+    lazy var calendarView: BaseCalendarView = {
+        let calendar = BaseCalendarView()
+        return calendar
+    }()
+
+
 
     // MARK: Properties
 
@@ -25,6 +30,7 @@ final class SetPeriodView: BaseView {
         super.configureSubviews()
 
         addSubview(confirmButton)
+        addSubview(calendarView)
     }
 
     // MARK: Layout
@@ -36,6 +42,12 @@ final class SetPeriodView: BaseView {
             $0.height.equalTo(52)
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(16)
+        }
+        
+        calendarView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(367)
+            $0.center.equalToSuperview()
         }
     }
 
