@@ -36,6 +36,11 @@ public enum AkkinIcon {
     public static var calendarFilled: UIImage { .load(name: "ic_calendarFilled") }
     public static var my: UIImage { .load(name: "ic_my") }
     public static var myFilled: UIImage { .load(name: "ic_myFilled") }
+    public static var miniCalendar: UIImage { .load(name: "ic_miniCalendar") }
+    public static var tag: UIImage { .load(name: "ic_tag") }
+    public static var wallet: UIImage { .load(name: "ic_wallet") }
+    public static var bookmark: UIImage { .load(name: "ic_bookmark") }
+    public static var memo: UIImage { .load(name: "ic_memo") }
 }
 
 extension UIImage {
