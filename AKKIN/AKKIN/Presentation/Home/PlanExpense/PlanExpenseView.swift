@@ -20,14 +20,14 @@ final class PlanExpenseView: BaseView {
     lazy var periodTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "기간"
-        textField.addLeftImage(image: AkkinIcon.calendarFilled)
+        textField.addLeftImage(image: AkkinIcon.miniCalendar)
         return textField
     }()
 
     lazy var budgetTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "에산"
-        textField.addLeftImage(image: AkkinIcon.calendarFilled)
+        textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
 
