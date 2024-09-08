@@ -69,7 +69,13 @@ final class SetPeriodViewController: BaseViewController {
         default:
             handleRangeDateSelection(startDate: selectedDates.first, endDate: selectedDates.last)
         }
-    }
+    
+    private func resetDateSelection() {
+            setPeriodView.confirmButton.isEnabled = false
+            setPeriodView.startDateLabel.text = ""
+            setPeriodView.endDateLabel.text = ""
+            setPeriodView.selectDateLabel.text = "시작일을 선택해주세요"
+        }
 
     private func resetDateSelection() {
         setPeriodView.confirmButton.isEnabled = false
