@@ -12,17 +12,25 @@ final class SetPeriodViewController: BaseViewController {
     // MARK: UI Components
     private let setPeriodView = SetPeriodView()
 
+    // MARK: Environment
+    private let router = BaseRouter()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setPeriodView.delegate = self
+        router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(setPeriodView)
         updateView()
+
+        setPeriodView.tapConfirm = { [weak self] in
+            guard let self else { return }
+            self.dismiss(animated: true)
+        }
     }
 
     // MARK: Layout
@@ -32,33 +40,60 @@ final class SetPeriodViewController: BaseViewController {
         }
     }
 
+    // MARK: method
     func updateView() {
-        setPeriodView.calendarView.onDateSelected = { [weak self] selectedDates in
-            guard let self = self else { return }
+           setPeriodView.calendarView.onDateSelected = { [weak self] selectedDates in
+               guard let self = self else { return }
+               self.handleDateSelection(selectedDates: selectedDates)
+           }
+       }
 
-
-            if selectedDates.count == 1 {
-                self.didUpdateDates(startDate: selectedDates.first, endDate: nil)
-            }else{
-                self.didUpdateDates(startDate: selectedDates.first, endDate: selectedDates.last)
-                setPeriodView.confirmButton.isEnabled = true
+    private func handleDateSelection(selectedDates: [Date]) {
+            switch selectedDates.count {
+            case 0:
+                resetDateSelection()
+            case 1:
+                handleSingleDateSelection(startDate: selectedDates.first)
+            default:
+                handleRangeDateSelection(startDate: selectedDates.first, endDate: selectedDates.last)
             }
         }
-    }
+    
+    private func resetDateSelection() {
+            setPeriodView.confirmButton.isEnabled = false
+            setPeriodView.startDateLabel.text = ""
+            setPeriodView.endDateLabel.text = ""
+            setPeriodView.selectDateLabel.text = "시작일을 선택해주세요"
+        }
 
+    private func handleSingleDateSelection(startDate: Date?) {
+            didUpdateDates(startDate: startDate, endDate: nil)
+            setPeriodView.confirmButton.isEnabled = false
+            setPeriodView.selectDateLabel.text = "종료일을 선택해주세요"
+        }
+
+    private func handleRangeDateSelection(startDate: Date?, endDate: Date?) {
+            didUpdateDates(startDate: startDate, endDate: endDate)
+            setPeriodView.confirmButton.isEnabled = true
+        }
 }
 
 extension SetPeriodViewController: SetPeriodViewDelegate {
     func didUpdateDates(startDate: Date?, endDate: Date?) {
-
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M월 d일"
 
-        let startDateString = startDate != nil ? dateFormatter.string(from: startDate!) : ""
-        let endDateString = endDate != nil ? dateFormatter.string(from: endDate!) : ""
+        let startDateString = startDate.map { dateFormatter.string(from: $0) } ?? ""
+        let endDateString = endDate.map { dateFormatter.string(from: $0) } ?? ""
 
-        print("Start Date: \(startDateString), End Date: \(endDateString)")
+        let durationString = (startDate != nil && endDate != nil) ? calculateDuration(from: startDate!, to: endDate!) : ""
+
         setPeriodView.startDateLabel.text = startDateString
-        setPeriodView.endDateLabel.text = endDateString
+        setPeriodView.endDateLabel.text = endDateString.isEmpty ? "" : "\(endDateString) (\(durationString))"
+    }
+
+    private func calculateDuration(from startDate: Date, to endDate: Date) -> String {
+        let days = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 0
+        return "\(days + 1)일"
     }
 }

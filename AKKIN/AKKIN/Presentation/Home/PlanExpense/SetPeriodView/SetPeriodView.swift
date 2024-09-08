@@ -28,10 +28,11 @@ final class SetPeriodView: BaseView {
 
     private let periodStackview = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fill
+        $0.distribution = .equalSpacing
     }
 
     lazy var selectDateLabel = UILabel().then {
+        $0.text = "시작일을 선택해주세요"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
@@ -41,12 +42,22 @@ final class SetPeriodView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .medium)
     }
 
+    lazy var dateDivideLabel = UILabel().then {
+        $0.text = " - "
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+    }
+
+
     lazy var endDateLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 12, weight: .medium)
     }
 
+
     // MARK: Properties
+    var tapConfirm: (() -> Void)?
+
     weak var delegate: SetPeriodViewDelegate?
 
     // MARK: Configuration
@@ -55,18 +66,26 @@ final class SetPeriodView: BaseView {
 
         addSubview(confirmButton)
         addSubview(calendarView)
+        addSubview(selectDateLabel)
         addSubview(periodStackview)
 
-        periodStackview.addArrangedSubviews(startDateLabel,endDateLabel)
+        periodStackview.addArrangedSubviews(startDateLabel,dateDivideLabel,endDateLabel)
+
+        confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
+        selectDateLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(16)
+        }
+
         periodStackview.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.top.equalTo(selectDateLabel.snp.bottom).offset(10)
         }
 
         confirmButton.snp.makeConstraints {
@@ -84,4 +103,7 @@ final class SetPeriodView: BaseView {
     }
 
     // MARK: Event
+    @objc private func didTapConfirmButton() {
+        tapConfirm?()
+    }
 }
