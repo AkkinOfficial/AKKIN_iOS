@@ -28,6 +28,8 @@ final class PlanExpenseView: BaseView {
         let textField = BaseTextField()
         textField.placeholder = "에산"
         textField.addLeftImage(image: AkkinIcon.tag)
+        textField.addRightLabel(text: "원", textColor: .akkinGray6)
+        textField.addCommas()
         return textField
     }()
 

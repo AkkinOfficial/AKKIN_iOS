@@ -46,6 +46,6 @@ extension PlanExpenseViewController: SetPeriodViewControllerDelegate {
     
     func didSelectDates(startDate: String, endDate: String, duration: String) {
         planExpenseView.periodTextField.text = "\(startDate) ~ \(endDate)"
-        //planExpenseView.periodTextField.rightView = duration
+        planExpenseView.periodTextField.addRightLabel(text: duration)
     }
 }
