@@ -11,6 +11,7 @@ final class PlanExpenseViewController: BaseViewController {
 
     // MARK: UI Components
     private let planExpenseView = PlanExpenseView()
+    let setPeriodViewController = SetPeriodViewController()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -20,6 +21,7 @@ final class PlanExpenseViewController: BaseViewController {
         super.viewDidLoad()
 
         router.viewController = self
+        setPeriodViewController.delegate = self
     }
 
     // MARK: Configuration
@@ -28,7 +30,7 @@ final class PlanExpenseViewController: BaseViewController {
 
         planExpenseView.tapPeriodTextField = { [weak self] in
             guard let self else { return }
-            router.presentSetPeriodViewController()
+            router.presentSetPeriodViewController(setPeriodViewController)
         }
     }
 
@@ -37,5 +39,13 @@ final class PlanExpenseViewController: BaseViewController {
         planExpenseView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension PlanExpenseViewController: SetPeriodViewControllerDelegate {
+    
+    func didSelectDates(startDate: String, endDate: String, duration: String) {
+        planExpenseView.periodTextField.text = "\(startDate) ~ \(endDate)"
+        //planExpenseView.periodTextField.rightView = duration
     }
 }
