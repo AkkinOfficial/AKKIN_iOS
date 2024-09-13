@@ -11,7 +11,7 @@ import UIKit
 final class MakePiggyBankCompleteView: BaseView {
 
     // MARK: UI Components
-    private let piggyBankCompleteEmptyView = UIView()
+    private let piggyBankEndEmptyView = UIView()
 
     private let piggyBankEmojiButton = UIButton().then {
         $0.setTitle("💰", for: .normal)
@@ -61,15 +61,15 @@ final class MakePiggyBankCompleteView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
-        addSubview(piggyBankCompleteEmptyView)
+        addSubview(piggyBankEndEmptyView)
 
-        piggyBankCompleteEmptyView.addSubview(piggyBankDateLabel)
-        piggyBankCompleteEmptyView.addSubview(piggyBankEmojiButton)
+        piggyBankEndEmptyView.addSubview(piggyBankDateLabel)
+        piggyBankEndEmptyView.addSubview(piggyBankEmojiButton)
         piggyBankEmojiButton.addSubview(emojiTextField)
-        piggyBankCompleteEmptyView.addSubview(piggyBankSpendLabel)
-        piggyBankCompleteEmptyView.addSubview(piggyBankNameLabel)
-        piggyBankCompleteEmptyView.addSubview(piggyBankMemoLabel)
-        piggyBankCompleteEmptyView.addSubview(piggyBankCompleteButton)
+        piggyBankEndEmptyView.addSubview(piggyBankSpendLabel)
+        piggyBankEndEmptyView.addSubview(piggyBankNameLabel)
+        piggyBankEndEmptyView.addSubview(piggyBankMemoLabel)
+        piggyBankEndEmptyView.addSubview(piggyBankCompleteButton)
 
         piggyBankEmojiButton.addTarget(self, action: #selector(showEmojiKeyboardEvent), for: .touchUpInside)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -80,7 +80,7 @@ final class MakePiggyBankCompleteView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
-        piggyBankCompleteEmptyView.snp.makeConstraints {
+        piggyBankEndEmptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
