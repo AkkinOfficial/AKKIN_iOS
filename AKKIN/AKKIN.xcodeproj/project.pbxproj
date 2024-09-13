@@ -123,6 +123,7 @@
 		E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */; };
 		E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */; };
 		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
+		C39078EB2C947CBB003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EA2C947CBB003514FE /* MakePiggyBankEndViewController.swift */; };
 		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +243,9 @@
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardViewController.swift; sourceTree = "<group>"; };
 		E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
+		C39078EA2C947CBB003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
+		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,7 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				9536508A2C64585700F58D13 /* MakePiggyBankViewController.swift */,
-				9536508C2C64585D00F58D13 /* MakePiggyBankView.swift */,
+				C39078EA2C947CBB003514FE /* MakePiggyBankEndViewController.swift */,
 				9536508C2C64585D00F58D13 /* MakePiggyBankStartView.swift */,
 				C39078E82C859607003514FE /* MakePiggyBankEndView.swift */,
 				C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */,
@@ -901,6 +905,7 @@
 				E53F842D2C8C98560005EBBE /* CalendarCell.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
 				95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */,
+				C39078EB2C947CBB003514FE /* MakePiggyBankEndViewController.swift in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
 				C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */,
 				951261C72AC1DE280012B5F9 /* UserDefaultHandler.swift in Sources */,
