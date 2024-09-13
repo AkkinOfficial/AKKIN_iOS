@@ -91,14 +91,13 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(planExpenseViewController, animated: true)
     }
 
-    func presentSetPeriodViewController() {
-        let setPeriodViewController = SetPeriodViewController()
+    func presentSetPeriodViewController(_ setPeriodViewController: SetPeriodViewController) {
         setPeriodViewController.modalPresentationStyle = .pageSheet
-            if let sheet = setPeriodViewController.sheetPresentationController {
-                sheet.detents = [.custom(resolver: { _ in 578 })]
-                sheet.preferredCornerRadius = 20
-            }
-        viewController?.present(setPeriodViewController, animated: true)
-    }
+        if let sheet = setPeriodViewController.sheetPresentationController {
+            sheet.detents = [.custom(resolver: { _ in 578 })]
+            sheet.preferredCornerRadius = 20
+        }
+            viewController?.present(setPeriodViewController, animated: true, completion: nil)
+        }
 
 }
