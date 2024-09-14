@@ -18,6 +18,9 @@ final class HabitViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.frame = UIScreen.main.bounds
+        view.backgroundColor = .akkinBG
+
         setNavigationItem()
         router.viewController = self
     }
@@ -27,12 +30,12 @@ final class HabitViewController: BaseViewController {
 
     // MARK: Configuration
     override func configureSubviews() {
+
         view.addSubview(habitView)
-        habitView.backgroundColor = .akkinBG
 
         habitView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
-            router.presentMakePiggyBankViewController()
+            router.popToMakePiggyBankStartViewController()
         }
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
@@ -54,31 +57,7 @@ final class HabitViewController: BaseViewController {
 
     // MARK: Navigation Item
     private func setNavigationItem() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-
-        let defaultAppearance = UINavigationBarAppearance()
-        defaultAppearance.backgroundColor = .akkinBG
-
-        let scrollAppearance = UINavigationBarAppearance()
-        scrollAppearance.backgroundColor = .akkinBG
-        scrollAppearance.shadowColor = nil
-
-        navigationController?.navigationBar.standardAppearance = defaultAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = scrollAppearance
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        let defaultAppearance = UINavigationBarAppearance()
-        defaultAppearance.backgroundColor = .akkinBG
-
-        let scrollAppearance = UINavigationBarAppearance()
-        scrollAppearance.backgroundColor = .akkinBG
-        scrollAppearance.shadowColor = nil
-
-        navigationController?.navigationBar.standardAppearance = defaultAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = scrollAppearance
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
 

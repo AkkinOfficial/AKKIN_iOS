@@ -20,6 +20,11 @@ final class HabitView: BaseView {
         $0.axis = .horizontal
         $0.distribution = .fill
     }
+    private let mainLabel = UILabel().then {
+        $0.text = "소비습관"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+    }
 
     private let piggyBankLabel = UILabel().then {
         $0.text = "저금통"
@@ -47,6 +52,7 @@ final class HabitView: BaseView {
 
     private let piggyBankEmptyButton = BaseButton().then {
         $0.setGuideButton("저금통 만들기")
+        $0.isEnabled = true
     }
 
     private let analysisExpenseEntireView = UIView()
@@ -63,7 +69,7 @@ final class HabitView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
 
-    private let detailButton = BaseButton().then {
+    private let detailButton = UIButton().then {
         $0.setImage(AkkinButton.detailButton, for: .normal)
     }
 
@@ -88,7 +94,7 @@ final class HabitView: BaseView {
         backgroundColor = .akkinBG
 
         addSubview(scrollView)
-
+        scrollView.addSubview(mainLabel)
         scrollView.addSubview(piggyBankView)
         piggyBankView.addSubview(piggyBankStackView)
         piggyBankView.addSubview(piggyBankEmptyView)
@@ -113,9 +119,13 @@ final class HabitView: BaseView {
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        mainLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20)
+        }
 
         piggyBankView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(31)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(31)
             $0.width.equalToSuperview()
             $0.height.equalTo(198)
         }
