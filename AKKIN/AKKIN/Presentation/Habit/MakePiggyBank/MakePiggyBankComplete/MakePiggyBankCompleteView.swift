@@ -13,6 +13,17 @@ final class MakePiggyBankCompleteView: BaseView {
     // MARK: UI Components
     private let piggyBankEndEmptyView = UIView()
 
+    private let piggyBankNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+    }
+    let backButton = BackButton()
+    private let piggyBankLabel = UILabel().then {
+        $0.text = "저금통"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
     private let piggyBankEmojiButton = UIButton().then {
         $0.setTitle("💰", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
@@ -50,7 +61,7 @@ final class MakePiggyBankCompleteView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 
-    private let piggyBankCompleteButton = BaseButton().then {
+    let piggyBankCompleteButton = BaseButton().then {
         $0.setGuideButton("완료")
     }
 
@@ -62,6 +73,9 @@ final class MakePiggyBankCompleteView: BaseView {
         super.configureSubviews()
 
         addSubview(piggyBankEndEmptyView)
+        piggyBankEndEmptyView.addSubview(piggyBankNavigationBar)
+        piggyBankNavigationBar.addSubview(backButton)
+        piggyBankNavigationBar.addSubview(piggyBankLabel)
 
         piggyBankEndEmptyView.addSubview(piggyBankDateLabel)
         piggyBankEndEmptyView.addSubview(piggyBankEmojiButton)
@@ -84,8 +98,22 @@ final class MakePiggyBankCompleteView: BaseView {
             $0.edges.equalToSuperview()
         }
 
+        piggyBankNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
+        }
+        piggyBankLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+
         piggyBankDateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(118)
+            $0.top.equalTo(piggyBankNavigationBar.snp.bottom).offset(118)
             $0.centerX.equalToSuperview()
         }
         piggyBankEmojiButton.snp.makeConstraints {
