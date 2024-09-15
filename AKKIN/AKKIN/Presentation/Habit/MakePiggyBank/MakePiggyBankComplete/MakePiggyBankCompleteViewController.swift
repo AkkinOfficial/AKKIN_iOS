@@ -46,13 +46,4 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     private func setNavigationItem() {
         navigationController?.isNavigationBarHidden = true
     }
-
-    // MARK: Event
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-        makePiggyBankCompleteView.piggyBankCompleteButton.isEnabled = !currentText.isEmpty
-        // 텍스트가 비어있지 않을 때만 버튼 활성화
-        return true
-    }
 }

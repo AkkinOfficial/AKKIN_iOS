@@ -43,9 +43,9 @@ final class MakePiggyBankStartView: BaseView {
         //textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
-    var piggyBankNextButton = BaseButton().then {
-        $0.setGuideButton("다음")
-        $0.isEnabled = true
+
+    var piggyBankNextButton = CompleteButton().then {
+        $0.setTitle("다음", for: .normal)
     }
 
     // MARK: Properties
@@ -66,6 +66,8 @@ final class MakePiggyBankStartView: BaseView {
         emptyView.addSubview(budgetTextField)
 
         piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
+        periodTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        budgetTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
 
     // MARK: Layout
@@ -119,5 +121,9 @@ final class MakePiggyBankStartView: BaseView {
     // MARK: Event
     @objc private func handlePiggyBankNextButtonEvent() {
         tapPiggyBankNextButton?()
+        budgetTextField.resignFirstResponder()
+    }
+    @objc func textFieldDidChange() {
+        piggyBankNextButton.isEnabled = !(periodTextField.text?.isEmpty ?? true) && !(budgetTextField.text?.isEmpty ?? true)
     }
 }

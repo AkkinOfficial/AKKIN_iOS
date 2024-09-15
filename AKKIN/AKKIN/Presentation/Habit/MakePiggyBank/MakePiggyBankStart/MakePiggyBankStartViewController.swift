@@ -21,6 +21,9 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         super.viewDidLoad()
         setNavigationItem()
         router.viewController = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     // MARK: Configuration
@@ -49,10 +52,26 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
     }
 
     // MARK: Event
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-        makePiggyBankStartView.piggyBankNextButton.isEnabled = !currentText.isEmpty 
-        // 텍스트가 비어있지 않을 때만 버튼 활성화
-        return true
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+
+            // 키보드 위에 완료 버튼 위치 설정
+            UIView.animate(withDuration: 0.3) {
+                self.makePiggyBankStartView.piggyBankNextButton.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight + 144)
+            }
+        }
+    }
+
+    // 키보드가 사라질 때 호출되는 메서드
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        // 완료 버튼 원래 위치로 복원
+        UIView.animate(withDuration: 0.3) {
+            self.makePiggyBankStartView.piggyBankNextButton.transform = .identity
+        }
     }
 }

@@ -31,21 +31,20 @@ final class MakePiggyBankEndView: BaseView {
         $0.lineBreakMode = .byWordWrapping
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
-    lazy var periodTextField: BaseTextField = {
+    lazy var nameTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "저금통 이름"
         //textField.addLeftImage(image: AkkinIcon.miniCalendar)
         return textField
     }()
-    lazy var budgetTextField: BaseTextField = {
+    lazy var memoTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "절약 다짐(선택)"
         //textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
-    var piggyBankNextButton = BaseButton().then {
-        $0.setGuideButton("다음")
-        $0.isEnabled = true
+    var piggyBankNextButton = CompleteButton().then {
+        $0.setTitle("다음", for: .normal)
     }
 
     // MARK: Properties
@@ -62,8 +61,8 @@ final class MakePiggyBankEndView: BaseView {
 
         emptyView.addSubview(piggyBankSettingLabel)
         emptyView.addSubview(piggyBankNextButton)
-        emptyView.addSubview(periodTextField)
-        emptyView.addSubview(budgetTextField)
+        emptyView.addSubview(nameTextField)
+        emptyView.addSubview(memoTextField)
 
         piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
     }
@@ -94,14 +93,14 @@ final class MakePiggyBankEndView: BaseView {
             $0.top.equalTo(piggyBankNavigationBar.snp.bottom).offset(32)
             $0.leading.equalToSuperview().inset(20)
         }
-        periodTextField.snp.makeConstraints {
+        nameTextField.snp.makeConstraints {
             $0.top.equalTo(piggyBankSettingLabel.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
-        budgetTextField.snp.makeConstraints {
-            $0.top.equalTo(periodTextField.snp.bottom).offset(12)
+        memoTextField.snp.makeConstraints {
+            $0.top.equalTo(nameTextField.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
@@ -117,5 +116,8 @@ final class MakePiggyBankEndView: BaseView {
     // MARK: Event
     @objc private func handlePiggyBankNextButtonEvent() {
         tapPiggyBankNextButton?()
+    }
+    @objc func textFieldDidChange() {
+        piggyBankNextButton.isEnabled = !(nameTextField.text?.isEmpty ?? true) && !(memoTextField.text?.isEmpty ?? true)
     }
 }
