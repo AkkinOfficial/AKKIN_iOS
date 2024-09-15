@@ -122,6 +122,7 @@
 		C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */; };
 		C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */; };
 		C3F685542C95CDF300002792 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F685532C95CDF300002792 /* BackButton.swift */; };
+		C3F685562C966AAB00002792 /* CompleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F685552C966AAB00002792 /* CompleteButton.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
@@ -248,6 +249,7 @@
 		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
 		C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteViewController.swift; sourceTree = "<group>"; };
 		C3F685532C95CDF300002792 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		C3F685552C966AAB00002792 /* CompleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteButton.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				E5D34D8E2C85A62300200C44 /* BaseTextField.swift */,
 				E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */,
 				C3F685532C95CDF300002792 /* BackButton.swift */,
+				C3F685552C966AAB00002792 /* CompleteButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -890,6 +893,7 @@
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
+				C3F685562C966AAB00002792 /* CompleteButton.swift in Sources */,
 				95EF1C5E2C7EEE5B00AD06A9 /* DataManager.swift in Sources */,
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AuthAPI.swift in Sources */,
