@@ -27,10 +27,16 @@ final class PlanExpenseViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(planExpenseView)
+        hideKeyboard()
 
         planExpenseView.tapPeriodTextField = { [weak self] in
             guard let self else { return }
             router.presentSetPeriodViewController(setPeriodViewController)
+        }
+        //TODO: 네트워크 메서드 추가하기
+        planExpenseView.tapConfirmButton = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
         }
     }
 

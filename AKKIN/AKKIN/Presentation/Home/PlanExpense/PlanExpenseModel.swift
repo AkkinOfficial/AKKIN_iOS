@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct PlanExpenseModel {
+    var startDate: String
+    var endDates: String
+    var goalAmount: Int
+
+}

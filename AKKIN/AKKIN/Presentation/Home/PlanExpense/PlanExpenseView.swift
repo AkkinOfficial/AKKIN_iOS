@@ -26,7 +26,7 @@ final class PlanExpenseView: BaseView {
 
     lazy var budgetTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "에산"
+        textField.placeholder = "예산"
         textField.addLeftImage(image: AkkinIcon.tag)
         textField.addRightLabel(text: "원", textColor: .akkinGray6)
         textField.addCommas()
@@ -36,12 +36,18 @@ final class PlanExpenseView: BaseView {
     lazy var confirmButton: BaseButton = {
         let button = BaseButton()
         button.setTitle(AkkinString.confirm, for: .normal)
+        button.isEnabled = true
         return button
     }()
 
 
     // MARK: Properties
     var tapPeriodTextField: (() -> Void)?
+    var tapConfirmButton: (() -> Void)?
+
+    // MARK: Custom Keyboard
+        private let customKeyboardVC = CustomKeyboardViewController()
+
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -53,6 +59,10 @@ final class PlanExpenseView: BaseView {
         addSubview(confirmButton)
 
         periodTextField.addTarget(self, action: #selector(didTapPeriodTextField), for: .touchDown)
+        confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
+
+        customKeyboardVC.delegate = self
+        budgetTextField.inputView = customKeyboardVC.view
     }
 
     // MARK: Layout
@@ -86,5 +96,14 @@ final class PlanExpenseView: BaseView {
     // MARK: Event
     @objc private func didTapPeriodTextField() {
         tapPeriodTextField?()
+    }
+    @objc private func didTapConfirmButton() {
+        tapConfirmButton?()
+    }
+}
+
+extension PlanExpenseView: CustomKeyboardDelegate {
+    func customKeyboard(_ keyboard: CustomKeyboardViewController, didEnterAmount amount: String) {
+        budgetTextField.text = amount
     }
 }

@@ -65,6 +65,9 @@ public enum AkkinString {
     public static let patchGulbisTitle = "카드 내용 수정"
     public static let confirm = "완료"
 
+    // Home
+    public static let expenseChallengeTitle = "절약도 한걸음 부터! \n지출 계획을 시작해볼까요?"
+
     // Plan Expense
     public static let expensePlanHeadLine = "지출 기간과 금액을 \n설정해주세요."
     public static let confirmSelect = "선택 완료"
