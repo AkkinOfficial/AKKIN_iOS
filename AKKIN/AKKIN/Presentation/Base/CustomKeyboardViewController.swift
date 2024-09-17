@@ -69,13 +69,12 @@ class CustomKeyboardViewController: UIViewController {
         }
     }
 
-    // MARK: - Event: Number Input
+    // MARK: - Event
     @objc private func amountButtonTapped(_ sender: UIButton) {
-        // Convert predefined amount to numeric value
         guard let amountText = sender.title(for: .normal) else { return }
         let amount = convertPredefinedAmountToNumber(amountText)
         currentInput = "\(amount)"
-        delegate?.customKeyboard(self, didEnterAmount: currentInput)
+        addCommas()
     }
 
     @objc private func keypadButtonTapped(_ sender: UIButton) {
@@ -87,22 +86,19 @@ class CustomKeyboardViewController: UIViewController {
         } else {
             currentInput += value
         }
-        delegate?.customKeyboard(self, didEnterAmount: currentInput)
+        addCommas()
     }
 
-    // MARK: - Event: Operation Input
     @objc private func operationButtonTapped(_ sender: UIButton) {
         guard let operationValue = sender.title(for: .normal) else { return }
 
-        // Change the selected operation button background color
         updateOperationButtonSelection(sender)
 
-        // If '=' is pressed, perform the calculation
         if operationValue == "=" {
             if let first = firstOperand, let second = Int(currentInput), let op = operation {
                 let result = performOperation(op: op, first: first, second: second)
                 currentInput = "\(result)"
-                delegate?.customKeyboard(self, didEnterAmount: currentInput)
+                addCommas()
                 firstOperand = nil
                 secondOperand = nil
                 operation = nil
@@ -117,15 +113,27 @@ class CustomKeyboardViewController: UIViewController {
         }
     }
 
-    // MARK: - Helper Functions
+    // MARK: - Function
     private func performOperation(op: String, first: Int, second: Int) -> Int {
         switch op {
         case "+": return first + second
         case "-": return first - second
         case "×": return first * second
-        case "÷": return first / second
+        case "÷":
+            if second == 0 {
+                showAlertForDivisionByZero()
+                return first
+            }
+            return first / second
         default: return second
         }
+    }
+
+    //TODO: divisionZero 예외처리 논의해서 반영하기
+    private func showAlertForDivisionByZero() {
+        let alert = UIAlertController(title: "오류", message: "0으로 나눌수 없어요😭", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     private func convertPredefinedAmountToNumber(_ amount: String) -> Int {
@@ -187,5 +195,22 @@ class CustomKeyboardViewController: UIViewController {
             button.addTarget(self, action: action, for: .touchUpInside)
         }
         return button
+    }
+
+    private func addCommas() {
+        let formattedAmount = addCommas(to: currentInput)
+        delegate?.customKeyboard(self, didEnterAmount: formattedAmount)
+    }
+
+    private func addCommas(to amount: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = ","
+
+        let cleanedText = amount.replacingOccurrences(of: ",", with: "")
+        if let number = Double(cleanedText) {
+            return numberFormatter.string(from: NSNumber(value: number)) ?? amount
+        }
+        return amount
     }
 }
