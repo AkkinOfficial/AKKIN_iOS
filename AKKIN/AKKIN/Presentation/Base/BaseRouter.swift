@@ -33,7 +33,7 @@ final class BaseRouter {
     }
 
     func presentHomeViewController() {
-        let homeViewController = HomeViewController()
+        let homeViewController = EmptyHomeViewController()
         viewController?.navigationController?.pushViewController(homeViewController, animated: true)
     }
 

@@ -19,7 +19,7 @@ class TabBarViewController: UITabBarController {
     }
 
     // MARK: UI Components
-    let homeViewController = HomeViewController()
+    let homeViewController = EmptyHomeViewController()
     let habitViewController = HabitViewController()
     let calendarViewController = CalendarViewController()
     let myPageViewController = MyPageViewController()
