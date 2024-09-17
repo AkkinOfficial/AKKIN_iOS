@@ -13,6 +13,7 @@ final class PlanExpenseView: BaseView {
     lazy var expensePlanLabel: UILabel = {
         let label = UILabel()
         label.text = AkkinString.expensePlanHeadLine
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         label.numberOfLines = 0
         return label
     }()
@@ -26,7 +27,7 @@ final class PlanExpenseView: BaseView {
 
     lazy var budgetTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "예산"
+        textField.placeholder = "챌린지 설정 금액"
         textField.addLeftImage(image: AkkinIcon.tag)
         textField.addRightLabel(text: "원", textColor: .akkinGray6)
         textField.addCommas()
