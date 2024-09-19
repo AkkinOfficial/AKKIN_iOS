@@ -58,6 +58,7 @@ class CustomKeyboardViewController: UIViewController {
 
         keypadStackView.snp.makeConstraints { make in
             make.top.equalTo(predefinedAmountsStackView.snp.bottom).offset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.leading.equalTo(view).offset(16)
             make.width.equalTo(view).multipliedBy(0.75)
         }
@@ -187,15 +188,24 @@ class CustomKeyboardViewController: UIViewController {
         button.setTitle(title, for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
+
+        if numbers.flatMap({ $0 }).contains(title) {
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+            button.layer.borderWidth = 0
+        } else {
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.lightGray.cgColor
+        }
+
         if let action = action {
             button.addTarget(self, action: action, for: .touchUpInside)
         }
+
         return button
     }
+
 
     private func addCommas() {
         let formattedAmount = addCommas(to: currentInput)
