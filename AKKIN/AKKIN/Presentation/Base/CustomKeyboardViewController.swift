@@ -31,9 +31,9 @@ class CustomKeyboardViewController: UIViewController {
 
     private var selectedOperationButton: UIButton?
 
-    private let predefinedAmountsStackView = createStackView(axis: .horizontal)
-    private let keypadStackView = createStackView(axis: .vertical)
-    private let operationsStackView = createStackView(axis: .vertical)
+    private let predefinedAmountsStackView = createStackView(axis: .horizontal, spacing: 8)
+    private let keypadStackView = createStackView(axis: .vertical, spacing: 8)
+    private let operationsStackView = createStackView(axis: .vertical, spacing: 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +58,14 @@ class CustomKeyboardViewController: UIViewController {
 
         keypadStackView.snp.makeConstraints { make in
             make.top.equalTo(predefinedAmountsStackView.snp.bottom).offset(16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(view).offset(16)
+            make.bottom.equalToSuperview().inset(20)
+            make.leading.equalTo(view)
             make.width.equalTo(view).multipliedBy(0.75)
         }
 
         operationsStackView.snp.makeConstraints { make in
             make.leading.equalTo(keypadStackView.snp.trailing).offset(8)
-            make.trailing.equalTo(view).offset(-16)
+            make.trailing.equalTo(view)
             make.top.bottom.equalTo(keypadStackView)
         }
     }
@@ -151,27 +151,30 @@ class CustomKeyboardViewController: UIViewController {
     private func updateOperationButtonSelection(_ selectedButton: UIButton) {
         if let previousButton = selectedOperationButton {
             previousButton.backgroundColor = .white
+            previousButton.setTitleColor(.akkinGray2, for: .normal)
         }
 
         selectedButton.backgroundColor = .akkinGreen
+        selectedButton.setTitleColor(.white, for: .normal)
         selectedOperationButton = selectedButton
     }
 
     private func resetOperationButtonSelection() {
         selectedOperationButton?.backgroundColor = .white
+        selectedOperationButton?.setTitleColor(.akkinGray2, for: .normal)
         selectedOperationButton = nil
     }
 
-    private static func createStackView(axis: NSLayoutConstraint.Axis) -> UIStackView {
+    private static func createStackView(axis: NSLayoutConstraint.Axis, spacing: Int) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = axis
-        stackView.spacing = 8
+        stackView.spacing = CGFloat(spacing)
         stackView.distribution = .fillEqually
         return stackView
     }
 
     private func addRow(to stackView: UIStackView, titles: [String], action: Selector?) {
-        let rowStackView = CustomKeyboardViewController.createStackView(axis: .horizontal)
+        let rowStackView = CustomKeyboardViewController.createStackView(axis: .horizontal, spacing: 8)
         addButtons(to: rowStackView, titles: titles, action: action)
         stackView.addArrangedSubview(rowStackView)
     }
@@ -190,14 +193,20 @@ class CustomKeyboardViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 8
 
-        if numbers.flatMap({ $0 }).contains(title) {
+        if numbers.flatMap({ $0 }).contains(title) || operations.compactMap({ $0 }).contains(title) {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
             button.layer.borderWidth = 0
+            button.layer.cornerRadius = 0
         } else {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
+        if  operations.compactMap({ $0 }).contains(title) {
+            button.setTitleColor(.akkinGray2, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+        }
+
 
         if let action = action {
             button.addTarget(self, action: action, for: .touchUpInside)
