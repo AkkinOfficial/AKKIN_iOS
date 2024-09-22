@@ -86,10 +86,10 @@ final class BaseRouter {
             if let rootViewController =
                 UIApplication.shared.windows.first?
                 .rootViewController {
-                    if let navigationController =
-                        rootViewController as? UINavigationController {
-                        navigationController
-                            .popToRootViewController(animated: true)
+                if let navigationController =
+                    rootViewController as? UINavigationController {
+                    navigationController
+                        .popToRootViewController(animated: true)
                 }
             }
         })
@@ -107,8 +107,8 @@ final class BaseRouter {
             sheet.detents = [.custom(resolver: { _ in 578 })]
             sheet.preferredCornerRadius = 20
         }
-            viewController?.present(setPeriodViewController, animated: true, completion: nil)
-        }
+        viewController?.present(setPeriodViewController, animated: true, completion: nil)
+    }
 
     func presentExpenseCategoryViewController(_ expenseCategoryViewController: ExpenseCategoryViewController) {
         expenseCategoryViewController.modalPresentationStyle = .pageSheet
@@ -116,7 +116,14 @@ final class BaseRouter {
             sheet.detents = [.custom(resolver: { _ in 578 })]
             sheet.preferredCornerRadius = 20
         }
-            viewController?.present(expenseCategoryViewController, animated: true, completion: nil)
-        }
+        viewController?.present(expenseCategoryViewController, animated: true, completion: nil)
+    }
+
+    func presentAddExpenseViewController() {
+        let addExpenseViewController = AddExpenseViewController()
+        addExpenseViewController.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(addExpenseViewController, animated: true)
+    }
+
 
 }
