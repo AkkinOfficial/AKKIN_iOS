@@ -133,6 +133,9 @@
 		E5F659E12C9C9174001A08C7 /* ExpenseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */; };
 		E5F659E32C9FE790001A08C7 /* ExpenseCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E22C9FE790001A08C7 /* ExpenseCategoryCell.swift */; };
 		E5F659E52C9FEA50001A08C7 /* ExpenseCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E42C9FEA50001A08C7 /* ExpenseCategoryModel.swift */; };
+		E5F659E72CA00B49001A08C7 /* AddExpenseConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E62CA00B49001A08C7 /* AddExpenseConfirmViewController.swift */; };
+		E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E82CA00B57001A08C7 /* AddExpenseConfirmView.swift */; };
+		E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659EA2CA00FF4001A08C7 /* AddExpenseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -262,6 +265,9 @@
 		E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryViewController.swift; sourceTree = "<group>"; };
 		E5F659E22C9FE790001A08C7 /* ExpenseCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryCell.swift; sourceTree = "<group>"; };
 		E5F659E42C9FEA50001A08C7 /* ExpenseCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryModel.swift; sourceTree = "<group>"; };
+		E5F659E62CA00B49001A08C7 /* AddExpenseConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseConfirmViewController.swift; sourceTree = "<group>"; };
+		E5F659E82CA00B57001A08C7 /* AddExpenseConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseConfirmView.swift; sourceTree = "<group>"; };
+		E5F659EA2CA00FF4001A08C7 /* AddExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +427,9 @@
 			children = (
 				953650852C6457FD00F58D13 /* AddExpenseViewController.swift */,
 				953650872C64580300F58D13 /* AddExpenseView.swift */,
+				E5F659E62CA00B49001A08C7 /* AddExpenseConfirmViewController.swift */,
+				E5F659E82CA00B57001A08C7 /* AddExpenseConfirmView.swift */,
+				E5F659EA2CA00FF4001A08C7 /* AddExpenseModel.swift */,
 				E5F659DD2C9C9124001A08C7 /* ExpenseCategory */,
 			);
 			path = AddExpense;
@@ -870,6 +879,7 @@
 				955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */,
 				9512618B2AC02E090012B5F9 /* MoyaLoggerPlugin.swift in Sources */,
 				E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */,
+				E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */,
@@ -895,6 +905,7 @@
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,
 				951261BC2AC1A8BA0012B5F9 /* MonthlyAPI.swift in Sources */,
+				E5F659E72CA00B49001A08C7 /* AddExpenseConfirmViewController.swift in Sources */,
 				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
 				953650792C64567700F58D13 /* EmptyHomeViewController.swift in Sources */,
 				E5F659DF2C9C9162001A08C7 /* ExpenseCategoryView.swift in Sources */,
@@ -958,6 +969,7 @@
 				9536509C2C64590000F58D13 /* MyPageViewController.swift in Sources */,
 				95577D212C81DE86008CFE0B /* HomeWidgetSettingView.swift in Sources */,
 				951261682ABF4ED20012B5F9 /* Storage.swift in Sources */,
+				E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */,
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
 				955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */,
 				9536509E2C64590700F58D13 /* MyPageView.swift in Sources */,
@@ -1105,6 +1117,7 @@
 				CODE_SIGN_ENTITLEMENTS = AKKIN/AKKIN.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39MK2JX9R4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AKKIN/Support/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진을 저장하기 위해 사진 앨범에 접근할 권한이 필요합니다";
@@ -1118,7 +1131,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akkin.AKKIN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peopleakkin.AKKIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1134,6 +1147,7 @@
 				CODE_SIGN_ENTITLEMENTS = AKKIN/AKKIN.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39MK2JX9R4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AKKIN/Support/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진을 저장하기 위해 사진 앨범에 접근할 권한이 필요합니다";
@@ -1147,7 +1161,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akkin.AKKIN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.peopleakkin.AKKIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

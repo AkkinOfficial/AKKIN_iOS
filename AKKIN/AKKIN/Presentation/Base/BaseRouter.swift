@@ -125,5 +125,10 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
 
+    func presentAddExpenseConfirmViewController() {
+        let addExpenseConfirmViewController = AddExpenseConfirmViewController()
+        addExpenseConfirmViewController.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(addExpenseConfirmViewController, animated: true)
+    }
 
 }
