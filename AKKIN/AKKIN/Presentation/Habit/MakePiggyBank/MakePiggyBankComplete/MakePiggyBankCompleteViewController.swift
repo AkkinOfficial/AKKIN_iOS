@@ -26,12 +26,14 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     override func configureSubviews() {
         view.addSubview(makePiggyBankCompleteView)
 
+
+        makePiggyBankCompleteView.emojiTextField.delegate = self
         makePiggyBankCompleteView.backButton.tap = { [self] in
             router.popViewController()
         }
         makePiggyBankCompleteView.piggyBankCompleteButton.tap = { [weak self] in
             guard let self else { return }
-            router.popToRootViewController()
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 
@@ -45,5 +47,14 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.isNavigationBarHidden = true
+    }
+
+    // MARK: Event
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        return updatedText.count <= 1
     }
 }

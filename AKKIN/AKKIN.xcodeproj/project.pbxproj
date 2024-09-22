@@ -111,25 +111,22 @@
 		C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CC2B5146E400A118F0 /* KakaoSDKCert */; };
 		C336C7CF2B5146E400A118F0 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CE2B5146E400A118F0 /* KakaoSDKCertCore */; };
 		C336C7D12B5146E400A118F0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7D02B5146E400A118F0 /* KakaoSDKCommon */; };
+		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
+		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
+		C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */; };
+		C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */; };
+		C3F685582CA07EBD00002792 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F685572CA07EBD00002792 /* EmojiTextField.swift */; };
 		E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F84292C8C98250005EBBE /* BaseCalendarView.swift */; };
 		E53F842D2C8C98560005EBBE /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F842C2C8C98560005EBBE /* CalendarCell.swift */; };
 		E53F84302C8C98850005EBBE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = E53F842F2C8C98850005EBBE /* FSCalendar */; };
 		E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */; };
 		E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */; };
 		E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */; };
-		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
-		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
-		C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */; };
-		C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */; };
-		C3F685562C966AAB00002792 /* CompleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F685552C966AAB00002792 /* CompleteButton.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
 		E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */; };
 		E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */; };
-		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
-		C39078EB2C947CBB003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EA2C947CBB003514FE /* MakePiggyBankEndViewController.swift */; };
-		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,24 +235,21 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
+		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
+		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
+		C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteViewController.swift; sourceTree = "<group>"; };
+		C3F685572CA07EBD00002792 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		E53F84292C8C98250005EBBE /* BaseCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCalendarView.swift; sourceTree = "<group>"; };
 		E53F842C2C8C98560005EBBE /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanExpenseModel.swift; sourceTree = "<group>"; };
 		E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodViewController.swift; sourceTree = "<group>"; };
 		E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodView.swift; sourceTree = "<group>"; };
-		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
-		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
-		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
-		C39078F32C95549A003514FE /* MakePiggyBankCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteViewController.swift; sourceTree = "<group>"; };
-		C3F685552C966AAB00002792 /* CompleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteButton.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardViewController.swift; sourceTree = "<group>"; };
 		E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
-		C39078EA2C947CBB003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
-		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,8 +633,7 @@
 				BC94AD4F2AA61E6700A77052 /* BaseRouter.swift */,
 				E5D34D8E2C85A62300200C44 /* BaseTextField.swift */,
 				E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */,
-				C3F685532C95CDF300002792 /* BackButton.swift */,
-				C3F685552C966AAB00002792 /* CompleteButton.swift */,
+				C3F685572CA07EBD00002792 /* EmojiTextField.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -705,24 +698,6 @@
 			path = "Views ";
 			sourceTree = "<group>";
 		};
-		E53F842B2C8C98350005EBBE /* BaseCalendarView */ = {
-			isa = PBXGroup;
-			children = (
-				E53F84292C8C98250005EBBE /* BaseCalendarView.swift */,
-				E53F842C2C8C98560005EBBE /* CalendarCell.swift */,
-			);
-			path = BaseCalendarView;
-			sourceTree = "<group>";
-		};
-		E56ED7262C6E6D930022413D /* SetPeriodView */ = {
-			isa = PBXGroup;
-			children = (
-				E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */,
-				E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */,
-			);
-			path = SetPeriodView;
-			sourceTree = "<group>";
-		};
 		C39078EE2C95539A003514FE /* MakePiggyBankStart */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +723,24 @@
 				C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */,
 			);
 			path = MakePiggyBankComplete;
+			sourceTree = "<group>";
+		};
+		E53F842B2C8C98350005EBBE /* BaseCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				E53F84292C8C98250005EBBE /* BaseCalendarView.swift */,
+				E53F842C2C8C98560005EBBE /* CalendarCell.swift */,
+			);
+			path = BaseCalendarView;
+			sourceTree = "<group>";
+		};
+		E56ED7262C6E6D930022413D /* SetPeriodView */ = {
+			isa = PBXGroup;
+			children = (
+				E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */,
+				E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */,
+			);
+			path = SetPeriodView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -856,6 +849,7 @@
 				955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */,
 				9512618B2AC02E090012B5F9 /* MoyaLoggerPlugin.swift in Sources */,
 				E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */,
+				C3F685582CA07EBD00002792 /* EmojiTextField.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */,
@@ -890,7 +884,6 @@
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
-				C3F685562C966AAB00002792 /* CompleteButton.swift in Sources */,
 				95EF1C5E2C7EEE5B00AD06A9 /* DataManager.swift in Sources */,
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AuthAPI.swift in Sources */,
@@ -927,7 +920,7 @@
 				951261C12AC1B00D0012B5F9 /* GulbiService.swift in Sources */,
 				95EF1C542C7EDEE000AD06A9 /* MonthPickerView.swift in Sources */,
 				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
-				953650772C64566A00F58D13 /* HomeView.swift in Sources */,
+				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
 				C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
@@ -1102,7 +1095,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akkin.AKKIN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.people.AKKIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1132,7 +1125,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.akkin.AKKIN;
+				PRODUCT_BUNDLE_IDENTIFIER = com.people.AKKIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

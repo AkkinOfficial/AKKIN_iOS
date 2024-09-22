@@ -26,16 +26,15 @@ final class MakePiggyBankCompleteView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
 
-    private let piggyBankEmojiButton = UIButton().then {
-        $0.setTitle("💰", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
+    private let emojiTextView = UIView().then {
+        $0.backgroundColor = UIColor.akkinTextFieldBackGround
         $0.layer.cornerRadius = 50
-        $0.backgroundColor = .akkinGray10
     }
-    private let emojiTextField = UITextField().then {
-        $0.text = ""
-        // $0.keyboardType = .
-        $0.isHidden = true
+
+    let emojiTextField = EmojiTextField().then {
+        $0.text = "💰"
+        $0.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
+        $0.tintColor = .clear
     }
 
     private let piggyBankDateLabel = UILabel().then {
@@ -82,14 +81,14 @@ final class MakePiggyBankCompleteView: BaseView {
         piggyBankNavigationBar.addSubview(piggyBankLabel)
 
         piggyBankEndEmptyView.addSubview(piggyBankDateLabel)
-        piggyBankEndEmptyView.addSubview(piggyBankEmojiButton)
-        piggyBankEmojiButton.addSubview(emojiTextField)
+        piggyBankEndEmptyView.addSubview(emojiTextView)
+        emojiTextView.addSubview(emojiTextField)
         piggyBankEndEmptyView.addSubview(piggyBankSpendLabel)
         piggyBankEndEmptyView.addSubview(piggyBankNameLabel)
         piggyBankEndEmptyView.addSubview(piggyBankMemoLabel)
         piggyBankEndEmptyView.addSubview(piggyBankCompleteButton)
 
-        piggyBankEmojiButton.addTarget(self, action: #selector(showEmojiKeyboardEvent), for: .touchUpInside)
+        emojiTextField.addTarget(self, action: #selector(showEmojiKeyboardEvent), for: .touchUpInside)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             addGestureRecognizer(tapGesture)
     }
@@ -120,10 +119,9 @@ final class MakePiggyBankCompleteView: BaseView {
             $0.top.equalTo(piggyBankNavigationBar.snp.bottom).offset(118)
             $0.centerX.equalToSuperview()
         }
-        piggyBankEmojiButton.snp.makeConstraints {
+        emojiTextView.snp.makeConstraints {
             $0.top.equalTo(piggyBankDateLabel.snp.bottom).offset(16)
-            $0.height.equalTo(100)
-            $0.width.equalTo(100)
+            $0.width.height.equalTo(100)
             $0.centerX.equalToSuperview()
         }
         emojiTextField.snp.makeConstraints {
@@ -131,7 +129,7 @@ final class MakePiggyBankCompleteView: BaseView {
             $0.centerY.equalToSuperview()
         }
         piggyBankSpendLabel.snp.makeConstraints {
-            $0.top.equalTo(piggyBankEmojiButton.snp.bottom).offset(16)
+            $0.top.equalTo(emojiTextView.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         }
         piggyBankNameLabel.snp.makeConstraints {
@@ -152,9 +150,7 @@ final class MakePiggyBankCompleteView: BaseView {
     // MARK: Event
     @objc func showEmojiKeyboardEvent() {
         tapEmojiButton?()
-        emojiTextField.keyboardType = .default
         emojiTextField.becomeFirstResponder()
-        piggyBankEmojiButton.setTitle(emojiTextField.text, for: .normal)
     }
     @objc func dismissKeyboard() {
         endEditing(true)

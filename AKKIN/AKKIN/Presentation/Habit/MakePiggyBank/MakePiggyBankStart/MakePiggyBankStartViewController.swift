@@ -11,7 +11,7 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
 
     // MARK: UI Components
     private let makePiggyBankStartView = MakePiggyBankStartView()
-
+    let setPeriodViewController = SetPeriodViewController()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -21,11 +21,12 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         super.viewDidLoad()
         setNavigationItem()
         router.viewController = self
+        setPeriodViewController.delegate = self
         adjustCompleteButtonUI(isKeyboardVisible: false)
 
         makePiggyBankStartView.periodTextField.delegate = self
         makePiggyBankStartView.budgetTextField.delegate = self
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -33,7 +34,12 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(makePiggyBankStartView)
+        hideKeyboard()
 
+        makePiggyBankStartView.tapPeriodTextField = { [weak self] in
+            guard let self else { return }
+            router.presentSetPeriodViewController(setPeriodViewController)
+        }
         makePiggyBankStartView.backButton.tap = { [weak self] in
             guard let self else { return }
             router.popViewController()
@@ -57,10 +63,6 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
     }
 
     // MARK: Event
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
@@ -68,8 +70,6 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         }
         adjustCompleteButtonUI(isKeyboardVisible: true)
     }
-
-    // 키보드가 사라질 때 호출되게함
     @objc func keyboardWillHide(_ notification: Notification) {
         resetCompleteButtonPosition()
         adjustCompleteButtonUI(isKeyboardVisible: false)
@@ -80,29 +80,33 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         }
     }
 
-    // 완료 버튼을 키보드 위로 이동 - 조정 필요
     func moveCompleteButtonAboveKeyboard(_ keyboardHeight: CGFloat) {
         UIView.animate(withDuration: 0.3) {
             self.makePiggyBankStartView.piggyBankNextButton.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight + 108)
         }
     }
 
-   // 완료 버튼의 UI를 키보드 상태에 맞게 조정
-   func adjustCompleteButtonUI(isKeyboardVisible: Bool) {
-       if isKeyboardVisible {
-           makePiggyBankStartView.piggyBankNextButton.setCompleteButton(inputTitle: "다음")
-           makePiggyBankStartView.piggyBankNextButton.isEnabled = false
-           makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
-               $0.horizontalEdges.equalToSuperview()
-           }
-       } else {
-           makePiggyBankStartView.piggyBankNextButton.setGuideButton("완료")
-           makePiggyBankStartView.piggyBankNextButton.isEnabled = false
-           makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
-               $0.bottom.equalToSuperview().inset(24)
-               $0.horizontalEdges.equalToSuperview().inset(20)
-           }
+    func adjustCompleteButtonUI(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            makePiggyBankStartView.piggyBankNextButton.setCompleteButton(inputTitle: "다음")
+            makePiggyBankStartView.piggyBankNextButton.isEnabled = makePiggyBankStartView.confirmState
+            makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
+                $0.horizontalEdges.equalToSuperview()
+            }
+        } else {
+            makePiggyBankStartView.piggyBankNextButton.setGuideButton("완료")
+            makePiggyBankStartView.piggyBankNextButton.isEnabled = makePiggyBankStartView.confirmState
+            makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
+                $0.bottom.equalToSuperview().inset(24)
+                $0.horizontalEdges.equalToSuperview().inset(20)
+            }
+        }
+    }
+}
 
-       }
-   }
+extension MakePiggyBankStartViewController: SetPeriodViewControllerDelegate {
+    func didSelectDates(startDate: String, endDate: String, duration: String) {
+        makePiggyBankStartView.periodTextField.text = "\(startDate) ~ \(endDate)"
+        makePiggyBankStartView.periodTextField.addRightLabel(text: duration)
+    }
 }

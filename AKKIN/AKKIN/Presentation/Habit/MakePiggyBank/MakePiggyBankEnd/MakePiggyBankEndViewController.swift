@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDelegate {
+final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
 
     // MARK: UI Components
     private let makePiggyBankEndView = MakePiggyBankEndView()
@@ -32,6 +32,7 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(makePiggyBankEndView)
+        hideKeyboard()
 
         makePiggyBankEndView.backButton.tap = { [weak self] in
             guard let self else { return }
@@ -90,13 +91,13 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
    func adjustCompleteButtonUI(isKeyboardVisible: Bool) {
        if isKeyboardVisible {
            makePiggyBankEndView.piggyBankNextButton.setCompleteButton(inputTitle: "다음")
-           makePiggyBankEndView.piggyBankNextButton.isEnabled = false
+           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
            makePiggyBankEndView.piggyBankNextButton.snp.updateConstraints {
                $0.horizontalEdges.equalToSuperview()
            }
        } else {
            makePiggyBankEndView.piggyBankNextButton.setGuideButton("완료")
-           makePiggyBankEndView.piggyBankNextButton.isEnabled = false
+           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
            makePiggyBankEndView.piggyBankNextButton.snp.updateConstraints {
                $0.bottom.equalToSuperview().inset(24)
                $0.horizontalEdges.equalToSuperview().inset(20)
@@ -109,11 +110,6 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
             makePiggyBankEndView.nameCountLabel.isHidden = false
             makePiggyBankEndView.memoTextField.snp.updateConstraints {
                 $0.top.equalTo(makePiggyBankEndView.nameTextField.snp.bottom).offset(38)
-            }
-        } else if textField == makePiggyBankEndView.memoTextField {
-            makePiggyBankEndView.memoCountLabel.isHidden = false
-            makePiggyBankEndView.memoTextField.snp.updateConstraints {
-                $0.top.equalTo(makePiggyBankEndView.nameTextField.snp.bottom).offset(12)
             }
         }
     }
@@ -156,7 +152,46 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
                 return false
             }
         }
-
         return false
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if
+            textView == makePiggyBankEndView.memoTextField {
+            makePiggyBankEndView.memoCountLabel.isHidden = false
+            makePiggyBankEndView.memoTextField.snp.updateConstraints {
+                $0.top.equalTo(makePiggyBankEndView.nameTextField.snp.bottom).offset(12)
+            }
+            textView.text = ""
+            textView.textColor = .black
+            textView.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        }
+        makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "절약 다짐(선택)"
+            textView.textColor = .akkinGray6
+        }
+        makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        let maxMemoCharCount = 40
+        let currentText = textView.text ?? ""
+        if currentText.count > maxMemoCharCount {
+            textView.text = String(currentText.prefix(maxMemoCharCount))
+        }
+        makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
+        print(makePiggyBankEndView.confirmState)
+        updateMemoCountLabel()
+    }
+    private func updateMemoCountLabel() {
+        let maxMemoCharCount = 40
+        let currentText = makePiggyBankEndView.memoTextField.text ?? ""
+        makePiggyBankEndView.memoCountLabel.text = "\(currentText.count)/\(maxMemoCharCount)"
+
+        let attributedString = NSMutableAttributedString(string: "\(currentText.count)/\(maxMemoCharCount)")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: NSRange(location: 0, length: "\(currentText.count)".count))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: "\(currentText.count)".count, length: "/\(maxMemoCharCount)".count))
+        makePiggyBankEndView.memoCountLabel.attributedText = attributedString
     }
 }

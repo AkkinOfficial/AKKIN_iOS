@@ -12,6 +12,7 @@ final class MakePiggyBankStartView: BaseView {
     // MARK: UI Components
     private let emptyView = UIView()
 
+    var confirmState = false
     private let piggyBankNavigationBar = UIStackView().then {
         $0.axis = .horizontal
         $0.distribution = .fill
@@ -36,7 +37,7 @@ final class MakePiggyBankStartView: BaseView {
     lazy var periodTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "목표 기한"
-        //textField.addLeftImage(image: AkkinIcon.miniCalendar)
+        textField.addLeftImage(image: AkkinIcon.miniCalendar)
         return textField
     }()
     lazy var budgetTextField: BaseTextField = {
@@ -44,10 +45,11 @@ final class MakePiggyBankStartView: BaseView {
         textField.placeholder = "목표 저축 금액"
         textField.addRightLabel(text: "원", textColor: .akkinGray6)
         textField.addCommas()
-        //textField.addLeftImage(image: AkkinIcon.tag)
+        textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
-    private let memoLabel = UILabel().then {
+    let memoLabel = UILabel().then {
+
         $0.text = "아무런 지출도 하지 않았을 때\n최대 75,000원까지 아낄 수 있어요."
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -56,11 +58,14 @@ final class MakePiggyBankStartView: BaseView {
     }
     var piggyBankNextButton = BaseButton().then {
         $0.setCompleteButton(inputTitle: "다음")
-        $0.isEnabled = false
     }
 
     // MARK: Properties
+    var tapPeriodTextField: (() -> Void)?
     var tapPiggyBankNextButton: (() -> Void)?
+
+    // MARK: Custom Keyboard
+    private let customKeyboardVC = CustomKeyboardViewController()
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -77,9 +82,12 @@ final class MakePiggyBankStartView: BaseView {
         emptyView.addSubview(budgetTextField)
         emptyView.addSubview(memoLabel)
 
-        periodTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        budgetTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
+        periodTextField.addTarget(self, action: #selector(didTapPeriodTextField), for: .touchDown)
+
+        customKeyboardVC.delegate = self
+        budgetTextField.inputView =
+        customKeyboardVC.view
     }
 
     // MARK: Layout
@@ -137,21 +145,29 @@ final class MakePiggyBankStartView: BaseView {
     }
 
     // MARK: Event
+    @objc private func didTapPeriodTextField() {
+        tapPeriodTextField?()
+    }
     @objc private func handlePiggyBankNextButtonEvent() {
         tapPiggyBankNextButton?()
-        budgetTextField.resignFirstResponder()
     }
-    @objc func textFieldDidChange() {
-        if (!(budgetTextField.text?.isEmpty ?? true)) {
-            let duration = 9
-            let availableAmount = 13000
+    func textFieldDidChange() {
+        if confirmState {
+            let duration = 3
+            let availableAmount = 38000
             let inputText = duration * availableAmount
             memoLabel.text = "아무런 지출도 하지 않았을 때\n최대 \(inputText)원까지 아낄 수 있어요."
             memoLabel.isHidden = false
-
         } else {
             memoLabel.isHidden = true
         }
-        piggyBankNextButton.isEnabled = !(periodTextField.text?.isEmpty ?? true) && !(budgetTextField.text?.isEmpty ?? true)
+    }
+}
+
+extension MakePiggyBankStartView: CustomKeyboardDelegate {
+    func customKeyboard(_ keyboard: CustomKeyboardViewController, didEnterAmount amount: String) {
+        budgetTextField.text = amount
+        confirmState = !(periodTextField.text?.isEmpty ?? true) && !(budgetTextField.text?.isEmpty ?? true)
+        piggyBankNextButton.isEnabled =  confirmState
     }
 }
