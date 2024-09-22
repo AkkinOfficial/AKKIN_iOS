@@ -65,6 +65,11 @@ final class AddExpenseView: BaseView {
 
     // MARK: Properties
     var formatter = DateFormatter()
+    var tapCategoryTextField: (() -> Void)?
+    var tapExpenseDayTextField: (() -> Void)?
+
+    // MARK: Custom Keyboard
+    private let customKeyboardVC = CustomKeyboardViewController()
 
 
     // MARK: Configuration
@@ -77,6 +82,13 @@ final class AddExpenseView: BaseView {
         addSubview(memoTextField)
         addSubview(expenseDayTextField)
         addSubview(confirmButton)
+
+        customKeyboardVC.delegate = self
+        expenseAmountTextField.inputView = customKeyboardVC.view
+
+        expenseCategoryTextField.addTarget(self, action: #selector(didTapCategoryTextField), for: .touchDown)
+        expenseDayTextField.addTarget(self, action: #selector(didTapExpenseDayTextField), for: .touchDown)
+
     }
 
     // MARK: Layout
@@ -126,4 +138,17 @@ final class AddExpenseView: BaseView {
     }
 
     // MARK: Event
+    @objc private func didTapCategoryTextField() {
+        tapCategoryTextField?()
+    }
+
+    @objc private func didTapExpenseDayTextField() {
+        tapExpenseDayTextField?()
+    }
+}
+
+extension AddExpenseView: CustomKeyboardDelegate {
+    func customKeyboard(_ keyboard: CustomKeyboardViewController, didEnterAmount amount: String) {
+        expenseAmountTextField.text = amount
+    }
 }

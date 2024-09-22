@@ -19,6 +19,8 @@ class BaseCalendarView: UIView {
     private var firstDate: Date?    // 배열 중 첫번째 날짜
     private var lastDate: Date?     // 배열 중 마지막 날짜
     private var datesRange: [Date] = [] // 선택된 날짜 배열
+    var singleDate: Bool = false
+
 
     var calendarMode: CalendarMode = .plan
     var onDatesSelected: (([Date]) -> Void)?
@@ -140,13 +142,35 @@ extension BaseCalendarView: FSCalendarDelegate {
         case .calendar:
             onDateSelected?(date)
         case .plan:
+            if singleDate {
+                resetSelection()
+                firstDate = date
+                datesRange = [firstDate!]
+                calendar.select(firstDate!)
+                onDateSelected?(datesRange)
+                calendar.reloadData()
+                return
+            }
+
             // case 1. 현재 아무것도 선택되지 않은 경우
             if firstDate == nil {
                 firstDate = date
                 datesRange = [firstDate!]
-                onDatesSelected?(datesRange)
+                onDateSelected?(datesRange)
                 calendar.reloadData()
                 return
+            }
+
+            // case 2. 현재 firstDate 하나만 선택된 경우
+            if firstDate != nil && lastDate == nil {
+                if date < firstDate! {
+                    calendar.deselect(firstDate!)
+                    firstDate = date
+                    datesRange = [firstDate!]
+                    onDatesSelected?(datesRange)
+                    calendar.reloadData()
+                    return
+                }
             }
 
             // case 2. 현재 firstDate 하나만 선택된 경우
