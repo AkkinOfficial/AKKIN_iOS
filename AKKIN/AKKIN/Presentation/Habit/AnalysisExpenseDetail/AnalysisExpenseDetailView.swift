@@ -9,6 +9,7 @@ import UIKit
 
 final class AnalysisExpenseDetailView: BaseView {
 
+    // MARK: UI Components
     private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton.withTintColor(.akkinBlack2), for: .normal)
         $0.isEnabled = true
@@ -27,7 +28,6 @@ final class AnalysisExpenseDetailView: BaseView {
         $0.backgroundColor = .clear
     }
 
-    // MARK: UI Components
     public lazy var monthAnalysisCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -254,7 +254,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setData(monthAnaysisData: monthAnalysisList[indexPath.row])
+        cell.setData(data: monthAnalysisList[indexPath.row])
         cell.tapDetail = {
         }
 

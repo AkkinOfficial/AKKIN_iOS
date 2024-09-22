@@ -76,6 +76,7 @@
 		9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */; };
 		955201402CA06793006DB98C /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552013F2CA06793006DB98C /* CalendarModel.swift */; };
 		955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955201412CA06B08006DB98C /* UILabel+Extension.swift */; };
+		955201442CA082B3006DB98C /* ExpenseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955201432CA082B3006DB98C /* ExpenseListModel.swift */; };
 		95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */; };
 		95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */; };
 		95577D192C81D2BD008CFE0B /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D182C81D2BD008CFE0B /* MyPageTableViewCell.swift */; };
@@ -207,6 +208,7 @@
 		9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewController.swift; sourceTree = "<group>"; };
 		9552013F2CA06793006DB98C /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		955201412CA06B08006DB98C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		955201432CA082B3006DB98C /* ExpenseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListModel.swift; sourceTree = "<group>"; };
 		95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
 		95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewFooter.swift; sourceTree = "<group>"; };
 		95577D182C81D2BD008CFE0B /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			children = (
 				955201362CA04BBE006DB98C /* ExpenseListView.swift */,
 				955201382CA04BC4006DB98C /* ExpenseListViewController.swift */,
+				955201432CA082B3006DB98C /* ExpenseListModel.swift */,
 				9552013A2CA04BCE006DB98C /* ExpenseDetail */,
 			);
 			path = ExpenseList;
@@ -828,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955201442CA082B3006DB98C /* ExpenseListModel.swift in Sources */,
 				E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */,
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
 				6B555DA92ABF2A5900E065F2 /* (null) in Sources */,
