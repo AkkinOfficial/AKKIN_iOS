@@ -167,6 +167,16 @@ extension BaseCalendarView: FSCalendarDelegate {
                 return
             }
 
+            if singleDate {
+                resetSelection()
+                firstDate = date
+                datesRange = [firstDate!]
+                calendar.select(firstDate!)
+                onDatesSelected?(datesRange)
+                calendar.reloadData()
+                return
+            }
+
             // case 2. 현재 firstDate 하나만 선택된 경우
             if firstDate != nil && lastDate == nil {
                 if date < firstDate! {
