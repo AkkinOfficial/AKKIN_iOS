@@ -57,6 +57,24 @@ extension UITextField {
         self.rightViewMode = .always
     }
 
+    /// 좌측 글자 추가
+    func addLeftLabel(text: String) {
+        let label = UILabel()
+        label.text = text
+        label.font = .systemFont(ofSize: 20)
+        label.sizeToFit()
+
+        let padding: CGFloat = 16.0
+
+        let labelWidth = label.frame.width + padding
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: labelWidth, height: self.frame.height))
+        label.frame.origin = CGPoint(x: padding / 2, y: (self.frame.height - label.frame.height) / 2)
+
+        leftView.addSubview(label)
+        self.leftView = leftView
+        self.leftViewMode = .always
+    }
+
 
 
     /// 숫자를 세 자리마다 쉼표 추가

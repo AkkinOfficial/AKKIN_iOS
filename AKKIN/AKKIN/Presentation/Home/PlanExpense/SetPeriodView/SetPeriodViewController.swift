@@ -99,7 +99,11 @@ final class SetPeriodViewController: BaseViewController {
 
     private func handleSingleDateSelection(startDate: Date?) {
         didUpdateDates(startDate: startDate, endDate: nil)
-        setPeriodView.confirmButton.isEnabled = true
+        if(singleDate == true){
+            setPeriodView.confirmButton.isEnabled = true
+        }else{
+            setPeriodView.confirmButton.isEnabled = false
+        }
         setPeriodView.selectDateLabel.text = singleDate ? "지출 날짜를 선택해주세요." : "종료일을 선택해주세요."
     }
 

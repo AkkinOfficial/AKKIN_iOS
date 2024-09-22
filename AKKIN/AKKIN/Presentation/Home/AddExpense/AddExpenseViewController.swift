@@ -76,8 +76,8 @@ extension AddExpenseViewController: SetPeriodViewControllerDelegate {
 
 extension AddExpenseViewController:
     ExpenseCategoryViewControllerDelegate {
-    func didSelectCategory(icon: UIImage, category: String) {
-        addExpenseView.expenseCategoryTextField.addLeftImage(image: icon)
+    func didSelectCategory(icon: String, category: String) {
+        addExpenseView.expenseCategoryTextField.addLeftLabel(text: icon)
         expenseInfo.icon =  icon
         addExpenseView.expenseCategoryTextField.text = category
     }

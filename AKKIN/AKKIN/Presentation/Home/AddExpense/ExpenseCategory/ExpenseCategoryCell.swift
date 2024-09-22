@@ -17,10 +17,11 @@ class ExpenseCategoryCell: UICollectionViewCell {
         return view
     }()
 
-    let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    let iconImageView: UILabel = {
+        let imageLabel = UILabel()
+        imageLabel.textAlignment = .center
+        imageLabel.font = UIFont.systemFont(ofSize: 28)
+        return imageLabel
     }()
 
     let categoryLabel: UILabel = {

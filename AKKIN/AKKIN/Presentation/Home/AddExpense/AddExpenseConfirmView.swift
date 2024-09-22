@@ -24,11 +24,13 @@ final class AddExpenseConfirmView: BaseView {
         return view
     }()
 
-    lazy var iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    let iconImageView: UILabel = {
+        let imageLabel = UILabel()
+        imageLabel.textAlignment = .center
+        imageLabel.font = UIFont.systemFont(ofSize: 28)
+        return imageLabel
     }()
+
 
     lazy var expenseContentLabel: UILabel = {
         let label = UILabel()

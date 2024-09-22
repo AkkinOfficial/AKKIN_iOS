@@ -42,7 +42,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
     }
 
     private func setView() {
-        addExpenseConfirmView.iconImageView.image = ExpenseInfo.shared.icon
+        addExpenseConfirmView.iconImageView.text = ExpenseInfo.shared.icon
         addExpenseConfirmView.expenseContentLabel.text = ExpenseInfo.shared.content
         addExpenseConfirmView.expenseAmountLabel.text = "\(ExpenseInfo.shared.amount)원"
         addExpenseConfirmView.expenseMemoLabel.text = ExpenseInfo.shared.memo
