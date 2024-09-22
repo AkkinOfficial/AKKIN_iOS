@@ -93,7 +93,6 @@ final class AddExpenseConfirmView: BaseView {
 
         iconImageView.snp.makeConstraints { make in
             make.center.equalTo(backgroundCircleView)
-            make.width.height.equalTo(28)
         }
 
         expenseStackView.snp.makeConstraints { make in
