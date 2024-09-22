@@ -65,6 +65,8 @@ final class HabitView: BaseView {
 
     private let detailButton = BaseButton().then {
         $0.setImage(AkkinButton.detailButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let emtpyView = UIView().then {

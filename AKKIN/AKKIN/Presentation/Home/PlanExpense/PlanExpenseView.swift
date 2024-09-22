@@ -47,7 +47,7 @@ final class PlanExpenseView: BaseView {
     var tapConfirmButton: (() -> Void)?
 
     // MARK: Custom Keyboard
-        private let customKeyboardVC = CustomKeyboardViewController()
+    private let customKeyboardVC = CustomKeyboardViewController()
 
 
     // MARK: Configuration

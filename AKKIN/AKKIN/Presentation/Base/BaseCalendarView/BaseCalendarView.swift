@@ -9,15 +9,21 @@ import UIKit
 import FSCalendar
 import SnapKit
 
+enum CalendarMode {
+    case plan
+    case calendar
+}
+
 class BaseCalendarView: UIView {
 
     private var firstDate: Date?    // 배열 중 첫번째 날짜
     private var lastDate: Date?     // 배열 중 마지막 날짜
     private var datesRange: [Date] = [] // 선택된 날짜 배열
 
+    var calendarMode: CalendarMode = .plan
     var onDateSelected: (([Date]) -> Void)?
 
-    private let calendar: FSCalendar = {
+    let calendar: FSCalendar = {
         let calendar = FSCalendar(frame: .zero)
 
         calendar.locale = Locale(identifier: "ko_KR")
@@ -113,7 +119,15 @@ extension BaseCalendarView: FSCalendarDataSource {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else {
             return FSCalendarCell()
         }
-        cell.updateBackImage(typeOfDate(date))
+        switch calendarMode {
+        case .plan:
+            cell.expenseLabel.isHidden = true
+            cell.updateBackImage(typeOfDate(date))
+        case .calendar:
+            cell.expenseLabel.isHidden = false
+            cell.updateBackImage(.notSelected)
+            cell.setBackImage()
+        }
         return cell
     }
 }

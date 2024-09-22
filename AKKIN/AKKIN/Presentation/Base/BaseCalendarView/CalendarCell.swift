@@ -14,6 +14,12 @@ class CalendarCell: FSCalendarCell {
     var leftRectBackImageView = UIImageView()
     var rightRectBackImageView = UIImageView()
 
+    var expenseLabel = UILabel().then {
+        $0.text = "+10,270"
+        $0.textColor = .akkinGreen
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setConfigure()
@@ -29,6 +35,7 @@ class CalendarCell: FSCalendarCell {
         contentView.insertSubview(circleBackImageView, at: 0)
         contentView.insertSubview(leftRectBackImageView, at: 0)
         contentView.insertSubview(rightRectBackImageView, at: 0)
+        contentView.insertSubview(expenseLabel, at: 0)
     }
 
     func setConstraints() {
@@ -53,6 +60,11 @@ class CalendarCell: FSCalendarCell {
             make.trailing.equalTo(contentView)
             make.height.equalTo(32)
             make.centerY.equalTo(contentView)
+        }
+
+        expenseLabel.snp.makeConstraints {
+            $0.centerX.equalTo(contentView)
+            $0.top.equalTo(contentView.snp.bottom).inset(12)
         }
     }
 
@@ -104,6 +116,11 @@ class CalendarCell: FSCalendarCell {
             leftRectBackImageView.isHidden = true
             rightRectBackImageView.isHidden = true
         }
+    }
+
+    // TODO: 캘린더 뷰 데이터 연결
+    func setBackImage() {
+        
     }
 
     override func prepareForReuse() {
