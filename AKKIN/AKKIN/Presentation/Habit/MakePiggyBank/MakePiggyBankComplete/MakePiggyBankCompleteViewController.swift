@@ -31,6 +31,10 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
         makePiggyBankCompleteView.backButton.tap = { [self] in
             router.popViewController()
         }
+        makePiggyBankCompleteView.tapOutButton = { [weak self] in
+            guard let self else { return }
+            navigationController?.popToRootViewController(animated: true)
+        }
         makePiggyBankCompleteView.piggyBankCompleteButton.tap = { [weak self] in
             guard let self else { return }
             navigationController?.popToRootViewController(animated: true)

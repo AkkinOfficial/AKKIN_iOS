@@ -110,8 +110,7 @@ final class MakePiggyBankStartView: BaseView {
             $0.centerY.equalToSuperview()
         }
         piggyBankLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.centerX.centerY.equalToSuperview()
         }
 
         piggyBankSettingLabel.snp.makeConstraints {
@@ -120,20 +119,17 @@ final class MakePiggyBankStartView: BaseView {
         }
         periodTextField.snp.makeConstraints {
             $0.top.equalTo(piggyBankSettingLabel.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
         budgetTextField.snp.makeConstraints {
             $0.top.equalTo(periodTextField.snp.bottom).offset(12)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
         memoLabel.snp.makeConstraints {
             $0.top.equalTo(budgetTextField.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(44)
         } 
         piggyBankNextButton.snp.makeConstraints {

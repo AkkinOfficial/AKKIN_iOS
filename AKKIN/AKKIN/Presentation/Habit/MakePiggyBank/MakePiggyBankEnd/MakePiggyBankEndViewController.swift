@@ -38,6 +38,10 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
             guard let self else { return }
             router.popViewController()
         }
+        makePiggyBankEndView.tapOutButton = { [weak self] in
+            guard let self else { return }
+            navigationController?.popToRootViewController(animated: true)
+        }
         makePiggyBankEndView.tapPiggyBankNextButton = { [weak self] in
             guard let self else { return }
             router.popToMakePiggyBankCompleteViewController()

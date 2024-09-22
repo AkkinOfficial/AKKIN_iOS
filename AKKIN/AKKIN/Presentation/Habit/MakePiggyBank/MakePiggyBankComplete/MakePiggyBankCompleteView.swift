@@ -13,10 +13,7 @@ final class MakePiggyBankCompleteView: BaseView {
     // MARK: UI Components
     private let piggyBankEndEmptyView = UIView()
 
-    private let piggyBankNavigationBar = UIStackView().then {
-        $0.axis = .horizontal
-        $0.distribution = .fill
-    }
+    private let piggyBankNavigationBar = UIView()
     let backButton = BaseButton().then {
         $0.setBackButton()
     }
@@ -24,6 +21,11 @@ final class MakePiggyBankCompleteView: BaseView {
         $0.text = "저금통"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+    let piggyBankOutButton = UIButton().then {
+        $0.setTitle("나가기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        $0.setTitleColor(.akkinGreen, for: .normal)
     }
 
     private let emojiTextView = UIView().then {
@@ -69,6 +71,7 @@ final class MakePiggyBankCompleteView: BaseView {
     }
 
     // MARK: Properties
+    var tapOutButton: (() -> Void)?
     var tapEmojiButton: (() -> Void)?
 
     // MARK: Configuration
@@ -79,6 +82,7 @@ final class MakePiggyBankCompleteView: BaseView {
         piggyBankEndEmptyView.addSubview(piggyBankNavigationBar)
         piggyBankNavigationBar.addSubview(backButton)
         piggyBankNavigationBar.addSubview(piggyBankLabel)
+        piggyBankNavigationBar.addSubview(piggyBankOutButton)
 
         piggyBankEndEmptyView.addSubview(piggyBankDateLabel)
         piggyBankEndEmptyView.addSubview(emojiTextView)
@@ -88,6 +92,8 @@ final class MakePiggyBankCompleteView: BaseView {
         piggyBankEndEmptyView.addSubview(piggyBankMemoLabel)
         piggyBankEndEmptyView.addSubview(piggyBankCompleteButton)
 
+
+        piggyBankOutButton.addTarget(self, action: #selector(handlePiggyBankOutButtonEvent), for: .touchUpInside)
         emojiTextField.addTarget(self, action: #selector(showEmojiKeyboardEvent), for: .touchUpInside)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
             addGestureRecognizer(tapGesture)
@@ -104,15 +110,24 @@ final class MakePiggyBankCompleteView: BaseView {
         piggyBankNavigationBar.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(56)
         }
         backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(8)
+            $0.leading.equalToSuperview().inset(4)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
             $0.centerY.equalToSuperview()
         }
         piggyBankLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+            $0.width.equalTo(48)
+            $0.height.equalTo(26)
+            $0.centerX.centerY.equalToSuperview()
+        }
+        piggyBankOutButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(24)
         }
 
         piggyBankDateLabel.snp.makeConstraints {
@@ -148,6 +163,9 @@ final class MakePiggyBankCompleteView: BaseView {
     }
 
     // MARK: Event
+    @objc private func handlePiggyBankOutButtonEvent() {
+        tapOutButton?()
+    }
     @objc func showEmojiKeyboardEvent() {
         tapEmojiButton?()
         emojiTextField.text = ""
