@@ -11,7 +11,14 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
 
     // MARK: UI Components
     private let analysisExpenseView = AnalysisExpenseDetailView()
+  
+    private let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
 
+    private let addButton = BaseButton().then {
+        $0.setImage(AkkinButton.addButton, for: .normal)
+    }
     // MARK: Environment
     private let router = BaseRouter()
 

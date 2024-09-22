@@ -23,12 +23,12 @@ extension UITextField {
 
     /// 좌측 이미지 추가
     func addLeftImage(image: UIImage) {
-        let leftImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+        let leftImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: image.size.height))
         leftImageView.image = image
 
         // 패딩 값 추가
         let padding: CGFloat = 16.0
-        let paddingLeftView = UIView(frame: CGRect(x: 0, y: 0, width: leftImageView.frame.width + padding + 8.0 , height: leftImageView.frame.height ))
+        let paddingLeftView = UIView(frame: CGRect(x: 0, y: 0, width: leftImageView.frame.width + padding + 8.0 , height: 20 ))
         leftImageView.frame.origin = CGPoint(x: padding, y: 0)
         leftImageView.contentMode = .scaleAspectFit
 
@@ -37,7 +37,7 @@ extension UITextField {
         self.leftViewMode = .always
 
     }
-
+    
     /// 우측 글자 추가
     func addRightLabel(text: String, textColor: UIColor = .akkinGreen) {
         let label = UILabel()
@@ -93,8 +93,4 @@ extension UITextField {
         _ = self.text
         addCommas()
     }
-
-
-
-
 }

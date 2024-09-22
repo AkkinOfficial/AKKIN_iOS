@@ -19,10 +19,16 @@ final class BaseTextField: UITextField {
     }
 
     func setupUI() {
+        let placeholderText = "이곳에 입력하세요"
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.akkinGray6, // 원하는 색상
+            .font: UIFont.systemFont(ofSize: 17) // 원하는 폰트
+        ]
+        self.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+
         self.backgroundColor = .akkinTextFieldBackGround
         self.setRoundBorder()
         self.autocapitalizationType = .none
         self.clearButtonMode = .always
     }
 }
-
