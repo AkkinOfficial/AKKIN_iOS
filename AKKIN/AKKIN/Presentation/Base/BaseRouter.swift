@@ -52,6 +52,11 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
     }
 
+    func presentExpenseDetailViewController(data: ExpenseData) {
+        let expenseDetailViewController = ExpenseDetailViewController(data: data)
+        viewController?.navigationController?.pushViewController(expenseDetailViewController, animated: true)
+    }
+
     func presentModeSelectViewController() {
         let selectMonthViewController = SelectMonthViewController()
         viewController?.present(selectMonthViewController, animated: true)

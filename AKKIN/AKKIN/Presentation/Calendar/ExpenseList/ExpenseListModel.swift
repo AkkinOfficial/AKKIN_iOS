@@ -14,6 +14,7 @@ struct ExpenseListModel {
 struct ExpenseData {
     var category: Category
     var title: String
+    var memo: String?
     var saving: Int
     var total: Int
 }
