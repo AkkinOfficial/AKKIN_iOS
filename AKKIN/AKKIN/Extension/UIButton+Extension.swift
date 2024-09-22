@@ -26,4 +26,18 @@ extension UIButton {
         backgroundColor = .akkinGreen
         layer.cornerRadius = 12
     }
+
+    func setBackButton() {
+        isEnabled = true
+        setImage(AkkinButton.backButton, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        backgroundColor = .clear
+    }
+
+    func setCompleteButton(inputTitle: String) {
+        setTitle(inputTitle, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        setTitleColor(.white, for: .normal)
+        layer.cornerRadius = 0
+    }
 }
