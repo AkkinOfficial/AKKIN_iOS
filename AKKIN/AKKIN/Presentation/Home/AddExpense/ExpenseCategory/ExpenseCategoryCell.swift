@@ -54,7 +54,6 @@ class ExpenseCategoryCell: UICollectionViewCell {
 
         iconImageView.snp.makeConstraints { make in
             make.center.equalTo(backgroundCircleView)
-            make.width.height.equalTo(28)
         }
 
         categoryLabel.snp.makeConstraints { make in

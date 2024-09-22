@@ -50,7 +50,7 @@ extension UITextField {
 
         let labelWidth = label.frame.width + padding
         let rightView = UIView(frame: CGRect(x: 0, y: 0, width: labelWidth, height: self.frame.height))
-        label.frame.origin = CGPoint(x: padding / 2, y: (self.frame.height - label.frame.height) / 2)
+        label.frame.origin = CGPoint(x: 0, y: (self.frame.height - label.frame.height) / 2)
 
         rightView.addSubview(label)
         self.rightView = rightView
@@ -66,9 +66,8 @@ extension UITextField {
 
         let padding: CGFloat = 16.0
 
-        let labelWidth = label.frame.width + padding
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: labelWidth, height: self.frame.height))
-        label.frame.origin = CGPoint(x: padding / 2, y: (self.frame.height - label.frame.height) / 2)
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: label.frame.width + padding + 8.0, height: self.frame.height))
+        label.frame.origin = CGPoint(x: padding, y: (self.frame.height - label.frame.height) / 2)
 
         leftView.addSubview(label)
         self.leftView = leftView
