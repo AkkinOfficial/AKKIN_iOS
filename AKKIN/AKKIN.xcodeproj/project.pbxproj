@@ -70,6 +70,11 @@
 		955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */; };
 		955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */; };
 		955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */; };
+		955201372CA04BBE006DB98C /* ExpenseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955201362CA04BBE006DB98C /* ExpenseListView.swift */; };
+		955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955201382CA04BC4006DB98C /* ExpenseListViewController.swift */; };
+		9552013C2CA04BDA006DB98C /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */; };
+		9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */; };
+		955201402CA06793006DB98C /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552013F2CA06793006DB98C /* CalendarModel.swift */; };
 		955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955201412CA06B08006DB98C /* UILabel+Extension.swift */; };
 		95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */; };
 		95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */; };
@@ -196,6 +201,11 @@
 		955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		955100B52C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseEmptyView.swift; sourceTree = "<group>"; };
 		955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisExpenseView.swift; sourceTree = "<group>"; };
+		955201362CA04BBE006DB98C /* ExpenseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListView.swift; sourceTree = "<group>"; };
+		955201382CA04BC4006DB98C /* ExpenseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
+		9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
+		9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewController.swift; sourceTree = "<group>"; };
+		9552013F2CA06793006DB98C /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		955201412CA06B08006DB98C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		95577D142C81D2AF008CFE0B /* MyPageTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewHeader.swift; sourceTree = "<group>"; };
 		95577D162C81D2B6008CFE0B /* MyPageTableViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewFooter.swift; sourceTree = "<group>"; };
@@ -432,6 +442,8 @@
 			children = (
 				953650972C6458ED00F58D13 /* CalendarViewController.swift */,
 				953650992C6458F200F58D13 /* CalendarView.swift */,
+				9552013F2CA06793006DB98C /* CalendarModel.swift */,
+				955201352CA04BAD006DB98C /* ExpenseList */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -492,6 +504,25 @@
 				955100B82C76E37200D80A9C /* AnalysisExpenseView.swift */,
 			);
 			path = NonEmpty;
+			sourceTree = "<group>";
+		};
+		955201352CA04BAD006DB98C /* ExpenseList */ = {
+			isa = PBXGroup;
+			children = (
+				955201362CA04BBE006DB98C /* ExpenseListView.swift */,
+				955201382CA04BC4006DB98C /* ExpenseListViewController.swift */,
+				9552013A2CA04BCE006DB98C /* ExpenseDetail */,
+			);
+			path = ExpenseList;
+			sourceTree = "<group>";
+		};
+		9552013A2CA04BCE006DB98C /* ExpenseDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */,
+				9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */,
+			);
+			path = ExpenseDetail;
 			sourceTree = "<group>";
 		};
 		95577D1F2C81DE7F008CFE0B /* HomeWidgetSetting */ = {
@@ -807,6 +838,7 @@
 				6B5B839B2AC1EEB300CD0AFC /* WeeklyService.swift in Sources */,
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				9536508B2C64585700F58D13 /* MakeMoneyBoxViewController.swift in Sources */,
+				9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* BaseRouter.swift in Sources */,
 				9536507E2C6456CE00F58D13 /* HabitViewController.swift in Sources */,
 				E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */,
@@ -820,6 +852,7 @@
 				953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */,
 				95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
+				955201372CA04BBE006DB98C /* ExpenseListView.swift in Sources */,
 				95EF1C582C7EDF2900AD06A9 /* SelectMonthViewController.swift in Sources */,
 				95EF1C362C773BE400AD06A9 /* PlanExpenseGuideView.swift in Sources */,
 				95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */,
@@ -868,6 +901,8 @@
 				951261652ABD97100012B5F9 /* LoginView.swift in Sources */,
 				9536509A2C6458F200F58D13 /* CalendarView.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
+				955201402CA06793006DB98C /* CalendarModel.swift in Sources */,
+				955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,
 				953650862C6457FD00F58D13 /* AddExpenseViewController.swift in Sources */,
 				953650942C6458D700F58D13 /* AnalysisExpenseDetailView.swift in Sources */,
@@ -875,6 +910,7 @@
 				951261AB2AC19A370012B5F9 /* MainService.swift in Sources */,
 				95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
+				9552013C2CA04BDA006DB98C /* ExpenseDetailView.swift in Sources */,
 				E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */,
 				6B742DA12AC02988002A784E /* UIViewController+Extension.swift in Sources */,
 				95EF1C5A2C7EDF9800AD06A9 /* SelectMonthTransitioningDelegate.swift in Sources */,
