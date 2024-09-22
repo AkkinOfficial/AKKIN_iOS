@@ -17,6 +17,11 @@ extension UIColor {
     static var akkinBlack: UIColor {
         return UIColor(hex: "#19191B")
     }
+
+    static var akkinBlack2: UIColor {
+        return UIColor(hex: "#25262C")
+    }
+
     static var akkinWhite: UIColor {
         return UIColor(hex: "#FFFFFF")
     }
@@ -61,6 +66,14 @@ extension UIColor {
 
     static var akkinGray8: UIColor {
         return UIColor(hex: "#F7F8F8")
+    }
+
+    static var akkinGray9: UIColor {
+        return UIColor(hex: "#F3F3F7")
+    }
+
+    static var akkinGray10: UIColor {
+        return UIColor(hex: "#89919C")
     }
 
     /// akkin analysis color

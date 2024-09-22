@@ -13,4 +13,8 @@ extension Int {
         formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
+
+    var toMonthFormat: String {
+        return "\(self)월"
+    }
 }
