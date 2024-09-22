@@ -47,7 +47,6 @@ final class ExpenseListView: BaseView {
     }
 
     let savingLabel = UILabel().then {
-        $0.text = "아낀 금액: 8,190원"
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.textColor = .black
     }
@@ -112,6 +111,7 @@ final class ExpenseListView: BaseView {
 
         dividerView.snp.makeConstraints {
             $0.top.equalTo(savingLabel.snp.bottom).offset(24)
+            $0.bottom.equalToSuperview()
             $0.width.equalToSuperview()
             $0.height.equalTo(16)
         }

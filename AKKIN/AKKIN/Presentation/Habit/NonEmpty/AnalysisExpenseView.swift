@@ -124,7 +124,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
             $0.trailing.centerY.equalToSuperview()
         }
         
-        cell.setData(monthAnaysisData: monthAnalysisList[indexPath.row])
+        cell.setData(data: monthAnalysisList[indexPath.row])
         
         return cell
     }

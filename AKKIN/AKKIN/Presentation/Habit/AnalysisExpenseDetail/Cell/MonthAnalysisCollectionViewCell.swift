@@ -26,6 +26,7 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 
     let categoryStackView = UIStackView().then {
         $0.axis = .vertical
+        $0.spacing = 2
     }
 
     let categoryTitleLabel = UILabel().then {
@@ -33,14 +34,25 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 
-    let categoryPercentLabel = UILabel().then {
+    let categoryContentLabel = UILabel().then {
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    }
+
+    let expenseStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 5
+        $0.alignment = .trailing
     }
 
     let categoryExpenseLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    }
+
+    let categoryTotalLabel = UILabel().then {
+        $0.textColor = .akkinGreen
+        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
 
     let detailButton = BaseButton().then {
@@ -72,7 +84,7 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 
         categoryImageBackgroudView.addSubview(categoryImageLabel)
         categoryStackView.addArrangedSubviews(categoryTitleLabel,
-                                              categoryPercentLabel)
+                                              categoryContentLabel)
 
         detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
     }
@@ -111,14 +123,34 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 }
 
 extension MonthAnalysisCollectionViewCell {
-    func setData(monthAnaysisData: MonthAnalysis) {
-        if let category = Category.toImageString(monthAnaysisData.category) {
+    func setData(data: MonthAnalysis) {
+        if let category = Category.toImageString(data.category) {
             categoryImageLabel.text = category.categoryImageString
         } else {
             categoryImageLabel.text = "⚠️"
         }
-        categoryTitleLabel.text = monthAnaysisData.category
-        categoryPercentLabel.text = "\(monthAnaysisData.percent)%"
-        categoryExpenseLabel.text = "\(monthAnaysisData.expense.toPriceFormat) 원"
+        categoryTitleLabel.text = data.category
+        categoryContentLabel.text = "\(data.percent)%"
+        categoryExpenseLabel.text = "\(data.expense.toPriceFormat) 원"
+    }
+
+    func setExpenseListData(data: ExpenseData) {
+        detailButton.removeFromSuperview()
+        categoryExpenseLabel.removeFromSuperview()
+
+        contentView.addSubview(expenseStackView)
+        expenseStackView.addArrangedSubviews(categoryExpenseLabel, categoryTotalLabel)
+
+        expenseStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+
+        categoryImageLabel.text = data.category.categoryImageString
+        categoryTitleLabel.text = data.title
+        categoryContentLabel.text = data.category.toString
+        categoryContentLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        categoryExpenseLabel.text = data.saving.toPriceFormat + " 원"
+        categoryTotalLabel.text = data.total.toPriceFormat + " 원"
     }
 }
