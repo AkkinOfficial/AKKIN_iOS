@@ -26,7 +26,7 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     override func configureSubviews() {
         view.addSubview(makePiggyBankCompleteView)
 
-        makePiggyBankCompleteView.backButton.tapBack = { [self] in
+        makePiggyBankCompleteView.backButton.tap = { [self] in
             router.popViewController()
         }
         makePiggyBankCompleteView.piggyBankCompleteButton.tap = { [weak self] in

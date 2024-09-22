@@ -16,7 +16,9 @@ final class MakePiggyBankStartView: BaseView {
         $0.axis = .horizontal
         $0.distribution = .fill
     }
-    let backButton = BackButton()
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
 
     private let piggyBankLabel = UILabel().then {
         $0.text = "저금통"

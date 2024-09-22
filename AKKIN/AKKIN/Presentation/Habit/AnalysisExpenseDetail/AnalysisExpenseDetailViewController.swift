@@ -12,8 +12,8 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     // MARK: UI Components
     private let analysisExpenseView = AnalysisExpenseDetailView()
 
-    private let backButton = BackButton().then {
-        $0.setImage(AkkinButton.backButton, for: .normal)
+    private let backButton = BaseButton().then {
+        $0.setBackButton()
     }
 
     private let addButton = BaseButton().then {
@@ -42,7 +42,7 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(analysisExpenseView)
 
-        backButton.tapBack = { [self] in
+        backButton.tap = { [self] in
             router.popViewController()
         }
 
