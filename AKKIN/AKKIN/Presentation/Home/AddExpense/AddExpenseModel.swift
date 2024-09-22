@@ -10,7 +10,7 @@ import UIKit
 
 class ExpenseInfo {
     static let shared = ExpenseInfo()
-    var icon: UIImage?
+    var icon: String?
     var amount: String = ""
     var category: String = ""
     var content: String = ""

@@ -9,7 +9,7 @@ import UIKit
 
 protocol ExpenseCategoryViewControllerDelegate:
     AnyObject {
-        func didSelectCategory(icon: UIImage, category: String)
+        func didSelectCategory(icon: String, category: String)
     }
 
 final class ExpenseCategoryViewController: BaseViewController {
@@ -56,7 +56,7 @@ extension ExpenseCategoryViewController: UICollectionViewDataSource, UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! ExpenseCategoryCell
 
         let category = categories[indexPath.item]
-        cell.iconImageView.image = category.icon
+        cell.iconImageView.text = category.icon
         cell.categoryLabel.text = category.name
 
         return cell
