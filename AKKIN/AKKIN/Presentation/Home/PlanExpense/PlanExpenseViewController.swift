@@ -11,7 +11,7 @@ final class PlanExpenseViewController: BaseViewController {
 
     // MARK: UI Components
     private let planExpenseView = PlanExpenseView()
-    let setPeriodViewController = SetPeriodViewController()
+    let setPeriodViewController = SetPeriodViewController(singleDate: false)
 
     // MARK: Environment
     private let router = BaseRouter()

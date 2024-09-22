@@ -11,6 +11,8 @@ final class AddExpenseViewController: BaseViewController {
 
     // MARK: UI Components
     private let addExpenseView = AddExpenseView()
+    let expenseCategoryViewController = ExpenseCategoryViewController()
+    let setPeriodViewController = SetPeriodViewController(singleDate: true)
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -18,12 +20,31 @@ final class AddExpenseViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
+
         router.viewController = self
+        setPeriodViewController.delegate = self
+
     }
 
     // MARK: Configuration
     override func configureSubviews() {
        view.addSubview(addExpenseView)
+
+        addExpenseView.tapCategoryTextField = {
+            [weak self] in
+                guard let self else { return }
+            router.presentExpenseCategoryViewController(expenseCategoryViewController)
+        }
+
+        addExpenseView.tapExpenseDayTextField = {
+            [weak self] in
+                guard let self else { return }
+            router.presentSetPeriodViewController(setPeriodViewController)
+        }
+
+
+        
     }
 
     // MARK: Layout
@@ -31,5 +52,13 @@ final class AddExpenseViewController: BaseViewController {
         addExpenseView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension AddExpenseViewController: SetPeriodViewControllerDelegate {
+
+    func didSelectDates(startDate: String, endDate: String, duration: String) {
+        addExpenseView.expenseDayTextField.text = "\(startDate)"
+        addExpenseView.expenseDayTextField.addRightLabel(text: duration)
     }
 }
