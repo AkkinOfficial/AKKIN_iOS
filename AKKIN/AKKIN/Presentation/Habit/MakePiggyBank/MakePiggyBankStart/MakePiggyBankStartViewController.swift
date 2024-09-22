@@ -21,6 +21,10 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         super.viewDidLoad()
         setNavigationItem()
         router.viewController = self
+        adjustCompleteButtonUI(isKeyboardVisible: false)
+
+        makePiggyBankStartView.periodTextField.delegate = self
+        makePiggyBankStartView.budgetTextField.delegate = self
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -30,7 +34,8 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
     override func configureSubviews() {
         view.addSubview(makePiggyBankStartView)
 
-        makePiggyBankStartView.backButton.tapBack = { [self] in
+        makePiggyBankStartView.backButton.tap = { [weak self] in
+            guard let self else { return }
             router.popViewController()
         }
         makePiggyBankStartView.tapPiggyBankNextButton = { [weak self] in
@@ -56,22 +61,48 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
-
-            // 키보드 위에 완료 버튼 위치 설정
-            UIView.animate(withDuration: 0.3) {
-                self.makePiggyBankStartView.piggyBankNextButton.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight + 144)
-            }
+            moveCompleteButtonAboveKeyboard(keyboardHeight)
         }
+        adjustCompleteButtonUI(isKeyboardVisible: true)
     }
 
-    // 키보드가 사라질 때 호출되는 메서드
-    @objc func keyboardWillHide(_ notification: NSNotification) {
-        // 완료 버튼 원래 위치로 복원
+    // 키보드가 사라질 때 호출되게함
+    @objc func keyboardWillHide(_ notification: Notification) {
+        resetCompleteButtonPosition()
+        adjustCompleteButtonUI(isKeyboardVisible: false)
+    }
+    func resetCompleteButtonPosition() {
         UIView.animate(withDuration: 0.3) {
             self.makePiggyBankStartView.piggyBankNextButton.transform = .identity
         }
     }
+
+    // 완료 버튼을 키보드 위로 이동 - 조정 필요
+    func moveCompleteButtonAboveKeyboard(_ keyboardHeight: CGFloat) {
+        UIView.animate(withDuration: 0.3) {
+            self.makePiggyBankStartView.piggyBankNextButton.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight + 108)
+        }
+    }
+
+   // 완료 버튼의 UI를 키보드 상태에 맞게 조정
+   func adjustCompleteButtonUI(isKeyboardVisible: Bool) {
+       if isKeyboardVisible {
+           makePiggyBankStartView.piggyBankNextButton.setCompleteButton(inputTitle: "다음")
+           makePiggyBankStartView.piggyBankNextButton.isEnabled = false
+           makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
+               $0.horizontalEdges.equalToSuperview()
+           }
+       } else {
+           makePiggyBankStartView.piggyBankNextButton.setGuideButton("완료")
+           makePiggyBankStartView.piggyBankNextButton.isEnabled = false
+           makePiggyBankStartView.piggyBankNextButton.snp.updateConstraints {
+               $0.bottom.equalToSuperview().inset(24)
+               $0.horizontalEdges.equalToSuperview().inset(20)
+           }
+
+       }
+   }
 }

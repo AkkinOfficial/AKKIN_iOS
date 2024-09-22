@@ -17,7 +17,9 @@ final class MakePiggyBankCompleteView: BaseView {
         $0.axis = .horizontal
         $0.distribution = .fill
     }
-    let backButton = BackButton()
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
     private let piggyBankLabel = UILabel().then {
         $0.text = "저금통"
         $0.textColor = .black
@@ -32,6 +34,7 @@ final class MakePiggyBankCompleteView: BaseView {
     }
     private let emojiTextField = UITextField().then {
         $0.text = ""
+        // $0.keyboardType = .
         $0.isHidden = true
     }
 
@@ -62,7 +65,8 @@ final class MakePiggyBankCompleteView: BaseView {
     }
 
     let piggyBankCompleteButton = BaseButton().then {
-        $0.setGuideButton("완료")
+        $0.isEnabled = true
+        $0.setTitle("완료", for: .normal)
     }
 
     // MARK: Properties

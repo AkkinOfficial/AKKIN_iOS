@@ -42,12 +42,21 @@ final class MakePiggyBankStartView: BaseView {
     lazy var budgetTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "목표 저축 금액"
+        textField.addRightLabel(text: "원", textColor: .akkinGray6)
+        textField.addCommas()
         //textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
-
-    var piggyBankNextButton = CompleteButton().then {
-        $0.setTitle("다음", for: .normal)
+    private let memoLabel = UILabel().then {
+        $0.text = "아무런 지출도 하지 않았을 때\n최대 75,000원까지 아낄 수 있어요."
+        $0.textColor = .akkinGreen
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        $0.numberOfLines = 2
+        $0.isHidden = true
+    }
+    var piggyBankNextButton = BaseButton().then {
+        $0.setCompleteButton(inputTitle: "다음")
+        $0.isEnabled = false
     }
 
     // MARK: Properties
@@ -63,13 +72,14 @@ final class MakePiggyBankStartView: BaseView {
         piggyBankNavigationBar.addSubview(piggyBankLabel)
 
         emptyView.addSubview(piggyBankSettingLabel)
-        emptyView.addSubview(piggyBankNextButton)
+        addSubview(piggyBankNextButton)
         emptyView.addSubview(periodTextField)
         emptyView.addSubview(budgetTextField)
+        emptyView.addSubview(memoLabel)
 
-        piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
         periodTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         budgetTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -112,10 +122,16 @@ final class MakePiggyBankStartView: BaseView {
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
+        memoLabel.snp.makeConstraints {
+            $0.top.equalTo(budgetTextField.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(44)
+        } 
         piggyBankNextButton.snp.makeConstraints {
-            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
-            $0.bottom.equalToSuperview().inset(58)
             $0.centerX.equalToSuperview()
         }
     }
@@ -126,6 +142,16 @@ final class MakePiggyBankStartView: BaseView {
         budgetTextField.resignFirstResponder()
     }
     @objc func textFieldDidChange() {
+        if (!(budgetTextField.text?.isEmpty ?? true)) {
+            let duration = 9
+            let availableAmount = 13000
+            let inputText = duration * availableAmount
+            memoLabel.text = "아무런 지출도 하지 않았을 때\n최대 \(inputText)원까지 아낄 수 있어요."
+            memoLabel.isHidden = false
+
+        } else {
+            memoLabel.isHidden = true
+        }
         piggyBankNextButton.isEnabled = !(periodTextField.text?.isEmpty ?? true) && !(budgetTextField.text?.isEmpty ?? true)
     }
 }

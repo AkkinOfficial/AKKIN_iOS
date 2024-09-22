@@ -45,8 +45,17 @@ final class MakePiggyBankEndView: BaseView {
         //textField.addLeftImage(image: AkkinIcon.tag)
         return textField
     }()
-    var piggyBankNextButton = CompleteButton().then {
-        $0.setTitle("다음", for: .normal)
+    let nameCountLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.isHidden = true
+    }
+    let memoCountLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.isHidden = true
+    }
+    var piggyBankNextButton = BaseButton().then {
+        $0.setCompleteButton(inputTitle: "다음")
+        $0.isEnabled = false
     }
 
     // MARK: Properties
@@ -64,8 +73,12 @@ final class MakePiggyBankEndView: BaseView {
         emptyView.addSubview(piggyBankSettingLabel)
         emptyView.addSubview(piggyBankNextButton)
         emptyView.addSubview(nameTextField)
+        emptyView.addSubview(nameCountLabel)
         emptyView.addSubview(memoTextField)
+        emptyView.addSubview(memoCountLabel)
 
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        memoTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
     }
 
@@ -90,7 +103,6 @@ final class MakePiggyBankEndView: BaseView {
             $0.centerY.equalToSuperview()
         }
 
-
         piggyBankSettingLabel.snp.makeConstraints {
             $0.top.equalTo(piggyBankNavigationBar.snp.bottom).offset(32)
             $0.leading.equalToSuperview().inset(20)
@@ -101,16 +113,28 @@ final class MakePiggyBankEndView: BaseView {
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
+        nameCountLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(24)
+            $0.top.equalTo(nameTextField.snp.bottom).offset(4)
+            $0.width.equalTo(42)
+            $0.height.equalTo(22)
+        }
         memoTextField.snp.makeConstraints {
             $0.top.equalTo(nameTextField.snp.bottom).offset(12)
             $0.leading.equalToSuperview().inset(20)
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
+        memoCountLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(24)
+            $0.top.equalTo(memoTextField.snp.bottom).offset(4)
+            $0.width.equalTo(42)
+            $0.height.equalTo(22)
+        }
         piggyBankNextButton.snp.makeConstraints {
-            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(56)
-            $0.bottom.equalToSuperview().inset(58)
             $0.centerX.equalToSuperview()
         }
     }
@@ -118,8 +142,9 @@ final class MakePiggyBankEndView: BaseView {
     // MARK: Event
     @objc private func handlePiggyBankNextButtonEvent() {
         tapPiggyBankNextButton?()
+        memoTextField.resignFirstResponder()
     }
     @objc func textFieldDidChange() {
-        piggyBankNextButton.isEnabled = !(nameTextField.text?.isEmpty ?? true) && !(memoTextField.text?.isEmpty ?? true)
+        piggyBankNextButton.isEnabled = !(memoTextField.text?.isEmpty ?? true) && !(memoTextField.text?.isEmpty ?? true)
     }
 }
