@@ -23,7 +23,11 @@ final class SetPeriodView: BaseView {
 
     lazy var todayButton: UIButton = {
         let button = UIButton()
-        button.setTitle("오늘로 이동", for: .normal)
+        let loadUnderLine: [NSAttributedString.Key: Any] = [
+         .font: UIFont.systemFont(ofSize: 16),
+                  .underlineStyle: NSUnderlineStyle.single.rawValue]
+        let attributeString = NSMutableAttributedString(string: "오늘로 이동", attributes: loadUnderLine)
+        button.setAttributedTitle(attributeString, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return button
