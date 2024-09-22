@@ -9,6 +9,8 @@ import Foundation
 
 struct CalendarModel {
     var month: Int
-    var saving: Int
-    var remaining: Int
+    var day: Int
+    var monthSaving: Int
+    var monthRemaining: Int
+    var daySaving: Int?
 }

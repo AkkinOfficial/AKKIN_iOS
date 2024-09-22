@@ -17,4 +17,8 @@ extension Int {
     var toMonthFormat: String {
         return "\(self)월"
     }
+
+    var toDayFormat: String {
+        return "\(self)일"
+    }
 }
