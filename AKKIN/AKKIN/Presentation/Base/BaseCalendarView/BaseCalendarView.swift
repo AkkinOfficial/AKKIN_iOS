@@ -39,7 +39,8 @@ class BaseCalendarView: UIView {
         calendar.appearance.headerTitleAlignment = .left
         calendar.headerHeight = 40.0
 
-        calendar.today = nil
+        calendar.appearance.titleTodayColor = .akkinGreen
+        calendar.appearance.todayColor = .clear
         calendar.appearance.selectionColor = .clear
         calendar.appearance.titleSelectionColor = .black
         calendar.appearance.weekdayTextColor = .akkinGray7.withAlphaComponent(0.3)
@@ -84,6 +85,11 @@ class BaseCalendarView: UIView {
         lastDate = nil
         datesRange = []
         calendar.reloadData()
+    }
+
+    func scrollToDate() {
+        let formatter = DateFormatter()
+        calendar.setCurrentPage(Date(), animated: true)
     }
 }
 
