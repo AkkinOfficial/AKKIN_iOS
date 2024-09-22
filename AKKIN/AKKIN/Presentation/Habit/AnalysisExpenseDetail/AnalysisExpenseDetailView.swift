@@ -10,6 +10,24 @@ import UIKit
 final class AnalysisExpenseDetailView: BaseView {
 
     // MARK: UI Components
+    private let backButton = BaseButton().then {
+        $0.setImage(AkkinButton.backButton.withTintColor(.akkinBlack2), for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
+    }
+
+    private let navigationTitleLabel = UILabel().then {
+        $0.text = "지출 내역"
+        $0.textColor = .akkinBlack2
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
+    private let addButton = BaseButton().then {
+        $0.setImage(AkkinButton.addButton.withTintColor(.akkinBlack2), for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
+    }
+
     public lazy var monthAnalysisCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -32,6 +50,8 @@ final class AnalysisExpenseDetailView: BaseView {
     var totalExpense = 0
     var month = 0
 
+    var tapBackButtonEvent: (() -> Void)?
+    var tapAddButtonEvent: (() -> Void)?
     var tapMonthButtonEvent: (() -> Void)?
 
     // TODO: Empty Case UI Test
@@ -42,19 +62,41 @@ final class AnalysisExpenseDetailView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
+        addSubview(backButton)
+        addSubview(navigationTitleLabel)
+        addSubview(addButton)
+
         setCollectionView()
         addSubview(monthAnalysisCollectionView)
+
+        backButton.addTarget(self, action: #selector(handleBackButtonEvent), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(handleAddButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
+        backButton.snp.makeConstraints {
+            $0.centerY.equalTo(navigationTitleLabel)
+            $0.leading.equalToSuperview().inset(16)
+        }
+
+        navigationTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(safeAreaLayoutGuide).inset(15)
+        }
+
+        addButton.snp.makeConstraints {
+            $0.centerY.equalTo(navigationTitleLabel)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+
         let collectionViewHeight1 = 113 + 24 + 77 * monthAnalysisList.count
         let collectionViewHeight2 = 254 + 24 + 77 * monthAnalysisList.count
 
         monthAnalysisCollectionView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(32)
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
             $0.horizontalEdges.equalToSuperview().inset(20)
             if analysisIsEmpty {
                 $0.height.equalTo(23)
@@ -212,10 +254,18 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setData(monthAnaysisData: monthAnalysisList[indexPath.row])
+        cell.setData(data: monthAnalysisList[indexPath.row])
         cell.tapDetail = {
         }
 
         return cell
+    }
+
+    @objc func handleBackButtonEvent() {
+        tapBackButtonEvent?()
+    }
+
+    @objc func handleAddButtonEvent() {
+        tapAddButtonEvent?()
     }
 }

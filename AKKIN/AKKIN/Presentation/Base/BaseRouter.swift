@@ -60,6 +60,16 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
     }
 
+    func presentExpenseListViewController(month: Int, day: Int) {
+        let expenseListViewController = ExpenseListViewController(month: month, day: day)
+        viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
+    }
+
+    func presentExpenseDetailViewController(data: ExpenseData) {
+        let expenseDetailViewController = ExpenseDetailViewController(data: data)
+        viewController?.navigationController?.pushViewController(expenseDetailViewController, animated: true)
+    }
+
     func presentModeSelectViewController() {
         let selectMonthViewController = SelectMonthViewController()
         viewController?.present(selectMonthViewController, animated: true)
@@ -89,10 +99,10 @@ final class BaseRouter {
             if let rootViewController =
                 UIApplication.shared.windows.first?
                 .rootViewController {
-                    if let navigationController =
-                        rootViewController as? UINavigationController {
-                        navigationController
-                            .popToRootViewController(animated: true)
+                if let navigationController =
+                    rootViewController as? UINavigationController {
+                    navigationController
+                        .popToRootViewController(animated: true)
                 }
             }
         })
@@ -110,7 +120,28 @@ final class BaseRouter {
             sheet.detents = [.custom(resolver: { _ in 578 })]
             sheet.preferredCornerRadius = 20
         }
-            viewController?.present(setPeriodViewController, animated: true, completion: nil)
+        viewController?.present(setPeriodViewController, animated: true, completion: nil)
+    }
+
+    func presentExpenseCategoryViewController(_ expenseCategoryViewController: ExpenseCategoryViewController) {
+        expenseCategoryViewController.modalPresentationStyle = .pageSheet
+        if let sheet = expenseCategoryViewController.sheetPresentationController {
+            sheet.detents = [.custom(resolver: { _ in 578 })]
+            sheet.preferredCornerRadius = 20
         }
+        viewController?.present(expenseCategoryViewController, animated: true, completion: nil)
+    }
+
+    func presentAddExpenseViewController() {
+        let addExpenseViewController = AddExpenseViewController()
+        addExpenseViewController.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(addExpenseViewController, animated: true)
+    }
+
+    func presentAddExpenseConfirmViewController() {
+        let addExpenseConfirmViewController = AddExpenseConfirmViewController()
+        addExpenseConfirmViewController.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(addExpenseConfirmViewController, animated: true)
+    }
 
 }

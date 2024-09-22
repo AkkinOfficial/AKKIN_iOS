@@ -21,6 +21,18 @@ final class SetPeriodView: BaseView {
         return button
     }()
 
+    lazy var todayButton: UIButton = {
+        let button = UIButton()
+        let loadUnderLine: [NSAttributedString.Key: Any] = [
+         .font: UIFont.systemFont(ofSize: 16),
+                  .underlineStyle: NSUnderlineStyle.single.rawValue]
+        let attributeString = NSMutableAttributedString(string: "오늘로 이동", attributes: loadUnderLine)
+        button.setAttributedTitle(attributeString, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return button
+    }()
+
     lazy var calendarView: BaseCalendarView = {
         let calendar = BaseCalendarView()
         return calendar
@@ -57,6 +69,7 @@ final class SetPeriodView: BaseView {
 
     // MARK: Properties
     var tapConfirm: (() -> Void)?
+    var tapToday: (() -> Void)?
 
     weak var delegate: SetPeriodViewDelegate?
 
@@ -65,6 +78,7 @@ final class SetPeriodView: BaseView {
         super.configureSubviews()
 
         addSubview(confirmButton)
+        addSubview(todayButton)
         addSubview(calendarView)
         addSubview(selectDateLabel)
         addSubview(periodStackview)
@@ -72,6 +86,7 @@ final class SetPeriodView: BaseView {
         periodStackview.addArrangedSubviews(startDateLabel,dateDivideLabel,endDateLabel)
 
         confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
+        todayButton.addTarget(self, action: #selector(didTapTodayButton), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -94,7 +109,12 @@ final class SetPeriodView: BaseView {
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
-        
+
+        todayButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(20)
+            $0.centerY.equalTo(confirmButton)
+        }
+
         calendarView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(367)
@@ -105,5 +125,9 @@ final class SetPeriodView: BaseView {
     // MARK: Event
     @objc private func didTapConfirmButton() {
         tapConfirm?()
+    }
+
+    @objc private func didTapTodayButton() {
+        tapToday?()
     }
 }

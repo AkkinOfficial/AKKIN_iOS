@@ -20,15 +20,30 @@ final class SetPeriodViewController: BaseViewController {
     weak var delegate: SetPeriodViewControllerDelegate?
     private var selectedStartDate: String = ""
     private var selectedEndDate: String = ""
-    private var selectedDuration: String =  "ㅇㅇ"
+    private var selectedDuration: String = "ㅇㅇ"
+    private let singleDate: Bool
 
     // MARK: Environment
     private let router = BaseRouter()
+
+    // MARK: Initializer
+    init(singleDate: Bool) {
+        self.singleDate = singleDate
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         router.viewController = self
+        if singleDate == true{
+            setPeriodView.selectDateLabel.text = "지출 날짜를 선택해주세요."
+            setPeriodView.dateDivideLabel.text = ""
+        }
     }
 
     // MARK: Configuration
@@ -37,11 +52,17 @@ final class SetPeriodViewController: BaseViewController {
         setUpCalendarView()
 
         setPeriodView.tapConfirm = { [weak self] in
-            guard let self else { return }
+            guard let self = self else { return }
             router.dismissViewController()
             self.delegate?.didSelectDates(startDate: self.selectedStartDate,
                                           endDate: self.selectedEndDate,
                                           duration: self.selectedDuration)
+            setPeriodView.calendarView.scrollToDate()
+        }
+
+        setPeriodView.tapToday = { [weak self] in
+            guard let self = self else { return }
+            setPeriodView.calendarView.scrollToDate()
         }
     }
 
@@ -52,10 +73,12 @@ final class SetPeriodViewController: BaseViewController {
         }
     }
 
-    // MARK: method
+    // MARK: Method
     func setUpCalendarView() {
-        setPeriodView.calendarView.onDateSelected = { [weak self] selectedDates in
+        setPeriodView.calendarView.singleDate = singleDate
+        setPeriodView.calendarView.onDatesSelected = { [weak self] selectedDates in
             guard let self = self else { return }
+            print(selectedDates)
             self.handleDateSelection(selectedDates: selectedDates)
         }
     }
@@ -67,7 +90,9 @@ final class SetPeriodViewController: BaseViewController {
         case 1:
             handleSingleDateSelection(startDate: selectedDates.first)
         default:
-            handleRangeDateSelection(startDate: selectedDates.first, endDate: selectedDates.last)
+            if !singleDate {
+                handleRangeDateSelection(startDate: selectedDates.first, endDate: selectedDates.last)
+            }
         }
     }
 
@@ -80,8 +105,12 @@ final class SetPeriodViewController: BaseViewController {
 
     private func handleSingleDateSelection(startDate: Date?) {
         didUpdateDates(startDate: startDate, endDate: nil)
-        setPeriodView.confirmButton.isEnabled = false
-        setPeriodView.selectDateLabel.text = "종료일을 선택해주세요"
+        if(singleDate == true){
+            setPeriodView.confirmButton.isEnabled = true
+        }else{
+            setPeriodView.confirmButton.isEnabled = false
+        }
+        setPeriodView.selectDateLabel.text = singleDate ? "지출 날짜를 선택해주세요." : "종료일을 선택해주세요."
     }
 
     private func handleRangeDateSelection(startDate: Date?, endDate: Date?) {
@@ -111,3 +140,4 @@ extension SetPeriodViewController: SetPeriodViewDelegate {
         return "\(days + 1)일"
     }
 }
+

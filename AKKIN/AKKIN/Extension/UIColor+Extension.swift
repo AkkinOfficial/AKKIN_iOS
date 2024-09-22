@@ -17,6 +17,11 @@ extension UIColor {
     static var akkinBlack: UIColor {
         return UIColor(hex: "#19191B")
     }
+
+    static var akkinBlack2: UIColor {
+        return UIColor(hex: "#25262C")
+    }
+
     static var akkinWhite: UIColor {
         return UIColor(hex: "#FFFFFF")
     }

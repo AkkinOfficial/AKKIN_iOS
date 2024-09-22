@@ -50,11 +50,28 @@ extension UITextField {
 
         let labelWidth = label.frame.width + padding
         let rightView = UIView(frame: CGRect(x: 0, y: 0, width: labelWidth, height: self.frame.height))
-        label.frame.origin = CGPoint(x: padding / 2, y: (self.frame.height - label.frame.height) / 2)
+        label.frame.origin = CGPoint(x: 0, y: (self.frame.height - label.frame.height) / 2)
 
         rightView.addSubview(label)
         self.rightView = rightView
         self.rightViewMode = .always
+    }
+
+    /// 좌측 글자 추가
+    func addLeftLabel(text: String) {
+        let label = UILabel()
+        label.text = text
+        label.font = .systemFont(ofSize: 20)
+        label.sizeToFit()
+
+        let padding: CGFloat = 16.0
+
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: label.frame.width + padding + 8.0, height: self.frame.height))
+        label.frame.origin = CGPoint(x: padding, y: (self.frame.height - label.frame.height) / 2)
+
+        leftView.addSubview(label)
+        self.leftView = leftView
+        self.leftViewMode = .always
     }
 
 

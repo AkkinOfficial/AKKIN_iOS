@@ -26,9 +26,11 @@ final class EmptyHomeViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(homeView)
 
+        //TODO: 라우터 수정
         homeView.tapExpense = { [weak self] in
             guard let self else { return }
-            router.presentPlanExpenseViewController()
+            //router.presentPlanExpenseViewController()
+            router.presentAddExpenseViewController()
         }
     }
 

@@ -18,6 +18,14 @@ final class PlanExpenseView: BaseView {
         return label
     }()
 
+    lazy var helperLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .akkinGreen
+        label.numberOfLines = 0
+        return label
+    }()
+
     lazy var periodTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "기간"
@@ -45,9 +53,10 @@ final class PlanExpenseView: BaseView {
     // MARK: Properties
     var tapPeriodTextField: (() -> Void)?
     var tapConfirmButton: (() -> Void)?
+    var editbudgetTextField: ((String) -> Void)?
 
     // MARK: Custom Keyboard
-        private let customKeyboardVC = CustomKeyboardViewController()
+    private let customKeyboardVC = CustomKeyboardViewController()
 
 
     // MARK: Configuration
@@ -58,9 +67,11 @@ final class PlanExpenseView: BaseView {
         addSubview(periodTextField)
         addSubview(budgetTextField)
         addSubview(confirmButton)
+        addSubview(helperLabel)
 
         periodTextField.addTarget(self, action: #selector(didTapPeriodTextField), for: .touchDown)
         confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
+        budgetTextField.addTarget(self, action: #selector(didEditbudgetTextField), for: .allEditingEvents)
 
         customKeyboardVC.delegate = self
         budgetTextField.inputView = customKeyboardVC.view
@@ -92,6 +103,11 @@ final class PlanExpenseView: BaseView {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(60)
         }
+
+        helperLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(28)
+            $0.top.equalTo(budgetTextField.snp.bottom).offset(8)
+        }
     }
 
     // MARK: Event
@@ -101,10 +117,14 @@ final class PlanExpenseView: BaseView {
     @objc private func didTapConfirmButton() {
         tapConfirmButton?()
     }
+    @objc private func didEditbudgetTextField() {
+        editbudgetTextField?(budgetTextField.text ?? "")
+    }
 }
 
 extension PlanExpenseView: CustomKeyboardDelegate {
     func customKeyboard(_ keyboard: CustomKeyboardViewController, didEnterAmount amount: String) {
         budgetTextField.text = amount
+        editbudgetTextField?(amount)
     }
 }

@@ -43,4 +43,19 @@ enum Category {
             return nil
         }
     }
+
+    var toString: String {
+        switch self {
+        case .dining:
+            return "식사"
+        case .traffic:
+            return "교통"
+        case .etc:
+            return "기타"
+        case .cafe:
+            return "카페/간식"
+        case .hobby:
+            return "문화/취미"
+        }
+    }
 }
