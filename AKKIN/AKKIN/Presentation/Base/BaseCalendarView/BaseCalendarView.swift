@@ -153,7 +153,7 @@ extension BaseCalendarView: FSCalendarDelegate {
                 firstDate = date
                 datesRange = [firstDate!]
                 calendar.select(firstDate!)
-                onDateSelected?(datesRange)
+                onDatesSelected?(datesRange)
                 calendar.reloadData()
                 return
             }
@@ -162,7 +162,7 @@ extension BaseCalendarView: FSCalendarDelegate {
             if firstDate == nil {
                 firstDate = date
                 datesRange = [firstDate!]
-                onDateSelected?(datesRange)
+                onDatesSelected?(datesRange)
                 calendar.reloadData()
                 return
             }
