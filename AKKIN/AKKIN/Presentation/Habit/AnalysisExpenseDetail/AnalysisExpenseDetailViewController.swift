@@ -12,14 +12,6 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     // MARK: UI Components
     private let analysisExpenseView = AnalysisExpenseDetailView()
 
-    private let backButton = BaseButton().then {
-        $0.setImage(AkkinButton.backButton, for: .normal)
-    }
-
-    private let addButton = BaseButton().then {
-        $0.setImage(AkkinButton.addButton, for: .normal)
-    }
-
     // MARK: Environment
     private let router = BaseRouter()
 
@@ -34,6 +26,7 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
         router.viewController = self
         setNavigationItem()
     }
@@ -42,8 +35,12 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(analysisExpenseView)
 
-        backButton.tap = { [self] in
+        analysisExpenseView.tapBackButtonEvent = { [self] in
             router.popViewController()
+        }
+
+        analysisExpenseView.tapAddButtonEvent = { [self] in
+            print("tap add button")
         }
 
         analysisExpenseView.tapMonthButtonEvent = { [self] in
@@ -60,12 +57,7 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
 
     // MARK: Navigation Item
     private func setNavigationItem() {
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.title = "월별 지출 분석"
-        // TODO: navigationBar backgroundColor 수정
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+        navigationController?.isNavigationBarHidden = true
     }
 }
 
