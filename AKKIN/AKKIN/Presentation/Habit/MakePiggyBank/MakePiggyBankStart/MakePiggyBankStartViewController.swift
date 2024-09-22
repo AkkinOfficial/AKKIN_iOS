@@ -11,7 +11,7 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
 
     // MARK: UI Components
     private let makePiggyBankStartView = MakePiggyBankStartView()
-    let setPeriodViewController = SetPeriodViewController()
+    let setPeriodViewController = SetPeriodViewController(singleDate: false)
 
     // MARK: Environment
     private let router = BaseRouter()
