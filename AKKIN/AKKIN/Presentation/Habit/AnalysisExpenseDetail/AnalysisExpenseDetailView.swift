@@ -96,7 +96,7 @@ final class AnalysisExpenseDetailView: BaseView {
         let collectionViewHeight2 = 254 + 24 + 77 * monthAnalysisList.count
 
         monthAnalysisCollectionView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(32)
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
             $0.horizontalEdges.equalToSuperview().inset(20)
             if analysisIsEmpty {
                 $0.height.equalTo(23)
