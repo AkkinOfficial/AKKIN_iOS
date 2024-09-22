@@ -126,11 +126,13 @@
 		E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
-		E5F659DF2C9C9162001A08C7 /* ExpenseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */; };
-		E5F659E12C9C9174001A08C7 /* ExpenseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
 		E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */; };
 		E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */; };
+		E5F659DF2C9C9162001A08C7 /* ExpenseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */; };
+		E5F659E12C9C9174001A08C7 /* ExpenseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */; };
+		E5F659E32C9FE790001A08C7 /* ExpenseCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E22C9FE790001A08C7 /* ExpenseCategoryCell.swift */; };
+		E5F659E52C9FEA50001A08C7 /* ExpenseCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659E42C9FEA50001A08C7 /* ExpenseCategoryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,11 +255,13 @@
 		E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodView.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
-		E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryView.swift; sourceTree = "<group>"; };
-		E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryViewController.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardViewController.swift; sourceTree = "<group>"; };
 		E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryView.swift; sourceTree = "<group>"; };
+		E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryViewController.swift; sourceTree = "<group>"; };
+		E5F659E22C9FE790001A08C7 /* ExpenseCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryCell.swift; sourceTree = "<group>"; };
+		E5F659E42C9FEA50001A08C7 /* ExpenseCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -728,15 +732,6 @@
 			path = "Views ";
 			sourceTree = "<group>";
 		};
-		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
-			isa = PBXGroup;
-			children = (
-				E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */,
-				E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */,
-			);
-			path = ExpenseCategory;
-			sourceTree = "<group>";
-		};
 		E53F842B2C8C98350005EBBE /* BaseCalendarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +748,17 @@
 				E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */,
 			);
 			path = SetPeriodView;
+			sourceTree = "<group>";
+		};
+		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
+			isa = PBXGroup;
+			children = (
+				E5F659E02C9C9174001A08C7 /* ExpenseCategoryViewController.swift */,
+				E5F659DE2C9C9162001A08C7 /* ExpenseCategoryView.swift */,
+				E5F659E22C9FE790001A08C7 /* ExpenseCategoryCell.swift */,
+				E5F659E42C9FEA50001A08C7 /* ExpenseCategoryModel.swift */,
+			);
+			path = ExpenseCategory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -859,6 +865,7 @@
 				9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* BaseRouter.swift in Sources */,
 				9536507E2C6456CE00F58D13 /* HabitViewController.swift in Sources */,
+				E5F659E52C9FEA50001A08C7 /* ExpenseCategoryModel.swift in Sources */,
 				E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */,
 				955100B92C76E37200D80A9C /* AnalysisExpenseView.swift in Sources */,
 				9512618B2AC02E090012B5F9 /* MoyaLoggerPlugin.swift in Sources */,
@@ -889,7 +896,7 @@
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,
 				951261BC2AC1A8BA0012B5F9 /* MonthlyAPI.swift in Sources */,
 				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
-				953650792C64567700F58D13 /* HomeViewController.swift in Sources */,
+				953650792C64567700F58D13 /* EmptyHomeViewController.swift in Sources */,
 				E5F659DF2C9C9162001A08C7 /* ExpenseCategoryView.swift in Sources */,
 				953650792C64567700F58D13 /* EmptyHomeViewController.swift in Sources */,
 				951261A02AC05B6F0012B5F9 /* AuthService.swift in Sources */,
@@ -920,6 +927,7 @@
 				9536508D2C64585D00F58D13 /* MakeMoneyBoxView.swift in Sources */,
 				953650B52C6DC65200F58D13 /* UIStackView+Extension.swift in Sources */,
 				951261652ABD97100012B5F9 /* LoginView.swift in Sources */,
+				E5F659E32C9FE790001A08C7 /* ExpenseCategoryCell.swift in Sources */,
 				9536509A2C6458F200F58D13 /* CalendarView.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
 				955201402CA06793006DB98C /* CalendarModel.swift in Sources */,

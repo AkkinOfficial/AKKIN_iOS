@@ -110,4 +110,13 @@ final class BaseRouter {
             viewController?.present(setPeriodViewController, animated: true, completion: nil)
         }
 
+    func presentExpenseCategoryViewController(_ expenseCategoryViewController: ExpenseCategoryViewController) {
+        expenseCategoryViewController.modalPresentationStyle = .pageSheet
+        if let sheet = expenseCategoryViewController.sheetPresentationController {
+            sheet.detents = [.custom(resolver: { _ in 578 })]
+            sheet.preferredCornerRadius = 20
+        }
+            viewController?.present(expenseCategoryViewController, animated: true, completion: nil)
+        }
+
 }
