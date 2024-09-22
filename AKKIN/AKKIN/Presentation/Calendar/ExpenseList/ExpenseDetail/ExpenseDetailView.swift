@@ -11,17 +11,21 @@ final class ExpenseDetailView: BaseView {
 
     // MARK: UI Components
     private let backButton = BaseButton().then {
-        $0.setImage(AkkinButton.backButton, for: .normal)
+        $0.setImage(AkkinButton.backButton.withTintColor(.akkinBlack2), for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let navigationTitleLabel = UILabel().then {
         $0.text = "상세 지출 내역"
         $0.textColor = .akkinBlack2
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
 
     private let kebabButton = BaseButton().then {
-        $0.setImage(AkkinButton.kebabButton, for: .normal)
+        $0.setImage(AkkinButton.kebabButton.withTintColor(.akkinBlack2), for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let categoryBackgroundView = UIView().then {
@@ -29,36 +33,33 @@ final class ExpenseDetailView: BaseView {
         $0.layer.cornerRadius = 32
     }
 
-    private let categoryImageLabel = UILabel().then {
-        $0.text = "🛒"
+    let categoryImageLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 28)
     }
 
-    private let infoLabel = UILabel().then {
-        $0.text = "생활"
+    let infoLabel = UILabel().then {
         $0.textColor = .akkinGray10
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
-    private let contentLabel = UILabel().then {
-        $0.text = "생필품"
+    let titleLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
-    private let expenseLabel = UILabel().then {
-        $0.text = "13,680"
+    let expenseLabel = UILabel().then {
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
     }
 
-    private let memoLabel = UILabel().then {
-        $0.text = "친구 만나서 파스타 냠냠"
+    let memoLabel = UILabel().then {
         $0.textColor = .akkinGray10
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
     // MARK: Properties
+    var tapBackButtonEvent: (() -> Void)?
+    var tapKebabButtonEvent: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -71,9 +72,12 @@ final class ExpenseDetailView: BaseView {
         addSubview(categoryBackgroundView)
         addSubview(categoryImageLabel)
         addSubview(infoLabel)
-        addSubview(contentLabel)
+        addSubview(titleLabel)
         addSubview(expenseLabel)
         addSubview(memoLabel)
+
+        backButton.addTarget(self, action: #selector(handleBackButtonEvent), for: .touchUpInside)
+        kebabButton.addTarget(self, action: #selector(handleKebabButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -87,7 +91,7 @@ final class ExpenseDetailView: BaseView {
 
         navigationTitleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(15)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(15)
         }
 
         kebabButton.snp.makeConstraints {
@@ -97,7 +101,8 @@ final class ExpenseDetailView: BaseView {
 
         categoryBackgroundView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(195)
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(154)
+            $0.height.width.equalTo(64)
         }
 
         categoryImageLabel.snp.makeConstraints {
@@ -109,21 +114,27 @@ final class ExpenseDetailView: BaseView {
             $0.top.equalTo(categoryBackgroundView.snp.bottom).offset(16)
         }
 
-        contentLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(infoLabel.snp.bottom).offset(16)
         }
 
         expenseLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(contentLabel.snp.bottom).offset(12)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
         }
 
         memoLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(contentLabel.snp.bottom).offset(12)
+            $0.top.equalTo(expenseLabel.snp.bottom).offset(12)
         }
     }
 
     // MARK: Event
-}
+    @objc func handleBackButtonEvent() {
+        tapBackButtonEvent?()
+    }
+
+    @objc func handleKebabButtonEvent() {
+        tapKebabButtonEvent?()
+    }}
