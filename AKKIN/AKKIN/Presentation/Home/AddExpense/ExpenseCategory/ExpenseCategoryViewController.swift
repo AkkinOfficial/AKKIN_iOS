@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ExpenseCategoryViewControllerDelegate:
+    AnyObject {
+        func didSelectCategory(icon: UIImage, category: String)
+    }
+
 final class ExpenseCategoryViewController: BaseViewController {
 
     // MARK: UI Components
@@ -16,7 +21,8 @@ final class ExpenseCategoryViewController: BaseViewController {
     private let router = BaseRouter()
 
     // MARK: Properties
-        var categories: [ExpenseCategory] = ExpenseCategory.getAllCategories()
+    weak var delegate: ExpenseCategoryViewControllerDelegate?
+    var categories: [ExpenseCategory] = ExpenseCategory.getAllCategories()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -60,6 +66,8 @@ extension ExpenseCategoryViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = categories[indexPath.item]
         print("tap 카테고리: \(selectedCategory.name)")
+        router.dismissViewController()
+        self.delegate?.didSelectCategory(icon: selectedCategory.icon, category: selectedCategory.name)
     }
 }
 

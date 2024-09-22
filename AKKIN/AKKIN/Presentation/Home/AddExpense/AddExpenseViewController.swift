@@ -24,6 +24,7 @@ final class AddExpenseViewController: BaseViewController {
 
         router.viewController = self
         setPeriodViewController.delegate = self
+        expenseCategoryViewController.delegate = self
 
     }
 
@@ -62,3 +63,13 @@ extension AddExpenseViewController: SetPeriodViewControllerDelegate {
         addExpenseView.expenseDayTextField.addRightLabel(text: duration)
     }
 }
+
+extension AddExpenseViewController:
+    ExpenseCategoryViewControllerDelegate {
+    func didSelectCategory(icon: UIImage, category: String) {
+        addExpenseView.expenseCategoryTextField.addLeftImage(image: icon)
+        addExpenseView.expenseCategoryTextField.text = category
+    }
+
+}
+
