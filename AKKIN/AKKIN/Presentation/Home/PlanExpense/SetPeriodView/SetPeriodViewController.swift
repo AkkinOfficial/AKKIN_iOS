@@ -54,8 +54,9 @@ final class SetPeriodViewController: BaseViewController {
 
     // MARK: method
     func setUpCalendarView() {
-        setPeriodView.calendarView.onDateSelected = { [weak self] selectedDates in
+        setPeriodView.calendarView.onDatesSelected = { [weak self] selectedDates in
             guard let self = self else { return }
+            print(selectedDates)
             self.handleDateSelection(selectedDates: selectedDates)
         }
     }

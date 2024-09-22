@@ -21,7 +21,8 @@ class BaseCalendarView: UIView {
     private var datesRange: [Date] = [] // 선택된 날짜 배열
 
     var calendarMode: CalendarMode = .plan
-    var onDateSelected: (([Date]) -> Void)?
+    var onDatesSelected: (([Date]) -> Void)?
+    var onDateSelected: ((Date) -> Void)?
 
     let calendar: FSCalendar = {
         let calendar = FSCalendar(frame: .zero)
@@ -135,63 +136,68 @@ extension BaseCalendarView: FSCalendarDataSource {
 extension BaseCalendarView: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        // case 1. 현재 아무것도 선택되지 않은 경우
-        if firstDate == nil {
-            firstDate = date
-            datesRange = [firstDate!]
-            onDateSelected?(datesRange)
-            calendar.reloadData()
-            return
-        }
-
-        // case 2. 현재 firstDate 하나만 선택된 경우
-        if firstDate != nil && lastDate == nil {
-            if date < firstDate! {
-                calendar.deselect(firstDate!)
+        switch calendarMode {
+        case .calendar:
+            onDateSelected?(date)
+        case .plan:
+            // case 1. 현재 아무것도 선택되지 않은 경우
+            if firstDate == nil {
                 firstDate = date
                 datesRange = [firstDate!]
-                onDateSelected?(datesRange)
-                calendar.reloadData()
-                return
-            } else {
-                var range: [Date] = []
-                var currentDate = firstDate!
-                while currentDate <= date {
-                    range.append(currentDate)
-                    currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
-                }
-
-                for day in range {
-                    calendar.select(day)
-                }
-
-                lastDate = range.last
-                datesRange = range
-                onDateSelected?(datesRange)
+                onDatesSelected?(datesRange)
                 calendar.reloadData()
                 return
             }
-        }
 
-        // case 3. 두 개가 모두 선택되어 있는 상태 -> 현재 선택된 날짜 모두 해제 후 선택 날짜를 firstDate로 서정
-        if firstDate != nil && lastDate != nil {
-            for day in calendar.selectedDates {
-                calendar.deselect(day)
+            // case 2. 현재 firstDate 하나만 선택된 경우
+            if firstDate != nil && lastDate == nil {
+                if date < firstDate! {
+                    calendar.deselect(firstDate!)
+                    firstDate = date
+                    datesRange = [firstDate!]
+                    onDatesSelected?(datesRange)
+                    calendar.reloadData()
+                    return
+                } else {
+                    var range: [Date] = []
+                    var currentDate = firstDate!
+                    while currentDate <= date {
+                        range.append(currentDate)
+                        currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
+                    }
+
+                    for day in range {
+                        calendar.select(day)
+                    }
+
+                    lastDate = range.last
+                    datesRange = range
+                    onDatesSelected?(datesRange)
+                    calendar.reloadData()
+                    return
+                }
             }
 
-            lastDate = nil
-            firstDate = date
-            calendar.select(date)
-            datesRange = [firstDate!]
-            onDateSelected?(datesRange)
-            calendar.reloadData()
-            return
+            // case 3. 두 개가 모두 선택되어 있는 상태 -> 현재 선택된 날짜 모두 해제 후 선택 날짜를 firstDate로 서정
+            if firstDate != nil && lastDate != nil {
+                for day in calendar.selectedDates {
+                    calendar.deselect(day)
+                }
+
+                lastDate = nil
+                firstDate = date
+                calendar.select(date)
+                datesRange = [firstDate!]
+                onDatesSelected?(datesRange)
+                calendar.reloadData()
+                return
+            }
         }
     }
 
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         resetSelection()
-        onDateSelected?(datesRange)
+        onDatesSelected?(datesRange)
     }
 }
 
