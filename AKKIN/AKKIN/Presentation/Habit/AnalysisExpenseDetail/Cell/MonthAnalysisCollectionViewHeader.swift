@@ -20,6 +20,8 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
     private let previousMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.previousButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let monthButton = BaseButton().then {
@@ -29,6 +31,8 @@ final class MonthAnalysisCollectionViewHeader: UICollectionReusableView {
 
     private let nextMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.nextButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let emtpyView = UIView().then {
@@ -124,6 +128,8 @@ extension MonthAnalysisCollectionViewHeader {
         let currentMonth = DataManager.shared.currentMonth
         monthButton.setTitle("\(currentMonth ?? month)월", for: .normal)
         monthButton.setUnderline()
+        monthButton.isEnabled = true
+        monthButton.backgroundColor = .clear
         totalExpenseLabel.text = "\(totalExpense.toPriceFormat) 원"
 
         removeMonthAnalysisSubViews()
