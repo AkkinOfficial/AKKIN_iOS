@@ -57,6 +57,12 @@ final class SetPeriodViewController: BaseViewController {
             self.delegate?.didSelectDates(startDate: self.selectedStartDate,
                                           endDate: self.selectedEndDate,
                                           duration: self.selectedDuration)
+            setPeriodView.calendarView.scrollToDate()
+        }
+
+        setPeriodView.tapToday = { [weak self] in
+            guard let self = self else { return }
+            setPeriodView.calendarView.scrollToDate()
         }
     }
 

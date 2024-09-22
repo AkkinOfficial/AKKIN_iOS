@@ -83,35 +83,26 @@ class CalendarCell: FSCalendarCell {
     func updateBackImage(_ dateType: SelectedDateType) {
         switch dateType {
         case .singleDate:
-            // left right hidden true
-            // circle hidden false
             leftRectBackImageView.isHidden = true
             rightRectBackImageView.isHidden = true
             circleBackImageView.isHidden = false
 
         case .firstDate:
-            // leftRect hidden true
-            // circle, right hidden false
             leftRectBackImageView.isHidden = true
             circleBackImageView.isHidden = false
             rightRectBackImageView.isHidden = false
 
         case .middleDate:
-            // circle hidden true
-            // left, right hidden false
             circleBackImageView.isHidden = true
             leftRectBackImageView.isHidden = false
             rightRectBackImageView.isHidden = false
 
         case .lastDate:
-            // rightRect hidden true
-            // circle, left hidden false
             rightRectBackImageView.isHidden = true
             circleBackImageView.isHidden = false
             leftRectBackImageView.isHidden = false
 
         case .notSelected:
-            // all hidden
             circleBackImageView.isHidden = true
             leftRectBackImageView.isHidden = true
             rightRectBackImageView.isHidden = true
