@@ -150,6 +150,7 @@ final class MakePiggyBankCompleteView: BaseView {
     // MARK: Event
     @objc func showEmojiKeyboardEvent() {
         tapEmojiButton?()
+        emojiTextField.text = ""
         emojiTextField.becomeFirstResponder()
     }
     @objc func dismissKeyboard() {

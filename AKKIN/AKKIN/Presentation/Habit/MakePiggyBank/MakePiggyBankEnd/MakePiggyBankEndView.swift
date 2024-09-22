@@ -92,7 +92,6 @@ final class MakePiggyBankEndView: BaseView {
         memoTextField.addSubview(leftImageView)
         emptyView.addSubview(memoCountLabel)
 
-        
         nameTextField.addTarget(self, action: #selector(didTapNameTextField), for: .touchUpInside)
         piggyBankNextButton.addTarget(self, action: #selector(handlePiggyBankNextButtonEvent), for: .touchUpInside)
     }

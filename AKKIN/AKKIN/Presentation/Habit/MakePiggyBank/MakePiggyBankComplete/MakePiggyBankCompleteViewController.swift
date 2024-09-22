@@ -50,6 +50,14 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     }
 
     // MARK: Event
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        makePiggyBankCompleteView.emojiTextField.text = ""
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            makePiggyBankCompleteView.emojiTextField.text = "💰"
+        }
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }

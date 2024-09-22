@@ -57,10 +57,6 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
     }
 
     // MARK: Event
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
@@ -69,7 +65,6 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
         adjustCompleteButtonUI(isKeyboardVisible: true)
     }
 
-    // 키보드가 사라질 때 호출되게함
     @objc func keyboardWillHide(_ notification: Notification) {
         resetCompleteButtonPosition()
         adjustCompleteButtonUI(isKeyboardVisible: false)
@@ -91,20 +86,19 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
    func adjustCompleteButtonUI(isKeyboardVisible: Bool) {
        if isKeyboardVisible {
            makePiggyBankEndView.piggyBankNextButton.setCompleteButton(inputTitle: "다음")
-           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
            makePiggyBankEndView.piggyBankNextButton.snp.updateConstraints {
                $0.horizontalEdges.equalToSuperview()
            }
+           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
        } else {
            makePiggyBankEndView.piggyBankNextButton.setGuideButton("완료")
-           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
            makePiggyBankEndView.piggyBankNextButton.snp.updateConstraints {
                $0.bottom.equalToSuperview().inset(24)
                $0.horizontalEdges.equalToSuperview().inset(20)
            }
-
+           makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
        }
-   }
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == makePiggyBankEndView.nameTextField {
             makePiggyBankEndView.nameCountLabel.isHidden = false
@@ -172,7 +166,6 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
             textView.text = "절약 다짐(선택)"
             textView.textColor = .akkinGray6
         }
-        makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
     }
     func textViewDidChange(_ textView: UITextView) {
         let maxMemoCharCount = 40
@@ -181,7 +174,9 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
             textView.text = String(currentText.prefix(maxMemoCharCount))
         }
         makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
-        print(makePiggyBankEndView.confirmState)
+        makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
+        print("텍필뷰: \(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true)")
+        print("텍뷰: \(textView.text.isEmpty)")
         updateMemoCountLabel()
     }
     private func updateMemoCountLabel() {
