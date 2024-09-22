@@ -10,7 +10,7 @@ import UIKit
 final class ExpenseListView: BaseView {
 
     // MARK: UI Components
-    let backButton = BaseButton().then {
+    private let backButton = BaseButton().then {
         $0.setImage(AkkinButton.backButton.withTintColor(.akkinBlack2), for: .normal)
         $0.isEnabled = true
         $0.backgroundColor = .clear
