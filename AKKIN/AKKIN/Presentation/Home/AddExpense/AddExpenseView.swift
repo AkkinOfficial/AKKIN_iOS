@@ -33,7 +33,7 @@ final class AddExpenseView: BaseView {
         return textField
     }()
 
-    lazy var expenseDetailLabel: BaseTextField = {
+    lazy var expenseContentTextField: BaseTextField = {
         let textField = BaseTextField()
         textField.placeholder = "지출 내용"
         textField.addLeftImage(image: AkkinIcon.bookmark)
@@ -67,6 +67,7 @@ final class AddExpenseView: BaseView {
     var formatter = DateFormatter()
     var tapCategoryTextField: (() -> Void)?
     var tapExpenseDayTextField: (() -> Void)?
+    var tapConfirmButton: (() -> Void)?
 
     // MARK: Custom Keyboard
     private let customKeyboardVC = CustomKeyboardViewController()
@@ -78,7 +79,7 @@ final class AddExpenseView: BaseView {
         addSubview(addExpenseLabel)
         addSubview(expenseAmountTextField)
         addSubview(expenseCategoryTextField)
-        addSubview(expenseDetailLabel)
+        addSubview(expenseContentTextField)
         addSubview(memoTextField)
         addSubview(expenseDayTextField)
         addSubview(confirmButton)
@@ -88,6 +89,7 @@ final class AddExpenseView: BaseView {
 
         expenseCategoryTextField.addTarget(self, action: #selector(didTapCategoryTextField), for: .touchDown)
         expenseDayTextField.addTarget(self, action: #selector(didTapExpenseDayTextField), for: .touchDown)
+        confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside) 
 
     }
 
@@ -112,7 +114,7 @@ final class AddExpenseView: BaseView {
             $0.height.equalTo(56)
         }
 
-        expenseDetailLabel.snp.makeConstraints {
+        expenseContentTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(expenseCategoryTextField.snp.bottom).offset(12)
             $0.height.equalTo(56)
@@ -120,7 +122,7 @@ final class AddExpenseView: BaseView {
 
         memoTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.top.equalTo(expenseDetailLabel.snp.bottom).offset(12)
+            $0.top.equalTo(expenseContentTextField.snp.bottom).offset(12)
             $0.height.equalTo(84)
         }
 
@@ -144,6 +146,10 @@ final class AddExpenseView: BaseView {
 
     @objc private func didTapExpenseDayTextField() {
         tapExpenseDayTextField?()
+    }
+
+    @objc private func didTapConfirmButton() {
+        tapConfirmButton?()
     }
 }
 

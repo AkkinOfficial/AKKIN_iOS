@@ -16,6 +16,7 @@ final class AddExpenseViewController: BaseViewController {
 
     // MARK: Environment
     private let router = BaseRouter()
+    let expenseInfo = ExpenseInfo.shared
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -30,22 +31,31 @@ final class AddExpenseViewController: BaseViewController {
 
     // MARK: Configuration
     override func configureSubviews() {
-       view.addSubview(addExpenseView)
+        view.addSubview(addExpenseView)
 
         addExpenseView.tapCategoryTextField = {
             [weak self] in
-                guard let self else { return }
+            guard let self else { return }
             router.presentExpenseCategoryViewController(expenseCategoryViewController)
         }
 
         addExpenseView.tapExpenseDayTextField = {
             [weak self] in
-                guard let self else { return }
+            guard let self else { return }
             router.presentSetPeriodViewController(setPeriodViewController)
         }
 
+        addExpenseView.tapConfirmButton = { [weak self] in
+            guard let self else { return }
+            expenseInfo.amount =  addExpenseView.expenseAmountTextField.text ?? ""
+            expenseInfo.category =  addExpenseView.expenseCategoryTextField.text ?? ""
+            expenseInfo.content =  addExpenseView.expenseContentTextField.text ?? ""
+            expenseInfo.memo = addExpenseView.memoTextField.text ?? ""
+            expenseInfo.date =  addExpenseView.expenseDayTextField.text ?? ""
 
-        
+            router.presentAddExpenseConfirmViewController()
+        }
+
     }
 
     // MARK: Layout
@@ -68,6 +78,7 @@ extension AddExpenseViewController:
     ExpenseCategoryViewControllerDelegate {
     func didSelectCategory(icon: UIImage, category: String) {
         addExpenseView.expenseCategoryTextField.addLeftImage(image: icon)
+        expenseInfo.icon =  icon
         addExpenseView.expenseCategoryTextField.text = category
     }
 
