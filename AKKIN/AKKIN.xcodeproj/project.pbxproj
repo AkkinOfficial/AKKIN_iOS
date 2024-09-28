@@ -129,6 +129,7 @@
 		E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */; };
 		E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */; };
 		E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */; };
+		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
@@ -266,6 +267,7 @@
 		E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanExpenseModel.swift; sourceTree = "<group>"; };
 		E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodViewController.swift; sourceTree = "<group>"; };
 		E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodView.swift; sourceTree = "<group>"; };
+		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -400,8 +402,9 @@
 			children = (
 				953650782C64567700F58D13 /* EmptyHomeViewController.swift */,
 				953650762C64566A00F58D13 /* EmptyHomeView.swift */,
-				E5F659D52C95C759001A08C7 /* HomeView.swift */,
 				E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */,
+				E5F659D52C95C759001A08C7 /* HomeView.swift */,
+				E59A27712CA853390050359C /* HomeModel.swift */,
 				9536507F2C64574C00F58D13 /* PlanExpense */,
 				953650802C6457A100F58D13 /* AddExpense */,
 			);
@@ -922,6 +925,7 @@
 				E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
+				E59A27722CA853390050359C /* HomeModel.swift in Sources */,
 				E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */,
 				E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */,
 				953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */,
