@@ -11,17 +11,32 @@ struct HomeModel {
     let savedAmount: Int
     let expenseAmount: Int
     let availableAmount: Int
+
+    var formattedSavedAmount: String {
+        return formattedAmount(savedAmount)
+    }
+
+    var formattedExpenseAmount: String {
+        return formattedAmount(expenseAmount)
+    }
+
+    var formattedAvailableAmount: String {
+        return formattedAmount(availableAmount)
+    }
+
+    private func formattedAmount(_ amount: Int) -> String {
+        return NumberFormatter.localizedString(from: NSNumber(value: amount), number: .decimal)
+    }
 }
 
 // MARK: - Dummy Data Extension
 extension HomeModel {
-
     static var dailyDummy: HomeModel {
-        return HomeModel(type: "daily", savedAmount: 10000, expenseAmount: 3000, availableAmount: 7000)
+        return HomeModel(type: "daily", savedAmount: 27667, expenseAmount: 33333, availableAmount: 61000)
     }
 
     static var allDummy: HomeModel {
-        return HomeModel(type: "all", savedAmount: 50000, expenseAmount: 20000, availableAmount: 30000)
+        return HomeModel(type: "all", savedAmount: 118920, expenseAmount: 181080, availableAmount: 300000)
     }
 
     static func dummy(for type: String) -> HomeModel? {
