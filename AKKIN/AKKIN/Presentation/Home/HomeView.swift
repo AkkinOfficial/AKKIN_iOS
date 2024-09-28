@@ -22,12 +22,63 @@ final class HomeView: BaseView {
         return button
     }()
 
-    lazy var expensePlanLabel: UILabel = {
+    lazy var homeTitleLabel: UILabel = {
         let label = UILabel()
         label.text = AkkinString.expensePlanHeadLine
         label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         label.numberOfLines = 0
         label.setLineSpacing(10)
+        label.textAlignment = .center
+        return label
+    }()
+
+    private let parentStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+    }
+
+    private let expenseStackview = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.alignment = .fill
+        $0.spacing = 12
+    }
+
+    private let challengeStackview = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.alignment = .fill
+        $0.spacing = 12
+    }
+
+    lazy var expenseLabel: UILabel = {
+        let label = UILabel()
+        label.text = "사용금액"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textAlignment = .center
+        return label
+    }()
+
+    lazy var expenseAmountLabel: UILabel = {
+        let label = UILabel()
+        label.text = AkkinString.expensePlanHeadLine
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textAlignment = .center
+        return label
+    }()
+
+    lazy var challengeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "챌린지 금액"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textAlignment = .center
+        return label
+    }()
+
+    lazy var challengeAmountLabel: UILabel = {
+        let label = UILabel()
+        label.text = AkkinString.expensePlanHeadLine
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.textAlignment = .center
         return label
     }()
@@ -46,7 +97,12 @@ final class HomeView: BaseView {
         addSubview(addExpenseButton)
         addSubview(toggleButton)
         addSubview(progressView)
-        addSubview(expensePlanLabel)
+        addSubview(homeTitleLabel)
+        addSubview(parentStackView)
+
+        parentStackView.addArrangedSubviews(expenseStackview, challengeStackview)
+        expenseStackview.addArrangedSubviews(expenseLabel, expenseAmountLabel)
+        challengeStackview.addArrangedSubviews(challengeLabel, challengeAmountLabel)
 
         addExpenseButton.addTarget(self, action: #selector(didTapAddExpenseButton), for: .touchUpInside)
     }
@@ -60,19 +116,27 @@ final class HomeView: BaseView {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(56)
         }
+
         toggleButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(119)
             $0.width.equalTo(219)
             $0.height.equalTo(49)
         }
-        expensePlanLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(toggleButton.snp.bottom).offset(40)
+
+        homeTitleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(toggleButton.snp.bottom).offset(40)
         }
+
         progressView.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.height.equalTo(180) 
+            $0.width.height.equalTo(180)
+        }
+
+        parentStackView.snp.makeConstraints {
+            $0.top.equalTo(progressView.snp.bottom).offset(50)
+            $0.horizontalEdges.equalToSuperview().inset(65)
         }
     }
 

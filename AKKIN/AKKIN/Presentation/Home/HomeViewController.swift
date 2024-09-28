@@ -52,19 +52,29 @@ final class HomeViewController: BaseViewController {
     private func configureView(for type: String) {
         guard let model = HomeModel.dummy(for: type) else { return }
 
-        homeView.progressView.totalAmount = CGFloat(model.savedAmount)
+        homeView.progressView.totalAmount = CGFloat(model.availableAmount)
         homeView.progressView.usedAmount = CGFloat(model.expenseAmount)
+        homeView.expenseAmountLabel.text = "\(model.formattedExpenseAmount)원"
+        homeView.challengeAmountLabel.text = "\(model.formattedAvailableAmount)원"
 
         switch type {
         case "daily":
             homeView.progressView.setCenterImage(AkkinIcon.habitFilled)
+            homeView.homeTitleLabel.setRangeAttributedText(title: "오늘 하루 아낀 금액 \n무려 \(model.formattedSavedAmount)원!",
+                                                           highlightedText: model.formattedSavedAmount,
+                                                           highlightedColor: UIColor.akkinGreen,
+                                                           highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
         case "all":
             homeView.progressView.setCenterImage(AkkinIcon.piggyBankFilled)
+            homeView.homeTitleLabel.setRangeAttributedText(title: "그동안 아낀 금액 \n무려 \(model.formattedSavedAmount)원!",
+                                                           highlightedText: model.formattedSavedAmount,
+                                                           highlightedColor: UIColor.akkinGreen,
+                                                           highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
         default:
             break
         }
-
-        print("Updated to \(type) type: Saved = \(model.savedAmount), Used = \(model.expenseAmount), Available = \(model.availableAmount)")
+        
+        print("\(type) type: Saved = \(model.savedAmount), Used = \(model.expenseAmount), Available = \(model.availableAmount)")
     }
 
     // MARK: Layout

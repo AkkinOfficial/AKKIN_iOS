@@ -27,4 +27,15 @@ extension UILabel {
 
         self.attributedText = attributedString
     }
+
+    func setRangeAttributedText(title: String, highlightedText: String, highlightedColor: UIColor, highlightedFont: UIFont) {
+        let fullText = title 
+        let attributedString = NSMutableAttributedString(string: fullText)
+
+        let range = (fullText as NSString).range(of: highlightedText)
+        attributedString.addAttribute(.foregroundColor, value: highlightedColor, range: range)
+        attributedString.addAttribute(.font, value: highlightedFont, range: range)
+
+        self.attributedText = attributedString
+    }
 }
