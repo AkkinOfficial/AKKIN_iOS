@@ -27,7 +27,7 @@ final class EmptyHomeView: BaseView {
 
     lazy var planExpenseButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("지출 계획하기", for: .normal)
+        button.setTitle("챌린지 시작하기", for: .normal)
         button.isEnabled = true
         return button
     }()

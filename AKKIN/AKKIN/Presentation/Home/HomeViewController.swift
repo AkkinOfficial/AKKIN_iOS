@@ -30,6 +30,11 @@ final class HomeViewController: BaseViewController {
             guard let self else { return }
             router.presentAddExpenseViewController()
         }
+        //TODO: model 변경 코드 추가
+        homeView.toggleButton.tapToggle = { [weak self] in
+            guard let self else { return }
+            print("toggle")
+        }
     }
 
     // MARK: Layout
