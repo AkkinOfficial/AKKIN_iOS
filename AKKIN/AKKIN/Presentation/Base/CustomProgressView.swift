@@ -27,6 +27,12 @@ class CustomProgressView: BaseView {
         }
     }
 
+    private var _usedAmount: CGFloat = 0 {
+        didSet {
+            setProgress()
+        }
+    }
+
     var totalAmount: CGFloat {
         get {
             return _totalAmount
@@ -37,8 +43,12 @@ class CustomProgressView: BaseView {
         }
     }
 
-    private var usedAmount: CGFloat = 0 {
-        didSet {
+    var usedAmount: CGFloat {
+        get {
+            return _usedAmount
+        }
+        set {
+            _usedAmount = max(0, newValue)
             setProgress()
         }
     }
@@ -112,7 +122,7 @@ class CustomProgressView: BaseView {
         layer.add(animation, forKey: "progressAnim")
     }
 
-     func useAmount(_ amount: CGFloat) {
+     func adduseAmount(_ amount: CGFloat) {
         if amount <= totalAmount {
             usedAmount += amount
             setProgress()

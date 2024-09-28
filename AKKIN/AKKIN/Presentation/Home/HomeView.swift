@@ -22,6 +22,16 @@ final class HomeView: BaseView {
         return button
     }()
 
+    lazy var expensePlanLabel: UILabel = {
+        let label = UILabel()
+        label.text = AkkinString.expensePlanHeadLine
+        label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        label.numberOfLines = 0
+        label.setLineSpacing(10)
+        label.textAlignment = .center
+        return label
+    }()
+
     lazy var progressView : CustomProgressView = {
         let progressView = CustomProgressView()
         return progressView
@@ -36,6 +46,7 @@ final class HomeView: BaseView {
         addSubview(addExpenseButton)
         addSubview(toggleButton)
         addSubview(progressView)
+        addSubview(expensePlanLabel)
 
         addExpenseButton.addTarget(self, action: #selector(didTapAddExpenseButton), for: .touchUpInside)
     }
@@ -54,6 +65,10 @@ final class HomeView: BaseView {
             $0.top.equalToSuperview().offset(119)
             $0.width.equalTo(219)
             $0.height.equalTo(49)
+        }
+        expensePlanLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(toggleButton.snp.bottom).offset(40)
         }
         progressView.snp.makeConstraints {
             $0.center.equalToSuperview()
