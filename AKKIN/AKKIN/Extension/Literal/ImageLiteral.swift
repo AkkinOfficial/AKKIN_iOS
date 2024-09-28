@@ -42,6 +42,7 @@ public enum AkkinIcon {
     public static var wallet: UIImage { .load(name: "ic_wallet") }
     public static var bookmark: UIImage { .load(name: "ic_bookmark") }
     public static var memo: UIImage { .load(name: "ic_memo") }
+    public static var piggyBankFilled: UIImage { .load(name: "ic_piggyBankFilled") }
 }
 
 extension UIImage {
