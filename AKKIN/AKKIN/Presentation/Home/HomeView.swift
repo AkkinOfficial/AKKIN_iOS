@@ -22,6 +22,11 @@ final class HomeView: BaseView {
         return button
     }()
 
+    lazy var progressView : CustomProgressView = {
+        let progressView = CustomProgressView()
+        return progressView
+    }()
+
     // MARK: Properties
     var tapAddExpense: (() -> Void)?
 
@@ -30,6 +35,7 @@ final class HomeView: BaseView {
         super.configureSubviews()
         addSubview(addExpenseButton)
         addSubview(toggleButton)
+        addSubview(progressView)
 
         addExpenseButton.addTarget(self, action: #selector(didTapAddExpenseButton), for: .touchUpInside)
     }
@@ -48,6 +54,10 @@ final class HomeView: BaseView {
             $0.top.equalToSuperview().offset(119)
             $0.width.equalTo(219)
             $0.height.equalTo(49)
+        }
+        progressView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(180) 
         }
     }
 

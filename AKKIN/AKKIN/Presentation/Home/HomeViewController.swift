@@ -35,6 +35,10 @@ final class HomeViewController: BaseViewController {
             guard let self else { return }
             print("toggle")
         }
+        //TODO: 뷰 변경처리 추가
+        homeView.progressView.totalAmount = 5000
+        homeView.progressView.useAmount(4000)
+        homeView.progressView.setCenterImage(AkkinIcon.piggyBankFilled)
     }
 
     // MARK: Layout
