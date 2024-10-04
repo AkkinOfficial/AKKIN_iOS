@@ -45,6 +45,9 @@ extension UIColor {
     static var akkinGray3: UIColor {
         return UIColor(hex: "#E5E5E5")
     }
+    static var akkinGray3_1: UIColor {
+        return UIColor(hex: "#EEEEEE")
+    }
 
     /// akkin empty text color
     static var akkinGray4: UIColor {
