@@ -10,7 +10,7 @@ import UIKit
 final class EmptyHomeViewController: BaseViewController {
 
     // MARK: UI Components
-    private let homeView = EmptyHomeView()
+    private let emptyHomeView = EmptyHomeView()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -24,19 +24,18 @@ final class EmptyHomeViewController: BaseViewController {
 
     // MARK: Configuration
     override func configureSubviews() {
-        view.addSubview(homeView)
+        view.addSubview(emptyHomeView)
 
         //TODO: 라우터 수정
-        homeView.tapExpense = { [weak self] in
+        emptyHomeView.tapExpense = { [weak self] in
             guard let self else { return }
-            //router.presentPlanExpenseViewController()
-            router.presentAddExpenseViewController()
+            router.presentPlanExpenseViewController()
         }
     }
 
     // MARK: Layout
     override func makeConstraints() {
-        homeView.snp.makeConstraints {
+        emptyHomeView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

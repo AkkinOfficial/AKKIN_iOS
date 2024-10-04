@@ -132,6 +132,9 @@
 		E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */; };
 		E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */; };
 		E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */; };
+		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
+		E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27752CA85F840050359C /* CustomToggleButton.swift */; };
+		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
@@ -272,6 +275,9 @@
 		E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanExpenseModel.swift; sourceTree = "<group>"; };
 		E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodViewController.swift; sourceTree = "<group>"; };
 		E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodView.swift; sourceTree = "<group>"; };
+		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
+		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -406,8 +412,9 @@
 			children = (
 				953650782C64567700F58D13 /* EmptyHomeViewController.swift */,
 				953650762C64566A00F58D13 /* EmptyHomeView.swift */,
-				E5F659D52C95C759001A08C7 /* HomeView.swift */,
 				E5F659DB2C9709A8001A08C7 /* HomeViewController.swift */,
+				E5F659D52C95C759001A08C7 /* HomeView.swift */,
+				E59A27712CA853390050359C /* HomeModel.swift */,
 				9536507F2C64574C00F58D13 /* PlanExpense */,
 				953650802C6457A100F58D13 /* AddExpense */,
 			);
@@ -696,6 +703,8 @@
 				BC94AD4F2AA61E6700A77052 /* BaseRouter.swift */,
 				E5D34D8E2C85A62300200C44 /* BaseTextField.swift */,
 				E5F659D92C9708B7001A08C7 /* CustomKeyboardViewController.swift */,
+				E59A27752CA85F840050359C /* CustomToggleButton.swift */,
+				E59A27772CA8657F0050359C /* CustomProgressView.swift */,
 				C3F685572CA07EBD00002792 /* EmojiTextField.swift */,
 				C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */,
 			);
@@ -929,6 +938,7 @@
 				9536508B2C64585700F58D13 /* MakePiggyBankStartViewController.swift in Sources */,
 				9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* BaseRouter.swift in Sources */,
+				E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */,
 				9536507E2C6456CE00F58D13 /* HabitViewController.swift in Sources */,
 				E5F659E52C9FEA50001A08C7 /* ExpenseCategoryModel.swift in Sources */,
 				E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */,
@@ -939,6 +949,7 @@
 				E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
+				E59A27722CA853390050359C /* HomeModel.swift in Sources */,
 				E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */,
 				E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */,
 				953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */,
@@ -1025,6 +1036,7 @@
 				955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
+				E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */,
 				951261902AC02EA70012B5F9 /* NetworkResult.swift in Sources */,
 				955100B12C76D85D00D80A9C /* CategoryDetailView.swift in Sources */,
 				953650AB2C6462E400F58D13 /* TabBarViewController.swift in Sources */,
