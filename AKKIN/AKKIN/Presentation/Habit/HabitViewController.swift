@@ -33,7 +33,7 @@ final class HabitViewController: BaseViewController {
 
         view.addSubview(habitView)
 
-        habitView.tapPiggyBankButton = { [weak self] in
+        habitView.makePiggyBankEmptyView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
             router.popToMakePiggyBankStartViewController()
         }
