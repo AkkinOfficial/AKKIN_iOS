@@ -19,7 +19,8 @@ class TabBarViewController: UITabBarController {
     }
 
     // MARK: UI Components
-    let homeViewController = EmptyHomeViewController()
+    let emptyHomeViewController = EmptyHomeViewController()
+    let homeViewController = HomeViewController()
     let habitViewController = HabitViewController()
     let calendarViewController = CalendarViewController()
     let myPageViewController = MyPageViewController()
@@ -44,17 +45,21 @@ class TabBarViewController: UITabBarController {
 
     // MARK: TabBar
     private func setupTabBarViewController() {
+        emptyHomeViewController.title = "홈"
         homeViewController.title = "홈"
         habitViewController.title = "소비습관"
         calendarViewController.title = "캘린더"
         myPageViewController.title = "MY"
         
+        setupTabBarItem(for: emptyHomeViewController, image: AkkinIcon.home, selectedImage: AkkinIcon.homeFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: homeViewController, image: AkkinIcon.home, selectedImage: AkkinIcon.homeFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: habitViewController, image: AkkinIcon.habit, selectedImage: AkkinIcon.habitFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: calendarViewController, image: AkkinIcon.calendar, selectedImage: AkkinIcon.calendarFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: myPageViewController, image: AkkinIcon.my, selectedImage: AkkinIcon.myFilled)
 
+        //TODO: 네트워크 연결이후 분기처리
         let navigationHome = UINavigationController(rootViewController: homeViewController)
+
         let navigationHabit = UINavigationController(rootViewController: habitViewController)
         let navigationCalendar = UINavigationController(rootViewController: calendarViewController)
         let navigationMyPage = UINavigationController(rootViewController: myPageViewController)
