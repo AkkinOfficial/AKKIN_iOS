@@ -101,17 +101,8 @@ final class BaseRouter {
     }
 
     func popToRootViewController() {
-        viewController?.dismiss(animated: true, completion: {
-            if let rootViewController =
-                UIApplication.shared.windows.first?
-                .rootViewController {
-                if let navigationController =
-                    rootViewController as? UINavigationController {
-                    navigationController
-                        .popToRootViewController(animated: true)
-                }
-            }
-        })
+        viewController?.navigationController?.popToRootViewController(animated: true)
+
     }
 
     func presentPlanExpenseViewController() {
