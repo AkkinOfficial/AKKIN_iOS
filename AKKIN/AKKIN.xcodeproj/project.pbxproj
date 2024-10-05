@@ -155,6 +155,9 @@
 		E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */; };
 		E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */; };
 		E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */; };
+		E5863FA32CB19DEC0092D6C1 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA22CB19DEC0092D6C1 /* HomeAPI.swift */; };
+		E5863FA52CB19DF70092D6C1 /* HomeSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA42CB19DF70092D6C1 /* HomeSevice.swift */; };
+		E5863FA72CB19E010092D6C1 /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA62CB19E010092D6C1 /* HomeResponse.swift */; };
 		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
 		E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27752CA85F840050359C /* CustomToggleButton.swift */; };
 		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
@@ -321,6 +324,9 @@
 		E53F84332C8DD6420005EBBE /* PlanExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanExpenseModel.swift; sourceTree = "<group>"; };
 		E56ED7272C6E6DF50022413D /* SetPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodViewController.swift; sourceTree = "<group>"; };
 		E56ED7292C6E6DFF0022413D /* SetPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPeriodView.swift; sourceTree = "<group>"; };
+		E5863FA22CB19DEC0092D6C1 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
+		E5863FA42CB19DF70092D6C1 /* HomeSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSevice.swift; sourceTree = "<group>"; };
+		E5863FA62CB19E010092D6C1 /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
 		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
@@ -755,6 +761,7 @@
 			isa = PBXGroup;
 			children = (
 				C31602F72CB275D900348B09 /* PiggyBank */,
+				E5863FA12CB19DCD0092D6C1 /* Home */,
 				BC94AD532AA61F4800A77052 /* Example */,
 				9512618C2AC02E380012B5F9 /* Auth */,
 				951261A52AC19A0C0012B5F9 /* Main */,
@@ -925,6 +932,16 @@
 			path = SetPeriodView;
 			sourceTree = "<group>";
 		};
+		E5863FA12CB19DCD0092D6C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E5863FA22CB19DEC0092D6C1 /* HomeAPI.swift */,
+				E5863FA42CB19DF70092D6C1 /* HomeSevice.swift */,
+				E5863FA62CB19E010092D6C1 /* HomeResponse.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1077,6 +1094,7 @@
 				6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				951261942AC02EC60012B5F9 /* BlankDataResponse.swift in Sources */,
+				E5863FA72CB19E010092D6C1 /* HomeResponse.swift in Sources */,
 				951261B42AC1A8920012B5F9 /* MonthlyResponse.swift in Sources */,
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,
 				C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */,
@@ -1116,6 +1134,7 @@
 				953650BF2C6DFF6200F58D13 /* MonthAnalysisView.swift in Sources */,
 				953650822C6457ED00F58D13 /* PlanExpenseViewController.swift in Sources */,
 				C31603052CB2BB8000348B09 /* MakePiggyBankService.swift in Sources */,
+				E5863FA32CB19DEC0092D6C1 /* HomeAPI.swift in Sources */,
 				E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */,
 				E5F659E12C9C9174001A08C7 /* ExpenseCategoryViewController.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
@@ -1145,6 +1164,7 @@
 				C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */,
 				951261C12AC1B00D0012B5F9 /* GulbiService.swift in Sources */,
 				95EF1C542C7EDEE000AD06A9 /* MonthPickerView.swift in Sources */,
+				E5863FA52CB19DF70092D6C1 /* HomeSevice.swift in Sources */,
 				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
 				95094BF02CBAC6C3006055C3 /* UsersService.swift in Sources */,
 				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
