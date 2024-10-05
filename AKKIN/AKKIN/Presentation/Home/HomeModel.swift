@@ -30,23 +30,23 @@ struct HomeModel {
 }
 
 // MARK: - Dummy Data Extension
-extension HomeModel {
-    static var dailyDummy: HomeModel {
-        return HomeModel(type: "daily", savedAmount: 27667, expenseAmount: 33333, availableAmount: 61000)
-    }
-
-    static var allDummy: HomeModel {
-        return HomeModel(type: "all", savedAmount: 118920, expenseAmount: 181080, availableAmount: 300000)
-    }
-
-    static func dummy(for type: String) -> HomeModel? {
-        switch type {
-        case "daily":
-            return HomeModel.dailyDummy
-        case "all":
-            return HomeModel.allDummy
-        default:
-            return nil
-        }
-    }
-}
+//extension HomeModel {
+//    static var dailyDummy: HomeModel {
+//        return HomeModel(type: "daily", savedAmount: 27667, expenseAmount: 33333, availableAmount: 61000)
+//    }
+//
+//    static var allDummy: HomeModel {
+//        return HomeModel(type: "all", savedAmount: 118920, expenseAmount: 181080, availableAmount: 300000)
+//    }
+//
+//    static func dummy(for type: String) -> HomeModel? {
+//        switch type {
+//        case "daily":
+//            return HomeModel.dailyDummy
+//        case "all":
+//            return HomeModel.allDummy
+//        default:
+//            return nil
+//        }
+//    }
+//}
