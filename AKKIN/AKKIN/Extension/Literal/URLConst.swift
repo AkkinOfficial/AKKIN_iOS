@@ -44,4 +44,10 @@ enum URLConst {
     // MARK: - User
     static let users = "/users/me"
     static let usersNickname = "/users/me/nickname"
+    //MARK: - home Expenses Summary
+    static let homeExpensesSummary = "/expenses/summary"
+
+    //MARK: - home Expenses Summary
+    static let addExpenses = "/expenses"
+
 }

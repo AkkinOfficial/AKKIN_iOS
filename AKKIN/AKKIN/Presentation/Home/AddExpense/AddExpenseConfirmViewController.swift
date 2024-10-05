@@ -14,6 +14,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
 
     // MARK: Environment
     private let router = BaseRouter()
+    private let addExpenseService = AddExpenseService()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -27,10 +28,11 @@ final class AddExpenseConfirmViewController: BaseViewController {
         setView()
         view.addSubview(addExpenseConfirmView)
 
-        //TODO: - 네트워크 코드 추가
         addExpenseConfirmView.tapConfirmButton = { [weak self] in
             guard let self else { return }
-            router.popViewController()
+            addExpense()
+            //TODO: - 네트워크 성공후 rootview로 이동
+            router.popToRootViewController()
         }
     }
 
@@ -46,6 +48,41 @@ final class AddExpenseConfirmViewController: BaseViewController {
         addExpenseConfirmView.expenseContentLabel.text = ExpenseInfo.shared.content
         addExpenseConfirmView.expenseAmountLabel.text = "\(ExpenseInfo.shared.amount)원"
         addExpenseConfirmView.expenseMemoLabel.text = ExpenseInfo.shared.memo
+    }
+
+    private func addExpense() {
+        let amountString = ExpenseInfo.shared.amount.replacingOccurrences(of: ",", with: "")
+        guard let amount = Int(amountString) else {
+            print("Invalid amount: \(ExpenseInfo.shared.amount)")
+            return
+        }
+
+        let request = AddExpenseRequest(
+            amount: amount,
+            content: ExpenseInfo.shared.content,
+            memo: ExpenseInfo.shared.memo,
+            date: ExpenseInfo.shared.date,
+            category: ExpenseInfo.shared.category
+        )
+
+        addExpenseService.postAddExpense(request: request) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let response):
+                if let addExpenseResponse = response as? AddExpenseResponse {
+                    print("Expense added successfully: \(addExpenseResponse)")
+                }
+            case .requestErr(let errorResponse):
+                print("Request error: \(errorResponse)")
+            case .serverErr:
+                print("Server error")
+            case .networkFail:
+                print("Network failure")
+            case .pathErr:
+                print("Path error")
+            }
+        }
     }
 }
 

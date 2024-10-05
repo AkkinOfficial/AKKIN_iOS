@@ -158,6 +158,10 @@
 		E5863FA32CB19DEC0092D6C1 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA22CB19DEC0092D6C1 /* HomeAPI.swift */; };
 		E5863FA52CB19DF70092D6C1 /* HomeSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA42CB19DF70092D6C1 /* HomeSevice.swift */; };
 		E5863FA72CB19E010092D6C1 /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA62CB19E010092D6C1 /* HomeResponse.swift */; };
+		E5863FAA2CB1B2320092D6C1 /* AddExpensesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */; };
+		E5863FAC2CB1B23F0092D6C1 /* AddExpensesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */; };
+		E5863FAE2CB1B24A0092D6C1 /* AddExpensesReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */; };
+		E5863FB02CB1B5D80092D6C1 /* AddExpensesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */; };
 		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
 		E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27752CA85F840050359C /* CustomToggleButton.swift */; };
 		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
@@ -327,6 +331,10 @@
 		E5863FA22CB19DEC0092D6C1 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		E5863FA42CB19DF70092D6C1 /* HomeSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSevice.swift; sourceTree = "<group>"; };
 		E5863FA62CB19E010092D6C1 /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
+		E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesAPI.swift; sourceTree = "<group>"; };
+		E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesService.swift; sourceTree = "<group>"; };
+		E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesReponse.swift; sourceTree = "<group>"; };
+		E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesRequest.swift; sourceTree = "<group>"; };
 		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
@@ -760,6 +768,7 @@
 		BC94AD362AA618B100A77052 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				E5863FA82CB1B2130092D6C1 /* AddExpenses */,
 				C31602F72CB275D900348B09 /* PiggyBank */,
 				E5863FA12CB19DCD0092D6C1 /* Home */,
 				BC94AD532AA61F4800A77052 /* Example */,
@@ -942,6 +951,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		E5863FA82CB1B2130092D6C1 /* AddExpenses */ = {
+			isa = PBXGroup;
+			children = (
+				E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */,
+				E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */,
+				E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */,
+				E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */,
+			);
+			path = AddExpenses;
+			sourceTree = "<group>";
+		};
 		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,6 +1122,7 @@
 				95EF1C562C7EDF0100AD06A9 /* SelectMonthNavigationBar.swift in Sources */,
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,
+				E5863FAC2CB1B23F0092D6C1 /* AddExpensesService.swift in Sources */,
 				951261BC2AC1A8BA0012B5F9 /* MonthlyAPI.swift in Sources */,
 				E5F659E72CA00B49001A08C7 /* AddExpenseConfirmViewController.swift in Sources */,
 				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
@@ -1144,7 +1165,10 @@
 				E5F659E32C9FE790001A08C7 /* ExpenseCategoryCell.swift in Sources */,
 				C33426E12CAFF43E005483AC /* PiggyBankDetailView.swift in Sources */,
 				9536509A2C6458F200F58D13 /* CalendarView.swift in Sources */,
+				E5863FAA2CB1B2320092D6C1 /* AddExpensesAPI.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
+				E5863FB02CB1B5D80092D6C1 /* AddExpensesRequest.swift in Sources */,
+				E5863FAE2CB1B24A0092D6C1 /* AddExpensesReponse.swift in Sources */,
 				955201402CA06793006DB98C /* CalendarModel.swift in Sources */,
 				955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,

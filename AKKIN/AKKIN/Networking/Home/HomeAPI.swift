@@ -16,7 +16,7 @@ extension HomeAPI: TargetType {
     var path: String {
         switch self {
         case .getExpenseSummary:
-            return URLConst.homeExpenseSummary
+            return URLConst.homeExpensesSummary
         }
     }
 
