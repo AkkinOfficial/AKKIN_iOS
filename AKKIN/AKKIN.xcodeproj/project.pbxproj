@@ -113,7 +113,7 @@
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
-		C31602F22CB14C4500348B09 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F12CB14C4200348B09 /* Untitled.swift */; };
+		C31602F22CB14C4500348B09 /* PiggyBankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F12CB14C4200348B09 /* PiggyBankModel.swift */; };
 		C31602F42CB14DD100348B09 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F32CB14DCB00348B09 /* TipView.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
@@ -266,7 +266,7 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C31602F12CB14C4200348B09 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		C31602F12CB14C4200348B09 /* PiggyBankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankModel.swift; sourceTree = "<group>"; };
 		C31602F32CB14DCB00348B09 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
@@ -432,7 +432,7 @@
 		9536507A2C6456B600F58D13 /* Habit */ = {
 			isa = PBXGroup;
 			children = (
-				C31602F12CB14C4200348B09 /* Untitled.swift */,
+				C31602F12CB14C4200348B09 /* PiggyBankModel.swift */,
 				9536507D2C6456CE00F58D13 /* HabitViewController.swift */,
 				9536507B2C6456C500F58D13 /* HabitView.swift */,
 				C33426D92CA0AF16005483AC /* PiggyBankDetail */,
@@ -1058,7 +1058,7 @@
 				9536509C2C64590000F58D13 /* MyPageViewController.swift in Sources */,
 				95577D212C81DE86008CFE0B /* HomeWidgetSettingView.swift in Sources */,
 				951261682ABF4ED20012B5F9 /* Storage.swift in Sources */,
-				C31602F22CB14C4500348B09 /* Untitled.swift in Sources */,
+				C31602F22CB14C4500348B09 /* PiggyBankModel.swift in Sources */,
 				E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */,
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
 				C31602F42CB14DD100348B09 /* TipView.swift in Sources */,
