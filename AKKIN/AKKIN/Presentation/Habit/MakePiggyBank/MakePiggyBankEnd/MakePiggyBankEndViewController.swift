@@ -11,6 +11,7 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
 
     // MARK: UI Components
     private let makePiggyBankEndView = MakePiggyBankEndView()
+    let piggyBankInfo = MakePiggyBankInfo.shared
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -44,6 +45,8 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
         }
         makePiggyBankEndView.tapPiggyBankNextButton = { [weak self] in
             guard let self else { return }
+            piggyBankInfo.name = makePiggyBankEndView.nameTextField.text ?? ""
+            piggyBankInfo.memo = makePiggyBankEndView.memoTextField.text ?? ""
             router.popToMakePiggyBankCompleteViewController()
         }
     }
