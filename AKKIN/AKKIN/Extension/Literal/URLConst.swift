@@ -25,6 +25,9 @@ enum URLConst {
     // MARK: - Gulbis
     static let gulbis = "/gulbis"
 
+    // MARK: - PiggyBank
+    static let getPiggyBankSummary = "/piggy-banks"
+
     // MARK: - weekly Stats
     static let weeklyStats = "/members/weekly"
 
