@@ -49,6 +49,10 @@ final class BaseRouter {
         let makePiggyBankViewController = MakePiggyBankCompleteViewController()
         viewController?.navigationController?.pushViewController(makePiggyBankViewController, animated: true)
     }
+    func popToPiggyBankDetailViewController() {
+        let piggyBankDetailViewController = PiggyBankDetailViewController()
+        viewController?.navigationController?.pushViewController(piggyBankDetailViewController, animated: true)
+    }
 
     func presentAnalysisExpenseViewController() {
         let analysisExpenseViewController = AnalysisExpenseDetailViewController()

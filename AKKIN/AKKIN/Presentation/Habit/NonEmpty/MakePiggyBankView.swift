@@ -47,11 +47,12 @@ final class MakePiggyBankView: BaseView {
 
     // MARK: Properties
     var tapDetailButton: (() -> Void)?
+    var tapDetail: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-
+        isUserInteractionEnabled = true
         backgroundColor = .white
         layer.cornerRadius = 16
 
@@ -61,6 +62,9 @@ final class MakePiggyBankView: BaseView {
 
         piggyBankStackView.addArrangedSubviews(piggyBankNameLabel, piggyBankAmountLabel)
 
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDetailViewEvent(_:))) //
+        addGestureRecognizer(tapGesture)
         detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
     }
 
@@ -100,6 +104,9 @@ final class MakePiggyBankView: BaseView {
     // MARK: Event
     @objc private func handleDetailButtonEvent() {
         tapDetailButton?()
+    }
+    @objc private func handleDetailViewEvent(_ gesture: UITapGestureRecognizer) {
+        tapDetail?()
     }
 
     private func updateMemoCountLabel() {

@@ -33,6 +33,11 @@ final class HabitViewController: BaseViewController {
 
         view.addSubview(habitView)
 
+        habitView.makePiggyBankNonEmptyView.tapDetail = {
+            [weak self] in
+                guard let self else { return }
+            router.popToPiggyBankDetailViewController()
+        }
         habitView.makePiggyBankEmptyView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
             router.popToMakePiggyBankStartViewController()
@@ -41,7 +46,6 @@ final class HabitViewController: BaseViewController {
             guard let self else { return }
             router.presentAnalysisExpenseViewController()
         }
-
         habitView.analysisExpenseView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
