@@ -10,6 +10,7 @@ import UIKit
 
 class CircularProgressView: UIView {
 
+    // MARK: UI Components
     private let lineWidth: CGFloat = 5
 
     var value: Double? {
@@ -18,7 +19,8 @@ class CircularProgressView: UIView {
             setProgress(diameter: 28, progress: 0.75)
         }
     }
-
+    
+    // MARK: Methods
     override func draw(_ rect: CGRect) {
        super.draw(rect)
 
@@ -33,6 +35,7 @@ class CircularProgressView: UIView {
        UIColor.akkinGray3_1.set()
        path.stroke()
     }
+
     func setProgress(diameter: CGFloat, progress: Double) {
         backgroundColor = .clear
 

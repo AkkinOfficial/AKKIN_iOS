@@ -113,9 +113,13 @@
 		BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5A2AA621E200A77052 /* AppDependency.swift */; };
 		BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */; };
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
+		C31602F22CB14C4500348B09 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F12CB14C4200348B09 /* Untitled.swift */; };
+		C31602F42CB14DD100348B09 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F32CB14DCB00348B09 /* TipView.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
 		C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */; };
+		C33426E12CAFF43E005483AC /* PiggyBankDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */; };
+		C33426E32CAFF44B005483AC /* PiggyBankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */; };
 		C336C7C92B5146E400A118F0 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7C82B5146E400A118F0 /* KakaoSDK */; };
 		C336C7CB2B5146E400A118F0 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CA2B5146E400A118F0 /* KakaoSDKAuth */; };
 		C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CC2B5146E400A118F0 /* KakaoSDKCert */; };
@@ -262,9 +266,13 @@
 		BC94AD5A2AA621E200A77052 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		BC94AD5D2AA6275000A77052 /* ExampleCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCustomView.swift; sourceTree = "<group>"; };
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C31602F12CB14C4200348B09 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		C31602F32CB14DCB00348B09 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
+		C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailView.swift; sourceTree = "<group>"; };
+		C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailViewController.swift; sourceTree = "<group>"; };
 		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
 		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
 		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +432,7 @@
 		9536507A2C6456B600F58D13 /* Habit */ = {
 			isa = PBXGroup;
 			children = (
+				C31602F12CB14C4200348B09 /* Untitled.swift */,
 				9536507D2C6456CE00F58D13 /* HabitViewController.swift */,
 				9536507B2C6456C500F58D13 /* HabitView.swift */,
 				C33426D92CA0AF16005483AC /* PiggyBankDetail */,
@@ -775,6 +784,9 @@
 		C33426D92CA0AF16005483AC /* PiggyBankDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C31602F32CB14DCB00348B09 /* TipView.swift */,
+				C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */,
+				C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */,
 			);
 			path = PiggyBankDetail;
 			sourceTree = "<group>";
@@ -953,6 +965,7 @@
 				E53F842A2C8C98250005EBBE /* BaseCalendarView.swift in Sources */,
 				E56ED72A2C6E6DFF0022413D /* SetPeriodView.swift in Sources */,
 				953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */,
+				C33426E32CAFF44B005483AC /* PiggyBankDetailViewController.swift in Sources */,
 				95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
 				955201372CA04BBE006DB98C /* ExpenseListView.swift in Sources */,
@@ -1008,6 +1021,7 @@
 				953650B52C6DC65200F58D13 /* UIStackView+Extension.swift in Sources */,
 				951261652ABD97100012B5F9 /* LoginView.swift in Sources */,
 				E5F659E32C9FE790001A08C7 /* ExpenseCategoryCell.swift in Sources */,
+				C33426E12CAFF43E005483AC /* PiggyBankDetailView.swift in Sources */,
 				9536509A2C6458F200F58D13 /* CalendarView.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
 				955201402CA06793006DB98C /* CalendarModel.swift in Sources */,
@@ -1044,8 +1058,10 @@
 				9536509C2C64590000F58D13 /* MyPageViewController.swift in Sources */,
 				95577D212C81DE86008CFE0B /* HomeWidgetSettingView.swift in Sources */,
 				951261682ABF4ED20012B5F9 /* Storage.swift in Sources */,
+				C31602F22CB14C4500348B09 /* Untitled.swift in Sources */,
 				E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */,
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
+				C31602F42CB14DD100348B09 /* TipView.swift in Sources */,
 				955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */,
 				9536509E2C64590700F58D13 /* MyPageView.swift in Sources */,
 				E53F842D2C8C98560005EBBE /* CalendarCell.swift in Sources */,
