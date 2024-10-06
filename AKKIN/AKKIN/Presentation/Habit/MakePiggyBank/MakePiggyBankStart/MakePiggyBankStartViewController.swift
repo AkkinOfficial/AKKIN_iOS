@@ -12,6 +12,7 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
     // MARK: UI Components
     private let makePiggyBankStartView = MakePiggyBankStartView()
     let setPeriodViewController = SetPeriodViewController(singleDate: false)
+    let piggyBankInfo = MakePiggyBankInfo.shared
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -46,6 +47,7 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
         }
         makePiggyBankStartView.tapPiggyBankNextButton = { [weak self] in
             guard let self else { return }
+            piggyBankInfo.goalAmount =  Int(makePiggyBankStartView.budgetTextField.text ?? "") ?? 0
             router.popToMakePiggyBankEndViewController()
         }
     }
@@ -107,6 +109,8 @@ final class MakePiggyBankStartViewController: BaseViewController, UITextFieldDel
 extension MakePiggyBankStartViewController: SetPeriodViewControllerDelegate {
     func didSelectDates(startDate: String, endDate: String, duration: String) {
         makePiggyBankStartView.periodTextField.text = "\(startDate) ~ \(endDate)"
+        piggyBankInfo.startDate = startDate
+        piggyBankInfo.endDate = endDate
         makePiggyBankStartView.periodTextField.addRightLabel(text: duration)
     }
 }

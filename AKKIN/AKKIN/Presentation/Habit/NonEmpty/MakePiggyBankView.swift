@@ -23,13 +23,12 @@ final class MakePiggyBankView: BaseView {
     }
 
     let piggyBankNameLabel = UILabel().then {
-        $0.text = "아이패드 사기(D-2)"
+        $0.text = "아이패드 사기(D-5)"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 
     let piggyBankAmountLabel = UILabel().then {
-        $0.text = "57,420원 / 638,000원"
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
@@ -41,7 +40,7 @@ final class MakePiggyBankView: BaseView {
 
     let circularProgressBar: CircularProgressView = {
         let view = CircularProgressView()
-        view.value = 0.84
+        view.value = 0.34
         return view
     }()
 
@@ -71,12 +70,11 @@ final class MakePiggyBankView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-        
+
         piggyBankImageLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
         }
-
         piggyBankStackView.snp.makeConstraints {
             $0.leading.equalTo(piggyBankImageLabel.snp.trailing).offset(10)
             $0.height.equalTo(40)
@@ -94,7 +92,7 @@ final class MakePiggyBankView: BaseView {
             $0.height.equalTo(19)
         }
         circularProgressBar.snp.makeConstraints {
-            $0.leading.equalTo(piggyBankStackView.snp.trailing).offset(4)
+            $0.trailing.equalToSuperview().inset(16)
             $0.width.height.equalTo(28)
             $0.centerY.equalToSuperview()
         }
@@ -110,13 +108,13 @@ final class MakePiggyBankView: BaseView {
     }
 
     private func updateMemoCountLabel() {
-        let maxMemoCharCount = 112730
-        let currentText = 12700
-        piggyBankAmountLabel.text = "\(currentText)원 / \(maxMemoCharCount)원"
+        let model = PiggyBankModel.dummy
+        let goalAmount = model.formattedGoalAmount
+        let currentAmount = model.formattedCurrentAmount
 
-        let attributedString = NSMutableAttributedString(string: "\(currentText)원 / \(maxMemoCharCount)원")
-        attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: NSRange(location: 0, length: "\(currentText)원".count))
-        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: "\(currentText)원 ".count, length: "/ \(maxMemoCharCount)원".count))
+        let attributedString = NSMutableAttributedString(string: "\(currentAmount)원 / \(goalAmount)원")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: NSRange(location: 0, length: "\(currentAmount)원".count))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: "\(currentAmount)원 ".count, length: "/ \(goalAmount)원".count))
         piggyBankAmountLabel.attributedText = attributedString
     }
 }
