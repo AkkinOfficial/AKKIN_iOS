@@ -33,6 +33,8 @@ final class HabitViewController: BaseViewController {
 
         view.addSubview(habitView)
 
+        configureView()
+
         habitView.makePiggyBankNonEmptyView.tapDetail = {
             [weak self] in
                 guard let self else { return }
@@ -50,6 +52,16 @@ final class HabitViewController: BaseViewController {
             guard let self else { return }
             router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
         }
+    }
+
+    private func configureView() {
+        let model = PiggyBankModel.dummy
+        let rate = CGFloat(model.achievementRate)/100
+        habitView.makePiggyBankNonEmptyView.circularProgressBar.value = rate
+        habitView.makePiggyBankNonEmptyView.piggyBankNameLabel.text = "\(model.name)"
+        habitView.makePiggyBankNonEmptyView.piggyBankImageLabel.text = "\(model.emoji)"
+
+        print("Saved = \(model.currentAmount), Goal = \(model.goalAmount), Rate = \(CGFloat(model.achievementRate)/100)")
     }
 
     // MARK: Layout

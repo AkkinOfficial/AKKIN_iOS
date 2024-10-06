@@ -115,6 +115,15 @@
 		BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */; };
 		C31602F22CB14C4500348B09 /* PiggyBankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F12CB14C4200348B09 /* PiggyBankModel.swift */; };
 		C31602F42CB14DD100348B09 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F32CB14DCB00348B09 /* TipView.swift */; };
+		C31602F92CB275F300348B09 /* PiggyBankResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602F82CB275E900348B09 /* PiggyBankResponse.swift */; };
+		C31602FB2CB2762F00348B09 /* PiggyBankService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602FA2CB2762400348B09 /* PiggyBankService.swift */; };
+		C31602FD2CB2763E00348B09 /* PiggyBankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602FC2CB2763200348B09 /* PiggyBankAPI.swift */; };
+		C31602FF2CB2783200348B09 /* PiggyBankRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31602FE2CB2782900348B09 /* PiggyBankRequest.swift */; };
+		C31603012CB2891100348B09 /* PiggyBankDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603002CB2890F00348B09 /* PiggyBankDetailModel.swift */; };
+		C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603022CB2A03E00348B09 /* MakePiggyBankModel.swift */; };
+		C31603052CB2BB8000348B09 /* MakePiggyBankService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */; };
+		C31603072CB2BC3100348B09 /* MakePiggyBankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */; };
+		C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
 		C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */; };
@@ -268,6 +277,15 @@
 		BC94AD5F2AA6AB9400A77052 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C31602F12CB14C4200348B09 /* PiggyBankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankModel.swift; sourceTree = "<group>"; };
 		C31602F32CB14DCB00348B09 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
+		C31602F82CB275E900348B09 /* PiggyBankResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankResponse.swift; sourceTree = "<group>"; };
+		C31602FA2CB2762400348B09 /* PiggyBankService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankService.swift; sourceTree = "<group>"; };
+		C31602FC2CB2763200348B09 /* PiggyBankAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankAPI.swift; sourceTree = "<group>"; };
+		C31602FE2CB2782900348B09 /* PiggyBankRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankRequest.swift; sourceTree = "<group>"; };
+		C31603002CB2890F00348B09 /* PiggyBankDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailModel.swift; sourceTree = "<group>"; };
+		C31603022CB2A03E00348B09 /* MakePiggyBankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankModel.swift; sourceTree = "<group>"; };
+		C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankService.swift; sourceTree = "<group>"; };
+		C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankAPI.swift; sourceTree = "<group>"; };
+		C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankRequest.swift; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -471,6 +489,7 @@
 		953650892C64584200F58D13 /* MakePiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				C31603022CB2A03E00348B09 /* MakePiggyBankModel.swift */,
 				C39078EE2C95539A003514FE /* MakePiggyBankStart */,
 				C39078EF2C9553A8003514FE /* MakePiggyBankEnd */,
 				C39078F02C9553B0003514FE /* MakePiggyBankComplete */,
@@ -685,6 +704,7 @@
 		BC94AD362AA618B100A77052 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				C31602F72CB275D900348B09 /* PiggyBank */,
 				BC94AD532AA61F4800A77052 /* Example */,
 				9512618C2AC02E380012B5F9 /* Auth */,
 				951261A52AC19A0C0012B5F9 /* Main */,
@@ -781,9 +801,24 @@
 			path = "Views ";
 			sourceTree = "<group>";
 		};
+		C31602F72CB275D900348B09 /* PiggyBank */ = {
+			isa = PBXGroup;
+			children = (
+				C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */,
+				C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */,
+				C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */,
+				C31602FE2CB2782900348B09 /* PiggyBankRequest.swift */,
+				C31602FC2CB2763200348B09 /* PiggyBankAPI.swift */,
+				C31602FA2CB2762400348B09 /* PiggyBankService.swift */,
+				C31602F82CB275E900348B09 /* PiggyBankResponse.swift */,
+			);
+			path = PiggyBank;
+			sourceTree = "<group>";
+		};
 		C33426D92CA0AF16005483AC /* PiggyBankDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C31603002CB2890F00348B09 /* PiggyBankDetailModel.swift */,
 				C31602F32CB14DCB00348B09 /* TipView.swift */,
 				C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */,
 				C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */,
@@ -948,6 +983,7 @@
 				6B5B839B2AC1EEB300CD0AFC /* WeeklyService.swift in Sources */,
 				BC94AD4E2AA61CA500A77052 /* ExampleViewController.swift in Sources */,
 				9536508B2C64585700F58D13 /* MakePiggyBankStartViewController.swift in Sources */,
+				C31603072CB2BC3100348B09 /* MakePiggyBankAPI.swift in Sources */,
 				9552013E2CA04BE0006DB98C /* ExpenseDetailViewController.swift in Sources */,
 				BC94AD502AA61E6700A77052 /* BaseRouter.swift in Sources */,
 				E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */,
@@ -958,7 +994,9 @@
 				9512618B2AC02E090012B5F9 /* MoyaLoggerPlugin.swift in Sources */,
 				E5F659DA2C9708B7001A08C7 /* CustomKeyboardViewController.swift in Sources */,
 				C3F685582CA07EBD00002792 /* EmojiTextField.swift in Sources */,
+				C31603012CB2891100348B09 /* PiggyBankDetailModel.swift in Sources */,
 				E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */,
+				C31602FB2CB2762F00348B09 /* PiggyBankService.swift in Sources */,
 				6B117F6B2ABC865A000B03F7 /* UIResponder + Extension.swift in Sources */,
 				BC94AD552AA61F5200A77052 /* ExampleAPI.swift in Sources */,
 				E59A27722CA853390050359C /* HomeModel.swift in Sources */,
@@ -973,6 +1011,7 @@
 				95EF1C362C773BE400AD06A9 /* PlanExpenseGuideView.swift in Sources */,
 				95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */,
 				95577D192C81D2BD008CFE0B /* MyPageTableViewCell.swift in Sources */,
+				C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */,
 				BC94AD5B2AA621E200A77052 /* AppDependency.swift in Sources */,
 				953650982C6458ED00F58D13 /* CalendarViewController.swift in Sources */,
 				6B5B83932AC1ED4300CD0AFC /* GulbiAPI.swift in Sources */,
@@ -981,6 +1020,7 @@
 				951261942AC02EC60012B5F9 /* BlankDataResponse.swift in Sources */,
 				951261B42AC1A8920012B5F9 /* MonthlyResponse.swift in Sources */,
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,
+				C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */,
 				953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */,
 				95EF1C562C7EDF0100AD06A9 /* SelectMonthNavigationBar.swift in Sources */,
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
@@ -1014,6 +1054,7 @@
 				6B5B83972AC1EE4800CD0AFC /* ErrorResponse.swift in Sources */,
 				953650BF2C6DFF6200F58D13 /* MonthAnalysisView.swift in Sources */,
 				953650822C6457ED00F58D13 /* PlanExpenseViewController.swift in Sources */,
+				C31603052CB2BB8000348B09 /* MakePiggyBankService.swift in Sources */,
 				E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */,
 				E5F659E12C9C9174001A08C7 /* ExpenseCategoryViewController.swift in Sources */,
 				BC94AD5E2AA6275000A77052 /* ExampleCustomView.swift in Sources */,
@@ -1036,6 +1077,7 @@
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
 				9552013C2CA04BDA006DB98C /* ExpenseDetailView.swift in Sources */,
 				C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */,
+				C31602FD2CB2763E00348B09 /* PiggyBankAPI.swift in Sources */,
 				E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */,
 				6B742DA12AC02988002A784E /* UIViewController+Extension.swift in Sources */,
 				95EF1C5A2C7EDF9800AD06A9 /* SelectMonthTransitioningDelegate.swift in Sources */,
@@ -1047,6 +1089,7 @@
 				C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
+				C31602FF2CB2783200348B09 /* PiggyBankRequest.swift in Sources */,
 				955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
@@ -1065,6 +1108,7 @@
 				955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */,
 				9536509E2C64590700F58D13 /* MyPageView.swift in Sources */,
 				E53F842D2C8C98560005EBBE /* CalendarCell.swift in Sources */,
+				C31602F92CB275F300348B09 /* PiggyBankResponse.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
 				95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,

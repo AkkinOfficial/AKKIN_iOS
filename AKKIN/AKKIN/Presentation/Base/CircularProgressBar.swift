@@ -15,8 +15,8 @@ class CircularProgressView: UIView {
 
     var value: Double? {
         didSet {
-            guard let _ = value else { return }
-            setProgress(diameter: 28, progress: 0.75)
+            guard let progress = value else { return }
+            setProgress(diameter: 28, progress: progress)
         }
     }
     
