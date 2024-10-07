@@ -97,7 +97,6 @@ final class HomeViewController: BaseViewController {
         homeView.progressView.usedAmount = CGFloat(model.expenseAmount)
         homeView.expenseAmountLabel.text = "\(model.formattedExpenseAmount)원"
         homeView.challengeAmountLabel.text = "\(model.formattedAvailableAmount)원"
-
         let formattedSavedAmount = model.formattedSavedAmount
 
         switch type {

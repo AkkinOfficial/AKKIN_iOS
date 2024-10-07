@@ -34,7 +34,11 @@ extension HomeAPI: TargetType {
         }
     }
 
+    //헤더에 임의로 추가해뒀습니다 
     var headers: [String: String]? {
-        return ["Content-Type": "application/json"]
+        return [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Imh5dW5qb29AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE3MjgyNDQyMjcsImV4cCI6MTk0OTAwMzQyN30.zTzlvZPB2MBJdn5WbyILoa7pjpgub4niPMLUhQtBaEFcOVb6C7rjTSQhgZi41z04jGNnn8o0GzyKUJ2Fe1RZJQ"
+        ]
     }
 }

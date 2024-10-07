@@ -15,8 +15,9 @@ struct HomeResponse: Codable {
 }
 
 struct ExpenseSummary: Codable {
-    let planID: Int
+    let challengeId: Int
     let savedAmount: Int
     let expenseAmount: Int
     let availableAmount: Int
+    let duration: Int?
 }
