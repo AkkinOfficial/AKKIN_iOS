@@ -1,5 +1,5 @@
 //
-//  AddExpensesReponse.swift
+//  AddExpensesResponse.swift
 //  AKKIN
 //
 //  Created by 성현주 on 10/6/24.
