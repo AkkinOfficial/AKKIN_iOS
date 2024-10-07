@@ -160,8 +160,12 @@
 		E5863FA72CB19E010092D6C1 /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA62CB19E010092D6C1 /* HomeResponse.swift */; };
 		E5863FAA2CB1B2320092D6C1 /* AddExpensesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */; };
 		E5863FAC2CB1B23F0092D6C1 /* AddExpensesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */; };
-		E5863FAE2CB1B24A0092D6C1 /* AddExpensesReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */; };
+		E5863FAE2CB1B24A0092D6C1 /* AddExpensesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAD2CB1B24A0092D6C1 /* AddExpensesResponse.swift */; };
 		E5863FB02CB1B5D80092D6C1 /* AddExpensesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */; };
+		E58640182CB43B450092D6C1 /* AddChallengesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58640172CB43B450092D6C1 /* AddChallengesAPI.swift */; };
+		E586401A2CB43B570092D6C1 /* AddChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58640192CB43B570092D6C1 /* AddChallengesService.swift */; };
+		E586401C2CB43B6C0092D6C1 /* AddChallengesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586401B2CB43B6C0092D6C1 /* AddChallengesRequest.swift */; };
+		E586401E2CB43B800092D6C1 /* AddChellengesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586401D2CB43B800092D6C1 /* AddChellengesResponse.swift */; };
 		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
 		E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27752CA85F840050359C /* CustomToggleButton.swift */; };
 		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
@@ -333,8 +337,12 @@
 		E5863FA62CB19E010092D6C1 /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
 		E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesAPI.swift; sourceTree = "<group>"; };
 		E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesService.swift; sourceTree = "<group>"; };
-		E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesReponse.swift; sourceTree = "<group>"; };
+		E5863FAD2CB1B24A0092D6C1 /* AddExpensesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesResponse.swift; sourceTree = "<group>"; };
 		E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesRequest.swift; sourceTree = "<group>"; };
+		E58640172CB43B450092D6C1 /* AddChallengesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengesAPI.swift; sourceTree = "<group>"; };
+		E58640192CB43B570092D6C1 /* AddChallengesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengesService.swift; sourceTree = "<group>"; };
+		E586401B2CB43B6C0092D6C1 /* AddChallengesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengesRequest.swift; sourceTree = "<group>"; };
+		E586401D2CB43B800092D6C1 /* AddChellengesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChellengesResponse.swift; sourceTree = "<group>"; };
 		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
@@ -768,6 +776,7 @@
 		BC94AD362AA618B100A77052 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				E58640122CB43AD00092D6C1 /* AddChallenges */,
 				E5863FA82CB1B2130092D6C1 /* AddExpenses */,
 				C31602F72CB275D900348B09 /* PiggyBank */,
 				E5863FA12CB19DCD0092D6C1 /* Home */,
@@ -957,9 +966,20 @@
 				E5863FA92CB1B2320092D6C1 /* AddExpensesAPI.swift */,
 				E5863FAB2CB1B23F0092D6C1 /* AddExpensesService.swift */,
 				E5863FAF2CB1B5D80092D6C1 /* AddExpensesRequest.swift */,
-				E5863FAD2CB1B24A0092D6C1 /* AddExpensesReponse.swift */,
+				E5863FAD2CB1B24A0092D6C1 /* AddExpensesResponse.swift */,
 			);
 			path = AddExpenses;
+			sourceTree = "<group>";
+		};
+		E58640122CB43AD00092D6C1 /* AddChallenges */ = {
+			isa = PBXGroup;
+			children = (
+				E58640172CB43B450092D6C1 /* AddChallengesAPI.swift */,
+				E58640192CB43B570092D6C1 /* AddChallengesService.swift */,
+				E586401B2CB43B6C0092D6C1 /* AddChallengesRequest.swift */,
+				E586401D2CB43B800092D6C1 /* AddChellengesResponse.swift */,
+			);
+			path = AddChallenges;
 			sourceTree = "<group>";
 		};
 		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
@@ -1097,6 +1117,7 @@
 				953650BD2C6DFCFC00F58D13 /* UIButton+Extension.swift in Sources */,
 				C33426E32CAFF44B005483AC /* PiggyBankDetailViewController.swift in Sources */,
 				95094BE52CBAB761006055C3 /* SavingsAPI.swift in Sources */,
+				E58640182CB43B450092D6C1 /* AddChallengesAPI.swift in Sources */,
 				95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */,
 				9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */,
 				955201372CA04BBE006DB98C /* ExpenseListView.swift in Sources */,
@@ -1118,6 +1139,7 @@
 				951261B42AC1A8920012B5F9 /* MonthlyResponse.swift in Sources */,
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,
 				C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */,
+				E586401A2CB43B570092D6C1 /* AddChallengesService.swift in Sources */,
 				953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */,
 				95EF1C562C7EDF0100AD06A9 /* SelectMonthNavigationBar.swift in Sources */,
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
@@ -1135,6 +1157,7 @@
 				6B5B83952AC1EDB700CD0AFC /* GulbiResponse.swift in Sources */,
 				C316030B2CB6B80900348B09 /* MakePiggyBankResponse.swift in Sources */,
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
+				E586401E2CB43B800092D6C1 /* AddChellengesResponse.swift in Sources */,
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
@@ -1147,6 +1170,7 @@
 				95EF1C392C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift in Sources */,
 				953650842C6457F400F58D13 /* PlanExpenseView.swift in Sources */,
 				9512615A2ABB1CA20012B5F9 /* OnboardingViewController.swift in Sources */,
+				E586401C2CB43B6C0092D6C1 /* AddChallengesRequest.swift in Sources */,
 				E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */,
 				BC94AD522AA61F2000A77052 /* RequestProvider.swift in Sources */,
 				953650CA2C6E199700F58D13 /* Category.swift in Sources */,
@@ -1168,7 +1192,7 @@
 				E5863FAA2CB1B2320092D6C1 /* AddExpensesAPI.swift in Sources */,
 				951261B22AC1A8890012B5F9 /* WeeklyResponse.swift in Sources */,
 				E5863FB02CB1B5D80092D6C1 /* AddExpensesRequest.swift in Sources */,
-				E5863FAE2CB1B24A0092D6C1 /* AddExpensesReponse.swift in Sources */,
+				E5863FAE2CB1B24A0092D6C1 /* AddExpensesResponse.swift in Sources */,
 				955201402CA06793006DB98C /* CalendarModel.swift in Sources */,
 				955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,

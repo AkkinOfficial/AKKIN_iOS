@@ -145,4 +145,3 @@ extension SetPeriodViewController: SetPeriodViewDelegate {
         return "\(days + 1)일"
     }
 }
-
