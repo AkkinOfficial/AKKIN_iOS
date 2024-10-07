@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Moya
 
 class TabBarViewController: UITabBarController {
 
@@ -24,12 +25,16 @@ class TabBarViewController: UITabBarController {
     let habitViewController = HabitViewController()
     let calendarViewController = CalendarViewController()
     let myPageViewController = MyPageViewController()
+    
+    // MARK: Environment
+    let provider = MoyaProvider<HomeAPI>()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTabBarViewController()
+        fetchExpenseSummary()
+        setupTabBarViewController(showingEmptyHome: false)
         setupTabBarUI()
     }
 
@@ -44,22 +49,20 @@ class TabBarViewController: UITabBarController {
     }
 
     // MARK: TabBar
-    private func setupTabBarViewController() {
+    private func setupTabBarViewController(showingEmptyHome: Bool) {
         emptyHomeViewController.title = "홈"
         homeViewController.title = "홈"
         habitViewController.title = "소비습관"
         calendarViewController.title = "캘린더"
         myPageViewController.title = "MY"
-        
+
         setupTabBarItem(for: emptyHomeViewController, image: AkkinIcon.home, selectedImage: AkkinIcon.homeFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: homeViewController, image: AkkinIcon.home, selectedImage: AkkinIcon.homeFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: habitViewController, image: AkkinIcon.habit, selectedImage: AkkinIcon.habitFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: calendarViewController, image: AkkinIcon.calendar, selectedImage: AkkinIcon.calendarFilled.withRenderingMode(.alwaysOriginal))
         setupTabBarItem(for: myPageViewController, image: AkkinIcon.my, selectedImage: AkkinIcon.myFilled)
 
-        //TODO: 네트워크 연결이후 분기처리
-        let navigationHome = UINavigationController(rootViewController: homeViewController)
-
+        let navigationHome = UINavigationController(rootViewController: showingEmptyHome ? emptyHomeViewController : homeViewController)
         let navigationHabit = UINavigationController(rootViewController: habitViewController)
         let navigationCalendar = UINavigationController(rootViewController: calendarViewController)
         let navigationMyPage = UINavigationController(rootViewController: myPageViewController)
@@ -89,5 +92,24 @@ class TabBarViewController: UITabBarController {
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
         tabBar.clipsToBounds = true
+    }
+
+    private func fetchExpenseSummary() {
+        provider.request(.getExpenseSummary(type: "daily")) { [weak self] result in
+            switch result {
+            case .success(let response):
+                if response.statusCode == 404 {
+                    print("🍎404")
+                    self?.setupTabBarViewController(showingEmptyHome: true)
+                } else {
+                    print("✅success")
+                    self?.setupTabBarViewController(showingEmptyHome: false)
+                }
+            case .failure(let error):
+                print("Error fetching expense summary: \(error.localizedDescription)")
+                //TODO: 네트워크 에러뷰 처리
+                self?.setupTabBarViewController(showingEmptyHome: true)
+            }
+        }
     }
 }

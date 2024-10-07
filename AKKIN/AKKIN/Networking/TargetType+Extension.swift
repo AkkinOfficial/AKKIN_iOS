@@ -11,6 +11,7 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
+        //TODO: - baseURL congfig로 이동
         URL(string: URLConst.base)!
     }
     
