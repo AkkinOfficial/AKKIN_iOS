@@ -27,14 +27,14 @@ class TabBarViewController: UITabBarController {
     let myPageViewController = MyPageViewController()
     
     // MARK: Environment
-    let provider = MoyaProvider<HomeAPI>()
+    private let homeService = HomeService()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fetchExpenseSummary()
-        setupTabBarViewController(showingEmptyHome: false)
+        setupTabBarViewController(showingEmptyHome: true)
         setupTabBarUI()
     }
 
@@ -95,20 +95,26 @@ class TabBarViewController: UITabBarController {
     }
 
     private func fetchExpenseSummary() {
-        provider.request(.getExpenseSummary(type: "daily")) { [weak self] result in
+        homeService.getHomeExpensesSummary(type: "DAILY") { [weak self] result in
             switch result {
             case .success(let response):
-                if response.statusCode == 404 {
-                    print("🍎404")
-                    self?.setupTabBarViewController(showingEmptyHome: true)
-                } else {
-                    print("✅success")
-                    self?.setupTabBarViewController(showingEmptyHome: false)
+                if let summary = response as? HomeResponse{
+                    if summary.status == 404 {
+                        print("🍎404")
+                        self?.setupTabBarViewController(showingEmptyHome: true)
+                    } else {
+                        print("✅success")
+                        self?.setupTabBarViewController(showingEmptyHome: false)
+                    }
                 }
-            case .failure(let error):
-                print("Error fetching expense summary: \(error.localizedDescription)")
-                //TODO: 네트워크 에러뷰 처리
-                self?.setupTabBarViewController(showingEmptyHome: true)
+            case .requestErr(let errorData):
+                print("Request Error: \(errorData)")
+            case .pathErr:
+                print("Path Error")
+            case .serverErr:
+                print("Server Error")
+            case .networkFail:
+                print("Network Error")
             }
         }
     }
