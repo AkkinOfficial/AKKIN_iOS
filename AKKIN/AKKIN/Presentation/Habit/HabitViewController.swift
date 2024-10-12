@@ -74,7 +74,7 @@ extension HabitViewController {
 //                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
-                guard let data = errorResponse as? ReportsErrorResponse else { return }
+                guard let data = errorResponse as? ErrorResponse else { return }
 //                habitView.setAnalysisExpenseEmtpyView()
                 print("🤖 \(data)")
             case .serverErr:
