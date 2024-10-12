@@ -30,11 +30,28 @@ final class MyPageView: BaseView {
     private let userNameLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        $0.text = "이름은최대여덟자"
     }
 
     private let editButton = BaseButton().then {
         $0.setImage(AkkinButton.editButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
+    }
+
+    private let profileEditView = UIView()
+
+    private let nicknameTextField = UITextField().then {
+        $0.addLeftPadding(width: 5)
+        $0.clearButtonMode = .always
+        $0.setUnderLine()
+    }
+
+    private let confirmButton = BaseButton().then {
+        $0.setTitle("완료", for: .normal)
+        $0.setTitleColor(.akkinGreen, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 14)
+        $0.isEnabled = true
+        $0.backgroundColor = .akkinGreen.withAlphaComponent(0.2)
     }
 
     private let myPageTableView = UITableView(frame: .zero, style: .grouped).then {
@@ -58,7 +75,8 @@ final class MyPageView: BaseView {
                        URLConst.privacyPolicyURL,
                        URLConst.openSourceURL]
 
-    var tapEditButton: (() -> Void)?
+    var tapEdit: (() -> Void)?
+    var tapConfirm: ((String) -> Void)?
 //    var tapHomeWidgetSetting: (() -> Void)?
     var tapAppInfo: ((String) -> Void)?
     var tapLogout: (() -> Void)?
@@ -68,6 +86,7 @@ final class MyPageView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
         setTableView()
+        addButtonEvent()
 
         addSubview(navigationTitleLabel)
         addSubview(profileView)
@@ -116,15 +135,31 @@ final class MyPageView: BaseView {
         }
 
         myPageTableView.snp.makeConstraints {
-            $0.top.equalTo(profileView.snp.bottom)
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(95)
             $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
 
     // MARK: Event
+    private func addButtonEvent() {
+        editButton.addTarget(self, action: #selector(handleEditButton), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(handleConfirmButton), for: .touchUpInside)
+    }
+
 //    private func handleHomeWidgetSettingEvent() {
 //        tapHomeWidgetSetting?()
 //    }
+
+    @objc
+    private func handleEditButton() {
+        tapEdit?()
+    }
+
+    @objc
+    private func handleConfirmButton() {
+        guard let nickname = nicknameTextField.text else { return }
+        tapConfirm?(nickname)
+    }
 
     private func handleAppInfoEvent(url: String) {
         tapAppInfo?(url)
@@ -136,6 +171,52 @@ final class MyPageView: BaseView {
 
     private func handleWithdrawal() {
         tapWithdrawal?()
+    }
+
+    func setData(data: Users) {
+        userNameLabel.text = data.nickname
+    }
+}
+
+extension MyPageView {
+    func setNicknameEditMode() {
+        profileView.removeFromSuperview()
+        addSubview(profileEditView)
+        profileEditView.snp.makeConstraints {
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(80)
+        }
+
+        profileEditView.addSubview(nicknameTextField)
+        profileEditView.addSubview(confirmButton)
+
+        nicknameTextField.placeholder = userNameLabel.text
+    
+        nicknameTextField.snp.makeConstraints {
+            $0.centerY.leading.equalToSuperview()
+            $0.trailing.equalTo(confirmButton.snp.leading).offset(-12)
+            $0.height.equalTo(48)
+        }
+
+        confirmButton.snp.makeConstraints {
+            $0.centerY.trailing.equalToSuperview()
+            $0.height.equalTo(40)
+            $0.width.equalTo(56)
+        }
+    }
+
+    func setEditCompleteMode(data: Users) {
+        profileEditView.removeFromSuperview()
+        addSubview(profileView)
+
+        profileView.snp.makeConstraints {
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(80)
+        }
+
+        userNameLabel.text = data.nickname
     }
 }
 
