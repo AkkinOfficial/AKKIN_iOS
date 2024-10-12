@@ -254,7 +254,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setData(data: monthAnalysisList[indexPath.row])
+//        cell.setData(data: monthAnalysisList[indexPath.row])
         cell.tapDetail = {
         }
 

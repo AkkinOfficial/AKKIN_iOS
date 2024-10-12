@@ -29,6 +29,16 @@ struct Reports: Codable {
     let categoryAnalysis: [CategoryAnalysis]
 }
 
+extension Reports {
+    static let empty = Reports(id: 0,
+                               totalSavedAmount: 0,
+                               mostSavedDate: "",
+                               mostSavedAmount: 0,
+                               mostSpentDate: "",
+                               mostSpentAmount: 0,
+                               categoryAnalysis: [])
+}
+
 struct CategoryAnalysis: Codable {
     let category: String
     let categoryEnum: String
