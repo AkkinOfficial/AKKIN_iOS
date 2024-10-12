@@ -63,8 +63,7 @@ final class HabitView: BaseView {
     let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
-    var monthAnalysisList = MonthAnalysis.monthAnalysisList
-    var monthAnalysisEmptyList = MonthAnalysis.monthAnalysisEmtpyList
+    var reports = Reports.empty
 
     var tapDetailButton: (() -> Void)?
 
@@ -125,13 +124,6 @@ final class HabitView: BaseView {
 
         detailButton.snp.makeConstraints {
             $0.centerY.equalTo(analysisExpenseStackView.snp.centerY)
-        }
-
-        // TODO: EmptyList test 코드 수정
-        if monthAnalysisEmptyList.isEmpty {
-            setAnalysisExpenseEmtpyView()
-        } else {
-            setAnalysisExpenseNonEmtpyView()
         }
     }
 
@@ -200,11 +192,12 @@ final class HabitView: BaseView {
         }
     }
 
-    func setAnalysisExpenseNonEmtpyView() {
+    func setAnalysisExpenseNonEmtpyView(data: Reports) {
         analysisExpenseEntireView.addSubview(analysisExpenseView)
+        reports = data
 
-        let collectionViewHeight = 45 * monthAnalysisList.count + 16 * (monthAnalysisList.count + 1)
-        let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 20
+        let collectionViewHeight = 45 * reports.categoryAnalysis.count + 16 * (reports.categoryAnalysis.count + 1)
+        let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 40
 
         analysisExpenseEntireView.snp.makeConstraints {
             $0.top.equalTo(makePiggyBankEntireView.snp.bottom).offset(40)
