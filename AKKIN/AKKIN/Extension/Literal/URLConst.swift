@@ -7,7 +7,7 @@
 
 enum URLConst {
     // MARK: - baseURL
-    static let base = "https://www.seuleuleug.site/api"
+    static let base = "https://api.akkin.xyz"
     
     // MARK: - AppInfoURL
     static let termsURL = "https://tundra-operation-2d1.notion.site/4448021736b34742bd85202a1d7e2f8e?pvs=25"
@@ -30,4 +30,7 @@ enum URLConst {
 
     // MARK: - monthly Stats
     static let monthlyStats = "/members/monthly"
+
+    // MARK: - Reports
+    static let reports = "/reports"
 }
