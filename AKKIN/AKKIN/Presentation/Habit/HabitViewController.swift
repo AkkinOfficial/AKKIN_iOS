@@ -66,15 +66,16 @@ extension HabitViewController {
     // MARK: Network
     private func getReports() {
         print("💸 getReports called")
-        NetworkService.shared.reports.getReports() { result in
+        NetworkService.shared.reports.getReports() { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? ReportsResponse else { return }
                 print("🎯 getReports success")
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+//                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ReportsErrorResponse else { return }
+//                habitView.setAnalysisExpenseEmtpyView()
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")

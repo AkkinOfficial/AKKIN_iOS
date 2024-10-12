@@ -58,14 +58,12 @@ final class AnalysisExpenseView: BaseView {
     }()
 
     // MARK: Properties
-    var monthAnalysisList = MonthAnalysis.monthAnalysisList
-
+    var reports = Reports.empty
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        setCollectionView()
 
         addSubview(mostCategoryStackView)
         addSubview(monthAnalysisCollectionView)
@@ -86,18 +84,17 @@ final class AnalysisExpenseView: BaseView {
             $0.top.width.equalToSuperview()
             $0.height.equalTo(56)
         }
-
-        let collectionViewHeight = 45 * monthAnalysisList.count + 16 * (monthAnalysisList.count + 1)
-        monthAnalysisCollectionView.snp.makeConstraints {
-            $0.top.equalTo(mostCategoryStackView.snp.bottom).offset(8)
-            $0.width.equalToSuperview()
-            $0.height.equalTo(collectionViewHeight)
-        }
     }
 
     // MARK: Event
     @objc private func handleDetailButtonEvent() {
         tapDetailButton?()
+    }
+
+    // MARK: Data binding
+    func setData(data: Reports) {
+        reports = data
+        setCollectionView()
     }
 }
 
@@ -106,10 +103,17 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
     private func setCollectionView() {
         monthAnalysisCollectionView.dataSource = self
         monthAnalysisCollectionView.delegate = self
+
+        let collectionViewHeight = 45 * reports.categoryAnalysis.count + 16 * (reports.categoryAnalysis.count + 1)
+        monthAnalysisCollectionView.snp.makeConstraints {
+            $0.top.equalTo(mostCategoryStackView.snp.bottom).offset(8)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(collectionViewHeight)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return monthAnalysisList.count
+        return reports.categoryAnalysis.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,8 +127,8 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
         cell.categoryExpenseLabel.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
         }
-        
-        cell.setData(data: monthAnalysisList[indexPath.row])
+
+        cell.setData(data: reports.categoryAnalysis[indexPath.row])
         
         return cell
     }
