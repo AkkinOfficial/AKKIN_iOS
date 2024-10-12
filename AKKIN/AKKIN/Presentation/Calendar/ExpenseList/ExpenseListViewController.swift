@@ -31,6 +31,8 @@ final class ExpenseListViewController: BaseViewController {
     var expensesData = Expenses.emtpyExpenses
     var date: String
 
+    var date: String
+
     // MARK: Init
     init(date: String) {
         self.date = date
