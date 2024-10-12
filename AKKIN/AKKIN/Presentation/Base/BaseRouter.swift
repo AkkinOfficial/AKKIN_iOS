@@ -60,8 +60,8 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
     }
 
-    func presentExpenseListViewController(month: Int, day: Int) {
-        let expenseListViewController = ExpenseListViewController(month: month, day: day)
+    func presentExpenseListViewController(date: String) {
+        let expenseListViewController = ExpenseListViewController(date: date)
         viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
     }
 
