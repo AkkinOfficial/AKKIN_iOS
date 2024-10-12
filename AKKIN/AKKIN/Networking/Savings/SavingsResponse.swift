@@ -12,6 +12,13 @@ struct SavingsResponse: Codable {
     let body: [Savings]
 }
 
+struct SavingsDateResponse: Codable {
+    let status: Int
+    let code: String
+    let timestamp: String
+    let body: Savings
+}
+
 struct Savings: Codable {
     let id: Int
     let date: String

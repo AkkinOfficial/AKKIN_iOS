@@ -72,8 +72,11 @@ final class SavingsService {
     private func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         switch responseData {
-        case .getSavings, .getSavingsDate:
+        case .getSavings:
             let decodedData = try? decoder.decode(SavingsResponse.self, from: data)
+            return .success(decodedData ?? "success")
+        case .getSavingsDate:
+            let decodedData = try? decoder.decode(SavingsDateResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
     }

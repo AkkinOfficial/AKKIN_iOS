@@ -36,12 +36,14 @@ final class ExpenseListViewController: BaseViewController {
                                              ExpenseData(category: .hobby, title: "영화", saving: 15000, total: 44590)]
     )
 
+    var date: String
+
     // MARK: Init
-    init(month: Int, day: Int) {
-        self.calendarModel.month = month
-        self.calendarModel.day = day
+    init(date: String) {
+        self.date = date
         super.init(nibName: nil, bundle: nil)
-        getData(month: calendarModel.month, day: calendarModel.day)
+
+        getSavingsDate(date: date)
     }
 
     required init?(coder: NSCoder) {
@@ -52,7 +54,6 @@ final class ExpenseListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
-        setCollectionView()
 
         router.viewController = self
     }
@@ -90,23 +91,21 @@ final class ExpenseListViewController: BaseViewController {
     }
 
     // MARK: Data
-    func getData(month: Int, day: Int) {
-        calendarModel.daySaving = 8190
-        setData(data: calendarModel)
-    }
-
-    func setData(data: CalendarModel) {
-        let month = data.month.toMonthFormat
-        let day = data.day.toDayFormat
-
-        expenseListView.dateButton.setTitle(month + " " + day, for: .normal)
+    func setData(data: Savings) {
+//        expenseListView.dateButton.setTitle(month + " " + day, for: .normal)
         expenseListView.dateButton.setUnderline()
         expenseListView.dateButton.isEnabled = true
         expenseListView.dateButton.backgroundColor = .clear
 
-        let daySaving = data.daySaving?.toPriceFormat ?? "nil"
+        let daySaving = String(data.amount)
         expenseListView.savingLabel.text = "아낀 금액: " + daySaving + " 원"
         expenseListView.savingLabel.setColor(targetString: daySaving, color: .akkinGreen)
+
+        setCollectionView()
+    }
+
+    func setEmptyData() {
+        expenseListView.savingLabel.text = "아낀 금액: 0 원"
     }
 }
 
@@ -161,3 +160,30 @@ extension ExpenseListViewController: UICollectionViewDelegate, UICollectionViewD
         router.presentExpenseDetailViewController(data: data)
     }
 }
+
+extension ExpenseListViewController {
+    // MARK: Network
+    private func getSavingsDate(date: String) {
+        print("💸 getSavings called")
+        NetworkService.shared.savings.getSavingsDate(date: date) { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? SavingsDateResponse else { return }
+                print("🎯 getSavingsDate success\n\(data)")
+                setData(data: data.body)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print("🤖 \(data)")
+                setEmptyData()
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}
+
