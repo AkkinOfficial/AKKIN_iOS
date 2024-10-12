@@ -16,4 +16,5 @@ final class NetworkService {
     let weekly = WeeklyService()
     let monthly = MonthlyService()
     let reports = ReportsService()
+    let savings = SavingsService()
 }
