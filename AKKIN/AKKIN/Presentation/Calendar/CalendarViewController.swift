@@ -50,19 +50,12 @@ final class CalendarViewController: BaseViewController {
         calendarView.calendarView.onDateSelected = { [weak self] selectedDate in
             guard let self = self else { return }
 
-            let calendar = Calendar.current
-            let timeZone = TimeZone(identifier: "Asia/Seoul")!
-            var calendarSystem = calendar
-            calendarSystem.timeZone = timeZone
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: selectedDate)
 
-            let components = calendarSystem.dateComponents([.month, .day], from: selectedDate)
-
-            if let month = components.month, let day = components.day {
-                print("\(month)월 \(day)일")
-                calendarModel.month = month
-                calendarModel.day = day
-                router.presentExpenseListViewController(month: month, day: day)
-            }
+            router.presentExpenseListViewController(date: dateString)
         }
     }
 
