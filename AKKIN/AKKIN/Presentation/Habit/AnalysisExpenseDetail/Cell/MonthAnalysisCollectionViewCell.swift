@@ -123,15 +123,11 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 }
 
 extension MonthAnalysisCollectionViewCell {
-    func setData(data: MonthAnalysis) {
-        if let category = Category.toImageString(data.category) {
-            categoryImageLabel.text = category.categoryImageString
-        } else {
-            categoryImageLabel.text = "⚠️"
-        }
-        categoryTitleLabel.text = data.category
-        categoryContentLabel.text = "\(data.percent)%"
-        categoryExpenseLabel.text = "\(data.expense.toPriceFormat) 원"
+    func setData(data: CategoryAnalysis) {
+        categoryImageLabel.text = data.category
+        categoryTitleLabel.text = data.categoryEnum
+        categoryContentLabel.text = "\(data.ratio)%"
+        categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }
 
     func setExpenseListData(data: ExpenseData) {
