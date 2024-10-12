@@ -17,7 +17,7 @@ extension TargetType {
     var headers: [String : String]? {
         let header = [
             "Content-Type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImppeXV1bkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlhdCI6MTcyODI0NDIwMSwiZXhwIjoxOTQ5MDAzNDAxfQ.PLTuT8wkehSPGACzRxiNTmmbE27kkd0f2mEOuYXXFgXgU-m18OlBeHvLgGTMvPz4fu8a9qmRd7WG7jd7dDmVbw"
+            "Authorization": ""
         ]
         return header
     }

@@ -17,4 +17,5 @@ final class NetworkService {
     let monthly = MonthlyService()
     let reports = ReportsService()
     let savings = SavingsService()
+    let users = UsersService()
 }
