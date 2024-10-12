@@ -9,7 +9,7 @@ struct SavingsResponse: Codable {
     let status: Int
     let code: String
     let timestamp: String
-    let body: Savings
+    let body: [Savings]
 }
 
 struct Savings: Codable {
