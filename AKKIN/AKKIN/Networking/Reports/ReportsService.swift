@@ -34,7 +34,6 @@ final class ReportsService {
 
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        print("judgeStatus")
         switch statusCode {
         case 200..<300:
             switch responseData {
@@ -55,7 +54,6 @@ final class ReportsService {
 
     private func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        print("isValidData")
         switch responseData {
         case .getReports:
             let decodedData = try? decoder.decode(ReportsResponse.self, from: data)
