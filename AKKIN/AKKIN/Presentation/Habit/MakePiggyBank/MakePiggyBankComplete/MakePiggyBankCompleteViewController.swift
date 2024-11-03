@@ -76,9 +76,9 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
     private func updateCompleteUI() {
         let changedText = MakePiggyBankInfo.shared.goalAmount
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal // 천 단위 구분자 스타일 설정
-        formatter.groupingSeparator = "," // 구분자 설정 (기본값이 , 이므로 생략 가능)
-        formatter.groupingSize = 3 // 그룹 크기 설정 (기본값이 3)
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.groupingSize = 3
 
         if let formattedNumber = formatter.string(from: NSNumber(value: changedText)) {
             print("포맷된 숫자: \(formattedNumber)")
