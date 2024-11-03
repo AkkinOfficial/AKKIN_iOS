@@ -7,6 +7,13 @@
 
 import Foundation
 
+
+enum ViewState {
+    case success
+    case empty
+    case zero
+}
+
 struct PiggyBankModel {
     let id: Int
     let name: String
