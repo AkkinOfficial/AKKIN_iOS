@@ -23,6 +23,12 @@ final class LoginViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         router.viewController = self
+
+        if UserDefaultHandler.refreshToken != "" {
+            router.presentTabBarViewController()
+        } else {
+            print("no refreshToken")
+        }
     }
 
     override func viewDidLoad() {
@@ -39,7 +45,7 @@ final class LoginViewController: BaseViewController {
 
         loginView.tapLogin = { [weak self] in
             guard let self else { return }
-            router.presentTabBarViewController()
+            setAppleLogin()
         }
     }
 
@@ -112,7 +118,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 UserDefaultHandler.accessToken = data.accessToken
                 UserDefaultHandler.refreshToken = data.refreshToken
                 print("🎯 postAppleLogin success")
-                self.router.presentHomeViewController()
+                self.router.presentTabBarViewController()
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
             case .requestErr(let errorResponse):
                 dump(errorResponse)
