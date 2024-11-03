@@ -26,8 +26,8 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
 
     // MARK: Configuration
     override func configureSubviews() {
+        updateCompleteUI()
         view.addSubview(makePiggyBankCompleteView)
-
 
         makePiggyBankCompleteView.emojiTextField.delegate = self
         makePiggyBankCompleteView.backButton.tap = { [self] in
@@ -73,6 +73,24 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
 
         return updatedText.count <= 1
     }
+    private func updateCompleteUI() {
+        let changedText = MakePiggyBankInfo.shared.goalAmount
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal // 천 단위 구분자 스타일 설정
+        formatter.groupingSeparator = "," // 구분자 설정 (기본값이 , 이므로 생략 가능)
+        formatter.groupingSize = 3 // 그룹 크기 설정 (기본값이 3)
+
+        if let formattedNumber = formatter.string(from: NSNumber(value: changedText)) {
+            print("포맷된 숫자: \(formattedNumber)")
+            self.makePiggyBankCompleteView.piggyBankSpendLabel.text = "\(formattedNumber)원"
+        } else {
+            print("포맷에 실패했습니다.")
+        }
+        self.makePiggyBankCompleteView.piggyBankDateLabel.text = "\(MakePiggyBankInfo.shared.startDate ?? "8월 11일") ~ \(MakePiggyBankInfo.shared.endDate ?? "8월 15일")"
+        self.makePiggyBankCompleteView.piggyBankNameLabel.text = MakePiggyBankInfo.shared.name
+        self.makePiggyBankCompleteView.piggyBankMemoLabel.text = MakePiggyBankInfo.shared.memo
+    }
+
     private func addPiggyBank() {
 
         let request = MakePiggyBankRequest(
@@ -81,7 +99,7 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
             goalAmount: MakePiggyBankInfo.shared.goalAmount,
             name: MakePiggyBankInfo.shared.name,
             memo: MakePiggyBankInfo.shared.memo,
-            emoji: MakePiggyBankInfo.shared.emoji
+            emoji: MakePiggyBankInfo.shared.emoji.isEmpty ? "💰" : MakePiggyBankInfo.shared.emoji
         )
 
         makePiggyBankService.postMakePiggyBank(request: request) { [weak self] result in
@@ -90,7 +108,7 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
                 switch result {
                 case .success(let response):
                     if let piggyBankResponse = response as? PiggyBankResponse {
-                        print("Expense added successfully: \(piggyBankResponse)")
+                        print("PiggyBank added successfully: \(piggyBankResponse)")
                     }
                 case .requestErr(let errorResponse):
                     print("Request error: \(errorResponse)")
@@ -104,3 +122,4 @@ final class MakePiggyBankCompleteViewController: BaseViewController, UITextField
             }
         }
 }
+
