@@ -10,6 +10,9 @@ import UIKit
 final class MakePiggyBankView: BaseView {
 
     // MARK: UI Components
+    var goalAmount = ""
+    var currentAmount = ""
+
     let piggyBankImageLabel = UILabel().then {
         $0.text = "🍎"
         $0.font = UIFont.systemFont(ofSize: 24)
@@ -22,13 +25,13 @@ final class MakePiggyBankView: BaseView {
         $0.backgroundColor = .white
     }
 
-    let piggyBankNameLabel = UILabel().then {
+    var piggyBankNameLabel = UILabel().then {
         $0.text = "아이패드 사기(D-5)"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 
-    let piggyBankAmountLabel = UILabel().then {
+    var piggyBankAmountLabel = UILabel().then {
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
@@ -40,9 +43,16 @@ final class MakePiggyBankView: BaseView {
 
     let circularProgressBar: CircularProgressView = {
         let view = CircularProgressView()
-        view.value = 0.34
+        var value = 0.5
+        view.lineWidth = 5
         return view
     }()
+
+    var piggyBankCompleteButton = BaseButton().then {
+        $0.setGuideButton("금액 모으기 완료!")
+        $0.isEnabled = true
+        $0.isHidden = true
+    }
 
     // MARK: Properties
     var tapDetailButton: (() -> Void)?
@@ -58,6 +68,7 @@ final class MakePiggyBankView: BaseView {
         addSubview(piggyBankImageLabel)
         addSubview(piggyBankStackView)
         addSubview(circularProgressBar)
+        addSubview(piggyBankCompleteButton)
 
         piggyBankStackView.addArrangedSubviews(piggyBankNameLabel, piggyBankAmountLabel)
 
@@ -96,7 +107,12 @@ final class MakePiggyBankView: BaseView {
             $0.width.height.equalTo(28)
             $0.centerY.equalToSuperview()
         }
-        updateMemoCountLabel()
+        piggyBankCompleteButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(24)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(48)
+        }
+        updateRateLabel()
     }
 
     // MARK: Event
@@ -107,11 +123,7 @@ final class MakePiggyBankView: BaseView {
         tapDetail?()
     }
 
-    private func updateMemoCountLabel() {
-        let model = PiggyBankModel.dummy
-        let goalAmount = model.formattedGoalAmount
-        let currentAmount = model.formattedCurrentAmount
-
+    private func updateRateLabel() {
         let attributedString = NSMutableAttributedString(string: "\(currentAmount)원 / \(goalAmount)원")
         attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: NSRange(location: 0, length: "\(currentAmount)원".count))
         attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: "\(currentAmount)원 ".count, length: "/ \(goalAmount)원".count))

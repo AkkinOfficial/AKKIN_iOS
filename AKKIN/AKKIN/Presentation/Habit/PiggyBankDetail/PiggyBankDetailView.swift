@@ -11,6 +11,7 @@ import UIKit
 final class PiggyBankDetailView: BaseView {
 
     // MARK: UI Components
+    var bankId: Int = 1
     private let piggyBankNavigationBar = UIView()
     let backButton = BaseButton().then {
         $0.setBackButton()
@@ -27,21 +28,23 @@ final class PiggyBankDetailView: BaseView {
     }
     private let tipView = TipView()
 
-    private let piggyBankName = UILabel().then {
+    var piggyBankName = UILabel().then {
         $0.text = "아이패드 사기"
         $0.textColor = .akkinBlack2
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
-    private let piggyBankDate = UILabel().then {
+    var piggyBankDate = UILabel().then {
         $0.text = "mm.dd - mm.dd"
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
-    lazy var progressView : CustomProgressView = {
-        let progressView = CustomProgressView()
-        return progressView
+    let progressView: CircularProgressView = {
+        let view = CircularProgressView()
+        var value = 0.75
+        view.lineWidth = 12
+        return view
     }()
-    private let piggyBankScoreEmoji = UILabel().then {
+    var piggyBankScoreEmoji = UILabel().then {
         $0.text = "🍎"
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
@@ -52,7 +55,7 @@ final class PiggyBankDetailView: BaseView {
     }
     private let parentStackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fillEqually
+        $0.distribution = .fill
     }
     private let saveStackview = UIStackView().then {
         $0.axis = .vertical
@@ -116,6 +119,14 @@ final class PiggyBankDetailView: BaseView {
         label.textAlignment = .center
         return label
     }()
+    lazy var piggyBankMemo = UILabel().then {
+        $0.text = "아이패드 꼭 살거니까\n아무도 날 말리지마..~"
+        $0.textColor = .akkinGray6
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.lineBreakMode = .byWordWrapping
+    }
 
     // MARK: Properties
     var tapOutButton: (() -> Void)?
@@ -136,6 +147,7 @@ final class PiggyBankDetailView: BaseView {
         addSubview(piggyBankScoreEmoji)
         addSubview(piggyBankScore)
         addSubview(parentStackView)
+        addSubview(piggyBankMemo)
 
         parentStackView.addArrangedSubviews(saveStackview, slashStackview, challengeStackview)
         saveStackview.addArrangedSubviews(savedLabel, saveAmountLabel)
@@ -203,6 +215,21 @@ final class PiggyBankDetailView: BaseView {
         parentStackView.snp.makeConstraints {
             $0.top.equalTo(progressView.snp.bottom).offset(50)
             $0.horizontalEdges.equalToSuperview().inset(65)
+        }
+        saveStackview.snp.makeConstraints {
+            $0.width.equalTo(128)
+        }
+        challengeStackview.snp.makeConstraints {
+            $0.width.equalTo(128)
+        }
+        slashStackview.snp.makeConstraints {
+            $0.width.equalTo(6)
+        }
+        piggyBankMemo.snp.makeConstraints {
+            $0.top.equalTo(parentStackView.snp.bottom).offset(32)
+            $0.width.equalTo(260)
+            $0.height.equalTo(36)
+            $0.centerX.equalToSuperview()
         }
     }
 

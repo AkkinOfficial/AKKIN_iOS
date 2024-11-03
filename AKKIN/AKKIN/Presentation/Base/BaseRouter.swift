@@ -49,8 +49,10 @@ final class BaseRouter {
         let makePiggyBankViewController = MakePiggyBankCompleteViewController()
         viewController?.navigationController?.pushViewController(makePiggyBankViewController, animated: true)
     }
-    func popToPiggyBankDetailViewController() {
+    func popToPiggyBankDetailViewController(bankId: Int) {
         let piggyBankDetailViewController = PiggyBankDetailViewController()
+        piggyBankDetailViewController.bankId = bankId
+        piggyBankDetailViewController.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(piggyBankDetailViewController, animated: true)
     }
 

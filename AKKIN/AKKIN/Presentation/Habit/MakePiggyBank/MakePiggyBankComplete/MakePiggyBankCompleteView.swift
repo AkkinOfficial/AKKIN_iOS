@@ -39,25 +39,25 @@ final class MakePiggyBankCompleteView: BaseView {
         $0.tintColor = .clear
     }
 
-    private let piggyBankDateLabel = UILabel().then {
+    let piggyBankDateLabel = UILabel().then {
         $0.text = "8월 11일 ~ 8월 15일"
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
 
-    private let piggyBankSpendLabel = UILabel().then {
+    let piggyBankSpendLabel = UILabel().then {
         $0.text = "20,500원"
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
     }
 
-    private let piggyBankNameLabel = UILabel().then {
+    let piggyBankNameLabel = UILabel().then {
         $0.text = "부모님 생신 선물"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     }
 
-    private let piggyBankMemoLabel = UILabel().then {
+    let piggyBankMemoLabel = UILabel().then {
         $0.text = "어쩌구저쩌구"
         $0.textColor = .akkinGray9
         $0.numberOfLines = 0

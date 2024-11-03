@@ -182,8 +182,6 @@ final class MakePiggyBankEndViewController: BaseViewController, UITextFieldDeleg
         }
         makePiggyBankEndView.confirmState = !(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true) && !textView.text.isEmpty
         makePiggyBankEndView.piggyBankNextButton.isEnabled = makePiggyBankEndView.confirmState
-        print("텍필뷰: \(makePiggyBankEndView.nameTextField.text?.isEmpty ?? true)")
-        print("텍뷰: \(textView.text.isEmpty)")
         updateMemoCountLabel()
     }
     private func updateMemoCountLabel() {
