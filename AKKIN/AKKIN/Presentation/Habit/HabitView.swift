@@ -8,9 +8,9 @@
 import UIKit
 
 final class HabitView: BaseView {
-
+    
     // MARK: UI Components
-    private let scrollView = UIScrollView().then {
+    let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
     private let mainLabel = UILabel().then {
@@ -28,6 +28,7 @@ final class HabitView: BaseView {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
+    var showMakePiggyBankView: Bool = true
 
     private let makePiggyBankEntireView = UIView()
 
@@ -109,7 +110,7 @@ final class HabitView: BaseView {
             $0.centerY.equalTo(makePiggyBankStackView.snp.centerY)
         }
 
-        setMakePiggyBankNonEmtpyView()
+        updateView()
 
         analysisExpenseStackView.snp.makeConstraints {
             $0.top.equalTo(makePiggyBankEntireView.snp.bottom).offset(40)
@@ -133,6 +134,23 @@ final class HabitView: BaseView {
             setAnalysisExpenseNonEmtpyView()
         }
     }
+
+    var viewState: ViewState = .empty {
+        didSet {
+            updateView()
+        }
+    }
+    func updateView() {
+        switch viewState {
+        case .success:
+            makePiggyBankEmptyView.removeFromSuperview()
+            setMakePiggyBankNonEmtpyView()
+        case .empty:
+            setMakePiggyBankEmtpyView()
+        case .zero: break
+        }
+    }
+
     func setMakePiggyBankNonEmtpyView() {
         makePiggyBankEntireView.addSubview(makePiggyBankNonEmptyView)
 
@@ -145,7 +163,7 @@ final class HabitView: BaseView {
         makePiggyBankNonEmptyView.snp.makeConstraints {
             $0.top.equalTo(makePiggyBankStackView.snp.bottom).offset(8)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(72)
+            $0.height.equalTo(self.makePiggyBankNonEmptyView.piggyBankCompleteButton.isHidden ? 72 : 130)
         }
     }
 

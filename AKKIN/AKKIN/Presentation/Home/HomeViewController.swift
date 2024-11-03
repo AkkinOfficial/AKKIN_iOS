@@ -19,6 +19,9 @@ final class HomeViewController: BaseViewController {
     private var currentType: String = "daily"
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
