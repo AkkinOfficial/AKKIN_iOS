@@ -13,6 +13,12 @@ struct PiggyBankResponse: Codable {
     let timestamp: String
     let body: [PiggyBankSummary]
 }
+struct PiggyBankDeleteResponse: Codable {
+    let status: Int
+    let code: String
+    let timestamp: String
+    let body: String
+}
 
 struct PiggyBankDetailResponse: Codable {
     let status: Int
@@ -34,7 +40,7 @@ struct PiggyBankSummary: Codable {
 struct PiggyBankDetailSummary: Codable {
     let id: Int
     let name: String
-    let memo: String
+    let memo: String?
     let startDate: String
     let endDate: String
     let goalAmount: Int

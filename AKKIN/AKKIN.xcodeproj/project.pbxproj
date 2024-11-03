@@ -124,6 +124,7 @@
 		C31603052CB2BB8000348B09 /* MakePiggyBankService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */; };
 		C31603072CB2BC3100348B09 /* MakePiggyBankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */; };
 		C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */; };
+		C316030B2CB6B80900348B09 /* MakePiggyBankResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
 		C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */; };
@@ -286,6 +287,7 @@
 		C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankService.swift; sourceTree = "<group>"; };
 		C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankAPI.swift; sourceTree = "<group>"; };
 		C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankRequest.swift; sourceTree = "<group>"; };
+		C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankResponse.swift; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 		C31602F72CB275D900348B09 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */,
 				C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */,
 				C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */,
 				C31603042CB2BB7400348B09 /* MakePiggyBankService.swift */,
@@ -1035,6 +1038,7 @@
 				951261872AC02D560012B5F9 /* URLConst.swift in Sources */,
 				951261C52AC1DE110012B5F9 /* UserDefault.swift in Sources */,
 				6B5B83952AC1EDB700CD0AFC /* GulbiResponse.swift in Sources */,
+				C316030B2CB6B80900348B09 /* MakePiggyBankResponse.swift in Sources */,
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,

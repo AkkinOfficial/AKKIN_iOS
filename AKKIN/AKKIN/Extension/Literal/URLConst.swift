@@ -7,8 +7,8 @@
 
 enum URLConst {
     // MARK: - baseURL
-    static let base = "https://www.seuleuleug.site/api"
-    
+    static let base = "https://api.akkin.xyz"
+
     // MARK: - AppInfoURL
     static let termsURL = "https://tundra-operation-2d1.notion.site/4448021736b34742bd85202a1d7e2f8e?pvs=25"
     static let privacyPolicyURL = "https://tundra-operation-2d1.notion.site/3575a8becd474c6a93e066b8c442471d"
@@ -26,7 +26,7 @@ enum URLConst {
     static let gulbis = "/gulbis"
 
     // MARK: - PiggyBank
-    static let getPiggyBankSummary = "/piggy-banks"
+    static let piggyBank = "/piggy-banks"
 
     // MARK: - weekly Stats
     static let weeklyStats = "/members/weekly"

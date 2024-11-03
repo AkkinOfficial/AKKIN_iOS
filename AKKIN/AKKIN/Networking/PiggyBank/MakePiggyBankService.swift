@@ -58,7 +58,7 @@ final class MakePiggyBankService {
 
         switch responseData {
         case .postMakePiggyBank:
-            guard let decodedData = try? decoder.decode(PiggyBankResponse.self, from: data) else {
+            guard let decodedData = try? decoder.decode(MakePiggyBankResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
