@@ -19,6 +19,28 @@ final class BaseRouter {
         viewController?.present(someViewController, animated: true)
     }
 
+    func popViewController() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+
+    func dismissViewController() {
+        viewController?.dismiss(animated: true)
+    }
+
+    func popToRootViewController() {
+        viewController?.dismiss(animated: true, completion: {
+            if let rootViewController =
+                UIApplication.shared.windows.first?
+                .rootViewController {
+                if let navigationController =
+                    rootViewController as? UINavigationController {
+                    navigationController
+                        .popToRootViewController(animated: true)
+                }
+            }
+        })
+    }
+
     func presentLoginViewController() {
         let loginViewController = LoginViewController()
         viewController?.navigationController?.pushViewController(loginViewController, animated: true)
@@ -90,28 +112,6 @@ final class BaseRouter {
         guard let url = URL(string: url) else { return }
         let safariViewController = SFSafariViewController(url: url)
         viewController?.present(safariViewController, animated: true, completion: nil)
-    }
-
-    func popViewController() {
-        viewController?.navigationController?.popViewController(animated: true)
-    }
-
-    func dismissViewController() {
-        viewController?.dismiss(animated: true)
-    }
-
-    func popToRootViewController() {
-        viewController?.dismiss(animated: true, completion: {
-            if let rootViewController =
-                UIApplication.shared.windows.first?
-                .rootViewController {
-                if let navigationController =
-                    rootViewController as? UINavigationController {
-                    navigationController
-                        .popToRootViewController(animated: true)
-                }
-            }
-        })
     }
 
     func presentPlanExpenseViewController() {
