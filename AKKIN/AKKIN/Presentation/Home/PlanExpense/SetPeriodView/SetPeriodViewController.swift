@@ -121,16 +121,21 @@ final class SetPeriodViewController: BaseViewController {
 
 extension SetPeriodViewController: SetPeriodViewDelegate {
     func didUpdateDates(startDate: Date?, endDate: Date?) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M월 d일"
+        let viewDateFormatter = DateFormatter()
+        viewDateFormatter.dateFormat = "MM월 dd일"
 
-        selectedStartDate = startDate.map { dateFormatter.string(from: $0) } ?? ""
-        selectedEndDate = endDate.map { dateFormatter.string(from: $0) } ?? ""
+        let passDateFormatter = DateFormatter()
+        passDateFormatter.dateFormat = "YYYY-MM-dd"
+
+        selectedStartDate = startDate.map { passDateFormatter.string(from: $0) } ?? ""
+        selectedEndDate = endDate.map { passDateFormatter.string(from: $0) } ?? ""
         selectedDuration = calculateDuration(from: startDate, to: endDate)
 
-        setPeriodView.startDateLabel.text = selectedStartDate
-        setPeriodView.endDateLabel.text = selectedEndDate.isEmpty ? "" : "\(selectedEndDate) (\(selectedDuration))"
+        setPeriodView.startDateLabel.text = startDate.map { viewDateFormatter.string(from: $0) } ?? ""
+        setPeriodView.endDateLabel.text = endDate.map { viewDateFormatter.string(from: $0) } ?? ""
+        setPeriodView.endDateLabel.text = selectedEndDate.isEmpty ? "" : "\(viewDateFormatter.string(from: endDate!)) (\(selectedDuration))"
     }
+
 
     private func calculateDuration(from startDate: Date?, to endDate: Date?) -> String {
         guard let startDate = startDate, let endDate = endDate else {

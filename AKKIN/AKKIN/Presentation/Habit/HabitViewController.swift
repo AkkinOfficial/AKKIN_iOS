@@ -11,18 +11,35 @@ final class HabitViewController: BaseViewController {
 
     // MARK: UI Components
     private let habitView = HabitView()
+    var bankId = 1
 
     // MARK: Environment
     private let router = BaseRouter()
+    private let piggyBankService = PiggyBankService()
+    private let refreshControl = UIRefreshControl()
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        getPiggyBankSummary()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.frame = UIScreen.main.bounds
         view.backgroundColor = .akkinBG
 
         setNavigationItem()
+        self.habitView.scrollView.refreshControl = refreshControl
         router.viewController = self
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
+    }
+    @objc func refreshData() {
+        // 여기에 새로고침할 데이터를 불러오는 로직 추가 (예: API 호출)
+        getPiggyBankSummary()
+        // 새로고침 완료 시 refreshControl을 종료
+        refreshControl.endRefreshing()
     }
 
     // MARK: Properties
@@ -33,12 +50,10 @@ final class HabitViewController: BaseViewController {
 
         view.addSubview(habitView)
 
-        configureView()
-
         habitView.makePiggyBankNonEmptyView.tapDetail = {
             [weak self] in
                 guard let self else { return }
-            router.popToPiggyBankDetailViewController()
+            router.popToPiggyBankDetailViewController(bankId: self.bankId)
         }
         habitView.makePiggyBankEmptyView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
@@ -54,16 +69,6 @@ final class HabitViewController: BaseViewController {
         }
     }
 
-    private func configureView() {
-        let model = PiggyBankModel.dummy
-        let rate = CGFloat(model.achievementRate)/100
-        habitView.makePiggyBankNonEmptyView.circularProgressBar.value = rate
-        habitView.makePiggyBankNonEmptyView.piggyBankNameLabel.text = "\(model.name)"
-        habitView.makePiggyBankNonEmptyView.piggyBankImageLabel.text = "\(model.emoji)"
-
-        print("Saved = \(model.currentAmount), Goal = \(model.goalAmount), Rate = \(CGFloat(model.achievementRate)/100)")
-    }
-
     // MARK: Layout
     override func makeConstraints() {
         habitView.snp.makeConstraints {
@@ -74,6 +79,58 @@ final class HabitViewController: BaseViewController {
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    // MARK: Network
+    private func getPiggyBankSummary() {
+        print("💸 getPiggyBank called in HabitViewController")
+        piggyBankService.getPiggyBankSummary { [weak self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? PiggyBankResponse else { return }
+                print("🎯 getPiggyBank success in HabitViewController")
+                print("\(data.code)")
+                if data.code == "PIGGY_BANK_01" {
+                    self?.habitView.viewState = .empty
+                } else if data.body.isEmpty {
+                    self?.habitView.viewState = .empty
+                } else {
+                    print("\n😆 값 불러와짐!!\n")
+                    self?.habitView.viewState = .success
+
+                    var formattedGoalAmount: String {
+                        return formattedAmount(data.body[0].goalAmount)
+                    }
+                    var formattedCurrentAmount: String {
+                        return formattedAmount(data.body[0].currentAmount)
+                    }
+                    self?.habitView.makePiggyBankNonEmptyView.piggyBankImageLabel.text = data.body[0].emoji
+                    self?.habitView.makePiggyBankNonEmptyView.piggyBankNameLabel.text = data.body[0].name
+                    self?.habitView.makePiggyBankNonEmptyView.goalAmount = formattedGoalAmount
+                    self?.habitView.makePiggyBankNonEmptyView.piggyBankAmountLabel.text = formattedCurrentAmount
+                    let rate =  CGFloat(data.body[0].achievementRate)/100
+                    if rate == 1 {
+                        self?.habitView.makePiggyBankNonEmptyView.piggyBankCompleteButton.isHidden = false
+                    }
+                    self?.habitView.makePiggyBankNonEmptyView.circularProgressBar.progress = rate
+                    self?.bankId = data.body[0].id
+                }
+
+                func formattedAmount(_ amount: Int) -> String {
+                    return NumberFormatter.localizedString(from: NSNumber(value: amount), number: .decimal)
+                }
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
     }
 }
 
