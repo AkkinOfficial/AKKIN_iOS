@@ -169,6 +169,8 @@
 		E59A27722CA853390050359C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27712CA853390050359C /* HomeModel.swift */; };
 		E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27752CA85F840050359C /* CustomToggleButton.swift */; };
 		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
+		E5BEA8F12CDD12D200F7B9C9 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */; };
+		E5BEA8F32CDD134000F7B9C9 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
@@ -346,6 +348,8 @@
 		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -759,6 +763,7 @@
 		BC94AD352AA6189600A77052 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				E5BEA8EF2CDD10CA00F7B9C9 /* Alert */,
 				95E535CE2AB492E500FA2492 /* Splash */,
 				951261582ABB1C890012B5F9 /* Onboarding */,
 				951261612ABD96FB0012B5F9 /* Login */,
@@ -982,6 +987,15 @@
 			path = AddChallenges;
 			sourceTree = "<group>";
 		};
+		E5BEA8EF2CDD10CA00F7B9C9 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */,
+				E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		E5F659DD2C9C9124001A08C7 /* ExpenseCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1084,6 +1098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				955201442CA082B3006DB98C /* ExpenseListModel.swift in Sources */,
+				E5BEA8F32CDD134000F7B9C9 /* AlertView.swift in Sources */,
 				E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */,
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
 				95094BD82CBA9F1B006055C3 /* ReportsService.swift in Sources */,
@@ -1204,6 +1219,7 @@
 				95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */,
 				BC94AD492AA61A8300A77052 /* BaseView.swift in Sources */,
 				9552013C2CA04BDA006DB98C /* ExpenseDetailView.swift in Sources */,
+				E5BEA8F12CDD12D200F7B9C9 /* AlertViewController.swift in Sources */,
 				C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */,
 				C31602FD2CB2763E00348B09 /* PiggyBankAPI.swift in Sources */,
 				E5F659DC2C9709A8001A08C7 /* HomeViewController.swift in Sources */,

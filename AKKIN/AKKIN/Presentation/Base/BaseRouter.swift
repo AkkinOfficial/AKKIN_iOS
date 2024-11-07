@@ -100,6 +100,10 @@ final class BaseRouter {
         viewController?.dismiss(animated: true)
     }
 
+    func dismissViewControllerNonAnimated() {
+        viewController?.dismiss(animated: false)
+    }
+
     func popToRootViewController() {
         viewController?.navigationController?.popToRootViewController(animated: true)
 
@@ -140,5 +144,12 @@ final class BaseRouter {
         addExpenseConfirmViewController.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(addExpenseConfirmViewController, animated: true)
     }
+
+    func presentAlertViewController() {
+        let alertViewController = AlertViewController()
+        alertViewController.modalPresentationStyle = .overFullScreen
+        viewController?.present(alertViewController, animated: false, completion: nil)
+    }
+
 
 }

@@ -1,16 +1,17 @@
 //
-//  EmptyHomeViewController.swift
+//  AlertViewController.swift
 //  AKKIN
 //
-//  Created by 박지윤 on 8/8/24.
+//  Created by 성현주 on 11/8/24.
 //
 
+import Foundation
 import UIKit
 
-final class EmptyHomeViewController: BaseViewController {
+class AlertViewController: BaseViewController {
 
     // MARK: UI Components
-    private let emptyHomeView = EmptyHomeView()
+    private let alertView = AlertView()
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -18,26 +19,25 @@ final class EmptyHomeViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .black.withAlphaComponent(0.2)
         router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
-        view.addSubview(emptyHomeView)
+        view.addSubview(alertView)
 
-        //TODO: 라우터 수정
-        emptyHomeView.tapExpense = { [weak self] in
+        alertView.tapConfirm = { [weak self] in
             guard let self else { return }
-//            router.presentPlanExpenseViewController()
-            router.presentAlertViewController()
+            router.dismissViewControllerNonAnimated()
         }
     }
 
     // MARK: Layout
     override func makeConstraints() {
-        emptyHomeView.snp.makeConstraints {
+        alertView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
+
 }
