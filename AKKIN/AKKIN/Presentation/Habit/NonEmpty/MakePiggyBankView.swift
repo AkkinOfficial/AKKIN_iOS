@@ -18,10 +18,7 @@ final class MakePiggyBankView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 24)
     }
 
-    private let piggyBankStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 4
-        $0.distribution = .fill
+    private let piggyBankStackView = UIView().then {
         $0.backgroundColor = .white
     }
 
@@ -70,7 +67,8 @@ final class MakePiggyBankView: BaseView {
         addSubview(circularProgressBar)
         addSubview(piggyBankCompleteButton)
 
-        piggyBankStackView.addArrangedSubviews(piggyBankNameLabel, piggyBankAmountLabel)
+        piggyBankStackView.addSubview(piggyBankNameLabel)
+        piggyBankStackView.addSubview(piggyBankAmountLabel)
 
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDetailViewEvent(_:))) //
@@ -98,6 +96,7 @@ final class MakePiggyBankView: BaseView {
             $0.height.equalTo(19)
         }
         piggyBankAmountLabel.snp.makeConstraints {
+            $0.top.equalTo(piggyBankNameLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview()
             $0.width.equalTo(240)
             $0.height.equalTo(19)
