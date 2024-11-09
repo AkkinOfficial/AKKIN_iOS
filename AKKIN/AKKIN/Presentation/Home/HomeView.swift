@@ -32,7 +32,7 @@ final class HomeView: BaseView {
         button.backgroundColor = .clear
         return button
     }()
-    let homeKebbabButton: UIButton = {
+    let homeSettingButton: UIButton = {
         let button = UIButton(type: .custom)
         let image = UIImage(named: "kebab_button")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
@@ -122,6 +122,8 @@ final class HomeView: BaseView {
 
     // MARK: Properties
     var tapAddExpense: (() -> Void)?
+    var tapKebbab: (() -> Void)?
+    var tapAlarm: (() -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -129,7 +131,7 @@ final class HomeView: BaseView {
         addSubview(homeNavigationBar)
         homeNavigationBar.addSubview(homeLogo)
         homeNavigationBar.addSubview(homeAlarmButton)
-        homeNavigationBar.addSubview(homeKebbabButton)
+        homeNavigationBar.addSubview(homeSettingButton)
         addSubview(addExpenseButton)
         addSubview(toggleButton)
         addSubview(progressView)
@@ -164,7 +166,7 @@ final class HomeView: BaseView {
             $0.height.equalTo(48)
             $0.centerY.equalToSuperview()
         }
-        homeKebbabButton.snp.makeConstraints {
+        homeSettingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.width.equalTo(48)
             $0.height.equalTo(48)
@@ -203,5 +205,10 @@ final class HomeView: BaseView {
     @objc private func didTapAddExpenseButton() {
         tapAddExpense?()
     }
+    @objc private func didTapKebbabButton() {
+        tapKebbab?()
+    }
+    @objc private func didTapAlarmButton() {
+        tapAlarm?()
+    }
 }
-
