@@ -34,6 +34,26 @@ extension UIButton {
         backgroundColor = .clear
     }
 
+    func setAlarmButton() {
+        isEnabled = true
+        setImage(AkkinButton.alarmButton, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        backgroundColor = .clear
+    }
+
+    func setLogo() {
+        setImage(AkkinIcon.logo, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        backgroundColor = .clear
+    }
+
+    func setKebbab() {
+        isEnabled = true
+        setImage(AkkinButton.kebabButton, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        backgroundColor = .clear
+    }
+
     func setCompleteButton(inputTitle: String) {
         setTitle(inputTitle, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)

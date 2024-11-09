@@ -26,9 +26,11 @@ public enum AkkinButton {
     public static var previousButton: UIImage { .load(name: "previous_button") }
     public static var skipButton: UIImage { .load(name: "skipButton") }
     public static var kebabButton: UIImage { .load(name: "kebab_button") }
+    public static var alarmButton: UIImage { .load(name: "alarm_button") }
 }
 
 public enum AkkinIcon {
+    public static var logo: UIImage { .load(name: "ic_logo")}
     public static var home: UIImage { .load(name: "ic_home") }
     public static var homeFilled: UIImage { .load(name: "ic_homeFilled") }
     public static var habit: UIImage { .load(name: "ic_habit") }
