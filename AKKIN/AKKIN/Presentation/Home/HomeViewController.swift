@@ -24,10 +24,15 @@ final class HomeViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setNavigationItem()
         router.viewController = self
         //TODO: 네트워크 메서드 추가
         configureView(for: currentType)
+    }
+
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     // MARK: Configuration
@@ -83,7 +88,7 @@ final class HomeViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         homeView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

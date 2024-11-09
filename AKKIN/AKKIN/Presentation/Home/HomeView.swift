@@ -10,6 +10,38 @@ import UIKit
 final class HomeView: BaseView {
 
     // MARK: UI Components
+    private let homeNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+    }
+    let homeLogo: UIButton = {
+        let button = UIButton(type: .custom)
+        let image = UIImage(named: "ic_logo")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .akkinGray5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        button.backgroundColor = .clear
+        return button
+    }()
+    let homeAlarmButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let image = UIImage(named: "alarm_button")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .akkinGray5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        button.backgroundColor = .clear
+        return button
+    }()
+    let homeKebbabButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let image = UIImage(named: "kebab_button")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .akkinGray5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        button.backgroundColor = .clear
+        return button
+    }()
+
     lazy var addExpenseButton: BaseButton = {
         let button = BaseButton()
         button.setTitle("지출 추가하기", for: .normal)
@@ -94,6 +126,10 @@ final class HomeView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        addSubview(homeNavigationBar)
+        homeNavigationBar.addSubview(homeLogo)
+        homeNavigationBar.addSubview(homeAlarmButton)
+        homeNavigationBar.addSubview(homeKebbabButton)
         addSubview(addExpenseButton)
         addSubview(toggleButton)
         addSubview(progressView)
@@ -110,7 +146,30 @@ final class HomeView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
-
+        homeNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.equalTo(64)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        homeLogo.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+        homeAlarmButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(48)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+        homeKebbabButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
         addExpenseButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(20)
@@ -119,7 +178,7 @@ final class HomeView: BaseView {
 
         toggleButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(119)
+            $0.top.equalTo(homeNavigationBar.snp.bottom).offset(8)
             $0.width.equalTo(219)
             $0.height.equalTo(49)
         }

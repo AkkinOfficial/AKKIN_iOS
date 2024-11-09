@@ -18,11 +18,18 @@ final class AddExpenseConfirmViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
         router.viewController = self
     }
 
     // MARK: Configuration
     override func configureSubviews() {
+
+        addExpenseConfirmView.backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
+
         print(ExpenseInfo.shared.amount, ExpenseInfo.shared.category, ExpenseInfo.shared.content)
         setView()
         view.addSubview(addExpenseConfirmView)
@@ -34,10 +41,15 @@ final class AddExpenseConfirmViewController: BaseViewController {
         }
     }
 
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
     // MARK: Layout
     override func makeConstraints() {
         addExpenseConfirmView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 

@@ -39,6 +39,7 @@ final class PlanExpenseViewController: BaseViewController {
 
         tabBarController?.tabBar.isHidden = true
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,6 +66,10 @@ final class PlanExpenseViewController: BaseViewController {
         planExpenseView.tapPeriodTextField = { [weak self] in
             guard let self else { return }
             router.presentSetPeriodViewController(setPeriodViewController)
+        }
+        planExpenseView.tapConfirmButton = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
         }
 
         //TODO: 네트워크 메서드 추가하기

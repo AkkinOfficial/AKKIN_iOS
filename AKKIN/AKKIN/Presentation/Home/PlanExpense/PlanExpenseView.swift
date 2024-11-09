@@ -10,6 +10,20 @@ import UIKit
 final class PlanExpenseView: BaseView {
 
     // MARK: UI Components
+    private let planExpenseNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+
+    }
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
+
+    private let planExpenseLabel = UILabel().then {
+        $0.text = "챌린지 시작하기"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
     lazy var expensePlanLabel: UILabel = {
         let label = UILabel()
         label.text = AkkinString.expensePlanHeadLine
@@ -63,6 +77,9 @@ final class PlanExpenseView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
+        addSubview(planExpenseNavigationBar)
+        planExpenseNavigationBar.addSubview(backButton)
+        planExpenseNavigationBar.addSubview(planExpenseLabel)
         addSubview(expensePlanLabel)
         addSubview(periodTextField)
         addSubview(budgetTextField)
