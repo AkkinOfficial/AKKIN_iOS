@@ -29,8 +29,8 @@ final class EmptyHomeViewController: BaseViewController {
         //TODO: 라우터 수정
         emptyHomeView.tapExpense = { [weak self] in
             guard let self else { return }
-//            router.presentPlanExpenseViewController()
-            router.presentAlertViewController()
+            router.presentPlanExpenseViewController()
+            //router.presentAlertViewController()
         }
     }
 

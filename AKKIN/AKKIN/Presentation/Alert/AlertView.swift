@@ -10,6 +10,18 @@ import SnapKit
 
 final class AlertView: BaseView {
 
+    private let alertType: AlertType
+
+       init(alertType: AlertType) {
+           self.alertType = alertType
+           super.init(frame: .zero)
+       }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
      lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -33,70 +45,73 @@ final class AlertView: BaseView {
         return view
     }()
 
-    private lazy var titleLabel: UILabel? = {
+     lazy var emojiLabel: UILabel? = {
         let label = UILabel()
-        label.text = ""
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18.0, weight: .bold)
-        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 40.0, weight: .bold)
+        return label
+    }()
+
+     lazy var textLabel: UILabel? = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 20.0)
         label.textColor = .black
-        return label
-    }()
-
-    private lazy var messageLabel: UILabel? = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 16.0)
-        label.textColor = .gray
         label.numberOfLines = 0
         return label
     }()
 
-    lazy var confirmButton: BaseButton = {
+    lazy var rightButton: BaseButton = {
         let button = BaseButton()
         button.setTitle("확인", for: .normal)
         button.isEnabled = true
         return button
     }()
 
-    lazy var latterButton: BaseButton = {
+    lazy var leftButton: BaseButton = {
         let button = BaseButton()
         button.setTitle("나중에", for: .normal)
         button.isEnabled = true
+        button.setLatterButton()
         return button
     }()
 
     // MARK: Properties
-    var tapConfirm: (() -> Void)?
+    var tapLeftButton: (() -> Void)?
+    var tapRightButton: (() -> Void)?
 
 
     override func configureSubviews() {
 
         addSubview(containerView)
         containerView.addSubview(containerStackView)
-        buttonStackView.addArrangedSubviews(confirmButton,latterButton)
 
-        if let titleLabel = titleLabel {
-            containerStackView.addArrangedSubview(titleLabel)
+        if alertType == .piggyBankNonExistence {
+            buttonStackView.addArrangedSubview(leftButton)
+            leftButton.setTitle("만들기", for: .normal)
+            buttonStackView.addArrangedSubview(rightButton)
+        } else {
+            buttonStackView.addArrangedSubview(rightButton)
         }
 
-        if let messageLabel = messageLabel {
-            containerStackView.addArrangedSubview(messageLabel)
+        if let emojiLabel = emojiLabel {
+            containerStackView.addArrangedSubview(emojiLabel)
         }
 
-        if let lastView = containerStackView.subviews.last {
-            containerStackView.setCustomSpacing(24.0, after: lastView)
+        if let textLabel = textLabel {
+            containerStackView.addArrangedSubview(textLabel)
         }
 
         containerStackView.addArrangedSubview(buttonStackView)
 
-        confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
     }
 
     override func makeConstraints() {
         containerView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(26)
+            make.leading.trailing.equalToSuperview().inset(40)
             make.top.greaterThanOrEqualToSuperview().inset(32)
             make.bottom.lessThanOrEqualToSuperview().inset(32)
         }
@@ -112,7 +127,11 @@ final class AlertView: BaseView {
     }
 
     // MARK: Event
-    @objc private func didTapConfirmButton() {
-        tapConfirm?()
+    @objc private func didTapLeftButton() {
+        tapLeftButton?()
+    }
+
+    @objc private func didTapRightButton() {
+        tapRightButton?()
     }
 }

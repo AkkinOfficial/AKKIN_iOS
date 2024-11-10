@@ -171,6 +171,7 @@
 		E59A27782CA8657F0050359C /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A27772CA8657F0050359C /* CustomProgressView.swift */; };
 		E5BEA8F12CDD12D200F7B9C9 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */; };
 		E5BEA8F32CDD134000F7B9C9 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */; };
+		E5BEA9002CDFC1D100F7B9C9 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BEA8FF2CDFC1D100F7B9C9 /* AlertType.swift */; };
 		E5D34D8D2C85A5E200200C44 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */; };
 		E5D34D8F2C85A62300200C44 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D34D8E2C85A62300200C44 /* BaseTextField.swift */; };
 		E5F659D62C95C759001A08C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659D52C95C759001A08C7 /* HomeView.swift */; };
@@ -350,6 +351,7 @@
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		E5BEA8FF2CDFC1D100F7B9C9 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		E5D34D8C2C85A5E100200C44 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		E5D34D8E2C85A62300200C44 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		E5F659D52C95C759001A08C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -992,6 +994,7 @@
 			children = (
 				E5BEA8F02CDD12D200F7B9C9 /* AlertViewController.swift */,
 				E5BEA8F22CDD134000F7B9C9 /* AlertView.swift */,
+				E5BEA8FF2CDFC1D100F7B9C9 /* AlertType.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */,
 				BC94AD602AA6AB9400A77052 /* BaseViewController.swift in Sources */,
 				951261942AC02EC60012B5F9 /* BlankDataResponse.swift in Sources */,
+				E5BEA9002CDFC1D100F7B9C9 /* AlertType.swift in Sources */,
 				E5863FA72CB19E010092D6C1 /* HomeResponse.swift in Sources */,
 				951261B42AC1A8920012B5F9 /* MonthlyResponse.swift in Sources */,
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,

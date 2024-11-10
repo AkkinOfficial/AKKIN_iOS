@@ -20,4 +20,7 @@ struct UserDefaultHandler {
 
     @UserDefault(key: "userEmail", defaultValue: "")
     static var userEmail: String
+
+    @UserDefault(key: "savedAmount", defaultValue: "")
+    static var savedAmount: String
 }

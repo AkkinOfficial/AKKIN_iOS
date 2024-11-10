@@ -39,6 +39,7 @@ final class HomeViewController: BaseViewController {
         homeView.tapAddExpense = { [weak self] in
             guard let self else { return }
             self.router.presentAddExpenseViewController()
+            self.router.presentAlertViewController()
         }
 
         homeView.toggleButton.tapToggle = { [weak self] in
@@ -98,6 +99,7 @@ final class HomeViewController: BaseViewController {
         homeView.expenseAmountLabel.text = "\(model.formattedExpenseAmount)원"
         homeView.challengeAmountLabel.text = "\(model.formattedAvailableAmount)원"
         let formattedSavedAmount = model.formattedSavedAmount
+        UserDefaultHandler.savedAmount = formattedSavedAmount
 
         switch type {
         case "DAILY":
