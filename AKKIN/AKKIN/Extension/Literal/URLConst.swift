@@ -56,4 +56,7 @@ enum URLConst {
     //MARK: - add Challenges
     static let addChallenges = "/challenges"
 
+
+    // MARK: - Reports
+    static let reports = "/reports"
 }
