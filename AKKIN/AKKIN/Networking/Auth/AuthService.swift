@@ -18,8 +18,8 @@ final class AuthService {
         case getAppleLogout
     }
 
-    public func postAppleLogin(appleToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        authProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
+    public func postAppleLogin(code: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        authProvider.request(.postAppleLogin(code: code)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
