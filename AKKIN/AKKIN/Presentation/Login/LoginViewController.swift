@@ -98,8 +98,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             UserDefaultHandler.appleToken = appleTokenToString
             UserDefaultHandler.authorizationCode = authorizationCodeToString
             UserDefaultHandler.userEmail = email ?? "${mail}"
-
-            postAppleLogin(appleTokenToString)
+            postAppleLogin(authorizationCodeToString)
         default:
             break
         }
@@ -109,14 +108,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         print("⚠️ apple login failed")
     }
 
-    private func postAppleLogin(_ appleToken: String) {
+    private func postAppleLogin(_ code: String) {
         print("💸 postAppleLogin called")
-        NetworkService.shared.auth.postAppleLogin(appleToken: appleToken) { result in
+        NetworkService.shared.auth.postAppleLogin(code: code) { result in
             switch result {
             case .success(let response):
                 guard let data = response as? AppleLoginResponse else { return }
-                UserDefaultHandler.accessToken = data.accessToken
-                UserDefaultHandler.refreshToken = data.refreshToken
+                print(data)
+                UserDefaultHandler.accessToken = data.body.accessToken
+                UserDefaultHandler.refreshToken = data.body.refreshToken
                 print("🎯 postAppleLogin success")
                 self.router.presentTabBarViewController()
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
