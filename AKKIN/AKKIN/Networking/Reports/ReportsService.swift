@@ -41,7 +41,7 @@ final class ReportsService {
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
-            guard let decodedData = try? decoder.decode(ReportsErrorResponse.self, from: data) else {
+            guard let decodedData = try? decoder.decode(ErrorResponse.self, from: data) else {
                 return .pathErr
             }
             return .requestErr(decodedData)
@@ -61,4 +61,3 @@ final class ReportsService {
         }
     }
 }
-
