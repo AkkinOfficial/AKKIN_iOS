@@ -43,7 +43,7 @@ extension PiggyBankAPI: TargetType {
     }
 
     var headers: [String: String]? {
-        return ["Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Impvbmd3b25AZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE3MjgyNDQyNjgsImV4cCI6MTk0OTAwMzQ2OH0.xO1oMy-J7eAQcJPxykEdTyx4pEO2Ie5iKydf-Tm5La37DY6kkwS-1z42db3czT373F_E5p7DtuZNWScz0ft58A"]
+        return ["Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6ImpyNm52eTg2eDVAcHJpdmF0ZXJlbGF5LmFwcGxlaWQuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczMTIzODEzOCwiZXhwIjoxNzMxMjQ1MzM4fQ.f55h7wNHtXNPQ42iqrbrYxGonfhmD8ONuG5J1YhBfnj00qUQzPBq3FE7QE6h6w7ytyi7rraXwx8bhpIbV0oIdg"]
     }
 }
 

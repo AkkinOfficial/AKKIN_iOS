@@ -146,7 +146,7 @@ final class BaseRouter {
     }
 
     func presentAlertViewController() {
-        let alertViewController = AlertViewController(alertType: .piggyBankExistence)
+        let alertViewController = AlertViewController()
         alertViewController.modalPresentationStyle = .overFullScreen
         viewController?.present(alertViewController, animated: false, completion: nil)
     }

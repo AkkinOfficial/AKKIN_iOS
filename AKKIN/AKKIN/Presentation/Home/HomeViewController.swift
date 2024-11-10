@@ -23,13 +23,14 @@ final class HomeViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        fetchExpenseSummary(for: currentType)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         router.viewController = self
         configureView(for: currentType)
-        fetchExpenseSummary(for: currentType)
+        checkIfTimePassed()
     }
 
     // MARK: Configuration
@@ -39,7 +40,6 @@ final class HomeViewController: BaseViewController {
         homeView.tapAddExpense = { [weak self] in
             guard let self else { return }
             self.router.presentAddExpenseViewController()
-            self.router.presentAlertViewController()
         }
 
         homeView.toggleButton.tapToggle = { [weak self] in
@@ -99,7 +99,16 @@ final class HomeViewController: BaseViewController {
         homeView.expenseAmountLabel.text = "\(model.formattedExpenseAmount)원"
         homeView.challengeAmountLabel.text = "\(model.formattedAvailableAmount)원"
         let formattedSavedAmount = model.formattedSavedAmount
-        UserDefaultHandler.savedAmount = formattedSavedAmount
+
+        let storedTime = UserDefaultHandler.dismissModalTime
+        let currentTime = Date()
+        if currentTime > storedTime {
+            print("현재 시간이 저장된 시간을 지남. 지출 금액 업데이트 안함. == 어제의 savedamount 유지")
+        } else {
+            print("현재 시간이 저장된 시간을 지나지 않음. 지출 금액 업데이트")
+            UserDefaultHandler.savedAmount = formattedSavedAmount
+        }
+
 
         switch type {
         case "DAILY":
@@ -119,6 +128,23 @@ final class HomeViewController: BaseViewController {
         }
 
         print("\(type) type: Saved = \(model.savedAmount), Used = \(model.expenseAmount), Available = \(model.availableAmount)")
+    }
+
+    // MARK: 모달 관련 메서드
+    private func checkIfTimePassed() {
+        //테스트용
+        let testDate = Calendar.current.date(from: DateComponents(year: 2023, month: 12, day: 31))!
+        UserDefaultHandler.dismissModalTime = testDate
+
+        let storedTime = UserDefaultHandler.dismissModalTime
+        let currentTime = Date()
+        if currentTime > storedTime {
+            print("현재 시간이 저장된 시간을 지남. 모달 동작.")
+            router.presentAlertViewController()
+        } else {
+            print("현재 시간이 저장된 시간을 지나지 않음. 동작 안함.")
+        }
+
     }
 
     // MARK: Layout

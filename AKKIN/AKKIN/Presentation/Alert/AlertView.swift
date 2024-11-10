@@ -88,7 +88,8 @@ final class AlertView: BaseView {
 
         if alertType == .piggyBankNonExistence {
             buttonStackView.addArrangedSubview(leftButton)
-            leftButton.setTitle("만들기", for: .normal)
+            leftButton.setTitle("나중에", for: .normal)
+            rightButton.setTitle("만들기", for: .normal)
             buttonStackView.addArrangedSubview(rightButton)
         } else {
             buttonStackView.addArrangedSubview(rightButton)
