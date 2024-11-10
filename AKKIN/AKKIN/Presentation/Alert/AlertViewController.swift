@@ -26,6 +26,7 @@ class AlertViewController: BaseViewController {
 
     // MARK: UI Components
     private let alertView: AlertView
+    var component = Calendar.current.dateComponents([.year, .month, .day], from: Date())
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -47,6 +48,7 @@ class AlertViewController: BaseViewController {
         alertView.tapRightButton = { [weak self] in
             guard let self else { return }
             router.dismissViewControllerNonAnimated()
+            saveModalDissmisTime()
         }
 
         updateUI()
@@ -59,6 +61,7 @@ class AlertViewController: BaseViewController {
         }
     }
 
+    //TODO: 중복코드 제거
     private func updateUI() {
         switch alertType {
         case .piggyBankExistence:
@@ -87,6 +90,15 @@ class AlertViewController: BaseViewController {
 
             alertView.textLabel?.attributedText = attributedString
         }
+    }
+
+    private func saveModalDissmisTime() {
+        component.timeZone = TimeZone(abbreviation: "UTC")
+        let dateWithoutTime = Calendar.current.date(from: component)!
+        let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: dateWithoutTime)
+        print(dateWithoutTime)
+        UserDefaultHandler.dismissModalTime = nextDate ?? Date()
+        print("다음 모달 호출 시간: \(UserDefaultHandler.dismissModalTime)")
     }
 
     // MARK: Network
