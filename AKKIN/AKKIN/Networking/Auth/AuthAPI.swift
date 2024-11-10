@@ -9,7 +9,7 @@ import Moya
 import Foundation
 
 enum AuthAPI {
-    case postAppleLogin(appleToken: String)
+    case postAppleLogin(code: String)
     case postAppleRevoke(appleToken: String, authorizationCode: String)
     case getAppleLogout
 }
@@ -39,9 +39,9 @@ extension AuthAPI: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case .postAppleLogin(let appleToken):
+        case .postAppleLogin(let code):
             return .requestParameters(parameters: [
-                "appleToken": appleToken
+                "code": code
             ], encoding: JSONEncoding.default)
         case .postAppleRevoke(let appleToken, let authorizationCode):
             return .requestParameters(parameters: [
