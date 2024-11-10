@@ -73,6 +73,7 @@ final class PlanExpenseViewController: BaseViewController {
         planExpenseView.tapConfirmButton = { [weak self] in
             guard let self else { return }
             self.addExpense()
+            router.popViewController()
         }
     }
 

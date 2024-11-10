@@ -133,8 +133,8 @@ final class HomeViewController: BaseViewController {
     // MARK: 모달 관련 메서드
     private func checkIfTimePassed() {
         //테스트용
-        let testDate = Calendar.current.date(from: DateComponents(year: 2023, month: 12, day: 31))!
-        UserDefaultHandler.dismissModalTime = testDate
+//        let testDate = Calendar.current.date(from: DateComponents(year: 2024, month: 11, day: 9))!
+//        UserDefaultHandler.dismissModalTime = testDate
 
         let storedTime = UserDefaultHandler.dismissModalTime
         let currentTime = Date()
