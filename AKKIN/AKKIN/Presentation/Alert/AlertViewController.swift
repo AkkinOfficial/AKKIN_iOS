@@ -10,28 +10,16 @@ import UIKit
 
 class AlertViewController: BaseViewController {
 
-    // MARK:  Properties
-    private var alertType: AlertType
-
-    // MARK: Initializer
-    init(alertType: AlertType) {
-        self.alertType = alertType
-        self.alertView = AlertView(alertType: alertType)
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: Properties
+    private var alertType: AlertType?
 
     // MARK: UI Components
-    private let alertView: AlertView
+    private var alertView: AlertView?
     var component = Calendar.current.dateComponents([.year, .month, .day], from: Date())
 
     // MARK: Environment
     private let router = BaseRouter()
     private let piggyBankService = PiggyBankService()
-
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -41,88 +29,110 @@ class AlertViewController: BaseViewController {
         getPiggyBankSummary()
     }
 
-    // MARK: Configuration
+    // MARK: Layout and Configuration
     override func configureSubviews() {
-        view.addSubview(alertView)
+        guard let alertType = alertType else { return }
+        alertView = AlertView(alertType: alertType)
 
-        alertView.tapRightButton = { [weak self] in
-            guard let self else { return }
-            router.dismissViewControllerNonAnimated()
-            saveModalDissmisTime()
-        }
-
-        updateUI()
-    }
-
-    // MARK: Layout
-    override func makeConstraints() {
-        alertView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-
-    //TODO: 중복코드 제거
-    private func updateUI() {
-        switch alertType {
-        case .piggyBankExistence:
-            alertView.emojiLabel?.text = "🙌🏻"
-            let savedAmount = "\(UserDefaultHandler.savedAmount)원"
-            let fullText = "어제 아낀 금액\n 무려 \(savedAmount)! \n 아낀 금액은 저금통에 담을게요!"
-            let attributedString = NSMutableAttributedString(string: fullText)
-
-            if let range = fullText.range(of: savedAmount) {
-                let nsRange = NSRange(range, in: fullText)
-                attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: nsRange)
+        if let alertView = alertView {
+            view.addSubview(alertView)
+            alertView.tapRightButton = { [weak self] in
+                guard let self = self else { return }
+                self.router.dismissViewControllerNonAnimated()
+                self.saveModalDismissTime()
             }
 
-            alertView.textLabel?.attributedText = attributedString
+            if alertType == .piggyBankNonExistence {
+                alertView.tapLeftButton = { [weak self] in
+                    guard let self = self else { return }
+                    self.router.dismissViewControllerNonAnimated()
+                    self.saveModalDismissTime()
+                }
+            }
+            bindMethod()
+            updateUI()
+            makeConstraints()
+        }
+    }
+
+     override func makeConstraints() {
+        alertView?.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    private func bindMethod(){
+        switch(alertType) {
+        case .piggyBankExistence:
+            alertView?.tapRightButton = { [weak self] in
+                guard let self = self else { return }
+                self.router.dismissViewControllerNonAnimated()
+                self.saveModalDismissTime()
+            }
 
         case .piggyBankNonExistence:
-            alertView.emojiLabel?.text = "🙌🏻"
-            let savedAmount = "\(UserDefaultHandler.savedAmount)원"
-            let fullText = "어제 아낀 금액\n 무려 \(savedAmount)! \n 저금통을 만들까요?"
-            let attributedString = NSMutableAttributedString(string: fullText)
+            alertView?.tapRightButton = { [weak self] in
+                guard let self = self else { return }
+                self.router.dismissViewControllerNonAnimated()
 
-            if let range = fullText.range(of: savedAmount) {
-                let nsRange = NSRange(range, in: fullText)
-                attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: nsRange)
+                print("저금통 만들어야지")
+                self.saveModalDismissTime()
+            }
+            alertView?.tapLeftButton = { [weak self] in
+                guard let self = self else { return }
+                self.router.dismissViewControllerNonAnimated()
+                self.saveModalDismissTime()
             }
 
-            alertView.textLabel?.attributedText = attributedString
+        case .none:
+            print("none")
         }
     }
 
-    private func saveModalDissmisTime() {
+    private func updateUI() {
+        guard let alertView = alertView, let alertType = alertType else { return }
+
+        let savedAmount = "\(UserDefaultHandler.savedAmount)원"
+        let fullText = alertType == .piggyBankExistence
+            ? "어제 아낀 금액\n 무려 \(savedAmount)! \n 아낀 금액은 저금통에 담을게요!"
+            : "어제 아낀 금액\n 무려 \(savedAmount)! \n 저금통을 만들까요?"
+
+        let attributedString = NSMutableAttributedString(string: fullText)
+        if let range = fullText.range(of: savedAmount) {
+            let nsRange = NSRange(range, in: fullText)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.akkinGreen, range: nsRange)
+        }
+        alertView.emojiLabel?.text = "🙌🏻"
+        alertView.textLabel?.attributedText = attributedString
+    }
+
+    private func saveModalDismissTime() {
         component.timeZone = TimeZone(abbreviation: "UTC")
         let dateWithoutTime = Calendar.current.date(from: component)!
         let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: dateWithoutTime)
-        print(dateWithoutTime)
         UserDefaultHandler.dismissModalTime = nextDate ?? Date()
         print("다음 모달 호출 시간: \(UserDefaultHandler.dismissModalTime)")
     }
 
     // MARK: Network
     private func getPiggyBankSummary() {
-        print("💸 getPiggyBank called in HabitViewController")
         piggyBankService.getPiggyBankSummary { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let response):
                 guard let data = response as? PiggyBankResponse else { return }
-                print("🎯 getPiggyBank success in HabitViewController")
-                print("\(data.code)")
-                self?.alertType = .piggyBankExistence
-
+                self.alertType = data.body.isEmpty ? .piggyBankNonExistence : .piggyBankExistence
+                DispatchQueue.main.async {
+                    self.configureSubviews()
+                }
             case .requestErr(let errorResponse):
-                dump(errorResponse)
-                guard let data = errorResponse as? ErrorResponse else { return }
-                print(data)
+                print(errorResponse)
             case .serverErr:
                 print("serverErr")
             case .networkFail:
                 print("networkFail")
             case .pathErr:
                 print("pathErr")
-
             }
         }
     }

@@ -35,7 +35,7 @@ final class EmptyHomeViewController: BaseViewController {
         emptyHomeView.tapExpense = { [weak self] in
             guard let self else { return }
             router.presentPlanExpenseViewController()
-            router.presentAlertViewController()
+            //router.presentAlertViewController()
         }
     }
 
