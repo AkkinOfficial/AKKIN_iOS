@@ -57,6 +57,11 @@ class BaseButton: UIButton {
         backgroundColor = .akkinGreen.withAlphaComponent(0.6)
     }
 
+    func setLatterButton() {
+        backgroundColor = .akkinLatterButtonColor
+        setTitleColor(.akkinGreen, for: .normal)
+    }
+
     // MARK: Event
     @objc private func handleEvent() {
         tap?()
