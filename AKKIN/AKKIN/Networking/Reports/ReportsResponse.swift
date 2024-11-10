@@ -12,13 +12,6 @@ struct ReportsResponse: Codable {
     let body: Reports
 }
 
-struct ReportsErrorResponse: Codable {
-    let status: Int
-    let code: String
-    let timestamp: String
-    let body: ErrorBody
-}
-
 struct Reports: Codable {
     let id: Int
     let totalSavedAmount: Int
@@ -44,8 +37,4 @@ struct CategoryAnalysis: Codable {
     let categoryEnum: String
     let ratio: Int
     let amount: Int
-}
-
-struct ErrorBody: Codable {
-    let message: String
 }
