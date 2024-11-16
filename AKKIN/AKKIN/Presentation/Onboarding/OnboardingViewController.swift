@@ -30,7 +30,11 @@ final class OnboardingViewController: BaseViewController {
 
     // MARK: Event
     @objc private func handleAddEvent() {
-        router.presentLoginViewController()
+        let newViewController = LoginViewController() // 새로운 뷰 컨트롤러로 설정할 뷰 컨트롤러 생성
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = newViewController
+            window.makeKeyAndVisible()
+        }
     }
 
     // MARK: Life Cycle
