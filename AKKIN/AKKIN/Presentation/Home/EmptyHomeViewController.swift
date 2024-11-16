@@ -16,10 +16,15 @@ final class EmptyHomeViewController: BaseViewController {
     private let router = BaseRouter()
 
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         router.viewController = self
+        checkIfTimePassed()
     }
 
     // MARK: Configuration
@@ -30,6 +35,7 @@ final class EmptyHomeViewController: BaseViewController {
         emptyHomeView.tapExpense = { [weak self] in
             guard let self else { return }
             router.presentPlanExpenseViewController()
+            //router.presentAlertViewController()
         }
     }
 
@@ -39,4 +45,17 @@ final class EmptyHomeViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
+
+    private func checkIfTimePassed() {
+        let storedTime = UserDefaultHandler.dismissModalTime
+        let currentTime = Date()
+        if currentTime > storedTime {
+            print("현재 시간이 저장된 시간을 지남. 모달 동작.")
+            router.presentAlertViewController()
+        } else {
+            print("현재 시간이 저장된 시간을 지나지 않음. 동작 안함.")
+        }
+
+    }
+
 }

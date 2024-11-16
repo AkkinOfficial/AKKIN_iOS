@@ -17,11 +17,16 @@ final class CalendarViewController: BaseViewController {
 
     // MARK: Properties
     var calendarModel = CalendarModel(month: 9, day: 23, monthSaving: 40940, monthRemaining: 470150)
+    let today = Date()
+    let calendar = Calendar.current
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let year = calendar.component(.year, from: today)
+        let month = calendar.component(.month, from: today)
+        getSavings(year: year, month: month)
         router.viewController = self
         setData(data: calendarModel)
         setNavigationItem()
@@ -45,19 +50,12 @@ final class CalendarViewController: BaseViewController {
         calendarView.calendarView.onDateSelected = { [weak self] selectedDate in
             guard let self = self else { return }
 
-            let calendar = Calendar.current
-            let timeZone = TimeZone(identifier: "Asia/Seoul")!
-            var calendarSystem = calendar
-            calendarSystem.timeZone = timeZone
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: selectedDate)
 
-            let components = calendarSystem.dateComponents([.month, .day], from: selectedDate)
-
-            if let month = components.month, let day = components.day {
-                print("\(month)월 \(day)일")
-                calendarModel.month = month
-                calendarModel.day = day
-                router.presentExpenseListViewController(month: month, day: day)
-            }
+            router.presentExpenseListViewController(date: dateString)
         }
     }
 
@@ -74,3 +72,28 @@ final class CalendarViewController: BaseViewController {
         navigationController?.isNavigationBarHidden = true
     }
 }
+
+extension CalendarViewController {
+    // MARK: Network
+    private func getSavings(year: Int, month: Int) {
+        print("💸 getSavings called")
+        NetworkService.shared.savings.getSavings(year: year, month: month) { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? SavingsResponse else { return }
+                print("🎯 getSavings success\n\(data)")
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print("🤖 \(data)")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}
+

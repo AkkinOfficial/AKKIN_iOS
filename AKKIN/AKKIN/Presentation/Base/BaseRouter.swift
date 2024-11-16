@@ -66,8 +66,8 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(categoryDetailViewController, animated: true)
     }
 
-    func presentExpenseListViewController(month: Int, day: Int) {
-        let expenseListViewController = ExpenseListViewController(month: month, day: day)
+    func presentExpenseListViewController(date: String) {
+        let expenseListViewController = ExpenseListViewController(date: date)
         viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
     }
 
@@ -100,18 +100,13 @@ final class BaseRouter {
         viewController?.dismiss(animated: true)
     }
 
+    func dismissViewControllerNonAnimated() {
+        viewController?.dismiss(animated: false)
+    }
+
     func popToRootViewController() {
-        viewController?.dismiss(animated: true, completion: {
-            if let rootViewController =
-                UIApplication.shared.windows.first?
-                .rootViewController {
-                if let navigationController =
-                    rootViewController as? UINavigationController {
-                    navigationController
-                        .popToRootViewController(animated: true)
-                }
-            }
-        })
+        viewController?.navigationController?.popToRootViewController(animated: true)
+
     }
 
     func presentPlanExpenseViewController() {
@@ -149,5 +144,12 @@ final class BaseRouter {
         addExpenseConfirmViewController.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(addExpenseConfirmViewController, animated: true)
     }
+
+    func presentAlertViewController() {
+        let alertViewController = AlertViewController()
+        alertViewController.modalPresentationStyle = .overFullScreen
+        viewController?.present(alertViewController, animated: false, completion: nil)
+    }
+
 
 }

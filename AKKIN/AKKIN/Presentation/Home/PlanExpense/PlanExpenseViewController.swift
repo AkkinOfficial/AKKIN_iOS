@@ -15,8 +15,11 @@ final class PlanExpenseViewController: BaseViewController {
 
     // MARK: Environment
     private let router = BaseRouter()
+    private let addChallengesService = AddChallengesService()
 
     // MARK: Properties
+    private var startDate: String?
+    private var endDate: String?
     private var duration: Int? {
         didSet {
             updateDailyAmount()
@@ -72,9 +75,9 @@ final class PlanExpenseViewController: BaseViewController {
             router.popViewController()
         }
 
-        //TODO: 네트워크 메서드 추가하기
         planExpenseView.tapConfirmButton = { [weak self] in
             guard let self else { return }
+            self.addExpense()
             router.popViewController()
         }
     }
@@ -104,11 +107,43 @@ final class PlanExpenseViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
     }
+
+    private func addExpense() {
+        guard let startDate = self.startDate,
+              let endDate = self.endDate,
+              let amount = self.amount else {
+            return
+        }
+
+        let request = AddChallengesRequest(startDate: startDate, endDate: endDate, goalAmount: amount)
+
+        addChallengesService.postChallenges(request: request) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let response):
+                if let addChallengesResponse = response as? AddChellengesResponse {
+                    print("challenges added successfully: \(addChallengesResponse)")
+                }
+            case .requestErr(let errorResponse):
+                print("Request error: \(errorResponse)")
+            case .serverErr:
+                print("Server error")
+            case .networkFail:
+                print("Network failure")
+            case .pathErr:
+                print("Path error")
+            }
+        }
+    }
 }
 
 extension PlanExpenseViewController: SetPeriodViewControllerDelegate {
 
     func didSelectDates(startDate: String, endDate: String, duration durationString: String) {
+        self.startDate = startDate
+        self.endDate = endDate 
+
         planExpenseView.periodTextField.text = "\(startDate) ~ \(endDate)"
         planExpenseView.periodTextField.addRightLabel(text: durationString)
 

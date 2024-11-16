@@ -93,4 +93,16 @@ extension UITextField {
         _ = self.text
         addCommas()
     }
+
+    func setUnderLine() {
+        let underline = CALayer()
+        
+        underline.borderWidth = 1.0
+        underline.borderColor = UIColor.red.cgColor
+        
+        underline.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
+        
+        self.layer.addSublayer(underline)
+        self.borderStyle = .none
+    }
 }

@@ -14,10 +14,12 @@ final class MyPageViewController: BaseViewController {
 
     // MARK: Environment
     private let router = BaseRouter()
+    var nickname = ""
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUser()
         router.viewController = self
 
         setNavigationItem()
@@ -31,6 +33,16 @@ final class MyPageViewController: BaseViewController {
 //            guard let self else { return }
 //            router.presentHomeWidgetSettingViewController()
 //        }
+
+        myPageView.tapEdit = { [weak self] in
+            guard let self else { return }
+            myPageView.setNicknameEditMode()
+        }
+
+        myPageView.tapConfirm = { [self] nickname in
+            let request = UserRequest(nickname: nickname)
+            putUserNickname(request: request)
+        }
 
         myPageView.tapAppInfo = { [weak self] url in
             guard let self else { return }
@@ -73,6 +85,10 @@ final class MyPageViewController: BaseViewController {
     private func setNavigationItem() {
         navigationController?.navigationBar.isHidden = true
     }
+
+    private func setData(data: Users) {
+        myPageView.setData(data: data)
+    }
 }
 
 extension MyPageViewController {
@@ -114,3 +130,53 @@ extension MyPageViewController {
         print("withdrawal")
     }
 }
+
+extension MyPageViewController {
+    // MARK: Network
+    private func getUser() {
+        print("💸 getUser called")
+        NetworkService.shared.users.getUser() { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? UsersResponse else { return }
+                print("🎯 getUser success\n\(data)")
+                nickname = data.body.nickname
+                setData(data: data.body)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print("🤖 \(data)")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
+    private func putUserNickname(request: UserRequest) {
+        print("💸 putUserNickname called")
+        NetworkService.shared.users.putUserNickname(request: request){ [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? UsersResponse else { return }
+                print("🎯 putUserNickname success\n\(data)")
+                nickname = data.body.nickname
+                myPageView.setEditCompleteMode(data: data.body)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print("🤖 \(data)")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+}
+

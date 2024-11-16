@@ -53,10 +53,7 @@ final class PiggyBankDetailView: BaseView {
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
-    private let parentStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.distribution = .fill
-    }
+    private let parentStackView = UIView()
     private let saveStackview = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill
@@ -70,7 +67,6 @@ final class PiggyBankDetailView: BaseView {
         label.textAlignment = .center
         return label
     }()
-
     lazy var saveAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "57,420원"
@@ -111,7 +107,6 @@ final class PiggyBankDetailView: BaseView {
         label.textAlignment = .center
         return label
     }()
-
     lazy var challengeAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "638,000원"
@@ -149,7 +144,9 @@ final class PiggyBankDetailView: BaseView {
         addSubview(parentStackView)
         addSubview(piggyBankMemo)
 
-        parentStackView.addArrangedSubviews(saveStackview, slashStackview, challengeStackview)
+        parentStackView.addSubview(saveStackview)
+        parentStackView.addSubview(slashStackview)
+        parentStackView.addSubview(challengeStackview)
         saveStackview.addArrangedSubviews(savedLabel, saveAmountLabel)
         slashStackview.addArrangedSubviews(emptySlashLabel, slashLabel)
         challengeStackview.addArrangedSubviews(challengeLabel, challengeAmountLabel)
@@ -189,7 +186,6 @@ final class PiggyBankDetailView: BaseView {
             $0.top.equalToSuperview().inset(72)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(76)
-            $0.width.equalTo(335)
         }
         piggyBankName.snp.makeConstraints {
             $0.top.equalTo(tipView.snp.bottom).offset(40)
@@ -217,16 +213,19 @@ final class PiggyBankDetailView: BaseView {
             $0.horizontalEdges.equalToSuperview().inset(65)
         }
         saveStackview.snp.makeConstraints {
-            $0.width.equalTo(128)
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(100)
         }
         challengeStackview.snp.makeConstraints {
-            $0.width.equalTo(128)
+            $0.leading.equalTo(slashStackview.snp.trailing).offset(20)
+            $0.width.equalTo(100)
         }
         slashStackview.snp.makeConstraints {
+            $0.leading.equalTo(saveStackview.snp.trailing).offset(18)
             $0.width.equalTo(6)
         }
         piggyBankMemo.snp.makeConstraints {
-            $0.top.equalTo(parentStackView.snp.bottom).offset(32)
+            $0.top.equalTo(saveStackview.snp.bottom).offset(32)
             $0.width.equalTo(260)
             $0.height.equalTo(36)
             $0.centerX.equalToSuperview()

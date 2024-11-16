@@ -80,6 +80,11 @@ extension UIColor {
         return UIColor(hex: "#F4F6F7")
     }
 
+    /// akkin button color
+    static var akkinLatterButtonColor: UIColor {
+        return UIColor(hex: "#E9F7EF")
+    }
+
     /// akkin analysis color
     static var akkinAnalysisDefault: UIColor {
         return UIColor(hex: "#D4D7DA")
