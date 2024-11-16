@@ -43,7 +43,7 @@ final class BaseRouter {
 
     func presentLoginViewController() {
         let loginViewController = LoginViewController()
-        viewController?.navigationController?.pushViewController(loginViewController, animated: true)
+        viewController?.navigationController?.setViewControllers([loginViewController], animated: true)
     }
 
     func presentTabBarViewController() {

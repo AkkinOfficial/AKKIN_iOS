@@ -25,6 +25,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         $0.layer.cornerRadius = 16
         $0.isHidden = true
+        $0.isEnabled = true
     }
 
     // MARK: init
