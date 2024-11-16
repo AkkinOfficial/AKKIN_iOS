@@ -148,6 +148,7 @@
 		C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CC2B5146E400A118F0 /* KakaoSDKCert */; };
 		C336C7CF2B5146E400A118F0 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CE2B5146E400A118F0 /* KakaoSDKCertCore */; };
 		C336C7D12B5146E400A118F0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7D02B5146E400A118F0 /* KakaoSDKCommon */; };
+		C3822D512CE89875002F559D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3822D502CE89875002F559D /* KeychainManager.swift */; };
 		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
 		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
 		C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */; };
@@ -333,6 +334,7 @@
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailView.swift; sourceTree = "<group>"; };
 		C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailViewController.swift; sourceTree = "<group>"; };
+		C3822D502CE89875002F559D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
 		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
 		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
+				C3822D502CE89875002F559D /* KeychainManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 				C31602F92CB275F300348B09 /* PiggyBankResponse.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
 				95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */,
+				C3822D512CE89875002F559D /* KeychainManager.swift in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
 				C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */,
 				C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */,

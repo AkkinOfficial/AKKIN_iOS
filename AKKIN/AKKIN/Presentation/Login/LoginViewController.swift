@@ -109,6 +109,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
 
     private func postAppleLogin(_ code: String) {
+        KeychainManager.deleteData(key: "accessToken")
+        KeychainManager.deleteData(key: "refreshToken")
         print("💸 postAppleLogin called")
         NetworkService.shared.auth.postAppleLogin(code: code) { result in
             switch result {
@@ -119,7 +121,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                 UserDefaultHandler.refreshToken = data.body.refreshToken
                 print("🎯 postAppleLogin success")
                 self.router.presentTabBarViewController()
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
