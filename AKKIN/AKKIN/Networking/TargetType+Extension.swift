@@ -18,7 +18,8 @@ extension TargetType {
     var headers: [String : String]? {
         let header = [
             "Content-Type": "application/json",
-            "Authorization": ""
+            "accessToken": UserDefaultHandler.accessToken,
+            "refreshToken": UserDefaultHandler.refreshToken
         ]
         return header
     }

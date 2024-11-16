@@ -109,6 +109,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
 
     private func postAppleLogin(_ code: String) {
+        KeychainManager.deleteData(key: "accessToken")
+        KeychainManager.deleteData(key: "refreshToken")
         print("💸 postAppleLogin called")
         NetworkService.shared.auth.postAppleLogin(code: code) { result in
             switch result {
