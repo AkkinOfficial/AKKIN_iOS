@@ -13,6 +13,7 @@ enum MakePiggyBankAPI {
 }
 
 extension MakePiggyBankAPI: TargetType {
+    
     var path: String {
         switch self {
         case .postPiggyBank:
