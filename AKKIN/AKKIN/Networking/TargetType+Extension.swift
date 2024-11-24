@@ -16,10 +16,12 @@ extension TargetType {
     }
 
     var headers: [String : String]? {
+        let accessToken = KeychainManager.shared.load(key: "accessToken") ?? ""
+        let refreshToken = KeychainManager.shared.load(key: "refreshToken") ?? ""
         let header = [
             "Content-Type": "application/json",
-            "accessToken": UserDefaultHandler.accessToken,
-            "refreshToken": UserDefaultHandler.refreshToken
+            "Authorization": "Bearer \(accessToken)",
+//            "Authorization-Refresh": "Bearer \()"
         ]
         return header
     }

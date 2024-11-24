@@ -27,6 +27,10 @@ final class BaseRouter {
         viewController?.dismiss(animated: true)
     }
 
+    func dismissViewControllerNonAnimated() {
+        viewController?.dismiss(animated: false)
+    }
+
     func popToRootViewController() {
         viewController?.dismiss(animated: true, completion: {
             if let rootViewController =

@@ -32,7 +32,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
             guard let self else { return }
             addExpense()
             //TODO: - 네트워크 성공후 rootview로 이동
-            router.popToRootViewController()
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 
