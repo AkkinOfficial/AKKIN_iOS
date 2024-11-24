@@ -148,6 +148,8 @@
 		C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CC2B5146E400A118F0 /* KakaoSDKCert */; };
 		C336C7CF2B5146E400A118F0 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CE2B5146E400A118F0 /* KakaoSDKCertCore */; };
 		C336C7D12B5146E400A118F0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7D02B5146E400A118F0 /* KakaoSDKCommon */; };
+		C360480F2CF318070058C5F2 /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C360480E2CF318070058C5F2 /* AppleLoginManager.swift */; };
+		C36048112CF327D80058C5F2 /* AppLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36048102CF327D80058C5F2 /* AppLaunchManager.swift */; };
 		C3822D512CE89875002F559D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3822D502CE89875002F559D /* KeychainManager.swift */; };
 		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
 		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
@@ -334,6 +336,8 @@
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailView.swift; sourceTree = "<group>"; };
 		C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailViewController.swift; sourceTree = "<group>"; };
+		C360480E2CF318070058C5F2 /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
+		C36048102CF327D80058C5F2 /* AppLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchManager.swift; sourceTree = "<group>"; };
 		C3822D502CE89875002F559D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
 		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
@@ -826,6 +830,8 @@
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
 				C3822D502CE89875002F559D /* KeychainManager.swift */,
+				C360480E2CF318070058C5F2 /* AppleLoginManager.swift */,
+				C36048102CF327D80058C5F2 /* AppLaunchManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1201,6 +1207,7 @@
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
 				E586401E2CB43B800092D6C1 /* AddChellengesResponse.swift in Sources */,
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
+				C36048112CF327D80058C5F2 /* AppLaunchManager.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
 				C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */,
@@ -1282,6 +1289,7 @@
 				C31602F22CB14C4500348B09 /* PiggyBankModel.swift in Sources */,
 				E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */,
 				95094BEE2CBAC6BB006055C3 /* UsersResponse.swift in Sources */,
+				C360480F2CF318070058C5F2 /* AppleLoginManager.swift in Sources */,
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
 				C31602F42CB14DD100348B09 /* TipView.swift in Sources */,
 				955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */,

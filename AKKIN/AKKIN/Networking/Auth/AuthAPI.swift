@@ -28,9 +28,7 @@ extension AuthAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .postAppleLogin:
-            return .post
-        case .postAppleRevoke:
+        case .postAppleLogin, .postAppleRevoke:
             return .post
         case .getAppleLogout:
             return .get
@@ -52,4 +50,8 @@ extension AuthAPI: TargetType {
             return .requestPlain
         }
     }
+
+    var headers: [String : String]? {
+        return  ["Content-Type": "application/json"]
+   }
 }

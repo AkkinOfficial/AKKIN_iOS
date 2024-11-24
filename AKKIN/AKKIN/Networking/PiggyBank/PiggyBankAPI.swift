@@ -41,13 +41,5 @@ extension PiggyBankAPI: TargetType {
             return .requestPlain
         }
     }
-
-//    var headers: [String : String]? {
-//        let header = [
-//            "Content-Type": "application/json",
-//            "Authorization": "\(UserDefaultHandler.accessToken)"
-//        ]
-//        return header
-//    }
 }
 
