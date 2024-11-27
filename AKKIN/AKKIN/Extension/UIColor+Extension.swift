@@ -113,6 +113,71 @@ extension UIColor {
     static var akkinTextFieldBackGround: UIColor {
         return UIColor(hex: "#F4F6F7")
     }
+
+    /// akkin category color
+    static var akkinMealColor: UIColor {
+        return UIColor(hex: "#EF4352")
+    }
+
+    static var akkinCafeColor: UIColor {
+        return UIColor(hex: "#FFD700")
+    }
+
+    static var akkinEntertainColor: UIColor {
+        return UIColor(hex: "#A52A2A")
+    }
+
+    static var akkinConvenienceColor: UIColor {
+        return UIColor(hex: "#32CD32")
+    }
+
+    static var akkinClothingColor: UIColor {
+        return UIColor(hex: "#4682B4")
+    }
+
+    static var akkinBeautyColor: UIColor {
+        return UIColor(hex: "#FF69B4")
+    }
+
+    static var akkinHobbyColor: UIColor {
+        return UIColor(hex: "#6A5ACD")
+    }
+
+    static var akkinLifeColor: UIColor {
+        return UIColor(hex: "#D2691E")
+    }
+
+    static var akkinTravelColor: UIColor {
+        return UIColor(hex: "#00CED1")
+    }
+
+    static var akkinTransportColor: UIColor {
+        return UIColor(hex: "#FF8C00")
+    }
+
+    static var akkinMedicalColor: UIColor {
+        return UIColor(hex: "#228B22")
+    }
+
+    static var akkinEducationColor: UIColor {
+        return UIColor(hex: "#8A2BE2")
+    }
+
+    static var akkinCommunicationColor: UIColor {
+        return UIColor(hex: "#20B2AA")
+    }
+
+    static var akkinMembershipColor: UIColor {
+        return UIColor(hex: "#FFDAB9")
+    }
+
+    static var akkinEventColor: UIColor {
+        return UIColor(hex: "#D4D7DA")
+    }
+
+    static var akkinEtcColor: UIColor {
+        return UIColor(hex: "#687680")
+    }
 }
 
 extension UIColor {
