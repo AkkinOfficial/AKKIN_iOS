@@ -18,7 +18,6 @@ final class AppleLoginManager: NSObject {
         controller.delegate = self
         controller.performRequests()
 
-        // Completion을 delegate와 연결
         self.completion = completion
     }
 
@@ -37,7 +36,6 @@ extension AppleLoginManager: ASAuthorizationControllerDelegate {
 
         print("✅ Authorization Code Received: \(codeString)")
 
-        // 서버에 authorizationCode 전달
         AuthService.shared.postAppleLogin(code: codeString) { [weak self] result in
             guard let self = self else { return }
             self.completion?(self.convertNetworkResultToResult(result))
@@ -48,8 +46,7 @@ extension AppleLoginManager: ASAuthorizationControllerDelegate {
         completion?(.failure(error))
     }
 
-    // MARK: - Helper Methods
-
+    // MARK: Helper Methods
     private func convertNetworkResultToResult(_ networkResult: NetworkResult<AppleLoginResponse>) -> Result<AppleLoginResponse, Error> {
         switch networkResult {
         case .success(let response):
