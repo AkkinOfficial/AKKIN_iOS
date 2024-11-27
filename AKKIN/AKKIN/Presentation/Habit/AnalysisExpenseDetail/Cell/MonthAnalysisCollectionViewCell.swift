@@ -123,9 +123,9 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 }
 
 extension MonthAnalysisCollectionViewCell {
-    func setData(data: CategoryAnalysis) {
-        categoryImageLabel.text = data.category
-        categoryTitleLabel.text = data.categoryEnum
+    func setData(data: AnalysisElement) {
+        categoryImageLabel.text = data.categoryEnum
+        categoryTitleLabel.text = data.category
         categoryContentLabel.text = "\(data.ratio)%"
         categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }

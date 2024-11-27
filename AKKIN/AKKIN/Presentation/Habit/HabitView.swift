@@ -63,8 +63,6 @@ final class HabitView: BaseView {
     let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
-    var reports = Analysis.empty
-
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
@@ -192,11 +190,11 @@ final class HabitView: BaseView {
         }
     }
 
-    func setAnalysisExpenseNonEmtpyView(data: Analysis) {
+    func setAnalysisExpenseNonEmtpyView(data: AnalysisData) {
         analysisExpenseEntireView.addSubview(analysisExpenseView)
-        reports = data
+        analysisExpenseView.setData(data: data)
 
-        let collectionViewHeight = 45 * reports.categoryAnalysis.count + 16 * (reports.categoryAnalysis.count + 1)
+        let collectionViewHeight = 45 * data.element.count + 16 * (data.element.count + 1)
         let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 40
 
         analysisExpenseEntireView.snp.makeConstraints {

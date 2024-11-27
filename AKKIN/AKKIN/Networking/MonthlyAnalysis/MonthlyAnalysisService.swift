@@ -16,7 +16,7 @@ final class MonthlyAnalysisService {
         case getMonthlyAnaylsis
     }
 
-    public func getReports(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func getMonthlyAnaylsis(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         monthlyAnalysisProvider.request(.getMonthlyAnaylsis(year: year, month: month)) { result in
             switch result {
             case .success(let response):
