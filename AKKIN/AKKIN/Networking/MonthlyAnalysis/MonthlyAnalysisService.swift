@@ -1,5 +1,5 @@
 //
-//  ReportServices.swift
+//  MonthlyAnalysisService.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 10/12/24.
@@ -8,22 +8,22 @@
 import Foundation
 import Moya
 
-final class ReportsService {
+final class MonthlyAnalysisService {
 
-    private var reportsProvider = MoyaProvider<ReportsAPI>(plugins: [MoyaLoggerPlugin()])
+    private var monthlyAnalysisProvider = MoyaProvider<MonthlyAnalysisAPI>(plugins: [MoyaLoggerPlugin()])
 
     private enum ResponseData {
-        case getReports
+        case getMonthlyAnaylsis
     }
 
-    public func getReports(completion: @escaping (NetworkResult<Any>) -> Void) {
-        reportsProvider.request(.getReports) { result in
+    public func getReports(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        monthlyAnalysisProvider.request(.getMonthlyAnaylsis(year: year, month: month)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getReports)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getMonthlyAnaylsis)
                 completion(networkResult)
 
             case .failure(let error):
@@ -37,7 +37,7 @@ final class ReportsService {
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getReports:
+            case .getMonthlyAnaylsis:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -55,8 +55,8 @@ final class ReportsService {
     private func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         switch responseData {
-        case .getReports:
-            let decodedData = try? decoder.decode(ReportsResponse.self, from: data)
+        case .getMonthlyAnaylsis:
+            let decodedData = try? decoder.decode(MonthlyAnalysisResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
     }

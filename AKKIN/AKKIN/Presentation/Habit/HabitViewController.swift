@@ -26,7 +26,7 @@ final class HabitViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        getReports()
+        getReports(year: 3, month: 3)
         view.frame = UIScreen.main.bounds
         view.backgroundColor = .akkinBG
 
@@ -137,12 +137,12 @@ final class HabitViewController: BaseViewController {
 
 extension HabitViewController {
     // MARK: Network
-    private func getReports() {
+    private func getReports(year: Int, month: Int) {
         print("💸 getReports called")
-        NetworkService.shared.reports.getReports() { [self] result in
+        NetworkService.shared.reports.getReports(year: year, month: month) { [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? ReportsResponse else { return }
+                guard let data = response as? MonthlyAnalysisResponse else { return }
                 print("🎯 getReports success")
 //                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
             case .requestErr(let errorResponse):
