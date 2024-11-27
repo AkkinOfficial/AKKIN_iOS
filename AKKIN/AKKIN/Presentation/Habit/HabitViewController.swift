@@ -23,10 +23,17 @@ final class HabitViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         getPiggyBankSummary()
+
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: currentDate)
+        let currentMonth = calendar.component(.month, from: currentDate)
+        getMonthlyAnaylsis(year: currentYear, month: currentMonth)
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        getReports(year: 3, month: 3)
+
         view.frame = UIScreen.main.bounds
         view.backgroundColor = .akkinBG
 
@@ -137,18 +144,20 @@ final class HabitViewController: BaseViewController {
 
 extension HabitViewController {
     // MARK: Network
-    private func getReports(year: Int, month: Int) {
-        print("💸 getReports called")
-        NetworkService.shared.reports.getReports(year: year, month: month) { [self] result in
+    private func getMonthlyAnaylsis(year: Int, month: Int) {
+        print("💸 getMonthlyAnaylsis called")
+        NetworkService.shared.analysis.getMonthlyAnaylsis(year: year, month: month) { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? MonthlyAnalysisResponse else { return }
-                print("🎯 getReports success")
-//                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
+                print("🎯 getMonthlyAnaylsis success")
+                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
 //                habitView.setAnalysisExpenseEmtpyView()
+                // TODO: 임시 데이터
+                habitView.setAnalysisExpenseNonEmtpyView(data: AnalysisData.testAnalysisData)
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")
