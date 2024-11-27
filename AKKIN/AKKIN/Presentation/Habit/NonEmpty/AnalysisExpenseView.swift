@@ -58,7 +58,7 @@ final class AnalysisExpenseView: BaseView {
     }()
 
     // MARK: Properties
-    var reports = Reports.empty
+    var reports = Analysis.empty
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
@@ -92,7 +92,7 @@ final class AnalysisExpenseView: BaseView {
     }
 
     // MARK: Data binding
-    func setData(data: Reports) {
+    func setData(data: Analysis) {
         reports = data
         setCollectionView()
     }

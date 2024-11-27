@@ -1,18 +1,18 @@
 //
-//  ReportsResponse.swift
+//  MonthlyAnalysisResponse.swift
 //  AKKIN
 //
 //  Created by 박지윤 on 10/12/24.
 //
 
-struct ReportsResponse: Codable {
+struct MonthlyAnalysisResponse: Codable {
     let status: Int
     let code: String
     let timestamp: String
-    let body: Reports
+    let body: Analysis
 }
 
-struct Reports: Codable {
+struct Analysis: Codable {
     let id: Int
     let totalSavedAmount: Int
     let mostSavedDate: String
@@ -22,8 +22,8 @@ struct Reports: Codable {
     let categoryAnalysis: [CategoryAnalysis]
 }
 
-extension Reports {
-    static let empty = Reports(id: 0,
+extension Analysis {
+    static let empty = Analysis(id: 0,
                                totalSavedAmount: 0,
                                mostSavedDate: "",
                                mostSavedAmount: 0,

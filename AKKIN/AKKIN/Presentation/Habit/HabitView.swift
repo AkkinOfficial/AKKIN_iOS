@@ -63,7 +63,7 @@ final class HabitView: BaseView {
     let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
-    var reports = Reports.empty
+    var reports = Analysis.empty
 
     var tapDetailButton: (() -> Void)?
 
@@ -192,7 +192,7 @@ final class HabitView: BaseView {
         }
     }
 
-    func setAnalysisExpenseNonEmtpyView(data: Reports) {
+    func setAnalysisExpenseNonEmtpyView(data: Analysis) {
         analysisExpenseEntireView.addSubview(analysisExpenseView)
         reports = data
 
