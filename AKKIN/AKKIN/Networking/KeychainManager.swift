@@ -12,7 +12,6 @@ final class KeychainManager {
     static let shared = KeychainManager()
     private init() {}
 
-    /// 데이터 저장
     @discardableResult
     func save(key: String, value: String) -> Bool {
         guard let data = value.data(using: .utf8) else { return false }
@@ -23,10 +22,8 @@ final class KeychainManager {
             kSecValueData as String: data
         ]
 
-        // 기존 데이터 삭제
         SecItemDelete(query as CFDictionary)
 
-        // 새 데이터 저장
         let status = SecItemAdd(query as CFDictionary, nil)
         if status != errSecSuccess {
             print("❌ Keychain Save Error: \(status)")
@@ -34,7 +31,6 @@ final class KeychainManager {
         return status == errSecSuccess
     }
 
-    /// 데이터 읽기
     func load(key: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -54,7 +50,6 @@ final class KeychainManager {
         }
     }
 
-    /// 데이터 삭제
     @discardableResult
     func delete(key: String) -> Bool {
         let query: [String: Any] = [
@@ -69,25 +64,23 @@ final class KeychainManager {
         return status == errSecSuccess
     }
 
-    // Keychain 초기화
-        func resetKeychain() {
-            let secItemClasses = [
-                kSecClassGenericPassword,
-                kSecClassInternetPassword,
-                kSecClassCertificate,
-                kSecClassKey,
-                kSecClassIdentity
-            ]
+    func resetKeychain() {
+        let secItemClasses = [
+            kSecClassGenericPassword,
+            kSecClassInternetPassword,
+            kSecClassCertificate,
+            kSecClassKey,
+            kSecClassIdentity
+        ]
 
-            for itemClass in secItemClasses {
-                let query: [String: Any] = [kSecClass as String: itemClass]
-                SecItemDelete(query as CFDictionary)
-            }
-
-            print("🔑 Keychain has been reset.")
+        for itemClass in secItemClasses {
+            let query: [String: Any] = [kSecClass as String: itemClass]
+            SecItemDelete(query as CFDictionary)
         }
 
-    /// Keychain 상태 확인
+        print("🔑 Keychain has been reset.")
+    }
+
     func checkStatus(for key: String) -> Bool {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,

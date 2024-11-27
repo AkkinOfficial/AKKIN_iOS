@@ -21,7 +21,7 @@ extension TargetType {
         let header = [
             "Content-Type": "application/json",
             "Authorization": "Bearer \(accessToken)",
-//            "Authorization-Refresh": "Bearer \()"
+//            "Authorization-Refresh": "Bearer \(refreshToken)"
         ]
         return header
     }
