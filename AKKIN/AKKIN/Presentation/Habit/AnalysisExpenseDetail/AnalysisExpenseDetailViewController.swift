@@ -19,16 +19,32 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     private let addButton = BaseButton().then {
         $0.setImage(AkkinButton.addButton, for: .normal)
     }
+
     // MARK: Environment
     private let router = BaseRouter()
 
     // MARK: Properties
-    let monthAnalysisList = MonthAnalysis.monthAnalysisList
+    private var analysisData = AnalysisData.emptyAnalysisData
+    private var challengeData = ChallengeData.emptyChallengeData
+
+    // MARK: Init
+    init(analysisData: AnalysisData, challengeData: ChallengeData) {
+        self.analysisData = analysisData
+        self.challengeData = challengeData
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        analysisExpenseView.getTotalExpense(monthAnaysisData: monthAnalysisList)
+
+        analysisExpenseView.setData(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
+        analysisExpenseView.monthAnalysisHeaderView.setData(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
     }
 
     override func viewDidLoad() {
@@ -52,6 +68,14 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
 
         analysisExpenseView.tapMonthButtonEvent = { [self] in
             router.presentModeSelectViewController()
+        }
+
+        analysisExpenseView.monthAnalysisHeaderView.tapPrevious = { [self] in
+            
+        }
+
+        analysisExpenseView.monthAnalysisHeaderView.tapNext = { [self] in
+            
         }
     }
 

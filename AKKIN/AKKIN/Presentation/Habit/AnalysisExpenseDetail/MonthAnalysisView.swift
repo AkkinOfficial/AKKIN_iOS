@@ -35,11 +35,11 @@ final class MonthAnalysisView: UIStackView {
         }
     }
 
-    func setData(monthAnaysisData: [MonthAnalysis]) {
-        for monthAnaysis in monthAnaysisData {
-            let color = monthAnaysis.color
-            let percent = monthAnaysis.percent
-            let firstFlag = monthAnaysis.firstFlag
+    func setData(analysisElement: [AnalysisElement]) {
+        for (index, element) in analysisElement.enumerated() {
+            let color = element.getCategoryColor(element.category)
+            let percent = element.ratio
+            let firstFlag = index == 0 ? true : false
 
             let analysisView = AnalysisView(color: color,
                                             precent: percent,

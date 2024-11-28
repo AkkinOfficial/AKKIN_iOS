@@ -26,6 +26,7 @@
 		95094BEC2CBAC6B5006055C3 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BEB2CBAC6B5006055C3 /* UsersAPI.swift */; };
 		95094BEE2CBAC6BB006055C3 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BED2CBAC6BB006055C3 /* UsersResponse.swift */; };
 		95094BF02CBAC6C3006055C3 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BEF2CBAC6C3006055C3 /* UsersService.swift */; };
+		950A31352CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */; };
 		9512615A2ABB1CA20012B5F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261592ABB1CA20012B5F9 /* OnboardingViewController.swift */; };
 		9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512615D2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift */; };
 		951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261622ABD970C0012B5F9 /* LoginViewController.swift */; };
@@ -213,6 +214,7 @@
 		95094BEB2CBAC6B5006055C3 /* UsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
 		95094BED2CBAC6BB006055C3 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		95094BEF2CBAC6C3006055C3 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisHeaderView.swift; sourceTree = "<group>"; };
 		951261592ABB1CA20012B5F9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		9512615D2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		951261622ABD970C0012B5F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 			children = (
 				953650952C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift */,
 				953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */,
+				950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */,
 				953650BE2C6DFF6200F58D13 /* MonthAnalysisView.swift */,
 				953650C02C6E03E700F58D13 /* AnalysisView.swift */,
 				95EF1C372C77470500AD06A9 /* Empty */,
@@ -1240,6 +1243,7 @@
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
 				C31602FF2CB2783200348B09 /* PiggyBankRequest.swift in Sources */,
+				950A31352CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift in Sources */,
 				955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,

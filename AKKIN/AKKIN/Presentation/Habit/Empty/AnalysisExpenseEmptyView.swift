@@ -11,16 +11,13 @@ final class AnalysisExpenseEmptyView: BaseView {
 
     // MARK: UI Components
     private let analysisExpenseEmptyLabel = UILabel().then {
-        $0.text = "분석할 수 있는 지출 기록이 없어요.\n본인의 지출을 계획하고 절약을 시작해보세요!"
         $0.textColor = .black
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-    private let analysisExpenseEmptyButton = BaseButton().then {
-        $0.setGuideButton("지출 계획하기")
-    }
+    private let analysisExpenseEmptyButton = BaseButton()
 
     // MARK: Properties
 
@@ -51,5 +48,9 @@ final class AnalysisExpenseEmptyView: BaseView {
         }
     }
 
-    // MARK: Event
+    // MARK: Data
+    func setData(message: String, buttonTitle: String) {
+        analysisExpenseEmptyLabel.text = message
+        analysisExpenseEmptyButton.setGuideButton(buttonTitle)
+    }
 }
