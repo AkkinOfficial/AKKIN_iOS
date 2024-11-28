@@ -17,12 +17,15 @@ final class HabitViewController: BaseViewController {
     private let router = BaseRouter()
     private let piggyBankService = PiggyBankService()
     private let refreshControl = UIRefreshControl()
+    private var analysisData = AnalysisData.emptyAnalysisData
+    private var challengeData = ChallengeData.testChallengeData
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         getPiggyBankSummary()
+        getChallenge()
 
         let currentDate = Date()
         let calendar = Calendar.current
@@ -63,14 +66,17 @@ final class HabitViewController: BaseViewController {
                 guard let self else { return }
             router.popToPiggyBankDetailViewController(bankId: self.bankId)
         }
+
         habitView.makePiggyBankEmptyView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
             router.popToMakePiggyBankStartViewController()
         }
+
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
-            router.presentAnalysisExpenseViewController()
+            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
         }
+
         habitView.analysisExpenseView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
@@ -144,6 +150,10 @@ final class HabitViewController: BaseViewController {
 
 extension HabitViewController {
     // MARK: Network
+    private func getChallenge() {
+//        challengeData =
+    }
+
     private func getMonthlyAnaylsis(year: Int, month: Int) {
         print("💸 getMonthlyAnaylsis called")
         NetworkService.shared.analysis.getMonthlyAnaylsis(year: year, month: month) { [self] result in
@@ -151,13 +161,25 @@ extension HabitViewController {
             case .success(let response):
                 guard let data = response as? MonthlyAnalysisResponse else { return }
                 print("🎯 getMonthlyAnaylsis success")
-                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
+                analysisData = data.body
+                let analysisCase: AnalysisCase
+
+                if data.body.element.isEmpty {
+//                    if challengeData.isEmpty {
+//                        habitView.setAnalysisExpenseEmtpyView(case: .emptyAnalysisEmptyChallenge)
+//                    } else {
+                        habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
+//                    }
+                } else {
+                    habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
+                }
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
-//                habitView.setAnalysisExpenseEmtpyView()
+                habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
                 // TODO: 임시 데이터
-                habitView.setAnalysisExpenseNonEmtpyView(data: AnalysisData.testAnalysisData)
+//                analysisData = AnalysisData.testAnalysisData
+//                habitView.setAnalysisExpenseNonEmtpyView(data: analysisData)
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")

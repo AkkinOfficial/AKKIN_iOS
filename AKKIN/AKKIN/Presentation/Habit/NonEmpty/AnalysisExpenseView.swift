@@ -125,14 +125,13 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.detailButton.removeFromSuperview()
+
         cell.categoryExpenseLabel.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
         }
 
         cell.setData(data: analysis.element[indexPath.row])
-        
+
         return cell
     }
 }
