@@ -67,7 +67,7 @@ final class HabitViewController: BaseViewController {
 
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
-//            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: challengeData)
+            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: challengeData)
 
             // TODO: 임시 데이터 (다 지워야 함)
             // CASE1: nonEmptyAnalysisNonEmptyChallenge
@@ -159,7 +159,7 @@ extension HabitViewController {
 
         // CASE1, CASE3: challengeNonEmpty
 //        challengeData = ChallengeData.testChallengeData
-//        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: challengeData)
+        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: challengeData)
 
         // CASE2, CASE4: challengeEmpty
 //        challengeData = ChallengeData.emptyChallengeData
