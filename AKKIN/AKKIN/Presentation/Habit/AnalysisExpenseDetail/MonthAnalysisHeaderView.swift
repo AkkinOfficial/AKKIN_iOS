@@ -17,7 +17,7 @@ enum AnalysisHeaderCase {
 final class MonthAnalysisHeaderView: BaseView {
 
     // MARK: Properties
-    private var currentYear = DataManager.shared.currentMonth ?? 2024
+    private var currentYear = DataManager.shared.currentYear ?? 2024
     private var currentMonth = DataManager.shared.currentMonth ?? 11
 
     // MARK: UI Components
@@ -73,9 +73,9 @@ final class MonthAnalysisHeaderView: BaseView {
     var challengeIsEmpty = true
     var analysisIsEmpty = true
 
-    var tapPrevious: (() -> Void)?
+    var tapPrevious: ((Int, Int) -> Void)?
     var tapMonth: (() -> Void)?
-    var tapNext: (() -> Void)?
+    var tapNext: ((Int, Int) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -213,7 +213,7 @@ extension MonthAnalysisHeaderView {
         }
         updateMonthButtonTitle()
 
-        tapPrevious?()
+        tapPrevious?(currentYear, currentMonth)
     }
 
     @objc private func handleNextButtonEvent() {
@@ -225,7 +225,7 @@ extension MonthAnalysisHeaderView {
         }
         updateMonthButtonTitle()
 
-        tapNext?()
+        tapNext?(currentYear, currentMonth)
     }
 
     private func updateMonthButtonTitle() {
