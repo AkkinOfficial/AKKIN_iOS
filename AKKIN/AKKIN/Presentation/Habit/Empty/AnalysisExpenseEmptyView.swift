@@ -10,6 +10,11 @@ import UIKit
 final class AnalysisExpenseEmptyView: BaseView {
 
     // MARK: UI Components
+    private let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 12
+    }
+
     private let analysisExpenseEmptyLabel = UILabel().then {
         $0.textColor = .black
         $0.numberOfLines = 2
@@ -24,33 +29,51 @@ final class AnalysisExpenseEmptyView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        configureView()
 
-        backgroundColor = .white
-        layer.cornerRadius = 16
-
-        addSubview(analysisExpenseEmptyLabel)
-        addSubview(analysisExpenseEmptyButton)
+        addSubview(contentStackView)
+        contentStackView.addArrangedSubviews(analysisExpenseEmptyLabel,
+                                             analysisExpenseEmptyButton)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
-        analysisExpenseEmptyLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(24)
-            $0.centerX.equalToSuperview()
+        snp.makeConstraints {
+            $0.height.equalTo(152)
+        }
+
+        contentStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
 
         analysisExpenseEmptyButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(24)
-            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(48)
         }
     }
 
+    private func configureView() {
+        backgroundColor = .white
+        layer.cornerRadius = 16
+    }
+
     // MARK: Data
     func setData(message: String, buttonTitle: String) {
-        analysisExpenseEmptyLabel.text = message
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineSpacing = 4
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.black,
+            .paragraphStyle: paragraphStyle
+        ]
+
+        let attributedString = NSAttributedString(string: message, attributes: attributes)
+
+        analysisExpenseEmptyLabel.attributedText = attributedString
         analysisExpenseEmptyButton.setGuideButton(buttonTitle)
     }
 }

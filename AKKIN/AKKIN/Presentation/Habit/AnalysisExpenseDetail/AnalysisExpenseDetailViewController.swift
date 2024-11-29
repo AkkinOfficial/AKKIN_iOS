@@ -43,8 +43,8 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        analysisExpenseView.setData(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
-        analysisExpenseView.monthAnalysisHeaderView.setData(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
+        analysisExpenseView.setData(analysisData: analysisData, challengeData: challengeData)
+        analysisExpenseView.monthAnalysisHeaderView.setData(analysisData: analysisData, challengeData: challengeData)
     }
 
     override func viewDidLoad() {

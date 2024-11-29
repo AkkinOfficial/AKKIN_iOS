@@ -22,16 +22,13 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
     }
 
     private let emptyLabel = UILabel().then {
-        $0.attributedText = "분석할 수 있는 지출 기록이 없어요.\n오늘 지출한 내역이 있다면 입력해보세요!".setLineSpacing(4)
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-    private let addExpenseButton = BaseButton().then {
-        $0.setGuideButton("지출 추가하기")
-    }
+    private let addExpenseButton = BaseButton()
 
     // MARK: Properties
 
@@ -60,10 +57,26 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
         }
 
         addExpenseButton.snp.makeConstraints {
-            $0.width.equalTo(119)
+            $0.width.equalTo(133)
             $0.height.equalTo(40)
         }
     }
 
-    // MARK: Event
+    // MARK: Data
+    func setData(message: String, buttonTitle: String) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineSpacing = 4
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.akkinGray6,
+            .paragraphStyle: paragraphStyle
+        ]
+        
+        let attributedString = NSAttributedString(string: message, attributes: attributes)
+        
+        emptyLabel.attributedText = attributedString
+        addExpenseButton.setGuideButton(buttonTitle)
+    }
 }
