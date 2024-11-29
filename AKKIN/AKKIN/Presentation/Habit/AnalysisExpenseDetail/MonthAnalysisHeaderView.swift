@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum AnalysisHeaderCase {
+    case emptyAnalysisEmptyChallenge
+    case emptyAnalysisNonEmptyChallenge
+    case nonEmptyAnalysisEmptyChallenge
+    case nonEmptyAnalysisNonEmptyChallenge
+}
+
 final class MonthAnalysisHeaderView: BaseView {
 
     // MARK: Properties
@@ -45,8 +52,6 @@ final class MonthAnalysisHeaderView: BaseView {
 
     let monthAnalysisView = MonthAnalysisView()
 
-    let planExpenseGuideView = PlanExpenseGuideView()
-
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,14 +66,12 @@ final class MonthAnalysisHeaderView: BaseView {
     }
 
     // MARK: Properties
-    private var analysisData = AnalysisData.emptyAnalysisData
-    private var challengeData = ChallengeData.emptyChallengeData
-    var totalExpense = 0
-    var month = 0
+    private var analysis = AnalysisData.emptyAnalysisData
+    private var challenge = ChallengeData.emptyChallengeData
 
     // TODO: Empty Case UI Test
-    var challengeIsEmpty = false
-    var analysisIsEmpty = false
+    var challengeIsEmpty = true
+    var analysisIsEmpty = true
 
     var tapPrevious: (() -> Void)?
     var tapMonth: (() -> Void)?
@@ -115,56 +118,24 @@ final class MonthAnalysisHeaderView: BaseView {
             $0.top.equalTo(totalExpenseLabel.snp.bottom).offset(20)
             $0.width.equalToSuperview()
         }
-
-        if challengeIsEmpty {
-            addPlanExpenseGuideView()
-        }
     }
-}
 
-extension MonthAnalysisHeaderView {
-    func setData(analysisData: AnalysisData, challengeData: ChallengeData) {
-        self.analysisData = analysisData
-        self.challengeData = challengeData
-
-        updateMonthButtonTitle()
-        monthButton.isEnabled = true
-        monthButton.backgroundColor = .clear
-
-        // TODO:
-        challengeIsEmpty = challengeData.endDate == 0 ? true : false
-        analysisIsEmpty = analysisData.element.isEmpty ? true : false
-
-        if analysisIsEmpty {
-            setAnalysisEmptyView()
-        } else {
-            totalExpenseLabel.text = "\(analysisData.totalAmount.toPriceFormat) 원"
-            removeMonthAnalysisSubViews()
-            monthAnalysisView.setData(analysisElement: analysisData.element)
-
-            if challengeIsEmpty {
-                setChallengeEmptyView()
-            } else {
-                print("= challengeIsNonEmpty")
-            }
-        }
+    private func setAnalysisEmptyView() {
+        totalExpenseLabel.removeFromSuperview()
+        monthAnalysisView.removeFromSuperview()
     }
 
     private func setChallengeEmptyView() {
         let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
         analysisExpenseEmptyView.setData(message: "새로운 지출 챌린지를 시작할까요?",
                                          buttonTitle: "챌린지 시작하기")
+
         addSubview(analysisExpenseEmptyView)
+
         analysisExpenseEmptyView.snp.makeConstraints {
             $0.top.equalTo(monthAnalysisView.snp.bottom).offset(24)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
+            $0.horizontalEdges.equalToSuperview()
         }
-    }
-
-    private func setAnalysisEmptyView() {
-        totalExpenseLabel.removeFromSuperview()
-        monthAnalysisView.removeFromSuperview()
     }
 
     private func removeMonthAnalysisSubViews() {
@@ -174,14 +145,60 @@ extension MonthAnalysisHeaderView {
             }
         }
     }
+}
 
-    private func addPlanExpenseGuideView() {
-        addSubview(planExpenseGuideView)
+// MARK: Set Data
+extension MonthAnalysisHeaderView {
+    func setData(analysisData: AnalysisData, challengeData: ChallengeData) {
+        analysis = analysisData
+        challenge = challengeData
 
-        planExpenseGuideView.snp.makeConstraints {
-            $0.top.equalTo(monthAnalysisView.snp.bottom).offset(24)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(117)
+        updateMonthButtonTitle()
+        monthButton.isEnabled = true
+        monthButton.backgroundColor = .clear
+
+        challengeIsEmpty = challengeData.endDate == 0 ? true : false
+        analysisIsEmpty = analysisData.element.isEmpty ? true : false
+
+        if analysisIsEmpty {
+            if challengeIsEmpty {
+                setLayoutByCase(emptyCase: .emptyAnalysisEmptyChallenge)
+            } else {
+                setLayoutByCase(emptyCase: .emptyAnalysisNonEmptyChallenge)
+            }
+        } else {
+            if challengeIsEmpty {
+                setLayoutByCase(emptyCase: .nonEmptyAnalysisEmptyChallenge)
+            } else {
+                setLayoutByCase(emptyCase: .nonEmptyAnalysisNonEmptyChallenge)
+            }
+        }
+
+        totalExpenseLabel.text = "\(analysisData.totalAmount.toPriceFormat) 원"
+    }
+
+    private func setLayoutByCase(emptyCase: AnalysisHeaderCase) {
+        print("==== \(emptyCase)")
+
+        switch emptyCase {
+        case .emptyAnalysisEmptyChallenge, .emptyAnalysisNonEmptyChallenge:
+            snp.makeConstraints {
+                $0.height.equalTo(23)
+            }
+            setAnalysisEmptyView()
+        case .nonEmptyAnalysisEmptyChallenge:
+            snp.makeConstraints {
+                $0.height.equalTo(278)
+            }
+            removeMonthAnalysisSubViews()
+            monthAnalysisView.setData(analysisElement: analysis.element)
+            setChallengeEmptyView()
+        case .nonEmptyAnalysisNonEmptyChallenge:
+            snp.makeConstraints {
+                $0.height.equalTo(137)
+            }
+            removeMonthAnalysisSubViews()
+            monthAnalysisView.setData(analysisElement: analysis.element)
         }
     }
 }

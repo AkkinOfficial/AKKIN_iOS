@@ -46,16 +46,15 @@ final class AnalysisExpenseDetailView: BaseView {
 
     // MARK: Properties
     var analysis = AnalysisData.emptyAnalysisData
-    var totalExpense = 0
-    var month = 0
 
+    // MARK: Button event
     var tapBackButtonEvent: (() -> Void)?
     var tapAddButtonEvent: (() -> Void)?
     var tapMonthButtonEvent: (() -> Void)?
 
     // TODO: Empty Case UI Test
-    var challengeIsEmpty = false
-    var analysisIsEmpty = false
+    var analysisIsEmpty = true
+    var challengeIsEmpty = true
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -90,62 +89,22 @@ final class AnalysisExpenseDetailView: BaseView {
             $0.centerY.equalTo(navigationTitleLabel)
             $0.trailing.equalToSuperview().inset(16)
         }
-    }
-    
-    func setDynamicNonEmptyLayout() {
-        let collectionViewHeight1 = 113 + 24 + 77 * analysis.element.count
-        let collectionViewHeight2 = 254 + 24 + 77 * analysis.element.count
 
         monthAnalysisHeaderView.snp.makeConstraints {
             $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            if challengeIsEmpty {
-                $0.height.equalTo(278)
-            } else {
-                $0.height.equalTo(137)
-            }
         }
+    }
+    
+    private func setAnalysisNonEmptyView() {
+        let collectionViewHeight1 = 113 + 24 + 77 * analysis.element.count
+        let collectionViewHeight2 = 254 + 24 + 77 * analysis.element.count
 
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(monthAnalysisHeaderView.snp.bottom)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            if analysisIsEmpty {
-                $0.height.equalTo(23)
-            } else {
-                $0.height.equalTo(collectionViewHeight2)
-            }
+            $0.height.equalTo(collectionViewHeight2)
         }
-    }
-
-    func setDynamicEmptyLayout() {
-        monthAnalysisHeaderView.totalExpenseLabel.removeFromSuperview()
-        monthAnalysisHeaderView.monthAnalysisView.removeFromSuperview()
-        monthAnalysisHeaderView.planExpenseGuideView.removeFromSuperview()
-
-        monthAnalysisHeaderView.snp.makeConstraints {
-            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(23)
-        }
-    }
-
-    // MARK: Data
-    func setData(analysisData: AnalysisData, challengeData: ChallengeData) {
-        print(challengeData.startDate)
-
-        challengeIsEmpty = challengeData.startDate == 0 ? true : false
-        analysisIsEmpty = analysisData.element.isEmpty ? true : false
-
-        if analysisIsEmpty {
-            setAnalysisEmptyView()
-            setDynamicEmptyLayout()
-        } else {
-            setAnalysisEmptyView()
-            setDynamicNonEmptyLayout()
-            setCollectionView()
-        }
-        analysis = analysisData
-        totalExpense = analysisData.totalAmount
     }
 
     private func setAnalysisEmptyView() {
@@ -153,10 +112,40 @@ final class AnalysisExpenseDetailView: BaseView {
 
         addSubview(analysisExpenseDetailEmptyView)
 
+        if challengeIsEmpty {
+            analysisExpenseDetailEmptyView.setData(message: "아직 분석할 수 있는 지출 기록이 없어요.\n지출 챌린지를 통해 절약을 시작해보세요!", buttonTitle: "챌린지 시작하기")
+        } else {
+            analysisExpenseDetailEmptyView.setData(message: "분석할 수 있는 지출 기록이 없어요.\n오늘 지출한 내역이 있다면 입력해보세요!", buttonTitle: "지출 추가하기")
+        }
+
         analysisExpenseDetailEmptyView.snp.makeConstraints {
             $0.top.equalTo(monthAnalysisHeaderView.snp.bottom).offset(123)
             $0.horizontalEdges.equalToSuperview().inset(63.5)
             $0.height.equalTo(250)
+        }
+    }
+}
+
+// MARK: Set Data
+extension AnalysisExpenseDetailView {
+    func setData(analysisData: AnalysisData, challengeData: ChallengeData) {
+        analysisIsEmpty = analysisData.element.isEmpty ? true : false
+        challengeIsEmpty = challengeData.startDate == 0 ? true : false
+
+        analysisIsEmpty ? setLayoutByCase(emptyCase: .emptyAnalysis) : setLayoutByCase(emptyCase: .nonEmptyAnalysis)
+        print(analysisIsEmpty)
+
+        analysis = analysisData
+    }
+
+    private func setLayoutByCase(emptyCase: AnalysisCase) {
+        print("==== \(emptyCase)")
+
+        if emptyCase == .nonEmptyAnalysis {
+            setAnalysisNonEmptyView()
+            setCollectionView()
+        } else {
+            setAnalysisEmptyView()
         }
     }
 }
@@ -199,13 +188,8 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if analysisIsEmpty {
-            monthAnalysisCollectionView.isScrollEnabled = false
-            return 0
-        } else {
-            monthAnalysisCollectionView.isScrollEnabled = true
-            return analysis.element.count
-        }
+        monthAnalysisCollectionView.isScrollEnabled = true
+        return analysis.element.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -216,12 +200,13 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
         }
 
         cell.setData(data: analysis.element[indexPath.row])
-        cell.tapDetail = {
-        }
 
         return cell
     }
+}
 
+// MARK: Event
+extension AnalysisExpenseDetailView {
     @objc func handleBackButtonEvent() {
         tapBackButtonEvent?()
     }

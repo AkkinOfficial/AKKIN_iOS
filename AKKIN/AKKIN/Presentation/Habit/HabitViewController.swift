@@ -67,7 +67,20 @@ final class HabitViewController: BaseViewController {
 
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
-            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: ChallengeData.emptyChallengeData)
+//            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: challengeData)
+
+            // TODO: 임시 데이터 (다 지워야 함)
+            // CASE1: nonEmptyAnalysisNonEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.testChallengeData)
+
+            // CASE2: nonEmptyAnalysisEmptyChallenge
+//             router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.emptyChallengeData)
+
+            // CASE3: emptyAnalysisNonEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.testChallengeData)
+
+            // CASE4: emptyAnalysisEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.emptyChallengeData)
         }
     }
 
@@ -145,12 +158,12 @@ extension HabitViewController {
         let currentMonth = calendar.component(.month, from: currentDate)
 
         // CASE1, CASE3: challengeNonEmpty
-        challengeData = ChallengeData.testChallengeData
-        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: challengeData)
+//        challengeData = ChallengeData.testChallengeData
+//        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: challengeData)
 
         // CASE2, CASE4: challengeEmpty
-        challengeData = ChallengeData.emptyChallengeData
-        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: .emptyChallengeData)
+//        challengeData = ChallengeData.emptyChallengeData
+//        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: .emptyChallengeData)
     }
 
     private func getMonthlyAnaylsis(year: Int, month: Int, challenge: ChallengeData) {

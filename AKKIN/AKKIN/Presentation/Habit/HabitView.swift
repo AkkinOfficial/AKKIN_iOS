@@ -10,7 +10,8 @@ import UIKit
 enum AnalysisCase {
     case emptyAnalysisEmptyChallenge
     case emptyAnalysisNonEmptyChallenge
-    case NonEmptyAnalysis
+    case emptyAnalysis
+    case nonEmptyAnalysis
 
     var message: String {
         switch self {
@@ -18,7 +19,7 @@ enum AnalysisCase {
             return "분석할 수 있는 지출 기록이 없어요.\n지출 챌린지를 통해 절약을 시작해보세요!"
         case .emptyAnalysisNonEmptyChallenge:
             return "분석할 수 있는 지출 기록이 없어요.\n오늘 지출한 내역이 있다면 입력해보세요!"
-        case .NonEmptyAnalysis:
+        case .nonEmptyAnalysis, .emptyAnalysis:
             return ""
         }
     }
@@ -29,7 +30,7 @@ enum AnalysisCase {
             return "챌린지 시작하기"
         case .emptyAnalysisNonEmptyChallenge:
             return "지출 추가하기"
-        case .NonEmptyAnalysis:
+        case .nonEmptyAnalysis, .emptyAnalysis:
             return ""
         }
     }
@@ -214,7 +215,6 @@ final class HabitView: BaseView {
         analysisExpenseEmptyView.snp.makeConstraints {
             $0.top.equalTo(analysisTitleStackView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(142)
         }
     }
 
