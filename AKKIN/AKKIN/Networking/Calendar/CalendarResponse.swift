@@ -12,6 +12,18 @@ struct ExpensesResponse: Codable {
     let body: Expenses
 }
 
+struct PatchExpensesResponse: Codable {
+    let status: Int
+    let code: String
+    let timestamp: String
+    let body: PatchExpenses
+}
+
+struct PatchExpenses: Codable {
+    let savedAmount: Int
+    let expenses: ExpensesList
+}
+
 struct Expenses: Codable {
     let savedAmount: Int
     let expenses: [ExpensesList]

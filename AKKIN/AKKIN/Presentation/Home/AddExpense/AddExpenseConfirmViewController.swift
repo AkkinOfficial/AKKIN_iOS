@@ -57,7 +57,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
             return
         }
 
-        let request = AddExpenseRequest(
+        let request = ExpenseRequest(
             amount: amount,
             content: ExpenseInfo.shared.content,
             memo: ExpenseInfo.shared.memo,

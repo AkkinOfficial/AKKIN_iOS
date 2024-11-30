@@ -15,6 +15,8 @@ final class CalendarService {
     private enum ResponseData {
         case getSavings(year: Int, month: Int)
         case getExpenses(date: String)
+        case patchExpenses(request: ExpenseRequest)
+        case deleteExpenses
     }
 
     public func getSavings(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -49,12 +51,44 @@ final class CalendarService {
         }
     }
 
+    public func patchExpenses(id: Int, request: ExpenseRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+        calendarProvider.request(.patchExpenses(id: id, request: request)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .patchExpenses(request: request))
+                completion(networkResult)
+
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    public func deleteExpenses(id: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        calendarProvider.request(.deleteExpenses(id: id)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .deleteExpenses)
+                completion(networkResult)
+
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .getSavings, .getExpenses:
+            case .getSavings, .getExpenses, .patchExpenses, .deleteExpenses:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -77,6 +111,12 @@ final class CalendarService {
             return .success(decodedData ?? "success")
         case .getExpenses:
             let decodedData = try? decoder.decode(ExpensesResponse.self, from: data)
+            return .success(decodedData ?? "success")
+        case .patchExpenses:
+            let decodedData = try? decoder.decode(PatchExpensesResponse.self, from: data)
+            return .success(decodedData ?? "success")
+        case .deleteExpenses:
+            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
             return .success(decodedData ?? "success")
         }
     }

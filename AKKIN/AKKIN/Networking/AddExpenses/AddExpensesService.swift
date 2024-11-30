@@ -15,7 +15,7 @@ final class AddExpenseService {
         case postAddExpense
     }
 
-    public func postAddExpense(request: AddExpenseRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    public func postAddExpense(request: ExpenseRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
         mainProvider.request(.postExpense(request: request)) { result in
             switch result {
             case .success(let response):
