@@ -74,7 +74,6 @@
 		953650C52C6E067800F58D13 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C42C6E067800F58D13 /* DummyData.swift */; };
 		953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */; };
 		953650CA2C6E199700F58D13 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C92C6E199700F58D13 /* Category.swift */; };
-		953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */; };
 		953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */; };
 		955100B12C76D85D00D80A9C /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B02C76D85D00D80A9C /* CategoryDetailView.swift */; };
 		955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */; };
@@ -262,7 +261,6 @@
 		953650C42C6E067800F58D13 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisCollectionViewCell.swift; sourceTree = "<group>"; };
 		953650C92C6E199700F58D13 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisCollectionViewHeader.swift; sourceTree = "<group>"; };
 		953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		955100B02C76D85D00D80A9C /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -629,7 +627,6 @@
 			isa = PBXGroup;
 			children = (
 				953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */,
-				953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */,
 				95EF1C352C773BE400AD06A9 /* PlanExpenseGuideView.swift */,
 			);
 			path = Cell;
@@ -1162,7 +1159,6 @@
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,
 				C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */,
 				E586401A2CB43B570092D6C1 /* AddChallengesService.swift in Sources */,
-				953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */,
 				95EF1C562C7EDF0100AD06A9 /* SelectMonthNavigationBar.swift in Sources */,
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,

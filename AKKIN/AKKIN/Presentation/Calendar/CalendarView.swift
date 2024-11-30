@@ -17,6 +17,8 @@ final class CalendarView: BaseView {
 
     private let previousMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.previousButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let monthButton = BaseButton().then {
@@ -28,6 +30,8 @@ final class CalendarView: BaseView {
 
     private let nextMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.nextButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let savingLabel = UILabel().then {
@@ -51,6 +55,12 @@ final class CalendarView: BaseView {
     }
 
     // MARK: Properties
+    private var currentYear = DataManager.shared.currentYear ?? 2024
+    private var currentMonth = DataManager.shared.currentMonth ?? 11
+
+    var tapPrevious: ((Int, Int) -> Void)?
+    var tapMonth: (() -> Void)?
+    var tapNext: ((Int, Int) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -67,6 +77,9 @@ final class CalendarView: BaseView {
         addSubview(remainingLabel)
         addSubview(calendarBackgroundView)
         calendarBackgroundView.addSubview(calendarView)
+
+        previousMonthButton.addTarget(self, action: #selector(handlePreviousButtonEvent), for: .touchUpInside)
+        nextMonthButton.addTarget(self, action: #selector(handleNextButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -103,3 +116,44 @@ final class CalendarView: BaseView {
 
 }
 
+// MARK: Set Data
+extension CalendarView {
+    func setData(data: CalendarModel) {
+        monthButton.setTitle("\(currentMonth)월", for: .normal)
+//        calendarView.monthButton.setUnderline()
+        savingLabel.text = "이번 달 아낀 금액:  " + data.monthSaving.toPriceFormat + "  원"
+        savingLabel.setColor(targetString: data.monthSaving.toPriceFormat, color: .akkinGreen)
+        remainingLabel.text = "이번 챌린지 남은 금액:  " + data.monthRemaining.toPriceFormat + "  원"
+    }
+}
+
+extension CalendarView {
+    @objc private func handlePreviousButtonEvent() {
+        if currentMonth == 1 {
+            currentYear -= 1
+            currentMonth = 12
+        } else {
+            currentMonth -= 1
+        }
+        updateMonthButtonTitle()
+
+        tapPrevious?(currentYear, currentMonth)
+    }
+
+    @objc private func handleNextButtonEvent() {
+        if currentMonth == 12 {
+            currentYear += 1
+            currentMonth = 1
+        } else {
+            currentMonth += 1
+        }
+        updateMonthButtonTitle()
+
+        tapNext?(currentYear, currentMonth)
+    }
+
+    private func updateMonthButtonTitle() {
+        let monthText = "\(currentMonth)월"
+        monthButton.setTitle(monthText, for: .normal)
+    }
+}
