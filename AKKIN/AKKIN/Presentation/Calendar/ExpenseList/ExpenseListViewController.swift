@@ -63,6 +63,14 @@ final class ExpenseListViewController: BaseViewController {
         expenseListView.tapAddButtonEvent = { [self] in
             print("tap add button")
         }
+
+        expenseListView.tapPrevious = { [self] date in
+            getExpenses(date: DateFormatter.formatDateToString(date, "yyyy-MM-dd"))
+        }
+
+        expenseListView.tapNext = { [self] date in
+            getExpenses(date: DateFormatter.formatDateToString(date, "yyyy-MM-dd"))
+        }
     }
 
     // MARK: Layout
@@ -81,33 +89,6 @@ final class ExpenseListViewController: BaseViewController {
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.isNavigationBarHidden = true
-    }
-
-    // MARK: Data
-    func setData(date: String, data: Expenses) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-
-        if let date = formatter.date(from: date) {
-            let calendar = Calendar.current
-            let month = calendar.component(.month, from: date)
-            let day = calendar.component(.day, from: date)
-            
-            print("Month: \(month), Day: \(day)")
-            expenseListView.dateButton.setTitle("\(month)월 \(day)일", for: .normal)
-        }
-//        expenseListView.dateButton.setUnderline()
-        expenseListView.dateButton.isEnabled = true
-        expenseListView.dateButton.backgroundColor = .clear
-
-        expenseListView.savingLabel.text = "아낀 금액: " + data.savedAmount.toPriceFormat + " 원"
-        expenseListView.savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
-
-        setCollectionView()
-    }
-
-    func setEmptyData() {
-        expenseListView.savingLabel.text = "아낀 금액: 0 원"
     }
 }
 
@@ -172,7 +153,8 @@ extension ExpenseListViewController {
             case .success(let response):
                 guard let data = response as? ExpensesResponse else { return }
                 print("🎯 getExpenses success\n\(data)")
-                setData(date: date, data: data.body)
+                expenseListView.setData(date: date, data: data.body)
+                setCollectionView()
                 expensesData = data.body
             case .requestErr(let errorResponse):
                 dump(errorResponse)
@@ -181,7 +163,8 @@ extension ExpenseListViewController {
 //                setEmptyData()
                 // TODO:
                 expensesData = Expenses.testExpenses
-                setData(date: date, data: Expenses.testExpenses)
+                expenseListView.setData(date: date, data: Expenses.testExpenses)
+                setCollectionView()
             case .serverErr:
                 print("serverErr")
             case .networkFail:
