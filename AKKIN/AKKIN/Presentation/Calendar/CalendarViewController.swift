@@ -17,18 +17,15 @@ final class CalendarViewController: BaseViewController {
 
     // MARK: Properties
     var calendarModel = CalendarModel(month: 9, day: 23, monthSaving: 40940, monthRemaining: 470150)
-    let today = Date()
-    let calendar = Calendar.current
+    private var currentYear = DataManager.shared.currentYear ?? 2024
+    private var currentMonth = DataManager.shared.currentMonth ?? 11
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let year = calendar.component(.year, from: today)
-        let month = calendar.component(.month, from: today)
-        getSavings(year: year, month: month)
+        getSavings(year: currentYear, month: currentMonth)
         router.viewController = self
-        setData(data: calendarModel)
         setNavigationItem()
     }
 
@@ -36,6 +33,14 @@ final class CalendarViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(calendarView)
         setUpCalendarView()
+
+        calendarView.tapPrevious = { [self] year, month in
+            getSavings(year: year, month: month)
+        }
+
+        calendarView.tapNext = { [self] year, month in
+            getSavings(year: year, month: month)
+        }
     }
 
     // MARK: Layout
@@ -59,14 +64,6 @@ final class CalendarViewController: BaseViewController {
         }
     }
 
-    func setData(data: CalendarModel) {
-        calendarView.monthButton.setTitle(data.month.toMonthFormat, for: .normal)
-        calendarView.monthButton.setUnderline()
-        calendarView.savingLabel.text = "이번 달 아낀 금액:  " + data.monthSaving.toPriceFormat + "  원"
-        calendarView.savingLabel.setColor(targetString: data.monthSaving.toPriceFormat, color: .akkinGreen)
-        calendarView.remainingLabel.text = "이번 챌린지 남은 금액:  " + data.monthRemaining.toPriceFormat + "  원"
-    }
-
     // MARK: Navigation Item
     private func setNavigationItem() {
         navigationController?.isNavigationBarHidden = true
@@ -82,9 +79,13 @@ extension CalendarViewController {
             case .success(let response):
                 guard let data = response as? SavingsResponse else { return }
                 print("🎯 getSavings success\n\(data)")
+                calendarView.setData(data: calendarModel)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
+                // TODO:
+                calendarView.setData(data: calendarModel)
+
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")
