@@ -24,3 +24,11 @@ struct Savings: Codable {
     let date: String
     let amount: Int
 }
+
+extension Savings {
+    static let emptySavings: [Savings] = []
+
+    static let testSavings = [Savings(id: 0, date: "2024-11-15", amount: 500000),
+                               Savings(id: 0, date: "2024-11-27", amount: 35000),
+                               Savings(id: 0, date: "2024-11-30", amount: 10000)]
+}

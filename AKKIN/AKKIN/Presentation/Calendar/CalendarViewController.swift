@@ -79,13 +79,15 @@ extension CalendarViewController {
             case .success(let response):
                 guard let data = response as? SavingsResponse else { return }
                 print("🎯 getSavings success\n\(data)")
-                calendarView.setData(data: calendarModel)
+                let totalAmount = totalAmount(from: data.body)
+                calendarView.setData(month: month, totalAmount: totalAmount, data: data.body)
+                calendarView.calendarView.setSavingsData(data: data.body)
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
                 // TODO:
-                calendarView.setData(data: calendarModel)
-
+                calendarView.setData(month: month, totalAmount: 150000, data: Savings.testSavings)
+                calendarView.calendarView.setSavingsData(data: Savings.testSavings)
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")
@@ -95,6 +97,10 @@ extension CalendarViewController {
                 print("pathErr")
             }
         }
+    }
+
+    private func totalAmount(from savings: [Savings]) -> Int {
+        return savings.reduce(0) { $0 + $1.amount }
     }
 }
 

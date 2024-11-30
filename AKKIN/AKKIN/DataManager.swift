@@ -9,7 +9,7 @@ class DataManager {
     static let shared = DataManager()
 
     var currentYear: Int? = 2024
-    var currentMonth: Int? = 8
+    var currentMonth: Int? = 11
 
     private init() {}
     

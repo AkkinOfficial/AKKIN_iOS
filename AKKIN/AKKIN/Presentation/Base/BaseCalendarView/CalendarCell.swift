@@ -109,9 +109,13 @@ class CalendarCell: FSCalendarCell {
         }
     }
 
-    // TODO: 캘린더 뷰 데이터 연결
-    func setBackImage() {
-        
+    func configureExpenseLabel(for savings: Savings?) {
+        if let savings = savings {
+            self.expenseLabel.isHidden = false
+            self.expenseLabel.text = "+" + savings.amount.toPriceFormat
+        } else {
+            self.expenseLabel.isHidden = true
+        }
     }
 
     override func prepareForReuse() {
