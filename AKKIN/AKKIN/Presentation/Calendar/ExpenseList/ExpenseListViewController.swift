@@ -28,14 +28,7 @@ final class ExpenseListViewController: BaseViewController {
     private let router = BaseRouter()
 
     // MARK: Properties
-    var calendarModel = CalendarModel(month: 9, day: 23, monthSaving: 40940, monthRemaining: 470150)
-    var expenseListModel = ExpenseListModel(expenseList:
-                                            [ExpenseData(category: .cafe, title: "아메리카노+휘낭시에", saving: 7500, total: 8190),
-                                             ExpenseData(category: .dining, title: "히레카츠+음료수", memo: "친구 만나서 파스타 냠냠", saving: 19000, total: 27190),
-                                             ExpenseData(category: .traffic, title: "경기도 버스", saving: 2400, total: 29590),
-                                             ExpenseData(category: .hobby, title: "영화", saving: 15000, total: 44590)]
-    )
-
+    var expensesData = Expenses.emtpyExpenses
     var date: String
 
     // MARK: Init
@@ -43,7 +36,7 @@ final class ExpenseListViewController: BaseViewController {
         self.date = date
         super.init(nibName: nil, bundle: nil)
 
-        getSavingsDate(date: date)
+        getExpenses(date: date)
     }
 
     required init?(coder: NSCoder) {
@@ -91,15 +84,24 @@ final class ExpenseListViewController: BaseViewController {
     }
 
     // MARK: Data
-    func setData(data: Savings) {
-//        expenseListView.dateButton.setTitle(month + " " + day, for: .normal)
-        expenseListView.dateButton.setUnderline()
+    func setData(date: String, data: Expenses) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        if let date = formatter.date(from: date) {
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            
+            print("Month: \(month), Day: \(day)")
+            expenseListView.dateButton.setTitle("\(month)월 \(day)일", for: .normal)
+        }
+//        expenseListView.dateButton.setUnderline()
         expenseListView.dateButton.isEnabled = true
         expenseListView.dateButton.backgroundColor = .clear
 
-        let daySaving = String(data.amount)
-        expenseListView.savingLabel.text = "아낀 금액: " + daySaving + " 원"
-        expenseListView.savingLabel.setColor(targetString: daySaving, color: .akkinGreen)
+        expenseListView.savingLabel.text = "아낀 금액: " + data.savedAmount.toPriceFormat + " 원"
+        expenseListView.savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
 
         setCollectionView()
     }
@@ -139,7 +141,7 @@ extension ExpenseListViewController: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return expenseListModel.expenseList.count
+        return expensesData.expenses.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -148,7 +150,7 @@ extension ExpenseListViewController: UICollectionViewDelegate, UICollectionViewD
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setExpenseListData(data: expenseListModel.expenseList[indexPath.row])
+        cell.setExpenseListData(data: expensesData.expenses[indexPath.row])
         cell.tapDetail = {
         }
 
@@ -156,26 +158,30 @@ extension ExpenseListViewController: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = expenseListModel.expenseList[indexPath.row]
+        let data = expensesData.expenses[indexPath.row]
         router.presentExpenseDetailViewController(data: data)
     }
 }
 
 extension ExpenseListViewController {
     // MARK: Network
-    private func getSavingsDate(date: String) {
-        print("💸 getSavings called")
-        NetworkService.shared.savings.getSavingsDate(date: date) { [self] result in
+    private func getExpenses(date: String) {
+        print("💸 getExpenses called")
+        NetworkService.shared.calendar.getExpenses(date: date) { [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? SavingsDateResponse else { return }
-                print("🎯 getSavingsDate success\n\(data)")
-                setData(data: data.body)
+                guard let data = response as? ExpensesResponse else { return }
+                print("🎯 getExpenses success\n\(data)")
+                setData(date: date, data: data.body)
+                expensesData = data.body
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
                 print("🤖 \(data)")
-                setEmptyData()
+//                setEmptyData()
+                // TODO:
+                expensesData = Expenses.testExpenses
+                setData(date: date, data: Expenses.testExpenses)
             case .serverErr:
                 print("serverErr")
             case .networkFail:

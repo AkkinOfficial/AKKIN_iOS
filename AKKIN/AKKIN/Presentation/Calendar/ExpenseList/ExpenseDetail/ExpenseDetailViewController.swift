@@ -16,7 +16,7 @@ final class ExpenseDetailViewController: BaseViewController {
     private let router = BaseRouter()
 
     // MARK: Init
-    init(data: ExpenseData) {
+    init(data: ExpensesList) {
         self.expenseData = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +35,7 @@ final class ExpenseDetailViewController: BaseViewController {
     }
 
     // MARK: Properties
-    var expenseData: ExpenseData
+    var expenseData: ExpensesList
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -63,11 +63,14 @@ final class ExpenseDetailViewController: BaseViewController {
     }
 
     // MARK: Data
-    func setData(data: ExpenseData) {
-        expenseDetailView.categoryImageLabel.text = data.category.categoryImageString
-        expenseDetailView.infoLabel.text = data.category.toString
-        expenseDetailView.titleLabel.text = data.title
-        expenseDetailView.expenseLabel.text = data.saving.toPriceFormat + "원"
-        expenseDetailView.memoLabel.text = data.memo
+    func setData(data: ExpensesList) {
+        let categoryImage = ExpensesList.mapCategoryImage(data.category)
+        let categoryKorean = ExpensesList.mapCategory(data.category)
+
+        expenseDetailView.categoryImageLabel.text = categoryImage
+        expenseDetailView.infoLabel.text = categoryKorean
+        expenseDetailView.titleLabel.text = data.content
+        expenseDetailView.expenseLabel.text = data.amount.toPriceFormat + "원"
+        expenseDetailView.memoLabel.text = "메모"
     }
 }

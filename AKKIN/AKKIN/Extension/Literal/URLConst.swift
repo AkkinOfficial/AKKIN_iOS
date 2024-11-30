@@ -41,6 +41,9 @@ enum URLConst {
     static let savings = "/savings"
     static let savingsDate = "/savings/date"
 
+    // MARK: - Calendar
+    static let getExpenses = "/expenses"
+
     // MARK: - User
     static let users = "/users/me"
     static let usersNickname = "/users/me/nickname"
