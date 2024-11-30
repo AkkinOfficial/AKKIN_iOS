@@ -118,12 +118,12 @@ final class CalendarView: BaseView {
 
 // MARK: Set Data
 extension CalendarView {
-    func setData(data: CalendarModel) {
-        monthButton.setTitle("\(currentMonth)월", for: .normal)
-//        calendarView.monthButton.setUnderline()
-        savingLabel.text = "이번 달 아낀 금액:  " + data.monthSaving.toPriceFormat + "  원"
-        savingLabel.setColor(targetString: data.monthSaving.toPriceFormat, color: .akkinGreen)
-        remainingLabel.text = "이번 챌린지 남은 금액:  " + data.monthRemaining.toPriceFormat + "  원"
+    func setData(month: Int, totalAmount: Int, data: [Savings]) {
+        monthButton.setTitle("\(month)월", for: .normal)
+//        monthButton.setUnderline()
+        savingLabel.text = "이번 달 아낀 금액:  " + totalAmount.toPriceFormat + "  원"
+        savingLabel.setColor(targetString: totalAmount.toPriceFormat, color: .akkinGreen)
+        remainingLabel.text = "이번 챌린지 남은 금액:  " + "0" + "  원"
     }
 }
 
