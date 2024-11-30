@@ -14,4 +14,11 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter.date(from: dateString)
     }
+
+    static func formatDateToString(_ date: Date, _ format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
 }
