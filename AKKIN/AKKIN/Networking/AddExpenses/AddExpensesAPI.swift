@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum AddExpensesAPI {
-    case postExpense(request: AddExpenseRequest)}
+    case postExpense(request: ExpenseRequest)}
 
 extension AddExpensesAPI: TargetType {
     var path: String {

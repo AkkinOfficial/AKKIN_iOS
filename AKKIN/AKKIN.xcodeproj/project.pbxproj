@@ -681,8 +681,8 @@
 		9552013A2CA04BCE006DB98C /* ExpenseDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */,
 				9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */,
+				9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */,
 			);
 			path = ExpenseDetail;
 			sourceTree = "<group>";
