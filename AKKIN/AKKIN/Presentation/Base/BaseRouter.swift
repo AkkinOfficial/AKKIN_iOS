@@ -71,7 +71,7 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
     }
 
-    func presentExpenseDetailViewController(data: ExpenseData) {
+    func presentExpenseDetailViewController(data: ExpensesList) {
         let expenseDetailViewController = ExpenseDetailViewController(data: data)
         viewController?.navigationController?.pushViewController(expenseDetailViewController, animated: true)
     }

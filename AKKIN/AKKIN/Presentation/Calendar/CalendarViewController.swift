@@ -74,7 +74,7 @@ extension CalendarViewController {
     // MARK: Network
     private func getSavings(year: Int, month: Int) {
         print("💸 getSavings called")
-        NetworkService.shared.savings.getSavings(year: year, month: month) { [self] result in
+        NetworkService.shared.calendar.getSavings(year: year, month: month) { [self] result in
             switch result {
             case .success(let response):
                 guard let data = response as? SavingsResponse else { return }

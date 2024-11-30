@@ -137,7 +137,7 @@ extension MonthAnalysisCollectionViewCell {
         categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }
 
-    func setExpenseListData(data: ExpenseData) {
+    func setExpenseListData(data: ExpensesList) {
         categoryExpenseLabel.removeFromSuperview()
 
         contentView.addSubview(expenseStackView)
@@ -148,11 +148,12 @@ extension MonthAnalysisCollectionViewCell {
             $0.trailing.equalToSuperview()
         }
 
-        categoryImageLabel.text = data.category.categoryImageString
-        categoryTitleLabel.text = data.title
-        categoryRatioLabel.text = data.category.toString
+        let categoryImage = ExpensesList.mapCategoryImage(data.category)
+        categoryImageLabel.text = categoryImage
+        categoryTitleLabel.text = data.content
+        categoryRatioLabel.text = data.content
         categoryRatioLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        categoryExpenseLabel.text = data.saving.toPriceFormat + " 원"
-        categoryTotalLabel.text = data.total.toPriceFormat + " 원"
+        categoryExpenseLabel.text = data.amount.toPriceFormat + " 원"
+        categoryTotalLabel.text = data.savedAmount.toPriceFormat + " 원"
     }
 }
