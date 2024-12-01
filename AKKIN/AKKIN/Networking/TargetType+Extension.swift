@@ -11,7 +11,7 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
-        //TODO: - baseURL congfig로 이동
+        //TODO: - baseURL config로 이동
         URL(string: URLConst.base)!
     }
 
@@ -21,7 +21,7 @@ extension TargetType {
         let header = [
             "Content-Type": "application/json",
             "Authorization": "Bearer \(accessToken)",
-//            "Authorization-Refresh": "Bearer \(refreshToken)"
+            "Authorization-Refresh": "\(refreshToken)"
         ]
         return header
     }

@@ -19,6 +19,7 @@ enum URLConst {
 
     // MARK: - Login
     static let appleLogin = "/auth/apple"
+    static let authRefresh = "/auth/refresh"
     static let appleRevoke = "/revoke"
     static let appleLogout = "/logout"
 

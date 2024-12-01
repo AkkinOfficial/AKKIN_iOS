@@ -18,7 +18,7 @@ final class LoginViewController: BaseViewController {
     private let router = BaseRouter()
     private let authService = AuthService.shared
 
-    // MARK: - State
+    // MARK: State
     private var isLoggedIn = false
 
     // MARK: Life Cycle
@@ -67,7 +67,6 @@ final class LoginViewController: BaseViewController {
         }
         print("🚀 Starting Apple Login...")
 
-        // AppleLoginManager를 사용해 로그인 수행
         AppleLoginManager.shared.performLogin { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -78,21 +77,18 @@ final class LoginViewController: BaseViewController {
             }
         }
     }
-    // MARK: - Helpers
+    // MARK: Helpers
     private func handleLoginSuccess(response: AppleLoginResponse) {
-        // 토큰 유효성 검증
         guard !response.body.accessToken.isEmpty, !response.body.refreshToken.isEmpty else {
             handleLoginFailure(error: NSError(domain: "Login", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid tokens received from server"]))
             return
         }
-
-        // 토큰 저장
+        
         KeychainManager.shared.save(key: "accessToken", value: response.body.accessToken)
         KeychainManager.shared.save(key: "refreshToken", value: response.body.refreshToken)
 
         print("🎉 Login Successful! AccessToken: \(response.body.accessToken)")
 
-        // 탭바 화면으로 이동
         DispatchQueue.main.async {
             self.router.presentTabBarViewController()
         }
@@ -101,7 +97,6 @@ final class LoginViewController: BaseViewController {
     private func handleLoginFailure(error: Error) {
         print("❌ Login Failed: \(error.localizedDescription)")
 
-        // 에러 메시지 표시
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Login Failed", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
