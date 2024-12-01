@@ -95,7 +95,8 @@ final class AnalysisExpenseView: BaseView {
         setCollectionView()
 
         if let maximumCategory = data.elementWithMaxAmount() {
-            categoryImageLabel.text = maximumCategory.categoryEnum
+            let categoryImage = CategoryMapper.mapCategoryImage(maximumCategory.categoryEnum)
+            categoryImageLabel.text = categoryImage
             categoryLabel.text = maximumCategory.category + "에 가장 많이 썼어요"
         }
     }
@@ -130,7 +131,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
             $0.trailing.centerY.equalToSuperview()
         }
 
-        cell.setData(data: analysis.elements[indexPath.row])
+        cell.setData(data: analysis.elements[indexPath.row], colorView: false)
 
         return cell
     }

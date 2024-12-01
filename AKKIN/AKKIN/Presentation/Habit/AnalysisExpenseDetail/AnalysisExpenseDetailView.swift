@@ -199,7 +199,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             return UICollectionViewCell()
         }
 
-        cell.setData(data: analysis.elements[indexPath.row])
+        cell.setData(data: analysis.elements[indexPath.row], colorView: true)
 
         return cell
     }
