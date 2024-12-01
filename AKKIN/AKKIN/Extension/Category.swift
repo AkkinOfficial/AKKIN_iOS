@@ -5,57 +5,48 @@
 //  Created by 박지윤 on 8/15/24.
 //
 
-enum Category {
-    case dining
-    case traffic
-    case etc
-    case cafe
-    case hobby
-
-    var categoryImageString: String {
-        switch self {
-        case .dining:
-            return "🍽️"
-        case .traffic:
-            return "🚃"
-        case .etc:
-            return "💬"
-        case .cafe:
-            return "☕️"
-        case .hobby:
-            return "🎶"
+enum CategoryMapper {
+    static func mapCategory(_ value: String) -> String {
+        switch value {
+        case "MEAL": return "식사"
+        case "CAFE_SNACK": return "카페/간식"
+        case "DRINK_ENTERTAINMENT": return "술/유흥"
+        case "CONVENIENCE_STORE": return "편의점"
+        case "CLOTHING": return "의류"
+        case "BEAUTY": return "미용"
+        case "CULTURE_HOBBY": return "문화/취미"
+        case "LIVING": return "생활"
+        case "TRAVEL_ACCOMMODATION": return "여행/숙박"
+        case "TRANSPORTATION": return "교통"
+        case "MEDICAL_HEALTH": return "의료/건강"
+        case "EDUCATION": return "교육"
+        case "COMMUNICATION": return "통신"
+        case "MEMBERSHIP_FEE": return "회비"
+        case "FAMILY_OCCASION": return "경조사"
+        case "MISC": return "기타"
+        default: return value
         }
     }
 
-    static func toImageString(_ categoryName: String) -> Category? {
-        switch categoryName {
-        case "식사":
-            return .dining
-        case "교통":
-            return .traffic
-        case "기타":
-            return .etc
-        case "카페/간식":
-            return .cafe
-        case "문화/취미":
-            return .hobby
-        default:
-            return nil
-        }
-    }
-
-    var toString: String {
-        switch self {
-        case .dining:
-            return "식사"
-        case .traffic:
-            return "교통"
-        case .etc:
-            return "기타"
-        case .cafe:
-            return "카페/간식"
-        case .hobby:
-            return "문화/취미"
+    static func mapCategoryImage(_ value: String) -> String {
+        switch value {
+        case "MEAL": return "🍽️"
+        case "CAFE_SNACK": return "☕️"
+        case "DRINK_ENTERTAINMENT": return "🍻"
+        case "CONVENIENCE_STORE": return "🏪"
+        case "CLOTHING": return "👕"
+        case "BEAUTY": return "🛁"
+        case "CULTURE_HOBBY": return "🎶"
+        case "LIVING": return "🛒"
+        case "TRAVEL_ACCOMMODATION": return "✈️"
+        case "TRANSPORTATION": return "🚃"
+        case "MEDICAL_HEALTH": return "🏥"
+        case "EDUCATION": return "🎓"
+        case "COMMUNICATION": return "📱"
+        case "MEMBERSHIP_FEE": return "👨‍👧‍👦"
+        case "FAMILY_OCCASION": return "✉️"
+        case "MISC": return "💬"
+        default: return value
         }
     }
 }

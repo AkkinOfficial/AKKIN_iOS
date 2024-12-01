@@ -64,8 +64,8 @@ final class ExpenseDetailViewController: BaseViewController {
 
     // MARK: Data
     func setData(data: ExpensesList) {
-        let categoryImage = ExpensesList.mapCategoryImage(data.category)
-        let categoryKorean = ExpensesList.mapCategory(data.category)
+        let categoryImage = CategoryMapper.mapCategoryImage(data.category)
+        let categoryKorean = CategoryMapper.mapCategory(data.category)
 
         expenseDetailView.categoryImageLabel.text = categoryImage
         expenseDetailView.infoLabel.text = categoryKorean
