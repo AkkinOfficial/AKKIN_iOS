@@ -42,7 +42,7 @@ final class AnalysisExpenseDetailView: BaseView {
         return collectionView
     }()
 
-    private let analysisExpenseDetailEmptyView = AnalysisExpenseDetailEmptyView()
+    let analysisExpenseDetailEmptyView = AnalysisExpenseDetailEmptyView()
 
     // MARK: Properties
     var analysis = AnalysisData.emptyAnalysisData
