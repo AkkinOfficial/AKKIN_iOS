@@ -56,7 +56,7 @@ final class CalendarView: BaseView {
 
     // MARK: Properties
     private var currentYear = DataManager.shared.currentYear ?? 2024
-    private var currentMonth = DataManager.shared.currentMonth ?? 11
+    private var currentMonth = DataManager.shared.currentMonth ?? 12
 
     var tapPrevious: ((Int, Int) -> Void)?
     var tapMonth: (() -> Void)?

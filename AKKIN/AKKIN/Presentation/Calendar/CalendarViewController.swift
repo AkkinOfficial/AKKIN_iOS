@@ -18,7 +18,7 @@ final class CalendarViewController: BaseViewController {
     // MARK: Properties
     var calendarModel = CalendarModel(month: 9, day: 23, monthSaving: 40940, monthRemaining: 470150)
     private var currentYear = DataManager.shared.currentYear ?? 2024
-    private var currentMonth = DataManager.shared.currentMonth ?? 11
+    private var currentMonth = DataManager.shared.currentMonth ?? 12
 
     // MARK: Life Cycle
     override func viewDidLoad() {

@@ -10,10 +10,10 @@ import UIKit
 final class AnalysisView: BaseView {
 
     // MARK: Init
-    init(color: UIColor, precent: Double, firstFlag: Bool) {
+    init(color: UIColor, precent: Double, firstFlag: Bool, lastFlag: Bool) {
         super.init(frame: .zero)
 
-        setData(color: color, percent: precent, firstFlag: firstFlag)
+        setData(color: color, percent: precent, firstFlag: firstFlag, lastFlag: lastFlag)
     }
 
     required init?(coder: NSCoder) {
@@ -36,7 +36,7 @@ final class AnalysisView: BaseView {
         }
     }
 
-    private func setData(color: UIColor, percent: Double, firstFlag: Bool) {
+    private func setData(color: UIColor, percent: Double, firstFlag: Bool, lastFlag: Bool) {
         backgroundColor = color
         let screenWidth = UIScreen.main.bounds.size.width
         let width = screenWidth * percent / 100
@@ -45,9 +45,17 @@ final class AnalysisView: BaseView {
             $0.width.equalTo(width)
         }
 
-        if firstFlag {
-            layer.cornerRadius = 6
+        layer.cornerRadius = 6
+
+        if firstFlag && lastFlag {
+            layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner,
+                                   .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        } else if firstFlag {
             layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        } else if lastFlag {
+            layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        } else {
+            layer.maskedCorners = []
         }
     }
 }
