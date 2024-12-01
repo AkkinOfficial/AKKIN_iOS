@@ -65,7 +65,6 @@ final class AnalysisExpenseDetailView: BaseView {
         addSubview(addButton)
 
         addSubview(monthAnalysisHeaderView)
-        addSubview(monthAnalysisCollectionView)
 
         backButton.addTarget(self, action: #selector(handleBackButtonEvent), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(handleAddButtonEvent), for: .touchUpInside)
@@ -97,18 +96,44 @@ final class AnalysisExpenseDetailView: BaseView {
     }
     
     private func setAnalysisNonEmptyView() {
-        let collectionViewHeight1 = 113 + 24 + 77 * analysis.elements.count
-        let collectionViewHeight2 = 254 + 24 + 77 * analysis.elements.count
+        addSubview(monthAnalysisCollectionView)
+
+        monthAnalysisHeaderView.snp.remakeConstraints {
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
+            if challengeIsEmpty {
+                $0.height.equalTo(278)
+            } else {
+                $0.height.equalTo(137)
+            }
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+
+        let collectionViewHeight = 254 + 24 + 77 * analysis.elements.count
 
         monthAnalysisCollectionView.snp.makeConstraints {
+
             $0.top.equalTo(monthAnalysisHeaderView.snp.bottom)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(collectionViewHeight2)
+            $0.height.equalTo(collectionViewHeight)
+        }
+    }
+
+    private func resetCollectionView() {
+        if monthAnalysisCollectionView.superview != nil {
+            monthAnalysisCollectionView.removeFromSuperview()
         }
     }
 
     private func setAnalysisEmptyView() {
-        monthAnalysisCollectionView.removeFromSuperview()
+        monthAnalysisHeaderView.snp.remakeConstraints {
+            $0.top.equalTo(navigationTitleLabel.snp.bottom).offset(47)
+            $0.height.equalTo(23)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+
+        if monthAnalysisCollectionView.superview != nil {
+            monthAnalysisCollectionView.removeFromSuperview()
+        }
 
         addSubview(analysisExpenseDetailEmptyView)
 
@@ -122,6 +147,12 @@ final class AnalysisExpenseDetailView: BaseView {
             $0.top.equalTo(monthAnalysisHeaderView.snp.bottom).offset(123)
             $0.horizontalEdges.equalToSuperview().inset(63.5)
             $0.height.equalTo(250)
+        }
+    }
+
+    private func removeAnalysisEmptyView() {
+        if analysisExpenseDetailEmptyView.superview != nil {
+            analysisExpenseDetailEmptyView.removeFromSuperview()
         }
     }
 }
@@ -139,11 +170,11 @@ extension AnalysisExpenseDetailView {
     }
 
     private func setLayoutByCase(emptyCase: AnalysisCase) {
-        print("==== \(emptyCase)")
-
         if emptyCase == .nonEmptyAnalysis {
+            resetCollectionView()
             setAnalysisNonEmptyView()
             setCollectionView()
+            removeAnalysisEmptyView()
         } else {
             setAnalysisEmptyView()
         }
