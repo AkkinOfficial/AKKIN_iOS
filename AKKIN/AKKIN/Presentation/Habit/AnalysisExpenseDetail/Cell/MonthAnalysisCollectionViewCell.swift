@@ -128,11 +128,13 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 }
 
 extension MonthAnalysisCollectionViewCell {
-    func setData(data: AnalysisElement) {
-        categoryImageLabel.text = data.categoryEnum
+    func setData(data: AnalysisElement, colorView: Bool) {
+        let categoryImage = CategoryMapper.mapCategoryImage(data.categoryEnum)
+
+        categoryImageLabel.text = categoryImage
         categoryTitleLabel.text = data.category
         let categoryColor = data.getCategoryColor(data.category)
-        categoryColorView.backgroundColor = categoryColor
+        categoryColorView.backgroundColor = colorView ? categoryColor : .clear
         categoryRatioLabel.text = "\(data.ratio)%"
         categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }
@@ -148,7 +150,7 @@ extension MonthAnalysisCollectionViewCell {
             $0.trailing.equalToSuperview()
         }
 
-        let categoryImage = ExpensesList.mapCategoryImage(data.category)
+        let categoryImage = CategoryMapper.mapCategoryImage(data.category)
         categoryImageLabel.text = categoryImage
         categoryTitleLabel.text = data.content
         categoryRatioLabel.text = data.content
