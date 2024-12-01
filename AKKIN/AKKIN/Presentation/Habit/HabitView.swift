@@ -223,7 +223,7 @@ final class HabitView: BaseView {
         analysisExpenseEntireView.addSubview(analysisExpenseView)
         analysisExpenseView.setData(data: data)
 
-        let collectionViewHeight = 45 * data.element.count + 16 * (data.element.count + 1)
+        let collectionViewHeight = 45 * data.elements.count + 16 * (data.elements.count + 1)
         let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 40
 
         analysisExpenseEntireView.snp.makeConstraints {
@@ -242,6 +242,7 @@ final class HabitView: BaseView {
 
     // MARK: Event
     @objc private func handleDetailButtonEvent() {
+        print("====== handleDetailButtonEvent")
         tapDetailButton?()
     }
 }

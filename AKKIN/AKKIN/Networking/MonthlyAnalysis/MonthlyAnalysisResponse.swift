@@ -16,7 +16,7 @@ struct MonthlyAnalysisResponse: Codable {
 
 struct AnalysisData: Codable {
     let totalAmount: Int
-    let element: [AnalysisElement]
+    let elements: [AnalysisElement]
 }
 
 struct AnalysisElement: Codable {
@@ -27,9 +27,9 @@ struct AnalysisElement: Codable {
 }
 
 extension AnalysisData {
-    static let emptyAnalysisData = AnalysisData(totalAmount: 0, element: [])
+    static let emptyAnalysisData = AnalysisData(totalAmount: 0, elements: [])
     static let testAnalysisData = AnalysisData(totalAmount: 10000,
-                                               element: [AnalysisElement(category: "식사",
+                                               elements: [AnalysisElement(category: "식사",
                                                                          categoryEnum: "🍽️",
                                                                          ratio: 21.2,
                                                                          amount: 25300),
@@ -43,7 +43,7 @@ extension AnalysisData {
                                                                         amount: 63460)])
 
     func elementWithMaxAmount() -> AnalysisElement? {
-        return self.element.max(by: { $0.amount < $1.amount })
+        return self.elements.max(by: { $0.amount < $1.amount })
     }
 }
 

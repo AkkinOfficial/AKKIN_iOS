@@ -97,8 +97,8 @@ final class AnalysisExpenseDetailView: BaseView {
     }
     
     private func setAnalysisNonEmptyView() {
-        let collectionViewHeight1 = 113 + 24 + 77 * analysis.element.count
-        let collectionViewHeight2 = 254 + 24 + 77 * analysis.element.count
+        let collectionViewHeight1 = 113 + 24 + 77 * analysis.elements.count
+        let collectionViewHeight2 = 254 + 24 + 77 * analysis.elements.count
 
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(monthAnalysisHeaderView.snp.bottom)
@@ -129,7 +129,7 @@ final class AnalysisExpenseDetailView: BaseView {
 // MARK: Set Data
 extension AnalysisExpenseDetailView {
     func setData(analysisData: AnalysisData, challengeData: ChallengeData) {
-        analysisIsEmpty = analysisData.element.isEmpty ? true : false
+        analysisIsEmpty = analysisData.elements.isEmpty ? true : false
         challengeIsEmpty = challengeData.startDate == 0 ? true : false
 
         analysisIsEmpty ? setLayoutByCase(emptyCase: .emptyAnalysis) : setLayoutByCase(emptyCase: .nonEmptyAnalysis)
@@ -189,7 +189,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         monthAnalysisCollectionView.isScrollEnabled = true
-        return analysis.element.count
+        return analysis.elements.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -199,7 +199,7 @@ extension AnalysisExpenseDetailView: UICollectionViewDelegate, UICollectionViewD
             return UICollectionViewCell()
         }
 
-        cell.setData(data: analysis.element[indexPath.row])
+        cell.setData(data: analysis.elements[indexPath.row])
 
         return cell
     }
