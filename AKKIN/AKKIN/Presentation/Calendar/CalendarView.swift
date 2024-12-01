@@ -103,12 +103,13 @@ final class CalendarView: BaseView {
         calendarBackgroundView.snp.makeConstraints {
             $0.top.equalTo(remainingLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(490)
         }
 
         calendarView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.verticalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(450)
         }
     }
 
