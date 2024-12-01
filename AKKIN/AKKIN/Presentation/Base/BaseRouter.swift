@@ -117,10 +117,7 @@ final class BaseRouter {
         let safariViewController = SFSafariViewController(url: url)
         viewController?.present(safariViewController, animated: true, completion: nil)
     }
-
-    func dismissViewControllerNonAnimated() {
-        viewController?.dismiss(animated: false)
-    }
+    
     func presentPlanExpenseViewController() {
         let planExpenseViewController = PlanExpenseViewController()
         planExpenseViewController.hidesBottomBarWhenPushed = true
