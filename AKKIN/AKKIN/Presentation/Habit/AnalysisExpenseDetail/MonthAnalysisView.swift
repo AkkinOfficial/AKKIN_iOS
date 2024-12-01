@@ -40,10 +40,12 @@ final class MonthAnalysisView: UIStackView {
             let color = element.getCategoryColor(element.category)
             let percent = element.ratio
             let firstFlag = index == 0 ? true : false
+            let lastFlag = index == analysisElement.count - 1 ? true : false
 
             let analysisView = AnalysisView(color: color,
                                             precent: percent,
-                                            firstFlag: firstFlag)
+                                            firstFlag: firstFlag,
+                                            lastFlag: lastFlag)
             addArrangedSubview(analysisView)
         }
 

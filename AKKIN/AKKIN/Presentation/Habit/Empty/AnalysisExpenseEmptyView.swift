@@ -46,10 +46,6 @@ final class AnalysisExpenseEmptyView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
-        snp.makeConstraints {
-            $0.height.equalTo(152)
-        }
-
         contentStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -65,10 +61,21 @@ final class AnalysisExpenseEmptyView: BaseView {
         layer.cornerRadius = 16
     }
 
+    func configureShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.07
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 8
+
+        snp.makeConstraints {
+            $0.height.equalTo(117)
+        }
+    }
+
     // MARK: Data
-    func setData(message: String, buttonTitle: String) {
+    func setData(message: String, buttonTitle: String, alignment: NSTextAlignment) {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
+        paragraphStyle.alignment = alignment
         paragraphStyle.lineSpacing = 4
 
         let attributes: [NSAttributedString.Key: Any] = [
@@ -82,6 +89,13 @@ final class AnalysisExpenseEmptyView: BaseView {
         analysisExpenseEmptyLabel.attributedText = attributedString
         analysisExpenseEmptyButton.setGuideButton(buttonTitle)
 
+        if alignment == .left {
+            configureShadow()
+        } else {
+            snp.makeConstraints {
+                $0.height.equalTo(152)
+            }
+        }
         self.buttonTitle = buttonTitle
     }
 

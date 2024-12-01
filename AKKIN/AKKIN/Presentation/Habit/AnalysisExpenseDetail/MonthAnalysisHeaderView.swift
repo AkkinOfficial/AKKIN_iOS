@@ -18,7 +18,7 @@ final class MonthAnalysisHeaderView: BaseView {
 
     // MARK: Properties
     private var currentYear = DataManager.shared.currentYear ?? 2024
-    private var currentMonth = DataManager.shared.currentMonth ?? 11
+    private var currentMonth = DataManager.shared.currentMonth ?? 12
 
     // MARK: UI Components
     private let monthStackView = UIStackView().then {
@@ -51,6 +51,7 @@ final class MonthAnalysisHeaderView: BaseView {
     }
 
     let monthAnalysisView = MonthAnalysisView()
+    let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
 
     // MARK: init
     override init(frame: CGRect) {
@@ -126,15 +127,20 @@ final class MonthAnalysisHeaderView: BaseView {
     }
 
     private func setChallengeEmptyView() {
-        let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
         analysisExpenseEmptyView.setData(message: "새로운 지출 챌린지를 시작할까요?",
-                                         buttonTitle: "챌린지 시작하기")
-
+                                         buttonTitle: "챌린지 시작하기",
+                                         alignment: .left)
         addSubview(analysisExpenseEmptyView)
 
         analysisExpenseEmptyView.snp.makeConstraints {
             $0.top.equalTo(monthAnalysisView.snp.bottom).offset(24)
             $0.horizontalEdges.equalToSuperview()
+        }
+    }
+
+    private func removeChallengeEmptyView() {
+        if analysisExpenseEmptyView.superview != nil {
+            analysisExpenseEmptyView.removeFromSuperview()
         }
     }
 
@@ -186,6 +192,7 @@ extension MonthAnalysisHeaderView {
                 $0.height.equalTo(23)
             }
             setAnalysisEmptyView()
+            removeChallengeEmptyView()
         case .nonEmptyAnalysisEmptyChallenge:
             snp.makeConstraints {
                 $0.height.equalTo(278)
@@ -199,6 +206,7 @@ extension MonthAnalysisHeaderView {
             }
             removeMonthAnalysisSubViews()
             monthAnalysisView.setData(analysisElement: analysis.elements)
+            removeChallengeEmptyView()
         }
     }
 }

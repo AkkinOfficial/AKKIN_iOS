@@ -201,8 +201,7 @@ final class HabitView: BaseView {
 
     func setAnalysisExpenseEmtpyView(analysisCase: AnalysisCase) {
         analysisExpenseEmptyView.setData(message: analysisCase.message,
-                                         buttonTitle: analysisCase.buttonTitle)
-
+                                         buttonTitle: analysisCase.buttonTitle, alignment: .center)
         analysisExpenseEntireView.addSubview(analysisExpenseEmptyView)
 
         analysisExpenseEntireView.snp.makeConstraints {

@@ -35,6 +35,7 @@ final class AnalysisExpenseView: BaseView {
 
     private let detailButton = BaseButton().then {
         $0.setImage(AkkinButton.detailButton.withTintColor(.akkinGray6), for: .normal)
+        $0.isHidden = true
     }
 
     public lazy var monthAnalysisCollectionView: UICollectionView = {
