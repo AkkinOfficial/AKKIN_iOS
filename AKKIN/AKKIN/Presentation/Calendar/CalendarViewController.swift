@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import FSCalendar
 
-final class CalendarViewController: BaseViewController {
+final class CalendarViewController: BaseViewController, FSCalendarDelegate {
 
     // MARK: UI Components
     private let calendarView = CalendarView()
@@ -19,6 +20,7 @@ final class CalendarViewController: BaseViewController {
     var calendarModel = CalendarModel(month: 9, day: 23, monthSaving: 40940, monthRemaining: 470150)
     private var currentYear = DataManager.shared.currentYear ?? 2024
     private var currentMonth = DataManager.shared.currentMonth ?? 12
+    private var calendar = FSCalendar()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -32,35 +34,55 @@ final class CalendarViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(calendarView)
-        setUpCalendarView()
+        setCalendarDelegate()
 
         calendarView.tapPrevious = { [self] year, month in
+            let currentPage = calendar.currentPage
+            if let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentPage) {
+                calendar.setCurrentPage(previousMonth, animated: true)
+            }
             getSavings(year: year, month: month)
         }
 
         calendarView.tapNext = { [self] year, month in
+            let currentPage = calendar.currentPage
+            if let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: currentPage) {
+                calendar.setCurrentPage(nextMonth, animated: true)
+            }
             getSavings(year: year, month: month)
         }
+    }
+
+    private func setCalendarDelegate() {
+        calendar = calendarView.calendarView.calendar
+        calendar.delegate = self
+        calendar.scope = .month
+    }
+
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        updateButtonTitle(for: calendar.currentPage)
+    }
+
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+
+        router.presentExpenseListViewController(date: dateString)
+    }
+
+    private func updateButtonTitle(for date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M월"
+        let title = formatter.string(from: date)
+        calendarView.monthButton.setTitle("\(title)", for: .normal)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         calendarView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-    }
-
-    // MARK: Data
-    func setUpCalendarView() {
-        calendarView.calendarView.onDateSelected = { [weak self] selectedDate in
-            guard let self = self else { return }
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = dateFormatter.string(from: selectedDate)
-
-            router.presentExpenseListViewController(date: dateString)
         }
     }
 

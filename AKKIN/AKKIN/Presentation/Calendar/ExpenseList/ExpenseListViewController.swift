@@ -61,7 +61,7 @@ final class ExpenseListViewController: BaseViewController {
         }
 
         expenseListView.tapAddButtonEvent = { [self] in
-            print("tap add button")
+            router.presentAddExpenseViewController()
         }
 
         expenseListView.tapPrevious = { [self] date in
