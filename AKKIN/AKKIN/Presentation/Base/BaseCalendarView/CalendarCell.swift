@@ -15,7 +15,6 @@ class CalendarCell: FSCalendarCell {
     var rightRectBackImageView = UIImageView()
 
     var expenseLabel = UILabel().then {
-        $0.text = "+10,270"
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
     }
@@ -111,10 +110,16 @@ class CalendarCell: FSCalendarCell {
 
     func configureExpenseLabel(for savings: Savings?) {
         if let savings = savings {
-            self.expenseLabel.isHidden = false
-            self.expenseLabel.text = "+" + savings.amount.toPriceFormat
+            expenseLabel.isHidden = false
+            if savings.amount > 0 {
+            expenseLabel.text = "+" + savings.amount.toPriceFormat
+            } else if savings.amount < 0 {
+                expenseLabel.text = "-" + savings.amount.toPriceFormat
+            } else {
+                expenseLabel.text = savings.amount.toPriceFormat
+            }
         } else {
-            self.expenseLabel.isHidden = true
+            expenseLabel.isHidden = true
         }
     }
 
