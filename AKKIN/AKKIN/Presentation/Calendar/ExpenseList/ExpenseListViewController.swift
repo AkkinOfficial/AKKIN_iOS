@@ -160,11 +160,8 @@ extension ExpenseListViewController {
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
                 print("🤖 \(data)")
-//                setEmptyData()
-                // TODO:
-                expensesData = Expenses.testExpenses
-                expenseListView.setData(date: date, data: Expenses.testExpenses)
-                setCollectionView()
+                expenseListView.setEmptyData()
+                expenseListView.setOnlyDate(date: date)
             case .serverErr:
                 print("serverErr")
             case .networkFail:
