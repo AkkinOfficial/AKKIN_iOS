@@ -16,25 +16,23 @@ final class AuthService {
     private var authProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
     // MARK: - Public Methods
-
-    /// Apple Login API 호출
     public func postAppleLogin(code: String, completion: @escaping (NetworkResult<AppleLoginResponse>) -> Void) {
         request(.postAppleLogin(code: code), responseType: AppleLoginResponse.self, completion: completion)
     }
 
-    /// Apple Revoke API 호출
     public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<BlankDataResponse>) -> Void) {
         request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode), responseType: BlankDataResponse.self, completion: completion)
     }
-
-    /// Apple Logout API 호출
+    
     public func getAppleLogout(completion: @escaping (NetworkResult<BlankDataResponse>) -> Void) {
         request(.getAppleLogout, responseType: BlankDataResponse.self, completion: completion)
     }
+    
+    public func refreshAccessToken(refreshToken: String, completion: @escaping (NetworkResult<AppleLoginResponse>) -> Void) {
+        request(.refreshToken(refreshToken: refreshToken), responseType: AppleLoginResponse.self, completion: completion)
+    }
 
     // MARK: - Private Helper Methods
-
-    /// 공통 요청 처리 메서드
     private func request<T: Decodable>(_ target: AuthAPI, responseType: T.Type, completion: @escaping (NetworkResult<T>) -> Void) {
         authProvider.request(target) { result in
             switch result {
@@ -48,7 +46,6 @@ final class AuthService {
         }
     }
 
-    /// 상태 코드 판별 및 데이터 처리
     private func judgeStatus<T: Decodable>(by statusCode: Int, data: Data, responseType: T.Type) -> NetworkResult<T> {
         let decoder = JSONDecoder()
 
@@ -68,7 +65,6 @@ final class AuthService {
         }
     }
 
-    /// 데이터 디코딩 처리
     private func decodeData<T: Decodable>(data: Data, responseType: T.Type) -> NetworkResult<T> {
         let decoder = JSONDecoder()
         do {

@@ -138,6 +138,7 @@
 		C31603072CB2BC3100348B09 /* MakePiggyBankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */; };
 		C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */; };
 		C316030B2CB6B80900348B09 /* MakePiggyBankResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */; };
+		C32581B42CF74E03002FA9CE /* NSNotification + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
 		C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */; };
@@ -331,6 +332,7 @@
 		C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankAPI.swift; sourceTree = "<group>"; };
 		C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankRequest.swift; sourceTree = "<group>"; };
 		C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankResponse.swift; sourceTree = "<group>"; };
+		C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification + Extension.swift"; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 				955201412CA06B08006DB98C /* UILabel+Extension.swift */,
 				951261992AC030190012B5F9 /* Literal */,
 				953650C92C6E199700F58D13 /* Category.swift */,
+				C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1246,6 +1249,7 @@
 				955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,
 				953650862C6457FD00F58D13 /* AddExpenseViewController.swift in Sources */,
+				C32581B42CF74E03002FA9CE /* NSNotification + Extension.swift in Sources */,
 				953650942C6458D700F58D13 /* AnalysisExpenseDetailView.swift in Sources */,
 				95D4D70C2CFB27E30051B126 /* DataFormatter.swift in Sources */,
 				953650C12C6E03E700F58D13 /* AnalysisView.swift in Sources */,

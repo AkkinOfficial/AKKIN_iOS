@@ -12,6 +12,7 @@ enum AuthAPI {
     case postAppleLogin(code: String)
     case postAppleRevoke(appleToken: String, authorizationCode: String)
     case getAppleLogout
+    case refreshToken(refreshToken: String)
 }
 
 extension AuthAPI: TargetType {
@@ -23,12 +24,14 @@ extension AuthAPI: TargetType {
             return URLConst.appleRevoke
         case .getAppleLogout:
             return URLConst.appleLogout
+        case .refreshToken:
+            return URLConst.authRefresh
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .postAppleLogin, .postAppleRevoke:
+        case .postAppleLogin, .postAppleRevoke, .refreshToken:
             return .post
         case .getAppleLogout:
             return .get
@@ -48,6 +51,8 @@ extension AuthAPI: TargetType {
             ], encoding: JSONEncoding.default)
         case .getAppleLogout:
             return .requestPlain
+        case .refreshToken(let refreshToken):
+            return .requestParameters(parameters: ["Authorization-Refresh": refreshToken], encoding: JSONEncoding.default)
         }
     }
 
