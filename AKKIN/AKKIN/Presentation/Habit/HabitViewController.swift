@@ -84,10 +84,10 @@ final class HabitViewController: BaseViewController {
         }
 
         habitView.analysisExpenseEmptyView.tapButton = { [self] buttonTitle in
-            print(buttonTitle)
-            print("===")
             if buttonTitle == "챌린지 시작하기" {
                 router.presentPlanExpenseViewController()
+            } else {
+                router.presentAddExpenseViewController()
             }
         }
     }
