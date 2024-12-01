@@ -42,6 +42,8 @@ final class ExpenseListView: BaseView {
     let dateButton = BaseButton().then {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.setTitleColor(.black, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let nextDateButton = BaseButton().then {
@@ -140,6 +142,22 @@ final class ExpenseListView: BaseView {
 
 extension ExpenseListView {
     // MARK: Set Data
+    func setOnlyDate(date: String) {
+        self.date = DateFormatter.localizedStringToDate(date)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        if let date = formatter.date(from: date) {
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            
+            print("Month: \(month), Day: \(day)")
+            dateButton.setTitle("\(month)월 \(day)일", for: .normal)
+        }
+    }
+
     func setData(date: String, data: Expenses) {
         self.date = DateFormatter.localizedStringToDate(date)
 
@@ -155,8 +173,6 @@ extension ExpenseListView {
             dateButton.setTitle("\(month)월 \(day)일", for: .normal)
         }
 //        dateButton.setUnderline()
-        dateButton.isEnabled = true
-        dateButton.backgroundColor = .clear
 
         savingLabel.text = "아낀 금액: " + data.savedAmount.toPriceFormat + " 원"
         savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
