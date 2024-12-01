@@ -24,15 +24,10 @@ final class AddExpenseViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        tabBarController?.tabBar.isHidden = true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
+        setNavigationItem()
 
         router.viewController = self
         setPeriodViewController.delegate = self
@@ -67,6 +62,10 @@ final class AddExpenseViewController: BaseViewController {
             router.presentAddExpenseConfirmViewController()
         }
 
+        addExpenseView.backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
     }
 
     // MARK: Layout
@@ -74,6 +73,11 @@ final class AddExpenseViewController: BaseViewController {
         addExpenseView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
 

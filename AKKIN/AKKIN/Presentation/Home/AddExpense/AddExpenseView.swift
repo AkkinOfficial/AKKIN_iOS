@@ -10,6 +10,18 @@ import UIKit
 final class AddExpenseView: BaseView {
 
     // MARK: UI Components
+    private let navigationBar = UIView()
+
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
+
+    private let navigationLabel = UILabel().then {
+        $0.text = "지출 추가하기"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
     lazy var addExpenseLabel: UILabel = {
         let label = UILabel()
         label.text = "지출한 내역을 \n기록해보세요."
@@ -76,6 +88,11 @@ final class AddExpenseView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+
+        addSubview(navigationBar)
+        navigationBar.addSubview(backButton)
+        navigationBar.addSubview(navigationLabel)
+
         addSubview(addExpenseLabel)
         addSubview(expenseAmountTextField)
         addSubview(expenseCategoryTextField)
@@ -96,6 +113,23 @@ final class AddExpenseView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+
+        navigationBar.snp.makeConstraints {
+            $0.top.width.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(4)
+            $0.width.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+
+        navigationLabel.snp.makeConstraints {
+            $0.height.equalTo(26)
+            $0.center.equalToSuperview()
+        }
 
         addExpenseLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
