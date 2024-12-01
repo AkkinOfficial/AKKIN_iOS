@@ -86,7 +86,7 @@ final class HabitView: BaseView {
         $0.backgroundColor = .clear
     }
 
-    private let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
+    let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
     let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
@@ -242,7 +242,6 @@ final class HabitView: BaseView {
 
     // MARK: Event
     @objc private func handleDetailButtonEvent() {
-        print("====== handleDetailButtonEvent")
         tapDetailButton?()
     }
 }
