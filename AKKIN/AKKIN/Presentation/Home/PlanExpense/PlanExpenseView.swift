@@ -10,6 +10,18 @@ import UIKit
 final class PlanExpenseView: BaseView {
 
     // MARK: UI Components
+    private let navigationBar = UIView()
+
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
+
+    private let navigationLabel = UILabel().then {
+        $0.text = "챌린지 시작하기"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
     lazy var expensePlanLabel: UILabel = {
         let label = UILabel()
         label.text = AkkinString.expensePlanHeadLine
@@ -63,6 +75,10 @@ final class PlanExpenseView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
+        addSubview(navigationBar)
+        navigationBar.addSubview(backButton)
+        navigationBar.addSubview(navigationLabel)
+
         addSubview(expensePlanLabel)
         addSubview(periodTextField)
         addSubview(budgetTextField)
@@ -80,6 +96,23 @@ final class PlanExpenseView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+
+        navigationBar.snp.makeConstraints {
+            $0.top.width.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(4)
+            $0.width.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+
+        navigationLabel.snp.makeConstraints {
+            $0.height.equalTo(26)
+            $0.center.equalToSuperview()
+        }
 
         expensePlanLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
