@@ -107,7 +107,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
         monthAnalysisCollectionView.dataSource = self
         monthAnalysisCollectionView.delegate = self
 
-        let collectionViewHeight = 45 * analysis.element.count + 16 * (analysis.element.count + 1)
+        let collectionViewHeight = 45 * analysis.elements.count + 16 * (analysis.elements.count + 1)
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(mostCategoryStackView.snp.bottom).offset(8)
             $0.width.equalToSuperview()
@@ -116,7 +116,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return analysis.element.count
+        return analysis.elements.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -130,7 +130,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
             $0.trailing.centerY.equalToSuperview()
         }
 
-        cell.setData(data: analysis.element[indexPath.row])
+        cell.setData(data: analysis.elements[indexPath.row])
 
         return cell
     }

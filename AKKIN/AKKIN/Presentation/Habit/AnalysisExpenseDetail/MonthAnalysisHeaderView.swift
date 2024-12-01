@@ -158,7 +158,7 @@ extension MonthAnalysisHeaderView {
         monthButton.backgroundColor = .clear
 
         challengeIsEmpty = challengeData.endDate == 0 ? true : false
-        analysisIsEmpty = analysisData.element.isEmpty ? true : false
+        analysisIsEmpty = analysisData.elements.isEmpty ? true : false
 
         if analysisIsEmpty {
             if challengeIsEmpty {
@@ -191,14 +191,14 @@ extension MonthAnalysisHeaderView {
                 $0.height.equalTo(278)
             }
             removeMonthAnalysisSubViews()
-            monthAnalysisView.setData(analysisElement: analysis.element)
+            monthAnalysisView.setData(analysisElement: analysis.elements)
             setChallengeEmptyView()
         case .nonEmptyAnalysisNonEmptyChallenge:
             snp.makeConstraints {
                 $0.height.equalTo(137)
             }
             removeMonthAnalysisSubViews()
-            monthAnalysisView.setData(analysisElement: analysis.element)
+            monthAnalysisView.setData(analysisElement: analysis.elements)
         }
     }
 }
