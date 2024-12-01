@@ -28,9 +28,13 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-    private let addExpenseButton = BaseButton()
+    private let analysisExpenseEmptyButton = BaseButton().then {
+        $0.isEnabled = true
+    }
 
     // MARK: Properties
+    var buttonTitle = ""
+    var tapButton: ((String) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -40,7 +44,9 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
 
         emptyStackView.addArrangedSubviews(emptyBillImageView,
                                            emptyLabel,
-                                           addExpenseButton)
+                                           analysisExpenseEmptyButton)
+
+        analysisExpenseEmptyButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -56,7 +62,7 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
             $0.height.equalTo(86)
         }
 
-        addExpenseButton.snp.makeConstraints {
+        analysisExpenseEmptyButton.snp.makeConstraints {
             $0.width.equalTo(133)
             $0.height.equalTo(40)
         }
@@ -75,8 +81,15 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
         ]
         
         let attributedString = NSAttributedString(string: message, attributes: attributes)
-        
+
         emptyLabel.attributedText = attributedString
-        addExpenseButton.setGuideButton(buttonTitle)
+        analysisExpenseEmptyButton.setGuideButton(buttonTitle)
+
+        self.buttonTitle = buttonTitle
+    }
+
+    // MARK: Event
+    @objc private func didTapButton() {
+        tapButton?(buttonTitle)
     }
 }

@@ -63,7 +63,15 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
         }
 
         analysisExpenseView.tapAddButtonEvent = { [self] in
-            print("tap add button")
+            router.presentAddExpenseViewController()
+        }
+
+        analysisExpenseView.analysisExpenseDetailEmptyView.tapButton = { [self] buttonTitle in
+            if buttonTitle == "챌린지 시작하기" {
+                router.presentPlanExpenseViewController()
+            } else {
+                router.presentAddExpenseViewController()
+            }
         }
 
         analysisExpenseView.tapMonthButtonEvent = { [self] in
@@ -109,7 +117,6 @@ extension AnalysisExpenseDetailViewController {
                 print("🎯 getMonthlyAnaylsis success")
                 analysisData = data.body
 
-                // CASE3, CASE4: analysisEmpty
                 analysisExpenseView.setData(analysisData: analysisData, challengeData: challengeData)
                 analysisExpenseView.monthAnalysisHeaderView.setData(analysisData: analysisData, challengeData: challengeData)
             case .requestErr(let errorResponse):
