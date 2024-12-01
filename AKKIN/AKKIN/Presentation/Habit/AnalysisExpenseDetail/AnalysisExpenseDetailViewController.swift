@@ -82,6 +82,14 @@ final class AnalysisExpenseDetailViewController: BaseViewController {
             getMonthlyAnaylsis(year: year, month: month)
         }
 
+        analysisExpenseView.monthAnalysisHeaderView.analysisExpenseEmptyView.tapButton = { [self] buttonTitle in
+            if buttonTitle == "챌린지 시작하기" {
+                router.presentPlanExpenseViewController()
+            } else {
+                router.presentAddExpenseViewController()
+            }
+        }
+
         analysisExpenseView.monthAnalysisHeaderView.tapNext = { [self] year, month in
             getMonthlyAnaylsis(year: year, month: month)
         }

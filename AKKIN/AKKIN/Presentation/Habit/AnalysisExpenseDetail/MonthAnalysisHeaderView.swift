@@ -83,8 +83,6 @@ final class MonthAnalysisHeaderView: BaseView {
         backgroundColor = .white
 
         addSubview(monthStackView)
-        addSubview(totalExpenseLabel)
-        addSubview(monthAnalysisView)
 
         monthStackView.addArrangedSubviews(previousMonthButton,
                                            monthButton,
@@ -109,6 +107,16 @@ final class MonthAnalysisHeaderView: BaseView {
         nextMonthButton.snp.makeConstraints {
             $0.height.width.equalTo(20)
         }
+    }
+
+    private func setAnalysisEmptyView() {
+        totalExpenseLabel.removeFromSuperview()
+        monthAnalysisView.removeFromSuperview()
+    }
+
+    private func setAnalysisNonEmptyView() {
+        addSubview(totalExpenseLabel)
+        addSubview(monthAnalysisView)
 
         totalExpenseLabel.snp.makeConstraints {
             $0.top.equalTo(monthStackView.snp.bottom).offset(20)
@@ -119,11 +127,6 @@ final class MonthAnalysisHeaderView: BaseView {
             $0.top.equalTo(totalExpenseLabel.snp.bottom).offset(20)
             $0.width.equalToSuperview()
         }
-    }
-
-    private func setAnalysisEmptyView() {
-        totalExpenseLabel.removeFromSuperview()
-        monthAnalysisView.removeFromSuperview()
     }
 
     private func setChallengeEmptyView() {
@@ -188,23 +191,25 @@ extension MonthAnalysisHeaderView {
 
         switch emptyCase {
         case .emptyAnalysisEmptyChallenge, .emptyAnalysisNonEmptyChallenge:
-            snp.makeConstraints {
-                $0.height.equalTo(23)
-            }
+//            snp.makeConstraints {
+//                $0.height.equalTo(23)
+//            }
             setAnalysisEmptyView()
             removeChallengeEmptyView()
         case .nonEmptyAnalysisEmptyChallenge:
-            snp.makeConstraints {
-                $0.height.equalTo(278)
-            }
+//            snp.makeConstraints {
+//                $0.height.equalTo(278)
+//            }
             removeMonthAnalysisSubViews()
+            setAnalysisNonEmptyView()
             monthAnalysisView.setData(analysisElement: analysis.elements)
             setChallengeEmptyView()
         case .nonEmptyAnalysisNonEmptyChallenge:
-            snp.makeConstraints {
-                $0.height.equalTo(137)
-            }
+//            snp.makeConstraints {
+//                $0.height.equalTo(137)
+//            }
             removeMonthAnalysisSubViews()
+            setAnalysisNonEmptyView()
             monthAnalysisView.setData(analysisElement: analysis.elements)
             removeChallengeEmptyView()
         }
