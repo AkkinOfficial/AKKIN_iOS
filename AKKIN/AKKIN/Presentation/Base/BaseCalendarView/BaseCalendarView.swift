@@ -50,7 +50,6 @@ class BaseCalendarView: UIView {
         calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 20, weight: .medium)
         calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 18, weight: .medium)
 
-
         calendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
         calendar.allowsMultipleSelection = true
 
