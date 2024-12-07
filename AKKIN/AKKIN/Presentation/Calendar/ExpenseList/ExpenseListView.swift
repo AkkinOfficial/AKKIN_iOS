@@ -35,15 +35,21 @@ final class ExpenseListView: BaseView {
 
     private let previousDateButton = BaseButton().then {
         $0.setImage(AkkinButton.previousButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let dateButton = BaseButton().then {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.setTitleColor(.black, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     private let nextDateButton = BaseButton().then {
         $0.setImage(AkkinButton.nextButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let savingLabel = UILabel().then {
@@ -56,8 +62,13 @@ final class ExpenseListView: BaseView {
     }
 
     // MARK: Properties
+    var date: Date?
+
     var tapBackButtonEvent: (() -> Void)?
     var tapAddButtonEvent: (() -> Void)?
+
+    var tapPrevious: ((Date) -> Void)?
+    var tapNext: ((Date) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -78,6 +89,8 @@ final class ExpenseListView: BaseView {
 
         backButton.addTarget(self, action: #selector(handleBackButtonEvent), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(handleAddButtonEvent), for: .touchUpInside)
+        previousDateButton.addTarget(self, action: #selector(handlePreviousButtonEvent), for: .touchUpInside)
+        nextDateButton.addTarget(self, action: #selector(handleNextButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -124,5 +137,78 @@ final class ExpenseListView: BaseView {
 
     @objc func handleAddButtonEvent() {
         tapAddButtonEvent?()
+    }
+}
+
+extension ExpenseListView {
+    // MARK: Set Data
+    func setOnlyDate(date: String) {
+        self.date = DateFormatter.localizedStringToDate(date)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        if let date = formatter.date(from: date) {
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            
+            print("Month: \(month), Day: \(day)")
+            dateButton.setTitle("\(month)월 \(day)일", for: .normal)
+        }
+    }
+
+    func setData(date: String, data: Expenses) {
+        self.date = DateFormatter.localizedStringToDate(date)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        if let date = formatter.date(from: date) {
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            
+            print("Month: \(month), Day: \(day)")
+            dateButton.setTitle("\(month)월 \(day)일", for: .normal)
+        }
+//        dateButton.setUnderline()
+
+        savingLabel.text = "아낀 금액: " + data.savedAmount.toPriceFormat + " 원"
+        savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
+    }
+
+    func setEmptyData() {
+        savingLabel.text = "아낀 금액: 0 원"
+    }
+}
+
+// MARK: Networking
+extension ExpenseListView {
+    @objc private func handlePreviousButtonEvent() {
+        let calendar = Calendar.current
+        if let previousDate = calendar.date(byAdding: .day, value: -1, to: date ?? Date()) {
+            date = previousDate
+        }
+
+        updateDayButtonTitle()
+
+        tapPrevious?(date ?? Date())
+    }
+
+    @objc private func handleNextButtonEvent() {
+        let calendar = Calendar.current
+        if let nextDate = calendar.date(byAdding: .day, value: 1, to: date ?? Date()) {
+            date = nextDate
+        }
+
+        updateDayButtonTitle()
+
+        tapNext?(date ?? Date())
+    }
+
+    private func updateDayButtonTitle() {
+        let dateText = DateFormatter.formatDateToString(date ?? Date(), "MM월 dd일")
+        dateButton.setTitle(dateText, for: .normal)
     }
 }

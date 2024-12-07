@@ -1,28 +1,29 @@
 //
-//  AddExpensesService.swift
+//  MonthlyAnalysisService.swift
 //  AKKIN
 //
-//  Created by 성현주 on 10/6/24.
+//  Created by 박지윤 on 10/12/24.
 //
 
 import Foundation
 import Moya
 
-final class AddExpenseService {
-    private var mainProvider = MoyaProvider<AddExpensesAPI>(plugins: [MoyaLoggerPlugin()])
+final class MonthlyAnalysisService {
+
+    private var monthlyAnalysisProvider = MoyaProvider<MonthlyAnalysisAPI>(plugins: [MoyaLoggerPlugin()])
 
     private enum ResponseData {
-        case postAddExpense
+        case getMonthlyAnaylsis
     }
 
-    public func postAddExpense(request: ExpenseRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
-        mainProvider.request(.postExpense(request: request)) { result in
+    public func getMonthlyAnaylsis(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        monthlyAnalysisProvider.request(.getMonthlyAnaylsis(year: year, month: month)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
 
-                let networkResult = self.judgeStatus(by: statusCode, data: data, responseData: .postAddExpense)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getMonthlyAnaylsis)
                 completion(networkResult)
 
             case .failure(let error):
@@ -31,13 +32,12 @@ final class AddExpenseService {
         }
     }
 
-    private func judgeStatus(by statusCode: Int, data: Data, responseData: ResponseData) -> NetworkResult<Any> {
+    private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-
         switch statusCode {
         case 200..<300:
             switch responseData {
-            case .postAddExpense:
+            case .getMonthlyAnaylsis:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -54,13 +54,10 @@ final class AddExpenseService {
 
     private func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-
         switch responseData {
-        case .postAddExpense:
-            guard let decodedData = try? decoder.decode(HomeResponse.self, from: data) else {
-                return .pathErr
-            }
-            return .success(decodedData)
+        case .getMonthlyAnaylsis:
+            let decodedData = try? decoder.decode(MonthlyAnalysisResponse.self, from: data)
+            return .success(decodedData ?? "success")
         }
     }
 }

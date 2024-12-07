@@ -30,8 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        // kakao123456789://kakaolink
-        // kakao123456789://kakaolink?key1=value1&key2=value2
         if let url = URLContexts.first?.url {
             print("url : \(url)")
         }

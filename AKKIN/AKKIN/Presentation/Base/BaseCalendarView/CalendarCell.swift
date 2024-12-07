@@ -15,7 +15,6 @@ class CalendarCell: FSCalendarCell {
     var rightRectBackImageView = UIImageView()
 
     var expenseLabel = UILabel().then {
-        $0.text = "+10,270"
         $0.textColor = .akkinGreen
         $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
     }
@@ -109,9 +108,19 @@ class CalendarCell: FSCalendarCell {
         }
     }
 
-    // TODO: 캘린더 뷰 데이터 연결
-    func setBackImage() {
-        
+    func configureExpenseLabel(for savings: Savings?) {
+        if let savings = savings {
+            expenseLabel.isHidden = false
+            if savings.amount > 0 {
+            expenseLabel.text = "+" + savings.amount.toPriceFormat
+            } else if savings.amount < 0 {
+                expenseLabel.text = "-" + savings.amount.toPriceFormat
+            } else {
+                expenseLabel.text = savings.amount.toPriceFormat
+            }
+        } else {
+            expenseLabel.isHidden = true
+        }
     }
 
     override func prepareForReuse() {

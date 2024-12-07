@@ -19,9 +19,35 @@ final class BaseRouter {
         viewController?.present(someViewController, animated: true)
     }
 
+    func popViewController() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
+
+    func dismissViewController() {
+        viewController?.dismiss(animated: true)
+    }
+
+    func dismissViewControllerNonAnimated() {
+        viewController?.dismiss(animated: false)
+    }
+
+    func popToRootViewController() {
+        viewController?.dismiss(animated: true, completion: {
+            if let rootViewController =
+                UIApplication.shared.windows.first?
+                .rootViewController {
+                if let navigationController =
+                    rootViewController as? UINavigationController {
+                    navigationController
+                        .popToRootViewController(animated: true)
+                }
+            }
+        })
+    }
+
     func presentLoginViewController() {
         let loginViewController = LoginViewController()
-        viewController?.navigationController?.pushViewController(loginViewController, animated: true)
+        viewController?.navigationController?.setViewControllers([loginViewController], animated: true)
     }
 
     func presentTabBarViewController() {
@@ -56,8 +82,8 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(piggyBankDetailViewController, animated: true)
     }
 
-    func presentAnalysisExpenseViewController() {
-        let analysisExpenseViewController = AnalysisExpenseDetailViewController()
+    func presentAnalysisExpenseViewController(analysisData: AnalysisData, challengeData: ChallengeData) {
+        let analysisExpenseViewController = AnalysisExpenseDetailViewController(analysisData: analysisData, challengeData: challengeData)
         viewController?.navigationController?.pushViewController(analysisExpenseViewController, animated: true)
     }
 
@@ -71,7 +97,7 @@ final class BaseRouter {
         viewController?.navigationController?.pushViewController(expenseListViewController, animated: true)
     }
 
-    func presentExpenseDetailViewController(data: ExpenseData) {
+    func presentExpenseDetailViewController(data: ExpensesList) {
         let expenseDetailViewController = ExpenseDetailViewController(data: data)
         viewController?.navigationController?.pushViewController(expenseDetailViewController, animated: true)
     }
@@ -91,24 +117,7 @@ final class BaseRouter {
         let safariViewController = SFSafariViewController(url: url)
         viewController?.present(safariViewController, animated: true, completion: nil)
     }
-
-    func popViewController() {
-        viewController?.navigationController?.popViewController(animated: true)
-    }
-
-    func dismissViewController() {
-        viewController?.dismiss(animated: true)
-    }
-
-    func dismissViewControllerNonAnimated() {
-        viewController?.dismiss(animated: false)
-    }
-
-    func popToRootViewController() {
-        viewController?.navigationController?.popToRootViewController(animated: true)
-
-    }
-
+    
     func presentPlanExpenseViewController() {
         let planExpenseViewController = PlanExpenseViewController()
         planExpenseViewController.hidesBottomBarWhenPushed = true

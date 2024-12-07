@@ -17,15 +17,16 @@
 		6B5B839B2AC1EEB300CD0AFC /* WeeklyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5B839A2AC1EEB300CD0AFC /* WeeklyService.swift */; };
 		6B74280A2AB9580B00BA7E2C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */; };
 		6B742DA12AC02988002A784E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B742DA02AC02988002A784E /* UIViewController+Extension.swift */; };
-		95094BD62CBA9F15006055C3 /* ReportsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD52CBA9F15006055C3 /* ReportsAPI.swift */; };
-		95094BD82CBA9F1B006055C3 /* ReportsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD72CBA9F1B006055C3 /* ReportsService.swift */; };
-		95094BDA2CBA9F26006055C3 /* ReportsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD92CBA9F26006055C3 /* ReportsResponse.swift */; };
+		95094BD62CBA9F15006055C3 /* MonthlyAnalysisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD52CBA9F15006055C3 /* MonthlyAnalysisAPI.swift */; };
+		95094BD82CBA9F1B006055C3 /* MonthlyAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD72CBA9F1B006055C3 /* MonthlyAnalysisService.swift */; };
+		95094BDA2CBA9F26006055C3 /* MonthlyAnalysisResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BD92CBA9F26006055C3 /* MonthlyAnalysisResponse.swift */; };
 		95094BE52CBAB761006055C3 /* SavingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BE42CBAB761006055C3 /* SavingsAPI.swift */; };
 		95094BE72CBAB76A006055C3 /* SavingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BE62CBAB76A006055C3 /* SavingsResponse.swift */; };
 		95094BE92CBAB775006055C3 /* SavingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BE82CBAB775006055C3 /* SavingsService.swift */; };
 		95094BEC2CBAC6B5006055C3 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BEB2CBAC6B5006055C3 /* UsersAPI.swift */; };
 		95094BEE2CBAC6BB006055C3 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BED2CBAC6BB006055C3 /* UsersResponse.swift */; };
 		95094BF02CBAC6C3006055C3 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95094BEF2CBAC6C3006055C3 /* UsersService.swift */; };
+		950A31352CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */; };
 		9512615A2ABB1CA20012B5F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261592ABB1CA20012B5F9 /* OnboardingViewController.swift */; };
 		9512615E2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512615D2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift */; };
 		951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951261622ABD970C0012B5F9 /* LoginViewController.swift */; };
@@ -73,7 +74,6 @@
 		953650C52C6E067800F58D13 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C42C6E067800F58D13 /* DummyData.swift */; };
 		953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */; };
 		953650CA2C6E199700F58D13 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650C92C6E199700F58D13 /* Category.swift */; };
-		953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */; };
 		953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */; };
 		955100B12C76D85D00D80A9C /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B02C76D85D00D80A9C /* CategoryDetailView.swift */; };
 		955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */; };
@@ -92,6 +92,10 @@
 		95577D212C81DE86008CFE0B /* HomeWidgetSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D202C81DE86008CFE0B /* HomeWidgetSettingView.swift */; };
 		95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95577D222C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift */; };
 		95D004432B4D0160009D4DF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D004422B4D0160009D4DF3 /* String+Extension.swift */; };
+		95D4D70C2CFB27E30051B126 /* DataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4D70B2CFB27E30051B126 /* DataFormatter.swift */; };
+		95D4D70F2CFB2D3D0051B126 /* CalendarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4D70E2CFB2D3D0051B126 /* CalendarAPI.swift */; };
+		95D4D7112CFB2D470051B126 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4D7102CFB2D470051B126 /* CalendarService.swift */; };
+		95D4D7132CFB2D4D0051B126 /* CalendarResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4D7122CFB2D4D0051B126 /* CalendarResponse.swift */; };
 		95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */; };
 		95E24FFE2AC2CA7800AB8DD5 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */; };
 		95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E535CF2AB492F400FA2492 /* SplashViewController.swift */; };
@@ -134,6 +138,7 @@
 		C31603072CB2BC3100348B09 /* MakePiggyBankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */; };
 		C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */; };
 		C316030B2CB6B80900348B09 /* MakePiggyBankResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */; };
+		C32581B42CF74E03002FA9CE /* NSNotification + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */; };
 		C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */; };
 		C33426DD2CA2D094005483AC /* MakePiggyBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */; };
 		C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */; };
@@ -144,6 +149,9 @@
 		C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CC2B5146E400A118F0 /* KakaoSDKCert */; };
 		C336C7CF2B5146E400A118F0 /* KakaoSDKCertCore in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7CE2B5146E400A118F0 /* KakaoSDKCertCore */; };
 		C336C7D12B5146E400A118F0 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C336C7D02B5146E400A118F0 /* KakaoSDKCommon */; };
+		C360480F2CF318070058C5F2 /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C360480E2CF318070058C5F2 /* AppleLoginManager.swift */; };
+		C36048112CF327D80058C5F2 /* AppLaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36048102CF327D80058C5F2 /* AppLaunchManager.swift */; };
+		C3822D512CE89875002F559D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3822D502CE89875002F559D /* KeychainManager.swift */; };
 		C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078E82C859607003514FE /* MakePiggyBankEndView.swift */; };
 		C39078ED2C948764003514FE /* MakePiggyBankCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */; };
 		C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */; };
@@ -204,15 +212,16 @@
 		6B7428082AB9578700BA7E2C /* Pretendard-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.ttf"; sourceTree = "<group>"; };
 		6B7428092AB9580B00BA7E2C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6B742DA02AC02988002A784E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		95094BD52CBA9F15006055C3 /* ReportsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsAPI.swift; sourceTree = "<group>"; };
-		95094BD72CBA9F1B006055C3 /* ReportsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsService.swift; sourceTree = "<group>"; };
-		95094BD92CBA9F26006055C3 /* ReportsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsResponse.swift; sourceTree = "<group>"; };
+		95094BD52CBA9F15006055C3 /* MonthlyAnalysisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAnalysisAPI.swift; sourceTree = "<group>"; };
+		95094BD72CBA9F1B006055C3 /* MonthlyAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAnalysisService.swift; sourceTree = "<group>"; };
+		95094BD92CBA9F26006055C3 /* MonthlyAnalysisResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAnalysisResponse.swift; sourceTree = "<group>"; };
 		95094BE42CBAB761006055C3 /* SavingsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsAPI.swift; sourceTree = "<group>"; };
 		95094BE62CBAB76A006055C3 /* SavingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsResponse.swift; sourceTree = "<group>"; };
 		95094BE82CBAB775006055C3 /* SavingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsService.swift; sourceTree = "<group>"; };
 		95094BEB2CBAC6B5006055C3 /* UsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
 		95094BED2CBAC6BB006055C3 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		95094BEF2CBAC6C3006055C3 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisHeaderView.swift; sourceTree = "<group>"; };
 		951261592ABB1CA20012B5F9 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		9512615D2ABB1CE80012B5F9 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		951261622ABD970C0012B5F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -260,7 +269,6 @@
 		953650C42C6E067800F58D13 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisCollectionViewCell.swift; sourceTree = "<group>"; };
 		953650C92C6E199700F58D13 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAnalysisCollectionViewHeader.swift; sourceTree = "<group>"; };
 		953BF47D2B13AD13009F8FE4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		955100B02C76D85D00D80A9C /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		955100B22C76D86400D80A9C /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +287,10 @@
 		95577D202C81DE86008CFE0B /* HomeWidgetSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetSettingView.swift; sourceTree = "<group>"; };
 		95577D222C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetSettingViewController.swift; sourceTree = "<group>"; };
 		95D004422B4D0160009D4DF3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		95D4D70B2CFB27E30051B126 /* DataFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFormatter.swift; sourceTree = "<group>"; };
+		95D4D70E2CFB2D3D0051B126 /* CalendarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAPI.swift; sourceTree = "<group>"; };
+		95D4D7102CFB2D470051B126 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		95D4D7122CFB2D4D0051B126 /* CalendarResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarResponse.swift; sourceTree = "<group>"; };
 		95E24FFB2AC2CA7200AB8DD5 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		95E24FFD2AC2CA7800AB8DD5 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		95E535CF2AB492F400FA2492 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -320,11 +332,15 @@
 		C31603062CB2BC2C00348B09 /* MakePiggyBankAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankAPI.swift; sourceTree = "<group>"; };
 		C31603082CB2BC9500348B09 /* MakePiggyBankRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankRequest.swift; sourceTree = "<group>"; };
 		C316030A2CB6B80300348B09 /* MakePiggyBankResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankResponse.swift; sourceTree = "<group>"; };
+		C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification + Extension.swift"; sourceTree = "<group>"; };
 		C33426DA2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEmptyView.swift; sourceTree = "<group>"; };
 		C33426DC2CA2D094005483AC /* MakePiggyBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankView.swift; sourceTree = "<group>"; };
 		C33426DE2CAA5EAE005483AC /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C33426E02CAFF43E005483AC /* PiggyBankDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailView.swift; sourceTree = "<group>"; };
 		C33426E22CAFF44B005483AC /* PiggyBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyBankDetailViewController.swift; sourceTree = "<group>"; };
+		C360480E2CF318070058C5F2 /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
+		C36048102CF327D80058C5F2 /* AppLaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLaunchManager.swift; sourceTree = "<group>"; };
+		C3822D502CE89875002F559D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		C39078E82C859607003514FE /* MakePiggyBankEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndView.swift; sourceTree = "<group>"; };
 		C39078EC2C948764003514FE /* MakePiggyBankCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankCompleteView.swift; sourceTree = "<group>"; };
 		C39078F12C955473003514FE /* MakePiggyBankEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePiggyBankEndViewController.swift; sourceTree = "<group>"; };
@@ -403,14 +419,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		95094BD42CBA9EF6006055C3 /* Reports */ = {
+		95094BD42CBA9EF6006055C3 /* MonthlyAnalysis */ = {
 			isa = PBXGroup;
 			children = (
-				95094BD52CBA9F15006055C3 /* ReportsAPI.swift */,
-				95094BD72CBA9F1B006055C3 /* ReportsService.swift */,
-				95094BD92CBA9F26006055C3 /* ReportsResponse.swift */,
+				95094BD52CBA9F15006055C3 /* MonthlyAnalysisAPI.swift */,
+				95094BD72CBA9F1B006055C3 /* MonthlyAnalysisService.swift */,
+				95094BD92CBA9F26006055C3 /* MonthlyAnalysisResponse.swift */,
 			);
-			path = Reports;
+			path = MonthlyAnalysis;
 			sourceTree = "<group>";
 		};
 		95094BE12CBAB737006055C3 /* Savings */ = {
@@ -604,6 +620,7 @@
 			children = (
 				953650952C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift */,
 				953650932C6458D700F58D13 /* AnalysisExpenseDetailView.swift */,
+				950A31342CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift */,
 				953650BE2C6DFF6200F58D13 /* MonthAnalysisView.swift */,
 				953650C02C6E03E700F58D13 /* AnalysisView.swift */,
 				95EF1C372C77470500AD06A9 /* Empty */,
@@ -626,7 +643,6 @@
 			isa = PBXGroup;
 			children = (
 				953650C72C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift */,
-				953650CB2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift */,
 				95EF1C352C773BE400AD06A9 /* PlanExpenseGuideView.swift */,
 			);
 			path = Cell;
@@ -662,8 +678,8 @@
 		955201352CA04BAD006DB98C /* ExpenseList */ = {
 			isa = PBXGroup;
 			children = (
-				955201362CA04BBE006DB98C /* ExpenseListView.swift */,
 				955201382CA04BC4006DB98C /* ExpenseListViewController.swift */,
+				955201362CA04BBE006DB98C /* ExpenseListView.swift */,
 				955201432CA082B3006DB98C /* ExpenseListModel.swift */,
 				9552013A2CA04BCE006DB98C /* ExpenseDetail */,
 			);
@@ -673,8 +689,8 @@
 		9552013A2CA04BCE006DB98C /* ExpenseDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */,
 				9552013D2CA04BE0006DB98C /* ExpenseDetailViewController.swift */,
+				9552013B2CA04BDA006DB98C /* ExpenseDetailView.swift */,
 			);
 			path = ExpenseDetail;
 			sourceTree = "<group>";
@@ -686,6 +702,16 @@
 				95577D202C81DE86008CFE0B /* HomeWidgetSettingView.swift */,
 			);
 			path = HomeWidgetSetting;
+			sourceTree = "<group>";
+		};
+		95D4D70D2CFB2D310051B126 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				95D4D70E2CFB2D3D0051B126 /* CalendarAPI.swift */,
+				95D4D7102CFB2D470051B126 /* CalendarService.swift */,
+				95D4D7122CFB2D4D0051B126 /* CalendarResponse.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		95E535CE2AB492E500FA2492 /* Splash */ = {
@@ -741,6 +767,7 @@
 				BC94AD382AA618CC00A77052 /* Extension */,
 				953650C42C6E067800F58D13 /* DummyData.swift */,
 				95EF1C5D2C7EEE5B00AD06A9 /* DataManager.swift */,
+				95D4D70B2CFB27E30051B126 /* DataFormatter.swift */,
 				BC94AD362AA618B100A77052 /* Networking */,
 				BC94AD352AA6189600A77052 /* Presentation */,
 				BC94AD342AA6188900A77052 /* App */,
@@ -793,8 +820,9 @@
 				951261BD2AC1AE8B0012B5F9 /* Gulbi */,
 				951261AF2AC1A8750012B5F9 /* Weekly */,
 				951261B02AC1A87C0012B5F9 /* Monthly */,
-				95094BD42CBA9EF6006055C3 /* Reports */,
+				95094BD42CBA9EF6006055C3 /* MonthlyAnalysis */,
 				95094BE12CBAB737006055C3 /* Savings */,
+				95D4D70D2CFB2D310051B126 /* Calendar */,
 				95094BEA2CBAC6A6006055C3 /* Users */,
 				9512618A2AC02E090012B5F9 /* MoyaLoggerPlugin.swift */,
 				9512618F2AC02EA70012B5F9 /* NetworkResult.swift */,
@@ -803,6 +831,9 @@
 				951261A12AC061560012B5F9 /* NetworkService.swift */,
 				951261932AC02EC60012B5F9 /* BlankDataResponse.swift */,
 				6B5B83962AC1EE4800CD0AFC /* ErrorResponse.swift */,
+				C3822D502CE89875002F559D /* KeychainManager.swift */,
+				C360480E2CF318070058C5F2 /* AppleLoginManager.swift */,
+				C36048102CF327D80058C5F2 /* AppLaunchManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -839,6 +870,7 @@
 				955201412CA06B08006DB98C /* UILabel+Extension.swift */,
 				951261992AC030190012B5F9 /* Literal */,
 				953650C92C6E199700F58D13 /* Category.swift */,
+				C32581B32CF74E03002FA9CE /* NSNotification + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1104,7 +1136,7 @@
 				E5BEA8F32CDD134000F7B9C9 /* AlertView.swift in Sources */,
 				E56ED7282C6E6DF50022413D /* SetPeriodViewController.swift in Sources */,
 				BC94AD472AA61A4800A77052 /* Int+Extension.swift in Sources */,
-				95094BD82CBA9F1B006055C3 /* ReportsService.swift in Sources */,
+				95094BD82CBA9F1B006055C3 /* MonthlyAnalysisService.swift in Sources */,
 				6B555DA92ABF2A5900E065F2 /* (null) in Sources */,
 				953650962C6458DE00F58D13 /* AnalysisExpenseDetailViewController.swift in Sources */,
 				955100B32C76D86400D80A9C /* CategoryDetailViewController.swift in Sources */,
@@ -1141,7 +1173,7 @@
 				955201372CA04BBE006DB98C /* ExpenseListView.swift in Sources */,
 				95EF1C582C7EDF2900AD06A9 /* SelectMonthViewController.swift in Sources */,
 				95EF1C362C773BE400AD06A9 /* PlanExpenseGuideView.swift in Sources */,
-				95094BDA2CBA9F26006055C3 /* ReportsResponse.swift in Sources */,
+				95094BDA2CBA9F26006055C3 /* MonthlyAnalysisResponse.swift in Sources */,
 				95577D152C81D2AF008CFE0B /* MyPageTableViewHeader.swift in Sources */,
 				95577D192C81D2BD008CFE0B /* MyPageTableViewCell.swift in Sources */,
 				C31603092CB2BC9B00348B09 /* MakePiggyBankRequest.swift in Sources */,
@@ -1159,11 +1191,11 @@
 				951261BA2AC1A8AC0012B5F9 /* WeeklyAPI.swift in Sources */,
 				C31603032CB2A04600348B09 /* MakePiggyBankModel.swift in Sources */,
 				E586401A2CB43B570092D6C1 /* AddChallengesService.swift in Sources */,
-				953650CC2C6F31D200F58D13 /* MonthAnalysisCollectionViewHeader.swift in Sources */,
 				95EF1C562C7EDF0100AD06A9 /* SelectMonthNavigationBar.swift in Sources */,
 				951261632ABD970C0012B5F9 /* LoginViewController.swift in Sources */,
 				953650882C64580300F58D13 /* AddExpenseView.swift in Sources */,
 				E5863FAC2CB1B23F0092D6C1 /* AddExpensesService.swift in Sources */,
+				95D4D7112CFB2D470051B126 /* CalendarService.swift in Sources */,
 				951261BC2AC1A8BA0012B5F9 /* MonthlyAPI.swift in Sources */,
 				E5F659E72CA00B49001A08C7 /* AddExpenseConfirmViewController.swift in Sources */,
 				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
@@ -1178,13 +1210,14 @@
 				951261A92AC19A2B0012B5F9 /* MainAPI.swift in Sources */,
 				E586401E2CB43B800092D6C1 /* AddChellengesResponse.swift in Sources */,
 				E53F84342C8DD6420005EBBE /* PlanExpenseModel.swift in Sources */,
+				C36048112CF327D80058C5F2 /* AppLaunchManager.swift in Sources */,
 				95577D232C81DE8D008CFE0B /* HomeWidgetSettingViewController.swift in Sources */,
 				953BF47E2B13AD13009F8FE4 /* AuthResponse.swift in Sources */,
 				C33426DF2CAA5EAF005483AC /* CircularProgressBar.swift in Sources */,
 				95EF1C5E2C7EEE5B00AD06A9 /* DataManager.swift in Sources */,
 				95E24FFC2AC2CA7200AB8DD5 /* StringLiteral.swift in Sources */,
 				9512619E2AC055190012B5F9 /* AuthAPI.swift in Sources */,
-				95094BD62CBA9F15006055C3 /* ReportsAPI.swift in Sources */,
+				95094BD62CBA9F15006055C3 /* MonthlyAnalysisAPI.swift in Sources */,
 				BC94AD4B2AA61B6C00A77052 /* BaseButton.swift in Sources */,
 				95EF1C392C77471400AD06A9 /* AnalysisExpenseDetailEmptyView.swift in Sources */,
 				953650842C6457F400F58D13 /* PlanExpenseView.swift in Sources */,
@@ -1216,7 +1249,9 @@
 				955201392CA04BC4006DB98C /* ExpenseListViewController.swift in Sources */,
 				953650C82C6E125600F58D13 /* MonthAnalysisCollectionViewCell.swift in Sources */,
 				953650862C6457FD00F58D13 /* AddExpenseViewController.swift in Sources */,
+				C32581B42CF74E03002FA9CE /* NSNotification + Extension.swift in Sources */,
 				953650942C6458D700F58D13 /* AnalysisExpenseDetailView.swift in Sources */,
+				95D4D70C2CFB27E30051B126 /* DataFormatter.swift in Sources */,
 				953650C12C6E03E700F58D13 /* AnalysisView.swift in Sources */,
 				C39078F22C955473003514FE /* MakePiggyBankEndViewController.swift in Sources */,
 				951261AB2AC19A370012B5F9 /* MainService.swift in Sources */,
@@ -1240,14 +1275,17 @@
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
 				C31602FF2CB2783200348B09 /* PiggyBankRequest.swift in Sources */,
+				950A31352CF6CD4D0055D0EB /* MonthAnalysisHeaderView.swift in Sources */,
 				955100B62C76E1B400D80A9C /* AnalysisExpenseEmptyView.swift in Sources */,
 				BC94AD572AA61FC300A77052 /* TargetType+Extension.swift in Sources */,
 				BC94AD232AA5FE3A00A77052 /* SceneDelegate.swift in Sources */,
 				E59A27762CA85F840050359C /* CustomToggleButton.swift in Sources */,
 				95094BE72CBAB76A006055C3 /* SavingsResponse.swift in Sources */,
+				95D4D70F2CFB2D3D0051B126 /* CalendarAPI.swift in Sources */,
 				951261902AC02EA70012B5F9 /* NetworkResult.swift in Sources */,
 				955100B12C76D85D00D80A9C /* CategoryDetailView.swift in Sources */,
 				953650AB2C6462E400F58D13 /* TabBarViewController.swift in Sources */,
+				95D4D7132CFB2D4D0051B126 /* CalendarResponse.swift in Sources */,
 				6B5B83992AC1EE8C00CD0AFC /* MainResponse.swift in Sources */,
 				9536509C2C64590000F58D13 /* MyPageViewController.swift in Sources */,
 				95577D212C81DE86008CFE0B /* HomeWidgetSettingView.swift in Sources */,
@@ -1255,6 +1293,7 @@
 				C31602F22CB14C4500348B09 /* PiggyBankModel.swift in Sources */,
 				E5F659E92CA00B57001A08C7 /* AddExpenseConfirmView.swift in Sources */,
 				95094BEE2CBAC6BB006055C3 /* UsersResponse.swift in Sources */,
+				C360480F2CF318070058C5F2 /* AppleLoginManager.swift in Sources */,
 				95EF1C5C2C7EDFE000AD06A9 /* SelectMonthPresentationController.swift in Sources */,
 				C31602F42CB14DD100348B09 /* TipView.swift in Sources */,
 				955201422CA06B08006DB98C /* UILabel+Extension.swift in Sources */,
@@ -1263,6 +1302,7 @@
 				C31602F92CB275F300348B09 /* PiggyBankResponse.swift in Sources */,
 				6B555DA72ABF2A1D00E065F2 /* (null) in Sources */,
 				95577D172C81D2B6008CFE0B /* MyPageTableViewFooter.swift in Sources */,
+				C3822D512CE89875002F559D /* KeychainManager.swift in Sources */,
 				95E535D02AB492F400FA2492 /* SplashViewController.swift in Sources */,
 				C33426DB2CA2BEFF005483AC /* MakePiggyBankEmptyView.swift in Sources */,
 				C39078E92C859607003514FE /* MakePiggyBankEndView.swift in Sources */,

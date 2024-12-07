@@ -10,8 +10,12 @@ import UIKit
 final class AnalysisExpenseEmptyView: BaseView {
 
     // MARK: UI Components
+    private let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 12
+    }
+
     private let analysisExpenseEmptyLabel = UILabel().then {
-        $0.text = "분석할 수 있는 지출 기록이 없어요.\n본인의 지출을 계획하고 절약을 시작해보세요!"
         $0.textColor = .black
         $0.numberOfLines = 2
         $0.textAlignment = .center
@@ -19,37 +23,84 @@ final class AnalysisExpenseEmptyView: BaseView {
     }
 
     private let analysisExpenseEmptyButton = BaseButton().then {
-        $0.setGuideButton("지출 계획하기")
+        $0.isEnabled = true
     }
 
     // MARK: Properties
+    var buttonTitle = ""
+    var tapButton: ((String) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        configureView()
 
-        backgroundColor = .white
-        layer.cornerRadius = 16
+        addSubview(contentStackView)
+        contentStackView.addArrangedSubviews(analysisExpenseEmptyLabel,
+                                             analysisExpenseEmptyButton)
 
-        addSubview(analysisExpenseEmptyLabel)
-        addSubview(analysisExpenseEmptyButton)
+        analysisExpenseEmptyButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
 
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
 
-        analysisExpenseEmptyLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(24)
-            $0.centerX.equalToSuperview()
+        contentStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
 
         analysisExpenseEmptyButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(24)
-            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(48)
         }
     }
 
+    private func configureView() {
+        backgroundColor = .white
+        layer.cornerRadius = 16
+    }
+
+    func configureShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.07
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 8
+
+        snp.makeConstraints {
+            $0.height.equalTo(117)
+        }
+    }
+
+    // MARK: Data
+    func setData(message: String, buttonTitle: String, alignment: NSTextAlignment) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = alignment
+        paragraphStyle.lineSpacing = 4
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.black,
+            .paragraphStyle: paragraphStyle
+        ]
+
+        let attributedString = NSAttributedString(string: message, attributes: attributes)
+
+        analysisExpenseEmptyLabel.attributedText = attributedString
+        analysisExpenseEmptyButton.setGuideButton(buttonTitle)
+
+        if alignment == .left {
+            configureShadow()
+        } else {
+            snp.makeConstraints {
+                $0.height.equalTo(152)
+            }
+        }
+        self.buttonTitle = buttonTitle
+    }
+
     // MARK: Event
+    @objc private func didTapButton() {
+        tapButton?(buttonTitle)
+    }
 }

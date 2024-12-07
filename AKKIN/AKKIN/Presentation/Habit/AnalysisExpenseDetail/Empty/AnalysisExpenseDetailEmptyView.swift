@@ -22,18 +22,19 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
     }
 
     private let emptyLabel = UILabel().then {
-        $0.attributedText = "아직 분석할 수 있는 지출 기록이 없어요.\n지출을 계획하고 절약을 시작해보세요!".setLineSpacing(4)
         $0.numberOfLines = 2
         $0.textAlignment = .center
-        $0.textColor = .black
+        $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 
-    private let addExpenseButton = BaseButton().then {
-        $0.setGuideButton("지출 계획하기")
+    private let analysisExpenseEmptyButton = BaseButton().then {
+        $0.isEnabled = true
     }
 
     // MARK: Properties
+    var buttonTitle = ""
+    var tapButton: ((String) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -43,7 +44,9 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
 
         emptyStackView.addArrangedSubviews(emptyBillImageView,
                                            emptyLabel,
-                                           addExpenseButton)
+                                           analysisExpenseEmptyButton)
+
+        analysisExpenseEmptyButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -59,11 +62,34 @@ final class AnalysisExpenseDetailEmptyView: BaseView {
             $0.height.equalTo(86)
         }
 
-        addExpenseButton.snp.makeConstraints {
-            $0.width.equalTo(119)
+        analysisExpenseEmptyButton.snp.makeConstraints {
+            $0.width.equalTo(133)
             $0.height.equalTo(40)
         }
     }
 
+    // MARK: Data
+    func setData(message: String, buttonTitle: String) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineSpacing = 4
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.akkinGray6,
+            .paragraphStyle: paragraphStyle
+        ]
+        
+        let attributedString = NSAttributedString(string: message, attributes: attributes)
+
+        emptyLabel.attributedText = attributedString
+        analysisExpenseEmptyButton.setGuideButton(buttonTitle)
+
+        self.buttonTitle = buttonTitle
+    }
+
     // MARK: Event
+    @objc private func didTapButton() {
+        tapButton?(buttonTitle)
+    }
 }

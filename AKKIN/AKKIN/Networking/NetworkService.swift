@@ -16,7 +16,8 @@ final class NetworkService {
     let gulbis = GulbiService()
     let weekly = WeeklyService()
     let monthly = MonthlyService()
-    let reports = ReportsService()
+    let analysis = MonthlyAnalysisService()
     let savings = SavingsService()
+    let calendar = CalendarService()
     let users = UsersService()
 }

@@ -39,7 +39,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
             guard let self else { return }
             addExpense()
             //TODO: - 네트워크 성공후 rootview로 이동
-            router.popToRootViewController()
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 
@@ -69,7 +69,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
             return
         }
 
-        let request = AddExpenseRequest(
+        let request = ExpenseRequest(
             amount: amount,
             content: ExpenseInfo.shared.content,
             memo: ExpenseInfo.shared.memo,

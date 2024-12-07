@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AddExpenseRequest: Codable {
+struct ExpenseRequest: Codable {
     let amount: Int
     let content: String
     let memo: String

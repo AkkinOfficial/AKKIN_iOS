@@ -8,78 +8,56 @@
 import Foundation
 import Moya
 
-final class AuthService {
+import Foundation
+import Moya
 
+final class AuthService {
+    static let shared = AuthService()
     private var authProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
 
-    private enum ResponseData {
-        case postAppleLogin
-        case postAppleRevoke
-        case getAppleLogout
+    // MARK: - Public Methods
+    public func postAppleLogin(code: String, completion: @escaping (NetworkResult<AppleLoginResponse>) -> Void) {
+        request(.postAppleLogin(code: code), responseType: AppleLoginResponse.self, completion: completion)
     }
 
-    public func postAppleLogin(appleToken: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        authProvider.request(.postAppleLogin(appleToken: appleToken)) { result in
+    public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<BlankDataResponse>) -> Void) {
+        request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode), responseType: BlankDataResponse.self, completion: completion)
+    }
+    
+    public func getAppleLogout(completion: @escaping (NetworkResult<BlankDataResponse>) -> Void) {
+        request(.getAppleLogout, responseType: BlankDataResponse.self, completion: completion)
+    }
+    
+    public func refreshAccessToken(refreshToken: String, completion: @escaping (NetworkResult<AppleLoginResponse>) -> Void) {
+        request(.refreshToken(refreshToken: refreshToken), responseType: AppleLoginResponse.self, completion: completion)
+    }
+
+    // MARK: - Private Helper Methods
+    private func request<T: Decodable>(_ target: AuthAPI, responseType: T.Type, completion: @escaping (NetworkResult<T>) -> Void) {
+        authProvider.request(target) { result in
             switch result {
             case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAppleLogin)
+                let networkResult = self.judgeStatus(by: response.statusCode, data: response.data, responseType: responseType)
                 completion(networkResult)
-
             case .failure(let error):
-                print(error)
+                print("❌ Network Error: \(error.localizedDescription)")
+                completion(.networkFail)
             }
         }
     }
 
-    public func postAppleRevoke(appleToken: String, authorizationCode: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        authProvider.request(.postAppleRevoke(appleToken: appleToken, authorizationCode: authorizationCode)) { result in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .postAppleRevoke)
-                completion(networkResult)
-
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-    public func getAppleLogout(completion: @escaping (NetworkResult<Any>) -> Void) {
-        authProvider.request(.getAppleLogout) { result in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getAppleLogout)
-                completion(networkResult)
-
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-    private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
+    private func judgeStatus<T: Decodable>(by statusCode: Int, data: Data, responseType: T.Type) -> NetworkResult<T> {
         let decoder = JSONDecoder()
 
         switch statusCode {
         case 200..<300:
-            switch responseData {
-            case .postAppleLogin, .postAppleRevoke, .getAppleLogout:
-                return isValidData(data: data, responseData: responseData)
-            }
+            return decodeData(data: data, responseType: responseType)
         case 400..<500:
-            guard let decodedData = try? decoder.decode(ErrorResponse.self, from: data) else {
+            if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
+                return .requestErr(errorResponse as! T)
+            } else {
                 return .pathErr
             }
-            return .requestErr(decodedData)
         case 500:
             return .serverErr
         default:
@@ -87,19 +65,14 @@ final class AuthService {
         }
     }
 
-    private func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
+    private func decodeData<T: Decodable>(data: Data, responseType: T.Type) -> NetworkResult<T> {
         let decoder = JSONDecoder()
-        
-        switch responseData {
-        case .postAppleLogin:
-            let decodedData = try? decoder.decode(AppleLoginResponse.self, from: data)
-            return .success(decodedData ?? "success")
-        case .postAppleRevoke:
-            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
-            return .success(decodedData ?? "success")
-        case .getAppleLogout:
-            let decodedData = try? decoder.decode(BlankDataResponse.self, from: data)
-            return .success(decodedData ?? "success")
+        do {
+            let decodedData = try decoder.decode(responseType, from: data)
+            return .success(decodedData)
+        } catch {
+            print("❌ Decoding Error: \(error.localizedDescription)")
+            return .pathErr
         }
     }
 }

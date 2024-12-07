@@ -11,14 +11,17 @@ import Moya
 
 extension TargetType {
     var baseURL: URL {
-        //TODO: - baseURL congfig로 이동
+        //TODO: - baseURL config로 이동
         URL(string: URLConst.base)!
     }
-    
+
     var headers: [String : String]? {
+        let accessToken = KeychainManager.shared.load(key: "accessToken") ?? ""
+        let refreshToken = KeychainManager.shared.load(key: "refreshToken") ?? ""
         let header = [
             "Content-Type": "application/json",
-            "Authorization": ""
+            "Authorization": "Bearer \(accessToken)",
+            "Authorization-Refresh": "\(refreshToken)"
         ]
         return header
     }

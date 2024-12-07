@@ -21,6 +21,7 @@ class BaseCalendarView: UIView {
     private var datesRange: [Date] = [] // 선택된 날짜 배열
     var singleDate: Bool = false
 
+    var savingsData: [Savings] = []
 
     var calendarMode: CalendarMode = .plan
     var onDatesSelected: (([Date]) -> Void)?
@@ -49,7 +50,6 @@ class BaseCalendarView: UIView {
         calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 20, weight: .medium)
         calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 18, weight: .medium)
 
-
         calendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
         calendar.allowsMultipleSelection = true
 
@@ -75,6 +75,11 @@ class BaseCalendarView: UIView {
         calendar.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    func setSavingsData(data: [Savings]) {
+        savingsData = data
+        calendar.reloadData()
     }
 
     func resetSelection() {
@@ -133,9 +138,13 @@ extension BaseCalendarView: FSCalendarDataSource {
             cell.expenseLabel.isHidden = true
             cell.updateBackImage(typeOfDate(date))
         case .calendar:
-            cell.expenseLabel.isHidden = false
             cell.updateBackImage(.notSelected)
-            cell.setBackImage()
+
+            let matchingSavings = savingsData.first { savings in
+                Calendar.current.isDate(DateFormatter.localizedStringToDate(savings.date) ?? Date(), inSameDayAs: date)
+            }
+
+            cell.configureExpenseLabel(for: matchingSavings)
         }
         return cell
     }
@@ -240,4 +249,3 @@ extension BaseCalendarView: FSCalendarDelegate {
         onDatesSelected?(datesRange)
     }
 }
-

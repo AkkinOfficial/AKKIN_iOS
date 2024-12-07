@@ -17,6 +17,8 @@ final class CalendarView: BaseView {
 
     private let previousMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.previousButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let monthButton = BaseButton().then {
@@ -28,6 +30,8 @@ final class CalendarView: BaseView {
 
     private let nextMonthButton = BaseButton().then {
         $0.setImage(AkkinButton.nextButton, for: .normal)
+        $0.isEnabled = true
+        $0.backgroundColor = .clear
     }
 
     let savingLabel = UILabel().then {
@@ -51,6 +55,12 @@ final class CalendarView: BaseView {
     }
 
     // MARK: Properties
+    private var currentYear = DataManager.shared.currentYear ?? 2024
+    private var currentMonth = DataManager.shared.currentMonth ?? 12
+
+    var tapPrevious: ((Int, Int) -> Void)?
+    var tapMonth: (() -> Void)?
+    var tapNext: ((Int, Int) -> Void)?
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -67,6 +77,9 @@ final class CalendarView: BaseView {
         addSubview(remainingLabel)
         addSubview(calendarBackgroundView)
         calendarBackgroundView.addSubview(calendarView)
+
+        previousMonthButton.addTarget(self, action: #selector(handlePreviousButtonEvent), for: .touchUpInside)
+        nextMonthButton.addTarget(self, action: #selector(handleNextButtonEvent), for: .touchUpInside)
     }
 
     // MARK: Layout
@@ -90,12 +103,13 @@ final class CalendarView: BaseView {
         calendarBackgroundView.snp.makeConstraints {
             $0.top.equalTo(remainingLabel.snp.bottom).offset(18)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(490)
         }
 
         calendarView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.verticalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(450)
         }
     }
 
@@ -103,3 +117,44 @@ final class CalendarView: BaseView {
 
 }
 
+// MARK: Set Data
+extension CalendarView {
+    func setData(month: Int, totalAmount: Int, data: [Savings]) {
+        monthButton.setTitle("\(month)월", for: .normal)
+//        monthButton.setUnderline()
+        savingLabel.text = "이번 달 아낀 금액:  " + totalAmount.toPriceFormat + "  원"
+        savingLabel.setColor(targetString: totalAmount.toPriceFormat, color: .akkinGreen)
+        remainingLabel.text = "이번 챌린지 남은 금액:  " + "0" + "  원"
+    }
+}
+
+extension CalendarView {
+    @objc private func handlePreviousButtonEvent() {
+        if currentMonth == 1 {
+            currentYear -= 1
+            currentMonth = 12
+        } else {
+            currentMonth -= 1
+        }
+        updateMonthButtonTitle()
+
+        tapPrevious?(currentYear, currentMonth)
+    }
+
+    @objc private func handleNextButtonEvent() {
+        if currentMonth == 12 {
+            currentYear += 1
+            currentMonth = 1
+        } else {
+            currentMonth += 1
+        }
+        updateMonthButtonTitle()
+
+        tapNext?(currentYear, currentMonth)
+    }
+
+    private func updateMonthButtonTitle() {
+        let monthText = "\(currentMonth)월"
+        monthButton.setTitle(monthText, for: .normal)
+    }
+}

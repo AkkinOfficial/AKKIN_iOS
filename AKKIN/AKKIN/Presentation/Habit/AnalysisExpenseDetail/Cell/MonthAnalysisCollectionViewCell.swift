@@ -24,17 +24,27 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
         $0.textAlignment = .center
     }
 
-    let categoryStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 2
-    }
-
     let categoryTitleLabel = UILabel().then {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 
-    let categoryContentLabel = UILabel().then {
+    let categoryColorView = UIView().then {
+        $0.layer.cornerRadius = 4
+    }
+
+    let categoryTitleStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 4
+        $0.alignment = .center
+    }
+
+    let categoryStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 2
+    }
+
+    let categoryRatioLabel = UILabel().then {
         $0.textColor = .akkinGray6
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
@@ -55,10 +65,6 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
 
-    let detailButton = BaseButton().then {
-        $0.setImage(AkkinButton.detailButton.withTintColor(.akkinGray6), for: .normal)
-    }
-
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,7 +72,7 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
         configureSubviews()
         makeConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,20 +83,15 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
     // MARK: Configuration
     private func configureSubviews() {
         contentView.addSubview(categoryImageBackgroudView)
-        contentView.addSubview(categoryTitleLabel)
         contentView.addSubview(categoryStackView)
         contentView.addSubview(categoryExpenseLabel)
-        contentView.addSubview(detailButton)
 
         categoryImageBackgroudView.addSubview(categoryImageLabel)
-        categoryStackView.addArrangedSubviews(categoryTitleLabel,
-                                              categoryContentLabel)
-
-        detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
-    }
-
-    @objc private func handleDetailButtonEvent() {
-        tapDetail?()
+        
+        categoryTitleStackView.addArrangedSubviews(categoryTitleLabel,
+                                                   categoryColorView)
+        categoryStackView.addArrangedSubviews(categoryTitleStackView,
+                                              categoryRatioLabel)
     }
 
     // MARK: Layout
@@ -105,6 +106,15 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
             $0.center.equalTo(categoryImageBackgroudView)
         }
 
+        categoryColorView.snp.makeConstraints {
+            $0.height.width.equalTo(8)
+            $0.centerY.equalToSuperview()
+        }
+
+        categoryTitleStackView.snp.makeConstraints {
+            $0.height.equalTo(21)
+        }
+
         categoryStackView.snp.makeConstraints {
             $0.leading.equalTo(categoryImageBackgroudView.snp.trailing).offset(6)
             $0.centerY.equalToSuperview()
@@ -112,26 +122,24 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
         }
 
         categoryExpenseLabel.snp.makeConstraints {
-            $0.trailing.equalTo(detailButton.snp.leading).offset(-4)
-            $0.centerY.equalToSuperview()
-        }
-
-        detailButton.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
         }
     }
 }
 
 extension MonthAnalysisCollectionViewCell {
-    func setData(data: CategoryAnalysis) {
-        categoryImageLabel.text = data.category
-        categoryTitleLabel.text = data.categoryEnum
-        categoryContentLabel.text = "\(data.ratio)%"
+    func setData(data: AnalysisElement, colorView: Bool) {
+        let categoryImage = CategoryMapper.mapCategoryImage(data.categoryEnum)
+
+        categoryImageLabel.text = categoryImage
+        categoryTitleLabel.text = data.category
+        let categoryColor = data.getCategoryColor(data.category)
+        categoryColorView.backgroundColor = colorView ? categoryColor : .clear
+        categoryRatioLabel.text = "\(data.ratio)%"
         categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }
 
-    func setExpenseListData(data: ExpenseData) {
-        detailButton.removeFromSuperview()
+    func setExpenseListData(data: ExpensesList) {
         categoryExpenseLabel.removeFromSuperview()
 
         contentView.addSubview(expenseStackView)
@@ -142,11 +150,12 @@ extension MonthAnalysisCollectionViewCell {
             $0.trailing.equalToSuperview()
         }
 
-        categoryImageLabel.text = data.category.categoryImageString
-        categoryTitleLabel.text = data.title
-        categoryContentLabel.text = data.category.toString
-        categoryContentLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        categoryExpenseLabel.text = data.saving.toPriceFormat + " 원"
-        categoryTotalLabel.text = data.total.toPriceFormat + " 원"
+        let categoryImage = CategoryMapper.mapCategoryImage(data.category)
+        categoryImageLabel.text = categoryImage
+        categoryTitleLabel.text = data.content
+        categoryRatioLabel.text = data.content
+        categoryRatioLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        categoryExpenseLabel.text = data.amount.toPriceFormat + " 원"
+        categoryTotalLabel.text = data.savedAmount.toPriceFormat + " 원"
     }
 }

@@ -21,12 +21,10 @@ final class AnalysisExpenseView: BaseView {
     }
 
     private let categoryImageLabel = UILabel().then {
-        $0.text = "🍽️"
         $0.font = UIFont.systemFont(ofSize: 20)
     }
 
     private let categoryLabel = UILabel().then {
-        $0.text = "식사에 가장 많이 썼어요"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
@@ -37,6 +35,7 @@ final class AnalysisExpenseView: BaseView {
 
     private let detailButton = BaseButton().then {
         $0.setImage(AkkinButton.detailButton.withTintColor(.akkinGray6), for: .normal)
+        $0.isHidden = true
     }
 
     public lazy var monthAnalysisCollectionView: UICollectionView = {
@@ -58,7 +57,7 @@ final class AnalysisExpenseView: BaseView {
     }()
 
     // MARK: Properties
-    var reports = Reports.empty
+    var analysis = AnalysisData.emptyAnalysisData
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
@@ -92,9 +91,15 @@ final class AnalysisExpenseView: BaseView {
     }
 
     // MARK: Data binding
-    func setData(data: Reports) {
-        reports = data
+    func setData(data: AnalysisData) {
+        analysis = data
         setCollectionView()
+
+        if let maximumCategory = data.elementWithMaxAmount() {
+            let categoryImage = CategoryMapper.mapCategoryImage(maximumCategory.categoryEnum)
+            categoryImageLabel.text = categoryImage
+            categoryLabel.text = maximumCategory.category + "에 가장 많이 썼어요"
+        }
     }
 }
 
@@ -104,7 +109,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
         monthAnalysisCollectionView.dataSource = self
         monthAnalysisCollectionView.delegate = self
 
-        let collectionViewHeight = 45 * reports.categoryAnalysis.count + 16 * (reports.categoryAnalysis.count + 1)
+        let collectionViewHeight = 45 * analysis.elements.count + 16 * (analysis.elements.count + 1)
         monthAnalysisCollectionView.snp.makeConstraints {
             $0.top.equalTo(mostCategoryStackView.snp.bottom).offset(8)
             $0.width.equalToSuperview()
@@ -113,7 +118,7 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reports.categoryAnalysis.count
+        return analysis.elements.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -122,14 +127,13 @@ extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSou
             for: indexPath) as? MonthAnalysisCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.detailButton.removeFromSuperview()
+
         cell.categoryExpenseLabel.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
         }
 
-        cell.setData(data: reports.categoryAnalysis[indexPath.row])
-        
+        cell.setData(data: analysis.elements[indexPath.row], colorView: false)
+
         return cell
     }
 }

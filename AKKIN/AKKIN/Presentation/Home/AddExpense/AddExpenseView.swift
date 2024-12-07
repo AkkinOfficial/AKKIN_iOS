@@ -90,9 +90,7 @@ final class AddExpenseView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
-        addSubview(addExpenseNavigationBar)
-        addExpenseNavigationBar.addSubview(backButton)
-        addExpenseNavigationBar.addSubview(addExpenseTitleLabel)
+
         addSubview(addExpenseLabel)
         addSubview(expenseAmountTextField)
         addSubview(expenseCategoryTextField)
@@ -129,6 +127,7 @@ final class AddExpenseView: BaseView {
         addExpenseTitleLabel.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
+      
         addExpenseLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
             $0.top.equalTo(addExpenseNavigationBar.snp.bottom).offset(32)

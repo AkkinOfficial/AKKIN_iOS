@@ -17,16 +17,20 @@ final class HabitViewController: BaseViewController {
     private let router = BaseRouter()
     private let piggyBankService = PiggyBankService()
     private let refreshControl = UIRefreshControl()
+    private var analysisData = AnalysisData.emptyAnalysisData
+    private var challengeData = ChallengeData.emptyChallengeData
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         getPiggyBankSummary()
+        getChallenge()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        getReports()
+
         view.frame = UIScreen.main.bounds
         view.backgroundColor = .akkinBG
 
@@ -44,7 +48,6 @@ final class HabitViewController: BaseViewController {
     }
 
     // MARK: Properties
-    var monthAnalysisList = MonthAnalysis.monthAnalysisList
 
     // MARK: Configuration
     override func configureSubviews() {
@@ -56,17 +59,36 @@ final class HabitViewController: BaseViewController {
                 guard let self else { return }
             router.popToPiggyBankDetailViewController(bankId: self.bankId)
         }
+
         habitView.makePiggyBankEmptyView.tapPiggyBankButton = { [weak self] in
             guard let self else { return }
             router.popToMakePiggyBankStartViewController()
         }
+
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
-            router.presentAnalysisExpenseViewController()
+            router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: challengeData)
+
+            // TODO: 임시 데이터 (다 지워야 함)
+            // CASE1: nonEmptyAnalysisNonEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.testChallengeData)
+
+            // CASE2: nonEmptyAnalysisEmptyChallenge
+//             router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.emptyChallengeData)
+
+            // CASE3: emptyAnalysisNonEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.testChallengeData)
+
+            // CASE4: emptyAnalysisEmptyChallenge
+//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.emptyChallengeData)
         }
-        habitView.analysisExpenseView.tapDetailButton = { [weak self] in
-            guard let self else { return }
-            router.presentCategoryDetailViewController(navigationTitle: monthAnalysisList[0].category)
+
+        habitView.analysisExpenseEmptyView.tapButton = { [self] buttonTitle in
+            if buttonTitle == "챌린지 시작하기" {
+                router.presentPlanExpenseViewController()
+            } else {
+                router.presentAddExpenseViewController()
+            }
         }
     }
 
@@ -137,18 +159,64 @@ final class HabitViewController: BaseViewController {
 
 extension HabitViewController {
     // MARK: Network
-    private func getReports() {
-        print("💸 getReports called")
-        NetworkService.shared.reports.getReports() { [self] result in
+    private func getChallenge() {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: currentDate)
+        let currentMonth = calendar.component(.month, from: currentDate)
+
+        // CASE1, CASE3: challengeNonEmpty
+//        challengeData = ChallengeData.testChallengeData
+        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: challengeData)
+
+        // CASE2, CASE4: challengeEmpty
+//        challengeData = ChallengeData.emptyChallengeData
+//        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: .emptyChallengeData)
+    }
+
+    private func getMonthlyAnaylsis(year: Int, month: Int, challenge: ChallengeData) {
+        print("💸 getMonthlyAnaylsis called")
+        NetworkService.shared.analysis.getMonthlyAnaylsis(year: year, month: month) { [self] result in
             switch result {
             case .success(let response):
-                guard let data = response as? ReportsResponse else { return }
-                print("🎯 getReports success")
-//                habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
+                guard let data = response as? MonthlyAnalysisResponse else { return }
+                print("🎯 getMonthlyAnaylsis success")
+                analysisData = data.body
+
+                // CASE3, CASE4: analysisEmpty
+                if data.body.elements.isEmpty {
+                    if challengeData.startDate != 0 {
+                        // CASE3: challengeNonEmpty
+                        habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
+                    } else {
+                        // CASE4: challengeEmpty
+                        habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisEmptyChallenge)
+                    }
+                } else {
+                    // CASE1, CASE2: analysisNonEmpty
+                    habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
+                }
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
-//                habitView.setAnalysisExpenseEmtpyView()
+                // CASE3: analysisEmpty & challengeNonEmpty
+//                habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
+
+                // TODO: 임시 데이터 (다 지워야 함)
+                // CASE1, CASE2: analysisNonEmpty
+//                analysisData = AnalysisData.testAnalysisData
+//                habitView.setAnalysisExpenseNonEmtpyView(data: analysisData)
+
+                // CASE3: challengeNonEmpty
+//                analysisData = AnalysisData.testAnalysisData
+//                challengeData = ChallengeData.testChallengeData
+//                habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
+
+                // CASE4: challengeEmpty
+//                analysisData = AnalysisData.emptyAnalysisData
+//                challengeData = ChallengeData.emptyChallengeData
+//                habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisEmptyChallenge)
+
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")

@@ -7,6 +7,35 @@
 
 import UIKit
 
+enum AnalysisCase {
+    case emptyAnalysisEmptyChallenge
+    case emptyAnalysisNonEmptyChallenge
+    case emptyAnalysis
+    case nonEmptyAnalysis
+
+    var message: String {
+        switch self {
+        case .emptyAnalysisEmptyChallenge:
+            return "분석할 수 있는 지출 기록이 없어요.\n지출 챌린지를 통해 절약을 시작해보세요!"
+        case .emptyAnalysisNonEmptyChallenge:
+            return "분석할 수 있는 지출 기록이 없어요.\n오늘 지출한 내역이 있다면 입력해보세요!"
+        case .nonEmptyAnalysis, .emptyAnalysis:
+            return ""
+        }
+    }
+
+    var buttonTitle: String {
+        switch self {
+        case .emptyAnalysisEmptyChallenge:
+            return "챌린지 시작하기"
+        case .emptyAnalysisNonEmptyChallenge:
+            return "지출 추가하기"
+        case .nonEmptyAnalysis, .emptyAnalysis:
+            return ""
+        }
+    }
+}
+
 final class HabitView: BaseView {
     
     // MARK: UI Components
@@ -35,16 +64,18 @@ final class HabitView: BaseView {
     let makePiggyBankEmptyView = MakePiggyBankEmptyView()
     let makePiggyBankNonEmptyView = MakePiggyBankView()
 
+    // analysis 전체 뷰
     private let analysisExpenseEntireView = UIView()
 
-    private let analysisExpenseStackView = UIStackView().then {
+    // 지출 분석 >
+    private let analysisTitleStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 4
         $0.alignment = .leading
     }
 
     private let analysisExpenseLabel = UILabel().then {
-        $0.text = "지출분석"
+        $0.text = "지출 분석"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
@@ -55,16 +86,10 @@ final class HabitView: BaseView {
         $0.backgroundColor = .clear
     }
 
-    private let emtpyView = UIView().then {
-        $0.backgroundColor = .clear
-    }
-
-    private let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
+    let analysisExpenseEmptyView = AnalysisExpenseEmptyView()
     let analysisExpenseView = AnalysisExpenseView()
 
     // MARK: Properties
-    var reports = Reports.empty
-
     var tapDetailButton: (() -> Void)?
 
     // MARK: Configuration
@@ -80,9 +105,9 @@ final class HabitView: BaseView {
         makePiggyBankStackView.addArrangedSubviews(makePiggyBankLabel)
 
         scrollView.addSubview(analysisExpenseEntireView)
-        analysisExpenseEntireView.addSubview(analysisExpenseStackView)
+        analysisExpenseEntireView.addSubview(analysisTitleStackView)
 
-        analysisExpenseStackView.addArrangedSubviews(analysisExpenseLabel, detailButton, emtpyView)
+        analysisTitleStackView.addArrangedSubviews(analysisExpenseLabel, detailButton)
 
         detailButton.addTarget(self, action: #selector(handleDetailButtonEvent), for: .touchUpInside)
     }
@@ -111,19 +136,18 @@ final class HabitView: BaseView {
 
         updateView()
 
-        analysisExpenseStackView.snp.makeConstraints {
+        analysisTitleStackView.snp.makeConstraints {
             $0.top.equalTo(makePiggyBankEntireView.snp.bottom).offset(40)
             $0.leading.equalToSuperview().inset(24)
-            $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(48)
         }
 
         analysisExpenseLabel.snp.makeConstraints {
-            $0.centerY.equalTo(analysisExpenseStackView.snp.centerY)
+            $0.centerY.equalTo(analysisTitleStackView.snp.centerY)
         }
 
         detailButton.snp.makeConstraints {
-            $0.centerY.equalTo(analysisExpenseStackView.snp.centerY)
+            $0.centerY.equalTo(analysisTitleStackView.snp.centerY)
         }
     }
 
@@ -175,7 +199,9 @@ final class HabitView: BaseView {
         }
     }
 
-    func setAnalysisExpenseEmtpyView() {
+    func setAnalysisExpenseEmtpyView(analysisCase: AnalysisCase) {
+        analysisExpenseEmptyView.setData(message: analysisCase.message,
+                                         buttonTitle: analysisCase.buttonTitle, alignment: .center)
         analysisExpenseEntireView.addSubview(analysisExpenseEmptyView)
 
         analysisExpenseEntireView.snp.makeConstraints {
@@ -186,17 +212,17 @@ final class HabitView: BaseView {
         }
 
         analysisExpenseEmptyView.snp.makeConstraints {
-            $0.top.equalTo(analysisExpenseStackView.snp.bottom).offset(10)
+            $0.top.equalTo(analysisTitleStackView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(142)
         }
     }
 
-    func setAnalysisExpenseNonEmtpyView(data: Reports) {
+    // MARK: Data binding
+    func setAnalysisExpenseNonEmtpyView(data: AnalysisData) {
         analysisExpenseEntireView.addSubview(analysisExpenseView)
-        reports = data
+        analysisExpenseView.setData(data: data)
 
-        let collectionViewHeight = 45 * reports.categoryAnalysis.count + 16 * (reports.categoryAnalysis.count + 1)
+        let collectionViewHeight = 45 * data.elements.count + 16 * (data.elements.count + 1)
         let analysisExpenseEntireViewHeight = 48 + 10 + collectionViewHeight + 64 + 40
 
         analysisExpenseEntireView.snp.makeConstraints {
@@ -207,7 +233,7 @@ final class HabitView: BaseView {
         }
 
         analysisExpenseView.snp.makeConstraints {
-            $0.top.equalTo(analysisExpenseStackView.snp.bottom).offset(10)
+            $0.top.equalTo(analysisTitleStackView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(20)
         }

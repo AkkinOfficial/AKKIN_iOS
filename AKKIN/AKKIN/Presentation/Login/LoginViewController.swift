@@ -14,20 +14,30 @@ final class LoginViewController: BaseViewController {
     // MARK: UI Components
     private let loginView = LoginView()
 
-    // MARK: Environment
+    // MARK: Dependencies
     private let router = BaseRouter()
-    private var appleLoginProvider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
+    private let authService = AuthService.shared
+
+    // MARK: State
+    private var isLoggedIn = false
 
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         router.viewController = self
+
+        if let refreshToken = KeychainManager.shared.load(key: "refreshToken"), !refreshToken.isEmpty {
+            print("🔑 RefreshToken found, attempting auto-login...")
+            isLoggedIn = true
+            router.presentTabBarViewController()
+        } else {
+            print("🔑 No refreshToken found, showing login screen.")
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationItem.hidesBackButton = true
     }
 
@@ -38,8 +48,7 @@ final class LoginViewController: BaseViewController {
         view.addSubview(loginView)
 
         loginView.tapLogin = { [weak self] in
-            guard let self else { return }
-            router.presentTabBarViewController()
+            self?.performAppleLogin()
         }
     }
 
@@ -51,80 +60,47 @@ final class LoginViewController: BaseViewController {
     }
 
     // MARK: Network
-    private func setAppleLogin() {
-        let request = ASAuthorizationAppleIDProvider().createRequest()
-        request.requestedScopes = [.fullName, .email]
+    private func performAppleLogin() {
+        guard !isLoggedIn else {
+            print("🔁 Already logged in.")
+            return
+        }
+        print("🚀 Starting Apple Login...")
+
+        AppleLoginManager.shared.performLogin { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let response):
+                self.handleLoginSuccess(response: response)
+            case .failure(let error):
+                self.handleLoginFailure(error: error)
+            }
+        }
+    }
+    // MARK: Helpers
+    private func handleLoginSuccess(response: AppleLoginResponse) {
+        guard !response.body.accessToken.isEmpty, !response.body.refreshToken.isEmpty else {
+            handleLoginFailure(error: NSError(domain: "Login", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid tokens received from server"]))
+            return
+        }
         
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
-}
+        KeychainManager.shared.save(key: "accessToken", value: response.body.accessToken)
+        KeychainManager.shared.save(key: "refreshToken", value: response.body.refreshToken)
 
-extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
-    }
+        print("🎉 Login Successful! AccessToken: \(response.body.accessToken)")
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
-
-            let userIdentifier = appleIDCredential.user
-            let fullName = "\(appleIDCredential.fullName?.familyName ?? "")" + "\(appleIDCredential.fullName?.givenName ?? "user")"
-            let email = appleIDCredential.email
-            let appleToken = appleIDCredential.identityToken
-            guard let appleTokenToString = String(data: appleToken!, encoding: .utf8) else {
-                return
-            }
-            let authorizationCode = appleIDCredential.authorizationCode
-            guard let authorizationCodeToString = String(data: authorizationCode!, encoding: .utf8) else {
-                return
-            }
-
-            print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
-            print("User Name : \(fullName)")
-            print("User appleTokenToString : \(appleTokenToString)")
-            print("User authorizationCode : \(authorizationCodeToString)")
-
-            UserDefaultHandler.appleToken = appleTokenToString
-            UserDefaultHandler.authorizationCode = authorizationCodeToString
-            UserDefaultHandler.userEmail = email ?? "${mail}"
-
-            postAppleLogin(appleTokenToString)
-        default:
-            break
+        DispatchQueue.main.async {
+            self.router.presentTabBarViewController()
         }
     }
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("⚠️ apple login failed")
-    }
+    private func handleLoginFailure(error: Error) {
+        print("❌ Login Failed: \(error.localizedDescription)")
 
-    private func postAppleLogin(_ appleToken: String) {
-        print("💸 postAppleLogin called")
-        NetworkService.shared.auth.postAppleLogin(appleToken: appleToken) { result in
-            switch result {
-            case .success(let response):
-                guard let data = response as? AppleLoginResponse else { return }
-                UserDefaultHandler.accessToken = data.accessToken
-                UserDefaultHandler.refreshToken = data.refreshToken
-                print("🎯 postAppleLogin success")
-                self.router.presentHomeViewController()
-                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            case .requestErr(let errorResponse):
-                dump(errorResponse)
-                guard let data = errorResponse as? ErrorResponse else { return }
-                print(data)
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            case .pathErr:
-                print("pathErr")
-            }
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Login Failed", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
         }
     }
 }

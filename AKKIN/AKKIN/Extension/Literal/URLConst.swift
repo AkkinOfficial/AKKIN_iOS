@@ -18,7 +18,8 @@ enum URLConst {
     static let main = ""
 
     // MARK: - Login
-    static let appleLogin = "/login/oauth2/apple"
+    static let appleLogin = "/auth/apple"
+    static let authRefresh = "/auth/refresh"
     static let appleRevoke = "/revoke"
     static let appleLogout = "/logout"
 
@@ -34,12 +35,15 @@ enum URLConst {
     // MARK: - monthly Stats
     static let monthlyStats = "/members/monthly"
 
-    // MARK: - Reports
-    static let reports = "/reports"
+    // MARK: - MonthlyAnalysis
+    static let monthlyAnalysis = "/expenses/analysis/monthly"
 
     // MARK: - Savings
     static let savings = "/savings"
     static let savingsDate = "/savings/date"
+
+    // MARK: - Calendar
+    static let expenses = "/expenses"
 
     // MARK: - User
     static let users = "/users/me"
@@ -53,4 +57,7 @@ enum URLConst {
     //MARK: - add Challenges
     static let addChallenges = "/challenges"
 
+
+    // MARK: - Reports
+    static let reports = "/reports"
 }

@@ -36,15 +36,16 @@ final class PlanExpenseViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-
+  
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         tabBarController?.tabBar.isHidden = true
     }
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
 
         planExpenseView.editbudgetTextField = { [weak self] amountString in
             guard let self else { return }
@@ -80,6 +81,11 @@ final class PlanExpenseViewController: BaseViewController {
             self.addExpense()
             router.popViewController()
         }
+
+        planExpenseView.backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
     }
 
     // MARK: Helper Methods
@@ -106,6 +112,11 @@ final class PlanExpenseViewController: BaseViewController {
         planExpenseView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     private func addExpense() {

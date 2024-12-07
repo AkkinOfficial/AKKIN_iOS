@@ -15,6 +15,7 @@ final class PlanExpenseView: BaseView {
         $0.distribution = .fill
 
     }
+
     let backButton = BaseButton().then {
         $0.setBackButton()
     }
@@ -24,6 +25,7 @@ final class PlanExpenseView: BaseView {
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
+
     lazy var expensePlanLabel: UILabel = {
         let label = UILabel()
         label.text = AkkinString.expensePlanHeadLine
@@ -97,6 +99,23 @@ final class PlanExpenseView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+
+        navigationBar.snp.makeConstraints {
+            $0.top.width.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(4)
+            $0.width.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+
+        navigationLabel.snp.makeConstraints {
+            $0.height.equalTo(26)
+            $0.center.equalToSuperview()
+        }
 
         expensePlanLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)

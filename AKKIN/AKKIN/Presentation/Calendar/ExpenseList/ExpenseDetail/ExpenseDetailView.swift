@@ -29,7 +29,7 @@ final class ExpenseDetailView: BaseView {
     }
 
     private let categoryBackgroundView = UIView().then {
-        $0.backgroundColor = .akkinGray9
+        $0.backgroundColor = .akkinGray11
         $0.layer.cornerRadius = 32
     }
 
@@ -38,7 +38,7 @@ final class ExpenseDetailView: BaseView {
     }
 
     let infoLabel = UILabel().then {
-        $0.textColor = .akkinGray10
+        $0.textColor = .akkinGray9
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
@@ -53,7 +53,7 @@ final class ExpenseDetailView: BaseView {
     }
 
     let memoLabel = UILabel().then {
-        $0.textColor = .akkinGray10
+        $0.textColor = .akkinGray9
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
@@ -137,4 +137,5 @@ final class ExpenseDetailView: BaseView {
 
     @objc func handleKebabButtonEvent() {
         tapKebabButtonEvent?()
-    }}
+    }
+}
