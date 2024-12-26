@@ -91,6 +91,9 @@ final class AddExpenseView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
+        addSubview(addExpenseNavigationBar)
+        addExpenseNavigationBar.addSubview(backButton)
+        addExpenseNavigationBar.addSubview(addExpenseTitleLabel)
         addSubview(addExpenseLabel)
         addSubview(expenseAmountTextField)
         addSubview(expenseCategoryTextField)

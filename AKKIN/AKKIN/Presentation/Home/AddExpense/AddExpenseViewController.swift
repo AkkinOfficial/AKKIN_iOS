@@ -84,11 +84,6 @@ final class AddExpenseViewController: BaseViewController {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-
-    // MARK: Navigation Item
-    private func setNavigationItem() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
 }
 
 extension AddExpenseViewController: SetPeriodViewControllerDelegate {

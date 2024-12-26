@@ -110,7 +110,7 @@ final class PlanExpenseViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         planExpenseView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 

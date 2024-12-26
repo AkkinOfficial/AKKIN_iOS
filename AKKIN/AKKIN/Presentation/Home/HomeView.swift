@@ -143,6 +143,7 @@ final class HomeView: BaseView {
         challengeStackview.addArrangedSubviews(challengeLabel, challengeAmountLabel)
 
         addExpenseButton.addTarget(self, action: #selector(didTapAddExpenseButton), for: .touchUpInside)
+        homeSettingButton.addTarget(self, action: #selector(didTapKebbabButton), for: .touchUpInside)
     }
 
     // MARK: Layout

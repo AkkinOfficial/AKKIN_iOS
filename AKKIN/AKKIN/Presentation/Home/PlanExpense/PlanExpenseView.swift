@@ -100,26 +100,27 @@ final class PlanExpenseView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
-        navigationBar.snp.makeConstraints {
-            $0.top.width.equalTo(safeAreaLayoutGuide)
-            $0.horizontalEdges.equalToSuperview()
+        planExpenseNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
             $0.height.equalTo(56)
+            $0.horizontalEdges.equalToSuperview()
         }
 
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(4)
-            $0.width.height.equalTo(48)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
             $0.centerY.equalToSuperview()
         }
 
-        navigationLabel.snp.makeConstraints {
-            $0.height.equalTo(26)
-            $0.center.equalToSuperview()
+        planExpenseLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
 
         expensePlanLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.top.equalTo(safeAreaLayoutGuide).inset(50)
+            $0.top.equalTo(planExpenseNavigationBar.snp.bottom).offset(32)
         }
 
         periodTextField.snp.makeConstraints {

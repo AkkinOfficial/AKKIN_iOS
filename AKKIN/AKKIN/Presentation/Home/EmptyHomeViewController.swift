@@ -22,9 +22,10 @@ final class EmptyHomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem() 
 
         router.viewController = self
-        checkIfTimePassed()
+        //checkIfTimePassed()
     }
 
     // MARK: Configuration
@@ -42,7 +43,7 @@ final class EmptyHomeViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         emptyHomeView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 
@@ -56,6 +57,11 @@ final class EmptyHomeViewController: BaseViewController {
             print("현재 시간이 저장된 시간을 지나지 않음. 동작 안함.")
         }
 
+    }
+
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
 }
