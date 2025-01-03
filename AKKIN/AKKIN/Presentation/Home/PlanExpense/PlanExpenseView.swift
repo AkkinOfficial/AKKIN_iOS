@@ -10,13 +10,17 @@ import UIKit
 final class PlanExpenseView: BaseView {
 
     // MARK: UI Components
-    private let navigationBar = UIView()
+    private let planExpenseNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+
+    }
 
     let backButton = BaseButton().then {
         $0.setBackButton()
     }
 
-    private let navigationLabel = UILabel().then {
+    private let planExpenseLabel = UILabel().then {
         $0.text = "챌린지 시작하기"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -75,10 +79,9 @@ final class PlanExpenseView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
-        addSubview(navigationBar)
-        navigationBar.addSubview(backButton)
-        navigationBar.addSubview(navigationLabel)
-
+        addSubview(planExpenseNavigationBar)
+        planExpenseNavigationBar.addSubview(backButton)
+        planExpenseNavigationBar.addSubview(planExpenseLabel)
         addSubview(expensePlanLabel)
         addSubview(periodTextField)
         addSubview(budgetTextField)
@@ -97,26 +100,27 @@ final class PlanExpenseView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
-        navigationBar.snp.makeConstraints {
-            $0.top.width.equalTo(safeAreaLayoutGuide)
-            $0.horizontalEdges.equalToSuperview()
+        planExpenseNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
             $0.height.equalTo(56)
+            $0.horizontalEdges.equalToSuperview()
         }
 
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(4)
-            $0.width.height.equalTo(48)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
             $0.centerY.equalToSuperview()
         }
 
-        navigationLabel.snp.makeConstraints {
-            $0.height.equalTo(26)
-            $0.center.equalToSuperview()
+        planExpenseLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
 
         expensePlanLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.top.equalTo(safeAreaLayoutGuide).inset(50)
+            $0.top.equalTo(planExpenseNavigationBar.snp.bottom).offset(32)
         }
 
         periodTextField.snp.makeConstraints {

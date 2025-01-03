@@ -10,7 +10,6 @@ import UIKit
 final class EmptyHomeView: BaseView {
 
     // MARK: UI Components
-
     lazy var emptyBillImageView = UIImageView().then {
         $0.image = AkkinImage.emptyBill
     }

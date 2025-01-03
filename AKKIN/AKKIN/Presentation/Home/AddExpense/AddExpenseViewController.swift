@@ -26,6 +26,7 @@ final class AddExpenseViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
         hideKeyboard()
         setNavigationItem()
 
@@ -38,6 +39,11 @@ final class AddExpenseViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(addExpenseView)
+
+        addExpenseView.backButton.tap = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
+        }
 
         addExpenseView.tapCategoryTextField = {
             [weak self] in
@@ -61,7 +67,11 @@ final class AddExpenseViewController: BaseViewController {
 
             router.presentAddExpenseConfirmViewController()
         }
+    }
 
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
         addExpenseView.backButton.tap = { [weak self] in
             guard let self else { return }
             router.popViewController()
@@ -71,13 +81,8 @@ final class AddExpenseViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         addExpenseView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-
-    // MARK: Navigation Item
-    private func setNavigationItem() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
 

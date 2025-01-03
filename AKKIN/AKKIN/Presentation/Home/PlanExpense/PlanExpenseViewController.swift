@@ -36,7 +36,13 @@ final class PlanExpenseViewController: BaseViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
+  
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
+        tabBarController?.tabBar.isHidden = true
+    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItem()
@@ -64,6 +70,10 @@ final class PlanExpenseViewController: BaseViewController {
         planExpenseView.tapPeriodTextField = { [weak self] in
             guard let self else { return }
             router.presentSetPeriodViewController(setPeriodViewController)
+        }
+        planExpenseView.tapConfirmButton = { [weak self] in
+            guard let self else { return }
+            router.popViewController()
         }
 
         planExpenseView.tapConfirmButton = { [weak self] in
@@ -100,7 +110,7 @@ final class PlanExpenseViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         planExpenseView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 

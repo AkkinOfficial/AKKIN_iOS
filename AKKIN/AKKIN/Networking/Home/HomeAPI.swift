@@ -10,6 +10,7 @@ import Moya
 
 enum HomeAPI {
     case getExpenseSummary(type: String)
+    case deleteChallenge(challengeId: Int)
 }
 
 extension HomeAPI: TargetType {
@@ -17,6 +18,8 @@ extension HomeAPI: TargetType {
         switch self {
         case .getExpenseSummary:
             return URLConst.homeExpensesSummary
+        case .deleteChallenge(let challengeId):
+            return URLConst.addChallenges + "/\(challengeId)"
         }
     }
 
@@ -24,6 +27,8 @@ extension HomeAPI: TargetType {
         switch self {
         case .getExpenseSummary:
             return .get
+        case .deleteChallenge:
+            return .delete
         }
     }
 
@@ -31,6 +36,8 @@ extension HomeAPI: TargetType {
         switch self {
         case .getExpenseSummary(let type):
             return .requestParameters(parameters: ["type": type], encoding: URLEncoding.queryString)
+        case .deleteChallenge:
+            return .requestPlain
         }
     }
 }

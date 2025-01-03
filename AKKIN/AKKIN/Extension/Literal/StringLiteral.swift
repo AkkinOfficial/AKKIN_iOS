@@ -69,7 +69,7 @@ public enum AkkinString {
     public static let expenseChallengeTitle = "절약도 한걸음 부터! \n지출 챌린지를 시작해볼까요?"
 
     // Plan Expense
-    public static let expensePlanHeadLine = "지출 기간과\n챌린지 금액을 설정해주세요."
+    public static let expensePlanHeadLine = "챌린지 기간과\n지출 금액을 설정해주세요."
     public static let confirmSelect = "선택 완료"
 
 }

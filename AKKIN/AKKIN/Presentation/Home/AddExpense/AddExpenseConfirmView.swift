@@ -10,6 +10,20 @@ import UIKit
 final class AddExpenseConfirmView: BaseView {
 
     // MARK: UI Components
+    private let addExpenseNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+    }
+    let backButton = BaseButton().then {
+        $0.setBackButton()
+    }
+
+    private let addExpenseTitleLabel = UILabel().then {
+        $0.text = "지출 추가하기"
+        $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+    }
+
     private let expenseStackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill
@@ -70,6 +84,9 @@ final class AddExpenseConfirmView: BaseView {
     // MARK: Configuration
     override func configureSubviews() {
         super.configureSubviews()
+        addSubview(addExpenseNavigationBar)
+        addExpenseNavigationBar.addSubview(backButton)
+        addExpenseNavigationBar.addSubview(addExpenseTitleLabel)
         addSubview(backgroundCircleView)
         addSubview(iconImageView)
         addSubview(expenseStackView)
@@ -84,6 +101,21 @@ final class AddExpenseConfirmView: BaseView {
     // MARK: Layout
     override func makeConstraints() {
         super.makeConstraints()
+        addExpenseNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.equalTo(56)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(4)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
+            $0.centerY.equalToSuperview()
+        }
+        addExpenseTitleLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
 
         backgroundCircleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

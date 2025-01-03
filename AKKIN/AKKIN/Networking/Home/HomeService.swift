@@ -1,5 +1,5 @@
 //
-//  HomeSevice.swift
+//  HomeService.swift
 //  AKKIN
 //
 //  Created by 성현주 on 10/6/24.
@@ -13,6 +13,7 @@ final class HomeService {
 
     private enum ResponseData {
         case getExpenseSummary
+        case deleteChallenge
     }
 
     public func getHomeExpensesSummary(type: String, completion: @escaping (NetworkResult<Any>) -> Void) {
@@ -31,6 +32,23 @@ final class HomeService {
             }
         }
     }
+    public func deleteChallenge(challengeId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+        mainProvider.request(.deleteChallenge(challengeId: challengeId)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getExpenseSummary)
+                completion(networkResult)
+
+            case .failure(let error):
+                print(error)
+
+            }
+        }
+    }
+
 
     private func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
@@ -39,6 +57,8 @@ final class HomeService {
         case 200..<300:
             switch responseData {
             case .getExpenseSummary:
+                return isValidData(data: data, responseData: responseData)
+            case .deleteChallenge:
                 return isValidData(data: data, responseData: responseData)
             }
         case 400..<500:
@@ -58,6 +78,11 @@ final class HomeService {
 
         switch responseData {
         case .getExpenseSummary:
+            guard let decodedData = try? decoder.decode(HomeResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
+        case .deleteChallenge:
             guard let decodedData = try? decoder.decode(HomeResponse.self, from: data) else {
                 return .pathErr
             }

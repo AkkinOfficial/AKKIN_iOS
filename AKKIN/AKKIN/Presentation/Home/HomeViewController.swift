@@ -10,7 +10,11 @@ import UIKit
 final class HomeViewController: BaseViewController {
 
     // MARK: UI Components
+    var challengeId = 17
     private let homeView = HomeView()
+
+    private let homeChallengeAlert = UIAlertController(title: "챌린지", message: "수정", preferredStyle: .actionSheet)
+    private let homeChallengeDeleteAlert = UIAlertController(title: "챌린지를 삭제하시겠어요?", message: "챌린지와 관련된 모든 내용이 사라져요🥺", preferredStyle: .alert)
 
     // MARK: Environment
     private let router = BaseRouter()
@@ -20,6 +24,62 @@ final class HomeViewController: BaseViewController {
     private var currentType: String = "DAILY"
     private var homeModel: HomeModel?
 
+    func setHomeChallengeAlert() {
+        let confirm = UIAlertAction(title: "수정", style: .default){ action in
+                print("확인 버튼이 눌렸습니다.")
+            }
+        let delete = UIAlertAction(title: "삭제", style: .destructive){ action in
+            self.setpiggyBankDeleteAlert()
+            print("삭제 버튼이 눌렸습니다.")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel){ cancel in
+            print("취소 버튼이 눌렸습니다.")
+        }
+        homeChallengeAlert.addAction(confirm)
+        homeChallengeAlert.addAction(delete)
+        homeChallengeAlert.addAction(cancel)
+
+        present(homeChallengeAlert, animated: true)
+    }
+
+    func setpiggyBankDeleteAlert() {
+        let cancel = UIAlertAction(title: "취소", style: .cancel){ action in
+            print("취소 버튼이 눌렸습니다.")
+            }
+        let delete = UIAlertAction(title: "삭제", style: .destructive){ [self] action in
+            deleteChallenge(challengeId: self.challengeId)
+            print("삭제 버튼이 눌렸습니다.")
+        }
+        homeChallengeDeleteAlert.addAction(cancel)
+        homeChallengeDeleteAlert.addAction(delete)
+
+        present(homeChallengeDeleteAlert, animated: true)
+    }
+
+    func deleteChallenge(challengeId: Int) {
+        print("💸 deleteChallenge called in HomeViewController")
+        homeService.deleteChallenge(challengeId: challengeId) { [weak self] result in
+            switch result {
+            case .success(let response):
+                guard response is HomeResponse else { return }
+                print("🎯 deleteChallenge success in HomeViewController")
+                NotificationCenter.default.post(name: NSNotification.Name("Challenge Deleted"), object: nil)
+
+                self?.navigationController?.popToRootViewController(animated: true)
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print(data)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
@@ -27,10 +87,15 @@ final class HomeViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setNavigationItem()
         router.viewController = self
         configureView(for: currentType)
         checkIfTimePassed()
+    }
+
+    // MARK: Navigation Item
+    private func setNavigationItem() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     // MARK: Configuration
@@ -71,10 +136,11 @@ final class HomeViewController: BaseViewController {
             case .success(let data):
                 if let summary = data as? HomeResponse {
                     // 응답 데이터를 HomeModel로 변환 => 맞는 방법일까,,
-                    let homeModel = HomeModel(type: type,
-                                              savedAmount: summary.body.savedAmount,
-                                              expenseAmount: summary.body.expenseAmount,
-                                              availableAmount: summary.body.availableAmount)
+                    let homeModel = HomeModel(
+                        type: type,
+                        savedAmount: summary.body.savedAmount,
+                        expenseAmount: summary.body.expenseAmount,
+                        availableAmount: summary.body.availableAmount)
                     self.homeModel = homeModel
                     self.updateUI(with: homeModel, for: type)
                 } else {
@@ -98,6 +164,11 @@ final class HomeViewController: BaseViewController {
         homeView.progressView.usedAmount = CGFloat(model.expenseAmount)
         homeView.expenseAmountLabel.text = "\(model.formattedExpenseAmount)원"
         homeView.challengeAmountLabel.text = "\(model.formattedAvailableAmount)원"
+        homeView.tapKebbab = { [weak self] in
+            guard let self else { return }
+            setHomeChallengeAlert()
+        }
+      
         let formattedSavedAmount = model.formattedSavedAmount
 
         let storedTime = UserDefaultHandler.dismissModalTime
@@ -109,20 +180,21 @@ final class HomeViewController: BaseViewController {
             UserDefaultHandler.savedAmount = formattedSavedAmount
         }
 
-
         switch type {
         case "DAILY":
             homeView.progressView.setCenterImage(AkkinIcon.habitFilled)
-            homeView.homeTitleLabel.setRangeAttributedText(title: "오늘 하루 아낀 금액 \n무려 \(formattedSavedAmount)원!",
-                                                           highlightedText: formattedSavedAmount,
-                                                           highlightedColor: UIColor.akkinGreen,
-                                                           highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
+            homeView.homeTitleLabel.setRangeAttributedText(
+                title: "오늘 하루 아낀 금액 \n무려 \(formattedSavedAmount)원!",
+                highlightedText: formattedSavedAmount,
+                highlightedColor: UIColor.akkinGreen,
+                highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
         case "ALL":
             homeView.progressView.setCenterImage(AkkinIcon.piggyBankFilled)
-            homeView.homeTitleLabel.setRangeAttributedText(title: "그동안 아낀 금액 \n무려 \(formattedSavedAmount)원!",
-                                                           highlightedText: formattedSavedAmount,
-                                                           highlightedColor: UIColor.akkinGreen,
-                                                           highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
+            homeView.homeTitleLabel.setRangeAttributedText(
+                title: "그동안 아낀 금액 \n무려 \(formattedSavedAmount)원!",
+                highlightedText: formattedSavedAmount,
+                highlightedColor: UIColor.akkinGreen,
+                highlightedFont: UIFont.systemFont(ofSize: 30, weight: .bold))
         default:
             break
         }
@@ -140,7 +212,7 @@ final class HomeViewController: BaseViewController {
         let currentTime = Date()
         if currentTime > storedTime {
             print("현재 시간이 저장된 시간을 지남. 모달 동작.")
-            router.presentAlertViewController()
+            //router.presentAlertViewController()
         } else {
             print("현재 시간이 저장된 시간을 지나지 않음. 동작 안함.")
         }
@@ -150,7 +222,7 @@ final class HomeViewController: BaseViewController {
     // MARK: Layout
     override func makeConstraints() {
         homeView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

@@ -10,13 +10,15 @@ import UIKit
 final class AddExpenseView: BaseView {
 
     // MARK: UI Components
-    private let navigationBar = UIView()
-
+    private let addExpenseNavigationBar = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+    }
     let backButton = BaseButton().then {
         $0.setBackButton()
     }
 
-    private let navigationLabel = UILabel().then {
+    private let addExpenseTitleLabel = UILabel().then {
         $0.text = "지출 추가하기"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -89,10 +91,9 @@ final class AddExpenseView: BaseView {
     override func configureSubviews() {
         super.configureSubviews()
 
-        addSubview(navigationBar)
-        navigationBar.addSubview(backButton)
-        navigationBar.addSubview(navigationLabel)
-
+        addSubview(addExpenseNavigationBar)
+        addExpenseNavigationBar.addSubview(backButton)
+        addExpenseNavigationBar.addSubview(addExpenseTitleLabel)
         addSubview(addExpenseLabel)
         addSubview(expenseAmountTextField)
         addSubview(expenseCategoryTextField)
@@ -114,26 +115,25 @@ final class AddExpenseView: BaseView {
     override func makeConstraints() {
         super.makeConstraints()
 
-        navigationBar.snp.makeConstraints {
-            $0.top.width.equalTo(safeAreaLayoutGuide)
-            $0.horizontalEdges.equalToSuperview()
+        addExpenseNavigationBar.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.top.equalToSuperview()
             $0.height.equalTo(56)
+            $0.horizontalEdges.equalToSuperview()
         }
-
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(4)
-            $0.width.height.equalTo(48)
+            $0.width.equalTo(48)
+            $0.height.equalTo(48)
             $0.centerY.equalToSuperview()
         }
-
-        navigationLabel.snp.makeConstraints {
-            $0.height.equalTo(26)
-            $0.center.equalToSuperview()
+        addExpenseTitleLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
-
+      
         addExpenseLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.top.equalTo(safeAreaLayoutGuide).inset(50)
+            $0.top.equalTo(addExpenseNavigationBar.snp.bottom).offset(32)
         }
 
         expenseAmountTextField.snp.makeConstraints {

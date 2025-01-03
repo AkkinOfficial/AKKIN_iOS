@@ -68,19 +68,6 @@ final class HabitViewController: BaseViewController {
         habitView.tapDetailButton = { [weak self] in
             guard let self else { return }
             router.presentAnalysisExpenseViewController(analysisData: analysisData, challengeData: challengeData)
-
-            // TODO: 임시 데이터 (다 지워야 함)
-            // CASE1: nonEmptyAnalysisNonEmptyChallenge
-//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.testChallengeData)
-
-            // CASE2: nonEmptyAnalysisEmptyChallenge
-//             router.presentAnalysisExpenseViewController(analysisData: AnalysisData.testAnalysisData, challengeData: ChallengeData.emptyChallengeData)
-
-            // CASE3: emptyAnalysisNonEmptyChallenge
-//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.testChallengeData)
-
-            // CASE4: emptyAnalysisEmptyChallenge
-//            router.presentAnalysisExpenseViewController(analysisData: AnalysisData.emptyAnalysisData, challengeData: ChallengeData.emptyChallengeData)
         }
 
         habitView.analysisExpenseEmptyView.tapButton = { [self] buttonTitle in
