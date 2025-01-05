@@ -29,10 +29,10 @@ final class MyPageViewController: BaseViewController {
     override func configureSubviews() {
         view.addSubview(myPageView)
 
-//        myPageView.tapHomeWidgetSetting = { [weak self] in
-//            guard let self else { return }
-//            router.presentHomeWidgetSettingViewController()
-//        }
+        //    myPageView.tapHomeWidgetSetting = { [weak self] in
+        //    guard let self else { return }
+        //    router.presentHomeWidgetSettingViewController()
+        //  }
 
         myPageView.tapEdit = { [weak self] in
             guard let self else { return }
