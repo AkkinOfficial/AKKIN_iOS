@@ -15,9 +15,10 @@ struct AddExpenseResponse: Codable {
 }
 
 struct AddExpenseBody: Codable {
+    let id: Int
     let amount: Int
     let content: String
-    let memo: String
+    let memo: String?
     let date: String
     let category: String
 }

@@ -175,7 +175,11 @@ extension ExpenseListView {
 //        dateButton.setUnderline()
 
         savingLabel.text = "아낀 금액: " + data.savedAmount.toPriceFormat + " 원"
-        savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
+        if data.savedAmount < 0 {
+            savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGray6)
+        } else {
+            savingLabel.setColor(targetString: data.savedAmount.toPriceFormat, color: .akkinGreen)
+        }
     }
 
     func setEmptyData() {

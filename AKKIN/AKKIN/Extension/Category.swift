@@ -30,22 +30,22 @@ enum CategoryMapper {
 
     static func mapCategoryImage(_ value: String) -> String {
         switch value {
-        case "MEAL": return "🍽️"
-        case "CAFE_SNACK": return "☕️"
-        case "DRINK_ENTERTAINMENT": return "🍻"
-        case "CONVENIENCE_STORE": return "🏪"
-        case "CLOTHING": return "👕"
-        case "BEAUTY": return "🛁"
-        case "CULTURE_HOBBY": return "🎶"
-        case "LIVING": return "🛒"
-        case "TRAVEL_ACCOMMODATION": return "✈️"
-        case "TRANSPORTATION": return "🚃"
-        case "MEDICAL_HEALTH": return "🏥"
-        case "EDUCATION": return "🎓"
-        case "COMMUNICATION": return "📱"
-        case "MEMBERSHIP_FEE": return "👨‍👧‍👦"
-        case "FAMILY_OCCASION": return "✉️"
-        case "MISC": return "💬"
+        case "식사": return "🍽️"
+        case "카페/간식": return "☕️"
+        case "술/유흥": return "🍻"
+        case "편의점": return "🏪"
+        case "의류": return "👕"
+        case "미용": return "🛁"
+        case "문화/취미": return "🎶"
+        case "생활": return "🛒"
+        case "여행/숙박": return "✈️"
+        case "교통": return "🚃"
+        case "의료/건강": return "🏥"
+        case "교육": return "🎓"
+        case "통신": return "📱"
+        case "회비": return "👨‍👧‍👦"
+        case "경조사": return "✉️"
+        case "기타": return "💬"
         default: return value
         }
     }

@@ -93,7 +93,6 @@ class BaseCalendarView: UIView {
     }
 
     func scrollToDate() {
-        let formatter = DateFormatter()
         calendar.setCurrentPage(Date(), animated: true)
     }
 }

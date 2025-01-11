@@ -12,6 +12,7 @@ final class NetworkService {
     
     let auth = AuthService()
     let main = MainService()
+    let home = HomeService()
     let piggyBank = PiggyBankService()
     let gulbis = GulbiService()
     let weekly = WeeklyService()

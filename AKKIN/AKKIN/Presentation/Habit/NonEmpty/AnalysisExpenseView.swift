@@ -96,7 +96,7 @@ final class AnalysisExpenseView: BaseView {
         setCollectionView()
 
         if let maximumCategory = data.elementWithMaxAmount() {
-            let categoryImage = CategoryMapper.mapCategoryImage(maximumCategory.categoryEnum)
+            let categoryImage = CategoryMapper.mapCategoryImage(maximumCategory.category)
             categoryImageLabel.text = categoryImage
             categoryLabel.text = maximumCategory.category + "에 가장 많이 썼어요"
         }
@@ -106,6 +106,7 @@ final class AnalysisExpenseView: BaseView {
 // MARK: CollectionView
 extension AnalysisExpenseView: UICollectionViewDelegate, UICollectionViewDataSource {
     private func setCollectionView() {
+        monthAnalysisCollectionView.reloadData()
         monthAnalysisCollectionView.dataSource = self
         monthAnalysisCollectionView.delegate = self
 

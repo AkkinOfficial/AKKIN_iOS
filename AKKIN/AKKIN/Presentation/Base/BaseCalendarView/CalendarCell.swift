@@ -114,7 +114,8 @@ class CalendarCell: FSCalendarCell {
             if savings.amount > 0 {
             expenseLabel.text = "+" + savings.amount.toPriceFormat
             } else if savings.amount < 0 {
-                expenseLabel.text = "-" + savings.amount.toPriceFormat
+                expenseLabel.text = savings.amount.toPriceFormat
+                expenseLabel.textColor = .akkinGray6
             } else {
                 expenseLabel.text = savings.amount.toPriceFormat
             }

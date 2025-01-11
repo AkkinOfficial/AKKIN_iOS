@@ -57,7 +57,7 @@ final class AddExpenseService {
 
         switch responseData {
         case .postAddExpense:
-            guard let decodedData = try? decoder.decode(HomeResponse.self, from: data) else {
+            guard let decodedData = try? decoder.decode(AddExpenseResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

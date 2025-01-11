@@ -54,7 +54,6 @@ final class ExpenseListViewController: BaseViewController {
     // MARK: Configuration
     override func configureSubviews() {
         view.addSubview(expenseListView)
-        view.addSubview(expenseListCollectionView)
 
         expenseListView.tapBackButtonEvent = { [self] in
             router.popViewController()
@@ -77,12 +76,6 @@ final class ExpenseListViewController: BaseViewController {
     override func makeConstraints() {
         expenseListView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
-        }
-
-        expenseListCollectionView.snp.makeConstraints {
-            $0.top.equalTo(expenseListView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview()
         }
     }
 
@@ -117,6 +110,14 @@ extension ExpenseListViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     private func setCollectionView() {
+        view.addSubview(expenseListCollectionView)
+
+        expenseListCollectionView.snp.makeConstraints {
+            $0.top.equalTo(expenseListView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+        }
+
         expenseListCollectionView.dataSource = self
         expenseListCollectionView.delegate = self
     }
@@ -162,6 +163,7 @@ extension ExpenseListViewController {
                 print("🤖 \(data)")
                 expenseListView.setEmptyData()
                 expenseListView.setOnlyDate(date: date)
+                expenseListCollectionView.removeFromSuperview()
             case .serverErr:
                 print("serverErr")
             case .networkFail:

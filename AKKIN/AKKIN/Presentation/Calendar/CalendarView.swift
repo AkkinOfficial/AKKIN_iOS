@@ -55,8 +55,8 @@ final class CalendarView: BaseView {
     }
 
     // MARK: Properties
-    private var currentYear = DataManager.shared.currentYear ?? 2024
-    private var currentMonth = DataManager.shared.currentMonth ?? 12
+    private var currentYear = DataManager.shared.currentYear ?? 2025
+    private var currentMonth = DataManager.shared.currentMonth ?? 1
 
     var tapPrevious: ((Int, Int) -> Void)?
     var tapMonth: (() -> Void)?
@@ -123,7 +123,11 @@ extension CalendarView {
         monthButton.setTitle("\(month)월", for: .normal)
 //        monthButton.setUnderline()
         savingLabel.text = "이번 달 아낀 금액:  " + totalAmount.toPriceFormat + "  원"
-        savingLabel.setColor(targetString: totalAmount.toPriceFormat, color: .akkinGreen)
+        if totalAmount > 0 {
+            savingLabel.setColor(targetString: totalAmount.toPriceFormat, color: .akkinGreen)
+        } else {
+            savingLabel.setColor(targetString: totalAmount.toPriceFormat, color: .akkinGray6)
+        }
         remainingLabel.text = "이번 챌린지 남은 금액:  " + "0" + "  원"
     }
 }

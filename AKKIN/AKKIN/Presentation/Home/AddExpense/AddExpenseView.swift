@@ -63,7 +63,7 @@ final class AddExpenseView: BaseView {
 
     lazy var expenseDayTextField: BaseTextField = {
         let textField = BaseTextField()
-        formatter.dateFormat = "yyyy.MM.dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         textField.text = formatter.string(from: Date())
         textField.addLeftImage(image: AkkinIcon.miniCalendar)
         textField.addRightLabel(text: "오늘", textColor: .akkinGreen)

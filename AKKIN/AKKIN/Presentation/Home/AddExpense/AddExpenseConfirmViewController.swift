@@ -38,8 +38,6 @@ final class AddExpenseConfirmViewController: BaseViewController {
         addExpenseConfirmView.tapConfirmButton = { [weak self] in
             guard let self else { return }
             addExpense()
-            //TODO: - 네트워크 성공후 rootview로 이동
-            navigationController?.popToRootViewController(animated: true)
         }
     }
 
@@ -85,6 +83,7 @@ final class AddExpenseConfirmViewController: BaseViewController {
                 if let addExpenseResponse = response as? AddExpenseResponse {
                     print("Expense added successfully: \(addExpenseResponse)")
                 }
+                navigationController?.popToRootViewController(animated: true)
             case .requestErr(let errorResponse):
                 print("Request error: \(errorResponse)")
             case .serverErr:

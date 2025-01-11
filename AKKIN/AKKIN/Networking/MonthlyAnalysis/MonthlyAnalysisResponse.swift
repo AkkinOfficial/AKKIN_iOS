@@ -86,5 +86,5 @@ struct ChallengeData: Codable {
 
 extension ChallengeData {
     static let emptyChallengeData = ChallengeData(startDate: 0, endDate: 0)
-    static let testChallengeData = ChallengeData(startDate: 2024, endDate: 2024)
+    static let testChallengeData = ChallengeData(startDate: 2025, endDate: 2025)
 }

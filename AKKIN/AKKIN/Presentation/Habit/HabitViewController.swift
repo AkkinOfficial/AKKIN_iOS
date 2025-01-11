@@ -23,9 +23,10 @@ final class HabitViewController: BaseViewController {
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
 
         getPiggyBankSummary()
-        getChallenge()
+        getChallengeExist()
     }
 
     override func viewDidLoad() {
@@ -161,6 +162,30 @@ extension HabitViewController {
 //        getMonthlyAnaylsis(year: currentYear, month: currentMonth, challenge: .emptyChallengeData)
     }
 
+    private func getChallengeExist() {
+        print("💸 getChallengeExist called")
+        NetworkService.shared.home.getHomeExpensesSummary(type: "DAILY") { [self] result in
+            switch result {
+            case .success(let response):
+                guard let data = response as? HomeResponse else { return }
+                print("🎯 getChallengeExist success")
+                challengeData = ChallengeData.testChallengeData
+                getChallenge()
+            case .requestErr(let errorResponse):
+                dump(errorResponse)
+                guard let data = errorResponse as? ErrorResponse else { return }
+                print("🤖 \(data)")
+                habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisEmptyChallenge)
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            case .pathErr:
+                print("pathErr")
+            }
+        }
+    }
+
     private func getMonthlyAnaylsis(year: Int, month: Int, challenge: ChallengeData) {
         print("💸 getMonthlyAnaylsis called")
         NetworkService.shared.analysis.getMonthlyAnaylsis(year: year, month: month) { [self] result in
@@ -170,17 +195,10 @@ extension HabitViewController {
                 print("🎯 getMonthlyAnaylsis success")
                 analysisData = data.body
 
-                // CASE3, CASE4: analysisEmpty
                 if data.body.elements.isEmpty {
-                    if challengeData.startDate != 0 {
-                        // CASE3: challengeNonEmpty
-                        habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
-                    } else {
-                        // CASE4: challengeEmpty
-                        habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisEmptyChallenge)
-                    }
+                    habitView.setAnalysisExpenseEmtpyView(analysisCase: .emptyAnalysisNonEmptyChallenge)
                 } else {
-                    // CASE1, CASE2: analysisNonEmpty
+                    print("33")
                     habitView.setAnalysisExpenseNonEmtpyView(data: data.body)
                 }
             case .requestErr(let errorResponse):

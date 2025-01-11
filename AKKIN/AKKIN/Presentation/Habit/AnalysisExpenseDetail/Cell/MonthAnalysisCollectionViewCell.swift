@@ -19,7 +19,6 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
     }
 
     let categoryImageLabel = UILabel().then {
-        $0.text = "🍽️"
         $0.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         $0.textAlignment = .center
     }
@@ -129,13 +128,15 @@ class MonthAnalysisCollectionViewCell: UICollectionViewCell {
 
 extension MonthAnalysisCollectionViewCell {
     func setData(data: AnalysisElement, colorView: Bool) {
-        let categoryImage = CategoryMapper.mapCategoryImage(data.categoryEnum)
+        let categoryImage = CategoryMapper.mapCategoryImage(data.category)
 
         categoryImageLabel.text = categoryImage
         categoryTitleLabel.text = data.category
         let categoryColor = data.getCategoryColor(data.category)
         categoryColorView.backgroundColor = colorView ? categoryColor : .clear
-        categoryRatioLabel.text = "\(data.ratio)%"
+
+        let roundedRatio = roundToSecondDecimal(data.ratio)
+        categoryRatioLabel.text = "\(roundedRatio)%"
         categoryExpenseLabel.text = "\(data.amount.toPriceFormat) 원"
     }
 
@@ -157,5 +158,10 @@ extension MonthAnalysisCollectionViewCell {
         categoryRatioLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         categoryExpenseLabel.text = data.amount.toPriceFormat + " 원"
         categoryTotalLabel.text = data.savedAmount.toPriceFormat + " 원"
+    }
+
+    func roundToSecondDecimal(_ value: Double) -> Double {
+        let scale = pow(10.0, 2.0)
+        return (value * scale).rounded() / scale
     }
 }

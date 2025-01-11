@@ -200,6 +200,8 @@ final class HabitView: BaseView {
     }
 
     func setAnalysisExpenseEmtpyView(analysisCase: AnalysisCase) {
+        analysisExpenseView.removeFromSuperview()
+
         analysisExpenseEmptyView.setData(message: analysisCase.message,
                                          buttonTitle: analysisCase.buttonTitle, alignment: .center)
         analysisExpenseEntireView.addSubview(analysisExpenseEmptyView)
@@ -219,6 +221,9 @@ final class HabitView: BaseView {
 
     // MARK: Data binding
     func setAnalysisExpenseNonEmtpyView(data: AnalysisData) {
+        analysisExpenseEmptyView.removeFromSuperview()
+        analysisExpenseView.removeFromSuperview()
+        print(data)
         analysisExpenseEntireView.addSubview(analysisExpenseView)
         analysisExpenseView.setData(data: data)
 

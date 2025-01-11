@@ -60,7 +60,12 @@ final class CalendarViewController: BaseViewController, FSCalendarDelegate {
     }
 
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        updateButtonTitle(for: calendar.currentPage)
+        let currentPageDate = calendar.currentPage
+        let currentMonth = Calendar.current.component(.month, from: currentPageDate)
+        let currentYear = Calendar.current.component(.year, from: currentPageDate)
+
+        getSavings(year: currentYear, month: currentMonth)
+        updateButtonTitle(for: currentPageDate)
     }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -107,9 +112,6 @@ extension CalendarViewController {
             case .requestErr(let errorResponse):
                 dump(errorResponse)
                 guard let data = errorResponse as? ErrorResponse else { return }
-                // TODO:
-                calendarView.setData(month: month, totalAmount: 150000, data: Savings.testSavings)
-                calendarView.calendarView.setSavingsData(data: Savings.testSavings)
                 print("🤖 \(data)")
             case .serverErr:
                 print("serverErr")
