@@ -17,7 +17,7 @@ final class SetPeriodViewController: BaseViewController {
     private let setPeriodView = SetPeriodView()
 
     // MARK: Properties
-    weak var delegate: SetPeriodViewControllerDelegate?
+    var delegate: SetPeriodViewControllerDelegate?
     private var selectedStartDate: String = ""
     private var selectedEndDate: String = ""
     private var selectedDuration: String = "ㅇㅇ"
@@ -125,7 +125,7 @@ extension SetPeriodViewController: SetPeriodViewDelegate {
         viewDateFormatter.dateFormat = "MM월 dd일"
 
         let passDateFormatter = DateFormatter()
-        passDateFormatter.dateFormat = "YYYY-MM-dd"
+        passDateFormatter.dateFormat = "YYYY.MM.dd"
 
         selectedStartDate = startDate.map { passDateFormatter.string(from: $0) } ?? ""
         selectedEndDate = endDate.map { passDateFormatter.string(from: $0) } ?? ""

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -194,6 +194,16 @@
 		E5F659EB2CA00FF4001A08C7 /* AddExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F659EA2CA00FF4001A08C7 /* AddExpenseModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E5890FC82D36DA1C00268656 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC94AD152AA5FE3A00A77052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC94AD1C2AA5FE3A00A77052;
+			remoteInfo = AKKIN;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		6B117F6A2ABC865A000B03F7 /* UIResponder + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + Extension.swift"; sourceTree = "<group>"; };
 		6B5B83922AC1ED4300CD0AFC /* GulbiAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GulbiAPI.swift; sourceTree = "<group>"; };
@@ -362,6 +372,7 @@
 		E58640192CB43B570092D6C1 /* AddChallengesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengesService.swift; sourceTree = "<group>"; };
 		E586401B2CB43B6C0092D6C1 /* AddChallengesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengesRequest.swift; sourceTree = "<group>"; };
 		E586401D2CB43B800092D6C1 /* AddChellengesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChellengesResponse.swift; sourceTree = "<group>"; };
+		E5890FC42D36DA1C00268656 /* modalUnitTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = modalUnitTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59A27712CA853390050359C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		E59A27752CA85F840050359C /* CustomToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleButton.swift; sourceTree = "<group>"; };
 		E59A27772CA8657F0050359C /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
@@ -382,6 +393,10 @@
 		E5F659EA2CA00FF4001A08C7 /* AddExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E5890FC52D36DA1C00268656 /* modalUnitTest */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = modalUnitTest; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		BC94AD1A2AA5FE3A00A77052 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -397,6 +412,13 @@
 				BC94AD422AA619DC00A77052 /* Then in Frameworks */,
 				C336C7CD2B5146E400A118F0 /* KakaoSDKCert in Frameworks */,
 				C336C7CB2B5146E400A118F0 /* KakaoSDKAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5890FC12D36DA1C00268656 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +768,7 @@
 			isa = PBXGroup;
 			children = (
 				BC94AD1F2AA5FE3A00A77052 /* AKKIN */,
+				E5890FC52D36DA1C00268656 /* modalUnitTest */,
 				BC94AD1E2AA5FE3A00A77052 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -754,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */,
+				E5890FC42D36DA1C00268656 /* modalUnitTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1074,6 +1098,29 @@
 			productReference = BC94AD1D2AA5FE3A00A77052 /* AKKIN.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E5890FC32D36DA1C00268656 /* modalUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5890FCC2D36DA1C00268656 /* Build configuration list for PBXNativeTarget "modalUnitTest" */;
+			buildPhases = (
+				E5890FC02D36DA1C00268656 /* Sources */,
+				E5890FC12D36DA1C00268656 /* Frameworks */,
+				E5890FC22D36DA1C00268656 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5890FC92D36DA1C00268656 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E5890FC52D36DA1C00268656 /* modalUnitTest */,
+			);
+			name = modalUnitTest;
+			packageProductDependencies = (
+			);
+			productName = modalUnitTest;
+			productReference = E5890FC42D36DA1C00268656 /* modalUnitTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1081,11 +1128,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					BC94AD1C2AA5FE3A00A77052 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					E5890FC32D36DA1C00268656 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = BC94AD1C2AA5FE3A00A77052;
 					};
 				};
 			};
@@ -1111,6 +1162,7 @@
 			projectRoot = "";
 			targets = (
 				BC94AD1C2AA5FE3A00A77052 /* AKKIN */,
+				E5890FC32D36DA1C00268656 /* modalUnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1122,6 +1174,13 @@
 			files = (
 				BC94AD2D2AA5FE3B00A77052 /* LaunchScreen.storyboard in Resources */,
 				BC94AD2A2AA5FE3B00A77052 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5890FC22D36DA1C00268656 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1201,7 +1260,6 @@
 				953650C52C6E067800F58D13 /* DummyData.swift in Sources */,
 				953650792C64567700F58D13 /* EmptyHomeViewController.swift in Sources */,
 				E5F659DF2C9C9162001A08C7 /* ExpenseCategoryView.swift in Sources */,
-				953650792C64567700F58D13 /* EmptyHomeViewController.swift in Sources */,
 				951261A02AC05B6F0012B5F9 /* AuthService.swift in Sources */,
 				951261872AC02D560012B5F9 /* URLConst.swift in Sources */,
 				951261C52AC1DE110012B5F9 /* UserDefault.swift in Sources */,
@@ -1270,7 +1328,6 @@
 				E5863FA52CB19DF70092D6C1 /* HomeService.swift in Sources */,
 				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
 				95094BF02CBAC6C3006055C3 /* UsersService.swift in Sources */,
-				953650772C64566A00F58D13 /* EmptyHomeView.swift in Sources */,
 				C39078F42C95549A003514FE /* MakePiggyBankCompleteViewController.swift in Sources */,
 				BC94AD212AA5FE3A00A77052 /* AppDelegate.swift in Sources */,
 				BC94AD592AA6208900A77052 /* ExampleRequest.swift in Sources */,
@@ -1310,7 +1367,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5890FC02D36DA1C00268656 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5890FC92D36DA1C00268656 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC94AD1C2AA5FE3A00A77052 /* AKKIN */;
+			targetProxy = E5890FC82D36DA1C00268656 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BC94AD2B2AA5FE3B00A77052 /* LaunchScreen.storyboard */ = {
@@ -1498,6 +1570,53 @@
 			};
 			name = Release;
 		};
+		E5890FCA2D36DA1C00268656 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39MK2JX9R4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Rx.modalUnitTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKKIN.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AKKIN";
+			};
+			name = Debug;
+		};
+		E5890FCB2D36DA1C00268656 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39MK2JX9R4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Rx.modalUnitTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKKIN.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AKKIN";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1515,6 +1634,15 @@
 			buildConfigurations = (
 				BC94AD322AA5FE3B00A77052 /* Debug */,
 				BC94AD332AA5FE3B00A77052 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5890FCC2D36DA1C00268656 /* Build configuration list for PBXNativeTarget "modalUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5890FCA2D36DA1C00268656 /* Debug */,
+				E5890FCB2D36DA1C00268656 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

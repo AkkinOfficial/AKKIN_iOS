@@ -90,7 +90,7 @@ final class HomeViewController: BaseViewController {
         setNavigationItem()
         router.viewController = self
         configureView(for: currentType)
-        checkIfTimePassed()
+        //checkIfTimePassed()
     }
 
     // MARK: Navigation Item
@@ -127,15 +127,27 @@ final class HomeViewController: BaseViewController {
         }
     }
 
+    private let isDummyMode = true
+
     // MARK: API 호출 메서드
     private func fetchExpenseSummary(for type: String) {
+        if isDummyMode {
+            if let dummy = HomeModel.dummy(for: type.lowercased()) {
+                self.homeModel = dummy
+                self.updateUI(with: dummy, for: type)
+                print("✅ Dummy Data Loaded for \(type)")
+            } else {
+                print("❌ Invalid dummy type")
+            }
+            return
+        }
+
         homeService.getHomeExpensesSummary(type: type) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .success(let data):
                 if let summary = data as? HomeResponse {
-                    // 응답 데이터를 HomeModel로 변환 => 맞는 방법일까,,
                     let homeModel = HomeModel(
                         type: type,
                         savedAmount: summary.body.savedAmount,
@@ -212,7 +224,7 @@ final class HomeViewController: BaseViewController {
         let currentTime = Date()
         if currentTime > storedTime {
             print("현재 시간이 저장된 시간을 지남. 모달 동작.")
-            //router.presentAlertViewController()
+            router.presentAlertViewController()
         } else {
             print("현재 시간이 저장된 시간을 지나지 않음. 동작 안함.")
         }

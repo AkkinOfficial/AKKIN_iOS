@@ -38,16 +38,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func changeRootViewController() {
         guard let window = window else { return }
         if Storage.isFirstTime() {
-            window.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+            window.rootViewController = UINavigationController(rootViewController: HomeViewController())
         } else {
-            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            window.rootViewController = UINavigationController(rootViewController: TabBarViewController())
         }
         UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil)
      }
 
     func changeRootViewToTabBarViewController() {
         guard let window = window else { return }
-        window.rootViewController = TabBarViewController()
+        window.rootViewController = HomeViewController()
         UIView.transition(with: window, duration: 0.1, options: [.transitionCrossDissolve], animations: nil)
     }
 }
